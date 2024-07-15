@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap");
+
+/* Basic styling to a few elements. */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+  }
+  
+  :root {
+    --dark-grey: #333333;
+    --medium-grey: #636363;
+    --light-grey: #eeeeee;
+    --ash: #f4f4f4;
+    --primary-color: #2b72fb;
+    --white: white;
+    --border: 1px solid var(--light-grey);
+    --shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+      rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+    background-color: var(--white);
+    color: var(--dark-grey);
+    letter-spacing: -0.4px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  ul {
+    list-style: none;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    color: inherit;
+  }
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
+  }
+  
+  textarea,
+  input,
+  button {
+    font-size: 1rem;
+    font-family: inherit;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 0.75rem;
+    box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.2), 0 1px 2px hsla(0, 0%, 0%, 0.2);
+    background-color: white;
+    line-height: 1.5;
+    margin: 0;
+  }
+  button {
+    color: #3992ff;
+    font-weight: 500;
+  }
+  
+  textarea:hover,
+  input:hover,
+  button:hover {
+    box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.6), 0 1px 2px hsla(0, 0%, 0%, 0.2);
+  }
+  
+  button:active {
+    box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.4);
+    transform: translateY(1px);
+  }
+
+  
+  /* Reusable styles */
+  .btn {
+    display: block;
+    background-color: var(--primary-color);
+    color: var(--white);
+    text-align: center;
+    padding: 0.6rem 1.4rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 5px;
+  }
+  
+  .icon {
+    padding: 0.5rem;
+    background-color: var(--light-grey);
+    border-radius: 10px;
+  }
+  
+  .logo {
+    margin-right: 1.5rem;
+  }
+  
+  #nav-menu {
+    border-bottom: var(--border);
+  }
+  
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1600px;
+    margin: 0 auto;
+    column-gap: 2rem;
+    height: 90px;
+    padding: 1.2rem 3rem;
+  }

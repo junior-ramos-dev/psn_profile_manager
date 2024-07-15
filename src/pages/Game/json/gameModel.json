@@ -1,0 +1,18 @@
+{
+  "npServiceName": "trophy",
+  "npCommunicationId": "NPWR11510_00",
+  "trophySetVersion": "01.01",
+  "trophyTitleName": "Darksiders Warmastered Edition",
+  "trophyTitleDetail": "The Horseman cometh. You are WAR! Caught in an epic struggle between Heaven and Hell, the legendary Horseman is left with only one option- to fight his way out. Wielding the fearsome sword Chaoseater, War must carve a bloody trail through Angels and Demons alike to uncover a dangerous truth...one that may bring about the end of mankind. EXPLORE the streets of a hell-ravaged city or ascend crumbling buildings to face horrors in the sky above. CONQUER Hell’s most terrifying monstrosities using a host of supernatural abilities and devastating combat moves. DESTROY your enemies by unleashing the unstoppable power of your Chaos Form! \nDarksiders. HEADS. WILL. ROLL.",
+  "trophyTitleIconUrl": "https://image.api.playstation.com/trophy/np/NPWR11510_00_00A4ABFC7597DEC41F52A63259B277516B0CFE409C/CEFC845D5D458E059F188D543874EEAF0BF6FB90.PNG",
+  "trophyTitlePlatform": "PS4",
+  "hasTrophyGroups": false,
+  "trophyGroupCount": 1,
+  "definedTrophies": { "bronze": 26, "silver": 13, "gold": 3, "platinum": 1 },
+  "progress": 44,
+  "earnedTrophies": { "bronze": 19, "silver": 6, "gold": 0, "platinum": 0 },
+  "hiddenFlag": false,
+  "lastUpdatedDateTime": "2024-07-07T02:09:35Z",
+  "appendDivider": false,
+  "expanded": false
+}
