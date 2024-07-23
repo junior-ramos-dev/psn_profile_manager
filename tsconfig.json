@@ -1,18 +1,27 @@
 {
     "compilerOptions": {
-      "paths": {
-      "react": ["./node_modules/@types/react"]
-    },
       "target": "es6",
+      "paths": {
+        "react": ["./node_modules/@types/react"],
+      },
       "allowJs": true,
-      "jsx": "react-jsx",
+      "skipLibCheck": true,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "strict": false,
+      "forceConsistentCasingInFileNames": true,
+      "noFallthroughCasesInSwitch": true,
       "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "noEmit": true,
+      "jsx": "react-jsx",
       "outDir": "./dist",
-      "strict": true,
-      "esModuleInterop": true
-    },
-    "include": ["src/**/*"],
-    "exclude": [
+      "typeRoots": ["./node_modules/@types"],  // "typeRoots": [] -> won't work
+      "types": ["node"],                      // "types": [] -> won't work
+      },
+      "include": ["src", "scripts"],
+      "exclude": [
         "node_modues"
       ]
   }

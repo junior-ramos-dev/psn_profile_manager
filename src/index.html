@@ -2,34 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" 
-    content="default-src 'report-sample'; 
-    connect-src 'self' https://localhost:8001 http://localhost:3000/;
-    style-src 'self' https://fonts.googleapis.com https://unpkg.com https://localhost:8001 'unsafe-inline';
-    script-src 'self' https://fonts.googleapis.com https://unpkg.com 'unsafe-inline' 'unsafe-eval';
-    font-src 'self' data: https://fonts.gstatic.com https://unpkg.com;
-    img-src 'self' https://image.api.playstation.com"; 
-    />
-    <meta
-      name="viewport"
-      content="minimum-scale=1, initial-scale=1, width=device-width"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-    />
-    <title>Webpack React TS</title>
+    <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
-    <base href="/" />
     <div id="root"></div>
   </body>
 </html>
