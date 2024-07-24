@@ -1,17 +1,22 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { useState } from "react";
+import { Outlet } from "react-router-dom";
 import { Box } from "@mui/material";
 
-import { Navigation } from "../components/Navigation";
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
+import { Navigation } from "@/components/Navigation";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 
-import { FOOTER_HEIGHT } from "../utils/constants";
+import IRouteItem from "@/models/interfaces/IRouteItem";
 
-import { Outlet } from "react-router-dom";
+import { FOOTER_HEIGHT } from "@/utils/constants";
 
-const Layout = () => {
+interface LayoutProps {
+  routes: Array<IRouteItem>;
+}
+
+const Layout = ({ routes }: LayoutProps) => {
   const [open, setOpen] = useState(false);
   const toggleNavigation = () => setOpen((status) => !status);
 
@@ -31,7 +36,11 @@ const Layout = () => {
           <Box component="header">
             <Header toggleNavigation={toggleNavigation} />
           </Box>
-          <Navigation open={open} handleClose={toggleNavigation} />
+          <Navigation
+            routes={routes}
+            open={open}
+            handleClose={toggleNavigation}
+          />
           <Box
             component="main"
             sx={{

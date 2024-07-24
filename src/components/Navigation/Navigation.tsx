@@ -2,19 +2,23 @@ import { Drawer as MuiDrawer, styled } from "@mui/material";
 
 import { Routes } from "./Routes";
 
-import { DRAWER_WIDTH } from "../../utils/constants";
-import { navClosedMixin, navOpenedMixin } from "../../styles/mixins";
+import { DRAWER_WIDTH } from "@/utils/constants";
+import { navClosedMixin, navOpenedMixin } from "@/styles/mixins";
+import IRouteItem from "@/models/interfaces/IRouteItem";
+//TODO CHeck if needs persist to DB
+import { routes } from "@/config/routes/routes";
 
 interface NavigationProps {
+  routes: Array<IRouteItem>;
   open: boolean | undefined;
   handleClose: () => void;
 }
 
-export const Navigation = ({ open, handleClose }: NavigationProps) => {
+export const Navigation = ({ routes, open, handleClose }: NavigationProps) => {
   return (
     <Drawer variant="permanent" open={open} onClose={handleClose}>
       <DrawerHeader />
-      <Routes />
+      <Routes routes={routes} />
     </Drawer>
   );
 };

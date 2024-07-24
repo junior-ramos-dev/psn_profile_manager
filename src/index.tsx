@@ -1,13 +1,43 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import reportWebVitals from "../reportWebVitals";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import { Provider } from "react-redux";
-import store from "./store";
 import { StyledEngineProvider } from "@mui/material/styles";
 import { AppThemeProvider } from "./theme/AppThemeProvider";
 
-import App from "./App";
+import { App } from "./App";
+import { Layout } from "./layouts";
+import { ErrorPage } from "./pages/Error/ErrorPage";
+import { RoutesChildren } from "./components/Navigation/Routes";
+
+import { Provider } from "react-redux";
+import store from "./store";
+
+import reportWebVitals from "../reportWebVitals";
+
+import { routes as appRoutes } from "./config/routes";
+import { GameDetail } from "./pages/Game";
+
+import { loader as gameLoader } from "./pages/Game/GameDetail";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout routes={appRoutes} />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/*",
+        element: <RoutesChildren />,
+      },
+      {
+        path: "games/:npCommunicationId",
+        element: <GameDetail />,
+        loader: gameLoader,
+      },
+    ],
+  },
+]);
 
 const root = createRoot(document.getElementById("root"));
 
@@ -46,7 +76,8 @@ root.render(
         <StyledEngineProvider injectFirst>
           {/* Wrap your app with the Theme Provider */}
           <AppThemeProvider>
-            <App />
+            {/* <App /> */}
+            <RouterProvider router={router} />
           </AppThemeProvider>
         </StyledEngineProvider>
       </Provider>
