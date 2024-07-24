@@ -15,7 +15,7 @@ import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
-import { GameRoute } from "../../../../models/types/game/GameRoute";
+import { GameRoute } from "@/models/types/game/GameRoute";
 
 interface GameRouteItemProps {
   gameRoute: GameRoute;

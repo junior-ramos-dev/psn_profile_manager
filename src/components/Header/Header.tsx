@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import { AppBar, Box, Toolbar } from "@mui/material";
 
-import { PsMenuIconButton } from "../Playstation/PSIconButtons";
+import { PsMenuIconButton } from "@/components/Playstation/PSIconButtons";
 import { Search } from "./Search";
 import { AppTitle } from "./AppTitle";
 
-import { ThemeModeSwitch } from "../ThemeSwitch/ThemeModeSwitch";
-import { ThemeColorShuffle } from "../ThemeSwitch/ThemeColorShuffle";
-import { Messages, More, Notifications, UserAccount } from "../Actions";
+import { ThemeModeSwitch } from "@/components/ThemeSwitch/ThemeModeSwitch";
+import { ThemeColorShuffle } from "@/components/ThemeSwitch/ThemeColorShuffle";
+import {
+  Messages,
+  More,
+  Notifications,
+  UserAccount,
+} from "@/components/Actions";
 import { DefaultMenu, MobileMenu } from "./Menu";
 
 interface HeaderProps {

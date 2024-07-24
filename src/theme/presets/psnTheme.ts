@@ -1,5 +1,5 @@
 import { createTheme } from "@mui/material/styles";
-import { AppTheme } from "../AppTheme";
+import { AppTheme } from "@/theme/AppTheme";
 
 export const theme: AppTheme = {
   dark: {

@@ -4,9 +4,7 @@ import Image from "mui-image";
 import { NavLink, useLocation } from "react-router-dom";
 import { List, ListItem } from "@mui/material";
 
-import { Typography } from "@mui/material";
-
-import { TrophyCount } from "../../models/types/trophy/TrophyCount";
+import { TrophyCount } from "@/models/types/trophy/TrophyCount";
 
 interface TrophyEarnedItemProps {
   trophies: TrophyCount;

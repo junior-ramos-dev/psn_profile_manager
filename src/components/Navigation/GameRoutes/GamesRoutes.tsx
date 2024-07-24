@@ -2,11 +2,9 @@ import { useState } from "react";
 import { List, Divider, Collapse } from "@mui/material";
 
 import { GameRouteItem } from "./GameRouteItem";
-import { TrophyEarnedItem } from "../../../pages/Trophy/TrophyEarnedItem";
 
-import { gamesRoutes } from "../../../data/gamesRoutes";
-
-import { GameRoute } from "../../../models/types/game/GameRoute";
+import { gamesRoutes } from "@/config/routes/gamesRoutes";
+import { GameRoute } from "@/models/types/game/GameRoute";
 
 export const GamesRoutes = () => {
   const [gamesRoutesState, setGamesRoutesState] =
@@ -21,15 +19,15 @@ export const GamesRoutes = () => {
     });
     setGamesRoutesState(items);
   };
-
+  //TODO Edit list details
   return (
     <>
       <List component="nav" sx={{ height: "100%" }}>
         {gamesRoutesState.map((gameRoute: GameRoute) => (
           <div key={gameRoute.key}>
-            {gameRoute.subRoutes ? (
+            {gameRoute.subRoutes.length > 0 ? (
               <>
-                <GameRouteItem
+                {/* <GameRouteItem
                   key={`${gameRoute.key}`}
                   gameRoute={gameRoute}
                   hasChildren
@@ -45,7 +43,7 @@ export const GamesRoutes = () => {
                       />
                     ))}
                   </List>
-                </Collapse>
+                </Collapse> */}
               </>
             ) : (
               <GameRouteItem

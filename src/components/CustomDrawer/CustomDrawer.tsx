@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import { Drawer, styled } from "@mui/material";
 import Box from "@mui/material/Box";
-import Divider from "@mui/material/Divider";
 
 interface CustomDrawerProps {
   open: boolean | undefined;
@@ -52,8 +51,6 @@ export const CustomDrawer = ({
           },
         }}
       >
-        {/* <DrawerHeader></DrawerHeader> */}
-        {/* <Divider /> */}
         {children}
       </Drawer>
     </Box>

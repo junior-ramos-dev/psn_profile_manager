@@ -14,7 +14,7 @@ import {
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
-import { Route } from "../../../../models/types";
+import { Route } from "@/models/types";
 
 interface RouteItemProps {
   route: Route;

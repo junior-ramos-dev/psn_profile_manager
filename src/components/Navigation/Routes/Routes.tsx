@@ -1,14 +1,18 @@
 import { useState } from "react";
-import { List, Divider, Collapse, Tooltip } from "@mui/material";
+import { List, Divider, Collapse } from "@mui/material";
 
 import { RouteItem } from "./RouteItem";
 import { SignOutRoute } from "./SignOutRoute";
 
-import { routes } from "../../../config";
-import { Route } from "../../../models/types";
+import { Route } from "@/models/types";
+import IRouteItem from "@/models/interfaces/IRouteItem";
 
-export const Routes = () => {
-  const [routesState, setRoutesStage] = useState<Route[]>(routes);
+interface RoutesProps {
+  routes: Array<IRouteItem>;
+}
+
+export const Routes = ({ routes }: RoutesProps) => {
+  const [routesState, setRoutesState] = useState<Route[]>(routes);
 
   const handleMenuClick = (route: Route) => {
     const items = routesState.map((item) => {
@@ -17,7 +21,7 @@ export const Routes = () => {
       }
       return item;
     });
-    setRoutesStage(items);
+    setRoutesState(items);
   };
 
   return (

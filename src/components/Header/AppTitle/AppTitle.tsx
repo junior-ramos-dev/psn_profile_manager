@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 import { Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
-import { APP_TITLE } from "../../../utils/constants";
+import { APP_TITLE } from "@/utils/constants";
 
 export const AppTitle = () => (
   <NavLink

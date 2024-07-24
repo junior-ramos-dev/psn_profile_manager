@@ -2,7 +2,7 @@
 import { css } from "@emotion/react";
 import { Typography, useTheme } from "@mui/material";
 
-import { FOOTER_TEXT, FOOTER_HEIGHT } from "../../utils/constants";
+import { FOOTER_TEXT, FOOTER_HEIGHT } from "@/utils/constants";
 
 export const Footer = () => {
   const theme = useTheme();

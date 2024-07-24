@@ -10,17 +10,17 @@ import {
   PAGE_TITLE_HOME,
   DRAWER_WIDTH,
   FOOTER_HEIGHT,
-} from "../../utils/constants";
+} from "@/utils/constants";
 
-import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
-import { getUser } from "../../slices/authSlice";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
+import { getUser } from "@/slices/authSlice";
 
-import { PageHeader } from "../../components/PageHeader";
-import { CustomDrawer } from "../../components/CustomDrawer";
+import { PageHeader } from "@/components/PageHeader";
+import { CustomDrawer } from "@/components/CustomDrawer";
 
-import { GamesRoutes } from "../../components/Navigation/GameRoutes/GamesRoutes";
+import { GamesRoutes } from "@/components/Navigation/GameRoutes/GamesRoutes";
 
-import useOverFlowHidden from "../../hooks/useOverFlowHidden";
+import useOverFlowHidden from "@/hooks/useOverFlowHidden";
 
 const Home = () => {
   useOverFlowHidden();
@@ -71,9 +71,6 @@ const Home = () => {
           closedWidth={70}
           children={<GamesRoutes />}
         />
-
-        {/* <SideBar open={open} handleClose={toggleNavigation} /> */}
-        {/* <NestedListDrawer /> */}
         <Box component="main" sx={{ flexGrow: 1, p: 1, pt: 10 }}>
           <Outlet />
         </Box>

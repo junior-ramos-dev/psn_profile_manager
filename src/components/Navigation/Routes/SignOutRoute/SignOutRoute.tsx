@@ -8,9 +8,9 @@ import {
   ListItemText,
   Tooltip,
 } from "@mui/material";
-import { useAppDispatch } from "../../../../hooks/redux-hooks";
 import { useNavigate } from "react-router-dom";
-import { logout } from "../../../../slices/authSlice";
+import { useAppDispatch } from "@/hooks/redux-hooks";
+import { logout } from "@/slices/authSlice";
 
 export const SignOutRoute = () => {
   const dispatch = useAppDispatch();

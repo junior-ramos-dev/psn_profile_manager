@@ -5,8 +5,8 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 
 import { ActionItem } from "../Actions/ActionItem";
 
-import { ThemeContext } from "../../contexts";
-import { LIGHT_MODE_THEME } from "../../utils/constants";
+import { ThemeContext } from "@/contexts";
+import { LIGHT_MODE_THEME } from "@/utils/constants";
 
 export const ThemeModeSwitch = ({
   disableTooltip = false,

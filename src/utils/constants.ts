@@ -17,8 +17,10 @@ export const PAGE_TITLE_PREFERENCES = "Preferences";
 export const FOOTER_HEIGHT = 40;
 export const HEADER_HEIGHT = 60;
 export const DRAWER_WIDTH = 250;
+
+// ROUTES
+export const GAMES_PARENT_PATH = "/games";
+
 // APP THEME
 export const DARK_MODE_THEME = "dark";
 export const LIGHT_MODE_THEME = "light";
-
-export const BACKEND_BASE_URL = "http://localhost:3000";
