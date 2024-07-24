@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { HotModuleReplacementPlugin } = require("webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
 
 module.exports = {
@@ -21,6 +22,8 @@ module.exports = {
   mode: "development",
   resolve: {
     extensions: [".tsx", ".ts", ".js", ".jsx", ".css"],
+    // Allows to use path aliases
+    plugins: [new TsconfigPathsPlugin()],
   },
   module: {
     /* ############################################################################# 
@@ -102,6 +105,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "styles.[contentHash].css",
     }),
+    // Load env vars
     new Dotenv({
       path: "./.env", // load this now instead of the ones in '.env'
       safe: true, // load '.env.example' to verify the '.env' variables are all set. Can also be a string to a different file.
@@ -118,6 +122,7 @@ module.exports = {
     static: path.resolve(__dirname, "dist"),
     compress: true,
     port: 8001,
+    // open: "/",
     // hot: true,
     // http2: true,
     // https: {
