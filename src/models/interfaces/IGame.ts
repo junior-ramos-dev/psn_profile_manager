@@ -1,15 +1,7 @@
 import { TrophyCount } from "../types/trophy/TrophyCount";
 
-// To parse this data:
-//
-//   import { Convert, Game } from "./file";
-//
-//   const game = Convert.toFame(json);
-//
-// These functions will throw an error if the JSON doesn't
-// match the expected interface, even if the JSON is valid.
-
-export class Game {
+// IGame is an interface for defining the game object returned from the API with additional properties to generate the routes for games.
+interface IGame {
   npServiceName: string;
   npCommunicationId: string;
   trophySetVersion: string;
@@ -24,55 +16,30 @@ export class Game {
   earnedTrophies: TrophyCount;
   hiddenFlag: boolean;
   lastUpdatedDateTime: Date;
-  appendDivider: boolean;
-  expanded: boolean;
-
-  constructor(
-    npServiceName: string,
-    npCommunicationId: string,
-    trophySetVersion: string,
-    trophyTitleName: string,
-    trophyTitleDetail: string,
-    trophyTitleIconUrl: string,
-    trophyTitlePlatform: string,
-    hasTrophyGroups: boolean,
-    trophyGroupCount: number,
-    definedTrophies: TrophyCount,
-    progress: number,
-    earnedTrophies: TrophyCount,
-    hiddenFlag: boolean,
-    lastUpdatedDateTime: Date,
-    appendDivider: boolean = false,
-    expanded: boolean = false
-  ) {
-    this.npServiceName = npServiceName;
-    this.npCommunicationId = npCommunicationId;
-    this.trophySetVersion = trophySetVersion;
-    this.trophyTitleName = trophyTitleName;
-    this.trophyTitleDetail = trophyTitleDetail;
-    this.trophyTitleIconUrl = trophyTitleIconUrl;
-    this.trophyTitlePlatform = trophyTitlePlatform;
-    this.hasTrophyGroups = hasTrophyGroups;
-    this.trophyGroupCount = trophyGroupCount;
-    this.definedTrophies = definedTrophies;
-    this.progress = progress;
-    this.earnedTrophies = earnedTrophies;
-    this.hiddenFlag = hiddenFlag;
-    this.lastUpdatedDateTime = lastUpdatedDateTime;
-    this.appendDivider = appendDivider;
-    this.expanded = expanded;
-  }
+  appendDivider: boolean; //TODO Remove
+  expanded: boolean; //TODO Remove
 }
+
+/* 
+# To parse this data:
+#
+#   import { Convert, IGame } from "./file";
+# 
+#   const game = Convert.toFame(json);
+# 
+# These functions will throw an error if the JSON doesn't
+# match the expected interface, even if the JSON is valid.
+*/
 
 // Converts JSON strings to/from your types
 // and asserts the results of JSON.parse at runtime
-export class ConvertGame {
-  public static toGame(json: string): Game {
-    return cast(JSON.parse(json), r("Game"));
+export class ConvertIGame {
+  public static toGame(json: string): IGame {
+    return cast(JSON.parse(json), r("IGame"));
   }
 
-  public static gameToJson(value: Game): string {
-    return JSON.stringify(uncast(value, r("Game")), null, 2);
+  public static gameToJson(value: IGame): string {
+    return JSON.stringify(uncast(value, r("IGame")), null, 2);
   }
 }
 
@@ -255,7 +222,7 @@ function r(name: string) {
 }
 
 const typeMap: any = {
-  Game: o(
+  IGame: o(
     [
       { json: "npServiceName", js: "npServiceName", typ: "" },
       { json: "npCommunicationId", js: "npCommunicationId", typ: "" },
@@ -290,3 +257,5 @@ const typeMap: any = {
     false
   ),
 };
+
+export default IGame;

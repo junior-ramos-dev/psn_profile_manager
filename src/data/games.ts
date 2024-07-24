@@ -1,6 +1,6 @@
-import { Game } from "../models/classes/Game";
-//TODO Use API
-export const games: Array<Game> = [
+import IGame from "../models/interfaces/IGame";
+//TODO Get from API and persist on DB
+export const games: Array<IGame> = [
   {
     npServiceName: "trophy",
     npCommunicationId: "NPWR11510_00",

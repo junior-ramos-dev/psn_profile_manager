@@ -1,7 +1,7 @@
 /**
  * Represents a user.
  */
-export interface IUser {
+interface IUser {
   /**
    * The user's unique identifier
    * @type {string}
@@ -118,3 +118,5 @@ export interface IUser {
    */
   isVerified: boolean;
 }
+
+export default IUser;

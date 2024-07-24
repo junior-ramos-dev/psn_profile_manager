@@ -15,14 +15,14 @@ import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
-import { GameRoute } from "@/models/types/game/GameRoute";
+import { IGameRoute } from "@/models/interfaces";
 
 interface GameRouteItemProps {
-  gameRoute: GameRoute;
+  gameRoute: IGameRoute;
   // route: Route;
   nested?: boolean;
   hasChildren?: boolean;
-  handleMenuClick?: (route: GameRoute) => void;
+  handleMenuClick?: (route: IGameRoute) => void;
 }
 
 export const GameRouteItem = ({

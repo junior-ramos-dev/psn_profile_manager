@@ -8,7 +8,7 @@ import { Navigation } from "@/components/Navigation";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
-import IRouteItem from "@/models/interfaces/IRouteItem";
+import { IRouteItem } from "@/models/interfaces";
 
 import { FOOTER_HEIGHT } from "@/utils/constants";
 

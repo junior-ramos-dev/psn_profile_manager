@@ -14,13 +14,13 @@ import {
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
-import { Route } from "@/models/types";
+import { IRouteItem } from "@/models/interfaces";
 
 interface RouteItemProps {
-  route: Route;
+  route: IRouteItem;
   nested?: boolean;
   hasChildren?: boolean;
-  handleMenuClick?: (route: Route) => void;
+  handleMenuClick?: (route: IRouteItem) => void;
 }
 
 export const RouteItem = ({
@@ -61,9 +61,9 @@ export const RouteItem = ({
             transition: "box-shadow 0.1s";
           `}
         >
-          {route.icon && (
+          {route.asset && (
             <Icon
-              component={route.icon}
+              component={route.asset}
               css={css`
                 color: ${isSelected && theme.palette.primary.main};
               `}

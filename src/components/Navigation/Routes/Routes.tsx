@@ -4,17 +4,16 @@ import { List, Divider, Collapse } from "@mui/material";
 import { RouteItem } from "./RouteItem";
 import { SignOutRoute } from "./SignOutRoute";
 
-import { Route } from "@/models/types";
-import IRouteItem from "@/models/interfaces/IRouteItem";
+import { IRouteItem } from "@/models/interfaces";
 
 interface RoutesProps {
   routes: Array<IRouteItem>;
 }
 
 export const Routes = ({ routes }: RoutesProps) => {
-  const [routesState, setRoutesState] = useState<Route[]>(routes);
+  const [routesState, setRoutesState] = useState<IRouteItem[]>(routes);
 
-  const handleMenuClick = (route: Route) => {
+  const handleMenuClick = (route: IRouteItem) => {
     const items = routesState.map((item) => {
       if (item.key === route.key) {
         item.expanded = !item.expanded;
@@ -27,7 +26,7 @@ export const Routes = ({ routes }: RoutesProps) => {
   return (
     <>
       <List component="nav" sx={{ height: "100%" }}>
-        {routesState.map((route: Route) => (
+        {routesState.map((route: IRouteItem) => (
           <div key={route.key}>
             {route.subRoutes ? (
               <>
@@ -39,7 +38,7 @@ export const Routes = ({ routes }: RoutesProps) => {
                 />
                 <Collapse in={route.expanded} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
-                    {route.subRoutes.map((sRoute: Route) => (
+                    {route.subRoutes.map((sRoute: IRouteItem) => (
                       <RouteItem key={`${sRoute.key}`} route={sRoute} nested />
                     ))}
                   </List>

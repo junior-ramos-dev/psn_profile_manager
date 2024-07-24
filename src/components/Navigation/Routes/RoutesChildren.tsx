@@ -5,13 +5,13 @@ import { PageDefault } from "../../PageDefault";
 
 import { Login, Register } from "@/pages/SignUp";
 
-import { routes as appRoutes } from "@/config/routes";
-import { Route as AppRoute } from "@/models/types";
+import { IAppRoute, IGameRoute } from "@/models/interfaces";
 
-import { gamesRoutes } from "@/config/routes";
-import { GameRoute } from "@/models/types/game";
+//TODO CHeck if needs persist to DB
+import { routes as appRoutes } from "@/config/routes";
 
 //TODO Use when get games from API
+import { gamesRoutes } from "@/config/routes";
 import { GAMES_PARENT_PATH } from "@/utils/constants";
 import { GameDetail, Games } from "@/pages/Game";
 
@@ -45,15 +45,15 @@ export const RoutesChildren = () => {
       </Route>
       <Route element={<ProtectedRoute />}>
         {/* Create App Routes */}
-        {appRoutes.map((appRoute: AppRoute) =>
+        {appRoutes.map((appRoute: IAppRoute) =>
           appRoute.subRoutes
-            ? appRoute.subRoutes.map((item: AppRoute) => addRoute(item))
+            ? appRoute.subRoutes.map((item: IAppRoute) => addRoute(item))
             : addRoute(appRoute)
         )}
         {/* Create Games Routes */}
-        {gamesRoutes.map((gameRoute: GameRoute) =>
+        {gamesRoutes.map((gameRoute: IGameRoute) =>
           gameRoute.subRoutes
-            ? gameRoute.subRoutes.map((item: GameRoute) => addRoute(item))
+            ? gameRoute.subRoutes.map((item: IGameRoute) => addRoute(item))
             : addRoute(gameRoute)
         )}
       </Route>

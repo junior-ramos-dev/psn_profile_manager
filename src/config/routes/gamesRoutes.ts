@@ -1,15 +1,13 @@
-import { GameRoute } from "@/models/types/game/GameRoute";
-
-import { PageDefault } from "@/components/PageDefault";
+import { IRouteItem } from "@/models/interfaces";
 
 //TODO Get from API and persist on DB
-export const gamesRoutes: Array<GameRoute> = [
+export const gamesRoutes: Array<IRouteItem> = [
   {
     key: "NPWR11510_00",
     title: "Darksiders Warmastered Edition",
     tooltip: "Darksiders Warmastered Edition",
     path: "/games/NPWR11510_00",
-    component: PageDefault, //"GameDetails",
+    component: "GameDetails",
     enabled: true,
     subRoutes: [],
     appendDivider: true,

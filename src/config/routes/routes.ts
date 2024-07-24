@@ -13,7 +13,7 @@ import Home from "@/pages/Home";
 import { Games } from "@/pages/Game";
 
 // interface
-import IRouteItem from "@/models/interfaces/IRouteItem";
+import { IRouteItem } from "@/models/interfaces";
 
 // define app routes
 export const routes: Array<IRouteItem> = [
@@ -24,7 +24,7 @@ export const routes: Array<IRouteItem> = [
     path: "/games",
     enabled: true,
     component: Games,
-    icon: SportsEsportsIcon,
+    asset: SportsEsportsIcon,
     appendDivider: true,
   },
   {
@@ -34,7 +34,7 @@ export const routes: Array<IRouteItem> = [
     path: "/home",
     enabled: true,
     component: Home,
-    icon: HomeIcon,
+    asset: HomeIcon,
     appendDivider: true,
   },
   {
@@ -44,14 +44,14 @@ export const routes: Array<IRouteItem> = [
     path: "/dashboard",
     enabled: true,
     // component: ThemesDemo,
-    icon: DashboardIcon,
+    asset: DashboardIcon,
   },
   {
     key: "router-gh",
     title: "GitHub",
     tooltip: "GitHub",
     enabled: true,
-    icon: GitHubIcon,
+    asset: GitHubIcon,
     subRoutes: [
       {
         key: "router-gh-private",
@@ -60,7 +60,7 @@ export const routes: Array<IRouteItem> = [
         path: "/gh/private",
         enabled: true,
         // component: GHPrivate,
-        icon: PrivateIcon,
+        asset: PrivateIcon,
       },
       {
         key: "router-gh-public",
@@ -69,7 +69,7 @@ export const routes: Array<IRouteItem> = [
         path: "/gh/public",
         enabled: false,
         // component: GHPublic,
-        icon: PublicIcon,
+        asset: PublicIcon,
       },
     ],
   },
@@ -80,7 +80,7 @@ export const routes: Array<IRouteItem> = [
     path: "/code-editor",
     enabled: true,
     // component: CodeEditor,
-    icon: CodeIcon,
+    asset: CodeIcon,
     appendDivider: true,
   },
   {
@@ -90,6 +90,6 @@ export const routes: Array<IRouteItem> = [
     path: "/settings",
     enabled: true,
     // component: Settings,
-    icon: SettingsIcon,
+    asset: SettingsIcon,
   },
 ];

@@ -4,7 +4,7 @@ import { Routes } from "./Routes";
 
 import { DRAWER_WIDTH } from "@/utils/constants";
 import { navClosedMixin, navOpenedMixin } from "@/styles/mixins";
-import IRouteItem from "@/models/interfaces/IRouteItem";
+import { IRouteItem } from "@/models/interfaces";
 //TODO CHeck if needs persist to DB
 import { routes } from "@/config/routes/routes";
 

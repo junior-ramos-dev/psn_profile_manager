@@ -15,10 +15,11 @@ import store from "./store";
 
 import reportWebVitals from "../reportWebVitals";
 
-import { routes as appRoutes } from "./config/routes";
 import { GameDetail } from "./pages/Game";
-
 import { loader as gameLoader } from "./pages/Game/GameDetail";
+
+//TODO CHeck if needs persist to DB
+import { routes as appRoutes } from "./config/routes";
 
 const router = createBrowserRouter([
   {
