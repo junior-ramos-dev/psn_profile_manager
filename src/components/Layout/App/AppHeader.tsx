@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AppBar, Box, Toolbar } from "@mui/material";
 
 import { PsMenuIconButton } from "@/components/Playstation/PSIconButtons";
-import { Search } from "../../Header/Search";
+import { Search } from "@/components/Header/Search";
 import { AppTitle } from "./AppTitle";
 
 import { ThemeModeSwitch } from "@/components/ThemeSwitch/ThemeModeSwitch";
@@ -13,7 +13,7 @@ import {
   Notifications,
   UserAccount,
 } from "@/components/Actions";
-import { DefaultMenu, MobileMenu } from "../../Header/Menu";
+import { DefaultMenu, MobileMenu } from "@/components/Header/Menu";
 
 interface HeaderProps {
   toggleNavigation: () => void;

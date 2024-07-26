@@ -11,7 +11,7 @@ import { IAppRoute, IGameRoute } from "@/models/interfaces";
 import { routes as appRoutes } from "@/config/routes";
 
 //TODO Use when get games from API
-import { gamesRoutes } from "@/config/routes";
+import { gamesRoutes } from "@/data/gamesRoutes";
 import { GAMES_PARENT_PATH } from "@/utils/constants";
 import { GameDetail, Games } from "@/pages/Game";
 

@@ -3,7 +3,7 @@ import { List, Divider, Collapse } from "@mui/material";
 
 import { GameRouteItem } from "./GameRouteItem";
 
-import { gamesRoutes } from "@/config/routes/gamesRoutes";
+import { gamesRoutes } from "@/data/gamesRoutes";
 import { IGameRoute } from "@/models/interfaces";
 
 export const GamesRoutes = () => {
