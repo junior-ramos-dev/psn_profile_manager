@@ -4,8 +4,9 @@ import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import { Box } from "@mui/material";
 
+import { AppHeader } from "./AppHeader";
 import { Navigation } from "@/components/Navigation";
-import { Header } from "@/components/Header";
+
 import { Footer } from "@/components/Footer";
 
 import { IRouteItem } from "@/models/interfaces";
@@ -16,7 +17,7 @@ interface LayoutProps {
   routes: Array<IRouteItem>;
 }
 
-const Layout = ({ routes }: LayoutProps) => {
+export const AppLayout = ({ routes }: LayoutProps) => {
   const [open, setOpen] = useState(false);
   const toggleNavigation = () => setOpen((status) => !status);
 
@@ -34,7 +35,7 @@ const Layout = ({ routes }: LayoutProps) => {
           `}
         >
           <Box component="header">
-            <Header toggleNavigation={toggleNavigation} />
+            <AppHeader toggleNavigation={toggleNavigation} />
           </Box>
           <Navigation
             routes={routes}
@@ -60,5 +61,3 @@ const Layout = ({ routes }: LayoutProps) => {
     </>
   );
 };
-
-export default Layout;

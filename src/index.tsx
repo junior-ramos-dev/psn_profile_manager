@@ -6,10 +6,10 @@ import { StyledEngineProvider } from "@mui/material/styles";
 import { AppThemeProvider } from "./theme/AppThemeProvider";
 
 import { App } from "./App";
-import { Layout } from "./layouts";
+
 import { ErrorPage } from "./pages/Error/ErrorPage";
 import { RoutesChildren } from "./components/Navigation/Routes";
-
+import { AppLayout } from "@/components/Layout/App/AppLayout";
 import { Provider } from "react-redux";
 import store from "./store";
 
@@ -24,7 +24,7 @@ import { routes as appRoutes } from "./config/routes";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout routes={appRoutes} />,
+    element: <AppLayout routes={appRoutes} />,
     errorElement: <ErrorPage />,
     children: [
       {

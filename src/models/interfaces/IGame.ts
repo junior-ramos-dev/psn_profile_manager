@@ -16,8 +16,6 @@ interface IGame {
   earnedTrophies: TrophyCount;
   hiddenFlag: boolean;
   lastUpdatedDateTime: Date;
-  appendDivider: boolean; //TODO Remove
-  expanded: boolean; //TODO Remove
 }
 
 /* 
@@ -33,12 +31,12 @@ interface IGame {
 
 // Converts JSON strings to/from your types
 // and asserts the results of JSON.parse at runtime
-export class ConvertIGame {
-  public static toGame(json: string): IGame {
+export class Convert {
+  public static toIGame(json: string): IGame {
     return cast(JSON.parse(json), r("IGame"));
   }
 
-  public static gameToJson(value: IGame): string {
+  public static iGameToJson(value: IGame): string {
     return JSON.stringify(uncast(value, r("IGame")), null, 2);
   }
 }
@@ -235,15 +233,9 @@ const typeMap: any = {
       { json: "trophyGroupCount", js: "trophyGroupCount", typ: 0 },
       { json: "definedTrophies", js: "definedTrophies", typ: r("TrophyCount") },
       { json: "progress", js: "progress", typ: 0 },
-      {
-        json: "earnedTrophies",
-        js: "earnedTrophies",
-        typ: r("TrophyCount"),
-      },
+      { json: "earnedTrophies", js: "earnedTrophies", typ: r("TrophyCount") },
       { json: "hiddenFlag", js: "hiddenFlag", typ: true },
       { json: "lastUpdatedDateTime", js: "lastUpdatedDateTime", typ: Date },
-      { json: "appendDivider", js: "appendDivider", typ: true },
-      { json: "expanded", js: "expanded", typ: true },
     ],
     false
   ),

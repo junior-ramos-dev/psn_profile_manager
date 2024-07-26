@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AppBar, Box, Toolbar } from "@mui/material";
 
 import { PsMenuIconButton } from "@/components/Playstation/PSIconButtons";
-import { Search } from "./Search";
+import { Search } from "../../Header/Search";
 import { AppTitle } from "./AppTitle";
 
 import { ThemeModeSwitch } from "@/components/ThemeSwitch/ThemeModeSwitch";
@@ -13,13 +13,13 @@ import {
   Notifications,
   UserAccount,
 } from "@/components/Actions";
-import { DefaultMenu, MobileMenu } from "./Menu";
+import { DefaultMenu, MobileMenu } from "../../Header/Menu";
 
 interface HeaderProps {
   toggleNavigation: () => void;
 }
 
-export const Header = ({ toggleNavigation }: HeaderProps) => {
+export const AppHeader = ({ toggleNavigation }: HeaderProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     useState<null | HTMLElement>(null);
