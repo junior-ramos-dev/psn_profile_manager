@@ -135,4 +135,4 @@ dist
 .pnp.*
 
 #Others
-dummy/
+temp/
