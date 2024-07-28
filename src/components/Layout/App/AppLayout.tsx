@@ -6,11 +6,8 @@ import { Box } from "@mui/material";
 
 import { AppHeader } from "./AppHeader";
 import { Navigation } from "@/components/Navigation";
-
 import { Footer } from "@/components/Footer";
-
 import { IRouteItem } from "@/models/interfaces";
-
 import { FOOTER_HEIGHT } from "@/utils/constants";
 
 interface LayoutProps {

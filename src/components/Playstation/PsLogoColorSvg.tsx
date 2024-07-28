@@ -1,6 +1,6 @@
 import * as React from "react";
 import { SVGProps } from "react";
-const PsLogoColorSvg = (props: SVGProps<SVGSVGElement>) => (
+export const PsLogoColorSvg = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 573 438"
@@ -38,4 +38,3 @@ const PsLogoColorSvg = (props: SVGProps<SVGSVGElement>) => (
     />
   </svg>
 );
-export default PsLogoColorSvg;

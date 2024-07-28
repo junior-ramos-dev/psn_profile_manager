@@ -9,9 +9,5 @@ export const ProtectedRoute = () => {
     return <Navigate replace to={"/login"} />;
   }
 
-  return (
-    <>
-      <Outlet />
-    </>
-  );
+  return <Outlet />;
 };

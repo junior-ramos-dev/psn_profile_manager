@@ -14,7 +14,7 @@ import { LockOutlined } from "@mui/icons-material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "@/hooks/redux-hooks";
-import { register } from "@/slices/authSlice";
+import { register } from "@/redux/slices/authSlice";
 
 export const Register = () => {
   const dispatch = useAppDispatch();

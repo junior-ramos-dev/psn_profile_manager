@@ -1,9 +1,7 @@
-import React, { useState } from "react";
-import { AppBar, Box, Toolbar } from "@mui/material";
+import { AppBar, Toolbar } from "@mui/material";
 
 import { Hamburger } from "@/components/Header/Hamburger";
 import { Search } from "@/components/Header/Search";
-import { PsControllerIconButton } from "@/components/Playstation/PSIconButtons";
 
 interface PageHeaderProps {
   toggleNavigation: () => void;

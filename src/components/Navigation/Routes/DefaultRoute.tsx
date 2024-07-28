@@ -9,9 +9,5 @@ export const DefaultRoute = () => {
     return <Navigate replace to={"/"} />;
   }
 
-  return (
-    <>
-      <Outlet />
-    </>
-  );
+  return <Outlet />;
 };

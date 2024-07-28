@@ -14,7 +14,7 @@ import {
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "@/hooks/redux-hooks";
-import { login } from "@/slices/authSlice";
+import { login } from "@/redux/slices/authSlice";
 
 export const Login = () => {
   const dispatch = useAppDispatch();

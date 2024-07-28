@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 // functional component
-const MenuItemNav = (route: RouteItem): ReactElement => {
+export const MenuItemNav = (route: RouteItem): ReactElement => {
   const classes = useStyles();
   const location: any = useLocation();
 
@@ -45,34 +45,30 @@ const MenuItemNav = (route: RouteItem): ReactElement => {
   };
 
   return (
-    <>
-      <NavLink
-        to={`${route.path}`}
-        style={{ textDecoration: "none", color: "inherit" }}
-        key={`${route.key}`}
-        onClick={handleNavigate}
-        className={clsx({
-          [classes.listItemDisabled]: !route.enabled,
-        })}
-      >
-        <Tooltip title={route.tooltip || ""} placement="right">
-          <ListItem button disabled={!route.enabled}>
-            <ListItemIcon>
-              <IconButton
-                className={clsx({
-                  [classes.selected]: location.pathname === route.path,
-                })}
-                size="small"
-              >
-                <Icon component={route.icon || DefaultIcon} />
-              </IconButton>
-            </ListItemIcon>
-            <ListItemText primary={route.title} />
-          </ListItem>
-        </Tooltip>
-      </NavLink>
-    </>
+    <NavLink
+      to={`${route.path}`}
+      style={{ textDecoration: "none", color: "inherit" }}
+      key={`${route.key}`}
+      onClick={handleNavigate}
+      className={clsx({
+        [classes.listItemDisabled]: !route.enabled,
+      })}
+    >
+      <Tooltip title={route.tooltip || ""} placement="right">
+        <ListItem button disabled={!route.enabled}>
+          <ListItemIcon>
+            <IconButton
+              className={clsx({
+                [classes.selected]: location.pathname === route.path,
+              })}
+              size="small"
+            >
+              <Icon component={route.icon || DefaultIcon} />
+            </IconButton>
+          </ListItemIcon>
+          <ListItemText primary={route.title} />
+        </ListItem>
+      </Tooltip>
+    </NavLink>
   );
 };
-
-export default MenuItemNav;

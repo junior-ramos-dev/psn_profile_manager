@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "@/hooks/redux-hooks";
-import { logout } from "@/slices/authSlice";
+import { logout } from "@/redux/slices/authSlice";
 
 export const SignOutRoute = () => {
   const dispatch = useAppDispatch();

@@ -13,7 +13,7 @@ import {
 } from "@/utils/constants";
 
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
-import { getUser } from "@/slices/authSlice";
+import { getUser } from "@/redux/slices/authSlice";
 
 import { PageHeader } from "@/components/PageHeader";
 import { CustomDrawer } from "@/components/CustomDrawer";
@@ -23,6 +23,7 @@ import { GamesRoutes } from "@/components/Navigation/GameRoutes/GamesRoutes";
 import useOverFlowHidden from "@/hooks/useOverFlowHidden";
 
 const Home = () => {
+  //Disable page scroll
   useOverFlowHidden();
 
   const [open, setOpen] = useState(false);
