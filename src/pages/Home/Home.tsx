@@ -12,15 +12,14 @@ import {
   FOOTER_HEIGHT,
 } from "@/utils/constants";
 
-import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
-import { getUser } from "@/redux/slices/authSlice";
-
 import { PageHeader } from "@/components/PageHeader";
 import { CustomDrawer } from "@/components/CustomDrawer";
 
 import { GamesRoutes } from "@/components/Navigation/GameRoutes/GamesRoutes";
 
 import useOverFlowHidden from "@/hooks/useOverFlowHidden";
+import { authSelectors } from "@/redux/auth";
+import { useSelector } from "react-redux";
 
 const Home = () => {
   //Disable page scroll
@@ -29,16 +28,14 @@ const Home = () => {
   const [open, setOpen] = useState(false);
   const toggleNavigation = () => setOpen((status) => !status);
 
-  const dispatch = useAppDispatch();
+  const user = useSelector(authSelectors.getUser);
 
-  const basicUserInfo = useAppSelector((state) => state.auth.basicUserInfo);
-  const userProfileInfo = useAppSelector((state) => state.auth.userProfileData);
-
-  useEffect(() => {
-    if (basicUserInfo) {
-      dispatch(getUser(basicUserInfo.id));
-    }
-  }, [basicUserInfo]);
+  //TODO Create user profile endpoint
+  // useEffect(() => {
+  //   if (user) {
+  //     getUserProfile(user.id);
+  //   }
+  // }, [user]);
 
   return (
     <>

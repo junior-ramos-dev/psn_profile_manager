@@ -7,34 +7,16 @@ import {
   PAGE_TITLE_GAMES,
   PAGE_TITLE_HOME,
 } from "@/utils/constants";
-import { Outlet } from "react-router-dom";
-
-import { useLoaderData, LoaderFunction } from "react-router-dom";
-
-import { Game } from "@/models/classes/Game";
-
-import { getGame } from "@/data/fakeApi";
+import { IGame } from "@/models/interfaces";
 import { Box } from "@mui/material";
 import { PageHeader } from "@/components/PageHeader";
 import { useState } from "react";
 
-// Define the structure for expected loader data
-interface LoaderData {
-  game: Game;
+interface RoutesChildrenProps {
+  gameDetail: IGame;
 }
 
-// Type-safe loader function
-export const loader: LoaderFunction = async ({
-  params,
-}): Promise<LoaderData> => {
-  const game: Game = await getGame(params.npCommunicationId);
-  return { game };
-};
-
-//TODO Use redux store
-export const GameDetail = () => {
-  const { game } = useLoaderData<LoaderData>() as Game;
-
+export const GameDetail = ({ gameDetail }: RoutesChildrenProps) => {
   const [open, setOpen] = useState(false);
   const toggleNavigation = () => setOpen((status) => !status);
 
@@ -51,8 +33,8 @@ export const GameDetail = () => {
 
       <div>
         <h2>Games Detail</h2>
-        <div>{game.trophyTitleName}</div>
-        <div>{JSON.stringify(game.earnedTrophies)}</div>
+        <div>{gameDetail.trophyTitleName}</div>
+        <div>{JSON.stringify(gameDetail.earnedTrophies)}</div>
       </div>
     </>
   );

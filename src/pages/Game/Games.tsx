@@ -1,36 +1,27 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Box } from "@mui/material";
 
-import {
-  APP_TITLE,
-  PAGE_TITLE_HOME,
-  DRAWER_WIDTH,
-  FOOTER_HEIGHT,
-} from "@/utils/constants";
-
-import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
-import { getUser } from "@/slices/authSlice";
+import { APP_TITLE, PAGE_TITLE_HOME, FOOTER_HEIGHT } from "@/utils/constants";
 
 import { PageHeader } from "@/components/PageHeader";
 import { GamesRoutes } from "@/components/Navigation/GameRoutes/GamesRoutes";
+import { authSelectors } from "@/redux/auth";
+import { useSelector } from "react-redux";
 
 export const Games = () => {
-  const [open, setOpen] = useState(false);
-  const toggleNavigation = () => setOpen((status) => !status);
+  //TODO Edit Games Page to remove hamburger
+  const toggleNavigation = () => {};
 
-  const dispatch = useAppDispatch();
+  const user = useSelector(authSelectors.getUser);
 
-  const basicUserInfo = useAppSelector((state) => state.auth.basicUserInfo);
-  const userProfileInfo = useAppSelector((state) => state.auth.userProfileData);
-
-  useEffect(() => {
-    if (basicUserInfo) {
-      dispatch(getUser(basicUserInfo.id));
-    }
-  }, [basicUserInfo]);
+  //TODO Create user profile endpoint
+  // useEffect(() => {
+  //   if (user) {
+  //     getUserProfile(user.id);
+  //   }
+  // }, [user]);
 
   return (
     <>

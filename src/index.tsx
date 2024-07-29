@@ -5,36 +5,42 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import { StyledEngineProvider } from "@mui/material/styles";
 import { AppThemeProvider } from "./theme/AppThemeProvider";
 
-import { App } from "./App";
-
 import { ErrorPage } from "./pages/Error/ErrorPage";
 import { RoutesChildren } from "./components/Navigation/Routes";
 import { AppLayout } from "@/components/Layout/App/AppLayout";
+
 import { Provider } from "react-redux";
-import store from "./store";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistor, store } from "./redux/store";
 
 import reportWebVitals from "../reportWebVitals";
 
-import { GameDetail } from "./pages/Game";
-import { loader as gameLoader } from "./pages/Game/GameDetail";
+import { GamesLoader } from "./data/gamesLoaders";
 
-//TODO CHeck if needs persist to DB
+//TODO Check if needs persist to DB
 import { routes as appRoutes } from "./config/routes";
+
+const gamesLoader = new GamesLoader(store);
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout routes={appRoutes} />,
-    errorElement: <ErrorPage />,
     children: [
       {
-        path: "/*",
-        element: <RoutesChildren />,
-      },
-      {
-        path: "games/:npCommunicationId",
-        element: <GameDetail />,
-        loader: gameLoader,
+        errorElement: <ErrorPage />,
+        children: [
+          {
+            path: "/*",
+            element: <RoutesChildren />,
+            loader: gamesLoader.listLoader,
+          },
+          // {
+          //   path: "games/:npCommunicationId",
+          //   element: <GameDetail />,
+          //   loader: gamesLoader.detailLoader,
+          // },
+        ],
       },
     ],
   },
@@ -73,14 +79,15 @@ root.render(
         />
       </Helmet>
       <Provider store={store}>
-        {/* Wrap Theme provider with MUI Styled engine */}
-        <StyledEngineProvider injectFirst>
-          {/* Wrap your app with the Theme Provider */}
-          <AppThemeProvider>
-            {/* <App /> */}
-            <RouterProvider router={router} />
-          </AppThemeProvider>
-        </StyledEngineProvider>
+        <PersistGate loading={null} persistor={persistor}>
+          {/* Wrap Theme provider with MUI Styled engine */}
+          <StyledEngineProvider injectFirst>
+            {/* Wrap your app with the Theme Provider */}
+            <AppThemeProvider>
+              <RouterProvider router={router} />
+            </AppThemeProvider>
+          </StyledEngineProvider>
+        </PersistGate>
       </Provider>
     </HelmetProvider>
   </React.StrictMode>

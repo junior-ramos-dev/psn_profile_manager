@@ -1,62 +1,30 @@
-import { useState } from "react";
-import { List, Divider, Collapse } from "@mui/material";
+import { List, Divider } from "@mui/material";
 
 import { GameRouteItem } from "./GameRouteItem";
 
-import { gamesRoutes } from "@/data/gamesRoutes";
 import { IGameRoute } from "@/models/interfaces";
+import { createIGameRouteList } from "@/utils/routes";
+
+import { getIGamesFromLocalStorage } from "@/utils/localStorage";
 
 export const GamesRoutes = () => {
-  const [gamesRoutesState, setGamesRoutesState] =
-    useState<IGameRoute[]>(gamesRoutes);
+  const localGamesList = getIGamesFromLocalStorage();
 
-  const handleMenuClick = (gameRoute: IGameRoute) => {
-    const items = gamesRoutesState.map((item) => {
-      if (item.key === gameRoute.key) {
-        item.expanded = !item.expanded;
-      }
-      return item;
-    });
-    setGamesRoutesState(items);
-  };
+  const gamesRoutes = createIGameRouteList(localGamesList);
+
   //TODO Edit list details
   return (
-    <>
-      <List component="nav" sx={{ height: "100%" }}>
-        {gamesRoutesState.map((gameRoute: IGameRoute) => (
-          <div key={gameRoute.key}>
-            {gameRoute.subRoutes.length > 0 ? (
-              <>
-                {/* <GameRouteItem
-                  key={`${gameRoute.key}`}
-                  gameRoute={gameRoute}
-                  hasChildren
-                  handleMenuClick={handleMenuClick}
-                />
-                <Collapse in={gameRoute.expanded} timeout="auto" unmountOnExit>
-                  <List component="div" disablePadding>
-                    {gameRoute.subRoutes.map((sRoute: IGameRoute) => (
-                      <GameRouteItem
-                        key={`${sRoute.key}`}
-                        gameRoute={sRoute}
-                        nested
-                      />
-                    ))}
-                  </List>
-                </Collapse> */}
-              </>
-            ) : (
-              <GameRouteItem
-                key={gameRoute.key}
-                gameRoute={gameRoute}
-                nested={false}
-              />
-            )}
-            {gameRoute.appendDivider && <Divider sx={{ color: "secondary" }} />}
-            {/* <Divider /> */}
-          </div>
-        ))}
-      </List>
-    </>
+    <List component="nav" sx={{ height: "100%" }}>
+      {gamesRoutes.map((gameRoute: IGameRoute) => (
+        <div key={gameRoute.key}>
+          <GameRouteItem
+            key={gameRoute.key}
+            gameRoute={gameRoute}
+            nested={false}
+          />
+          {gameRoute.appendDivider && <Divider sx={{ color: "secondary" }} />}
+        </div>
+      ))}
+    </List>
   );
 };
