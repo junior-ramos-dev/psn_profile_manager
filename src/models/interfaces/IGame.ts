@@ -31,13 +31,31 @@ interface IGame {
 
 // Converts JSON strings to/from your types
 // and asserts the results of JSON.parse at runtime
-export class Convert {
-  public static toIGame(json: string): IGame {
+export class ConvertIGame {
+  public static fromJsonObject(json: string): IGame {
     return cast(JSON.parse(json), r("IGame"));
   }
 
-  public static iGameToJson(value: IGame): string {
+  public static toJsonObject(value: IGame): string {
     return JSON.stringify(uncast(value, r("IGame")), null, 2);
+  }
+
+  public static fromJsonList(array: string): IGame[] {
+    const iGameArray = new Array<IGame>();
+
+    const jsonArray = JSON.parse(array);
+    jsonArray.forEach((json) => iGameArray.push(cast(json, r("IGame"))));
+
+    return iGameArray;
+  }
+
+  public static toJsonList(array: IGame[]): string[] {
+    const jsonArray = new Array<string>();
+    array.forEach((iGame) =>
+      jsonArray.push(cast(JSON.stringify(iGame), r("IGame")))
+    );
+
+    return jsonArray;
   }
 }
 

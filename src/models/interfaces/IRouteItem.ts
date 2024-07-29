@@ -55,6 +55,26 @@ interface IRouteItem {
   component?: any;
 
   /**
+   * The element referenced by the route
+   * @type {FC}
+   * @memberof IRouteItem
+   * @required
+   * @example
+   * "<Dashboard />"
+   */
+  element?: any;
+
+  /**
+   * The props for component or element referenced by the route
+   * @type {any}
+   * @memberof IRouteItem
+   * @required
+   * @example
+   * "<Dashboard />"
+   */
+  props?: any;
+
+  /**
    * The status of the route
    * @type {boolean}
    * @memberof IRouteItem
