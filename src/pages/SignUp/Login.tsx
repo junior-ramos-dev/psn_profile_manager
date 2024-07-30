@@ -18,9 +18,9 @@ import { useDispatch } from "react-redux";
 import { setCredentials } from "@/redux/auth/authSlice";
 
 export const Login = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [login, { isLoading, isError, isSuccess, data }] = useLoginMutation();
-  const dispatch = useDispatch();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
