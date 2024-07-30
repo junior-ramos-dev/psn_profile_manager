@@ -14,12 +14,12 @@ import {
 import storage from "redux-persist/lib/storage";
 import storageSession from "redux-persist/lib/storage/session";
 
-import authReducer from "./auth/authSlice";
-import gamesReducer from "./games/gamesSlice";
+import authReducer from "../../services/rtkQueryApi/auth/authSlice";
+import gamesReducer from "../../services/rtkQueryApi/games/gamesSlice";
 
-import { gamesApi } from "./games/gamesApi";
-import { authApi } from "./auth/authApi";
-import { axiosBaseQuery } from "../services/rtkqApi/axiosBaseQuery";
+import { gamesApi } from "../../services/rtkQueryApi/games/gamesApi";
+import { authApi } from "../../services/rtkQueryApi/auth/authApi";
+import { axiosBaseQuery } from "../../services/rtkQueryApi/axiosBaseQuery";
 
 const authPersistConfig = {
   key: "auth",

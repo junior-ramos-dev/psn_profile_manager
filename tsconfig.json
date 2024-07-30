@@ -3,25 +3,22 @@
       "target": "es6",
       
       "baseUrl" : ".",
-    "paths": {
-      "react": ["./node_modules/@types/react"],
-      //Aliases
-      "@/*": ["./src/*"],
-      "@api/*": ["./api/*"],
-      "@assets/*": ["./assets/*"],
-      "@components/*": ["./components/*"],
-      "@config/*": ["./config/*"],
-      "@contexts/*": ["./contexts/*"],
-      "@data/*": ["./data/*"],
-      "@hooks/*": ["./hooks/*"],
-      "@layouts/*": ["./layouts/*"],
-      "@models/*": ["./models/*"],
-      "@pages/*": ["./pages/*"],
-      "@redux/*": ["./redux/*"],
-      "@services/*": ["./services/*"],
-      "@styles/*": ["./styles/*"],
-      "@theme/*": ["./theme/*"],
-      "@utils/*": ["./utils/*"],
+      "paths": {
+        "react": ["./node_modules/@types/react"],
+        //App Modules Aliases
+        "@/*": ["./src/*"],
+        "@assets/*": ["./assets/*"],
+        "@components/*": ["./components/*"],
+        "@config/*": ["./config/*"],
+        "@contexts/*": ["./contexts/*"],
+        "@data/*": ["./data/*"],
+        "@hooks/*": ["./hooks/*"],
+        "@models/*": ["./models/*"],
+        "@pages/*": ["./pages/*"],
+        "@services/*": ["./services/*"],
+        "@styles/*": ["./styles/*"],
+        "@theme/*": ["./theme/*"],
+        "@utils/*": ["./utils/*"],
       },
       "allowJs": true,
       "skipLibCheck": true,
@@ -40,7 +37,5 @@
       "types": ["node"],                      // "types": [] -> won't work
       },
       "include": ["src", "scripts"],
-      "exclude": [
-        "node_modues"
-      ]
+      "exclude": ["node_modues"]
   }

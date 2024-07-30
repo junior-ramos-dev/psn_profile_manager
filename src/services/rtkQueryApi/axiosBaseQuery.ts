@@ -1,5 +1,5 @@
 import toast from "react-hot-toast";
-import { axiosInstance } from "../axiosInstance";
+import { axiosInstance } from "../axios/axiosInstance";
 
 interface IAxiosBaseQueryArgs {
   url: string;

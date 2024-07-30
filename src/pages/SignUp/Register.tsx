@@ -13,9 +13,9 @@ import {
 import { LockOutlined } from "@mui/icons-material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useAppDispatch } from "@/redux/reduxHooks";
-import { useRegisterMutation } from "@/redux/auth/authApi";
-import { actionSetCredentials } from "@/redux/auth/authSlice";
+import { useAppDispatch } from "@/hooks/redux";
+import { useRegisterMutation } from "@/services/rtkQueryApi/auth/authApi";
+import { actionSetCredentials } from "@/services/rtkQueryApi/auth/authSlice";
 
 export const Register = () => {
   const dispatch = useAppDispatch();

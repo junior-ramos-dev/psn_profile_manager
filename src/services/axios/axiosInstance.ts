@@ -1,5 +1,4 @@
 import axios from "axios";
-import toast from "react-hot-toast";
 
 const BASE_URL = process.env.API_BASE_URL;
 

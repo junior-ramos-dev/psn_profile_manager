@@ -18,7 +18,7 @@ import { CustomDrawer } from "@/components/CustomDrawer";
 import { GamesRoutes } from "@/components/Navigation/GameRoutes/GamesRoutes";
 
 import useOverFlowHidden from "@/hooks/useOverFlowHidden";
-import { authSelectors } from "@/redux/auth";
+import { authSelectors } from "@/services/rtkQueryApi/auth";
 import { useSelector } from "react-redux";
 
 const Home = () => {
@@ -28,14 +28,14 @@ const Home = () => {
   const [open, setOpen] = useState(false);
   const toggleNavigation = () => setOpen((status) => !status);
 
-  const user = useSelector(authSelectors.getUser);
+  const userBasicInfo = useSelector(authSelectors.getUserBasicInfo);
 
   //TODO Create user profile endpoint
   // useEffect(() => {
-  //   if (user) {
+  //   if (userBasicInfo) {
   //     getUserProfile(user.id);
   //   }
-  // }, [user]);
+  // }, [userBasicInfo]);
 
   return (
     <>

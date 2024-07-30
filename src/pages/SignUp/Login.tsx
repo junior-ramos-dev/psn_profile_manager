@@ -13,12 +13,12 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useLoginMutation } from "@/redux/auth/authApi";
-import { useDispatch } from "react-redux";
-import { actionSetCredentials } from "@/redux/auth/authSlice";
+import { useLoginMutation } from "@/services/rtkQueryApi/auth/authApi";
+import { actionSetCredentials } from "@/services/rtkQueryApi/auth/authSlice";
+import { useAppDispatch } from "@/hooks/redux";
 
 export const Login = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [login, { isLoading, isError, isSuccess, data }] = useLoginMutation();
 
@@ -33,7 +33,6 @@ export const Login = () => {
         await login({ email, password })
           .unwrap()
           .then((data) => {
-            console.log(data);
             dispatch(actionSetCredentials(data));
           });
         navigate("/games");

@@ -7,21 +7,26 @@ import { APP_TITLE, PAGE_TITLE_HOME, FOOTER_HEIGHT } from "@/utils/constants";
 
 import { PageHeader } from "@/components/PageHeader";
 import { GamesRoutes } from "@/components/Navigation/GameRoutes/GamesRoutes";
-import { authSelectors } from "@/redux/auth";
-import { useSelector } from "react-redux";
+import { authSelectors } from "@/services/rtkQueryApi/auth";
+import { useAppSelector } from "@/hooks/redux";
+import { UserBasicInfo } from "@/models/types/user";
 
 export const Games = () => {
   //TODO Edit Games Page to remove hamburger
   const toggleNavigation = () => {};
 
-  const user = useSelector(authSelectors.getUser);
+  const userBasicInfo: UserBasicInfo = useAppSelector(
+    authSelectors.getUserBasicInfo
+  );
+
+  console.log(JSON.stringify(userBasicInfo));
 
   //TODO Create user profile endpoint
   // useEffect(() => {
-  //   if (user) {
+  //   if (userBasicInfo) {
   //     getUserProfile(user.id);
   //   }
-  // }, [user]);
+  // }, [userBasicInfo]);
 
   return (
     <>

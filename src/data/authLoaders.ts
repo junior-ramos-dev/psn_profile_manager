@@ -1,5 +1,5 @@
 import { BaseLoader } from "@/data/common/baseLoader";
-import { authApi } from "@/redux/auth/authApi";
+import { authApi } from "@/services/rtkQueryApi/auth/authApi";
 
 export class AuthLoader extends BaseLoader {
   registerLoader = async ({ request }) => {

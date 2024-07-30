@@ -6,20 +6,22 @@ import { PageDefault } from "../../PageDefault";
 import { Login, Register } from "@/pages/SignUp";
 import { IAppRoute, IGameRoute } from "@/models/interfaces";
 
-import { useGetGameListQuery } from "@/redux/games/gamesApi";
+import { useGetGameListQuery } from "@/services/rtkQueryApi/games/gamesApi";
 import { createIGameRouteList } from "@/utils/routes";
 
-//TODO Ceck if needs persist to DB
+//TODO Ceck if needs persist appRoutes to DB
 import { routes as appRoutes } from "@/config/routes";
-import { getIGamesFromLocalStorage } from "@/utils/localStorage";
 import { GameDetail } from "@/pages/Game";
-import { authSelectors } from "@/redux/auth";
-import { useAppSelector } from "@/redux/reduxHooks/useSelectors";
+import { authSelectors } from "@/services/rtkQueryApi/auth";
+import { useAppSelector } from "@/hooks/redux";
+
+//TODO Add gamesList to persist store
+import { getIGamesFromLocalStorage } from "@/utils/localStorage";
 
 export const RoutesChildren = () => {
   const isLoggedIn = useAppSelector(authSelectors.getLoggedIn);
 
-  //TODO Add to persist store
+  //TODO Add gamesList to persist store
   const { data: games } = useGetGameListQuery("");
   if (games) localStorage.setItem("gamesList", JSON.stringify(games));
   const localGamesList = getIGamesFromLocalStorage();

@@ -1,5 +1,5 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { axiosBaseQuery } from "@/services/rtkqApi/axiosBaseQuery";
+import { axiosBaseQuery } from "@/services/rtkQueryApi/axiosBaseQuery";
 import { IGame } from "@/models/interfaces";
 import { REST_VERB } from "@/utils/api";
 

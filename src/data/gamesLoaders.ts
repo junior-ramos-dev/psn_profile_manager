@@ -1,5 +1,5 @@
 import { BaseLoader } from "@/data/common/baseLoader";
-import { gamesApi } from "@/redux/games/gamesApi";
+import { gamesApi } from "@/services/rtkQueryApi/games/gamesApi";
 
 export class GamesLoader extends BaseLoader {
   listLoader = async ({ request }) => {
