@@ -5,8 +5,8 @@ import { Routes } from "./Routes";
 import { DRAWER_WIDTH } from "@/utils/constants";
 import { navClosedMixin, navOpenedMixin } from "@/styles/mixins";
 import { IRouteItem } from "@/models/interfaces";
-//TODO CHeck if needs persist to DB
-import { routes } from "@/config/routes/routes";
+//TODO Check if needs persist routes into DB
+import { routes } from "@/data/routes/routes";
 
 interface NavigationProps {
   routes: Array<IRouteItem>;

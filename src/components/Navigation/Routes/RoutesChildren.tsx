@@ -9,8 +9,8 @@ import { IAppRoute, IGameRoute } from "@/models/interfaces";
 import { useGetGameListQuery } from "@/services/rtkQueryApi/games/gamesApi";
 import { createIGameRouteList } from "@/utils/routes";
 
-//TODO Ceck if needs persist appRoutes to DB
-import { routes as appRoutes } from "@/config/routes";
+//TODO Ceck if needs persist routes into DB
+import { routes as appRoutes } from "@/data/routes";
 import { GameDetail } from "@/pages/Game";
 import { authSelectors } from "@/services/rtkQueryApi/auth";
 import { useAppSelector } from "@/hooks/redux";

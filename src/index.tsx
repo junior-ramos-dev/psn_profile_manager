@@ -11,10 +11,10 @@ import reportWebVitals from "../reportWebVitals";
 import { ErrorPage } from "@/pages/Error/ErrorPage";
 import { RoutesChildren } from "@/components/Navigation/Routes";
 import { AppLayout } from "@/components/Layout/App/AppLayout";
-import { persistor, store } from "@/hooks/redux/store";
-import { GamesLoader } from "@/data/gamesLoaders";
+import { persistor, store } from "@/store";
+import { GamesLoader } from "@/services/rtkQueryApi/games/gamesLoaders";
 //TODO Check if needs persist appRoutes to DB
-import { routes as appRoutes } from "@/config/routes";
+import { routes as appRoutes } from "@/data/routes";
 
 const gamesLoader = new GamesLoader(store);
 

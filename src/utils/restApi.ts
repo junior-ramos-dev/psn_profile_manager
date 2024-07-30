@@ -1,4 +1,4 @@
-export enum REST_VERB {
+export enum VERBS {
   GET = "GET",
   POST = "POST",
   PUT = "PUT",

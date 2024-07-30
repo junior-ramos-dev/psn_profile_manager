@@ -1,4 +1,4 @@
-import { BaseLoader } from "@/data/common/baseLoader";
+import { BaseLoader } from "@/services/rtkQueryApi/common/baseLoader";
 import { gamesApi } from "@/services/rtkQueryApi/games/gamesApi";
 
 export class GamesLoader extends BaseLoader {

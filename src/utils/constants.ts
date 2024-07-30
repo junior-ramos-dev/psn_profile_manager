@@ -1,4 +1,4 @@
-//TODO Check move to .env file
+//TODO Check move to .env file or DB
 
 // APP TEXT
 export const APP_TITLE = "PSN App";

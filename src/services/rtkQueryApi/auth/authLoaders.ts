@@ -1,4 +1,4 @@
-import { BaseLoader } from "@/data/common/baseLoader";
+import { BaseLoader } from "@/services/rtkQueryApi/common/baseLoader";
 import { authApi } from "@/services/rtkQueryApi/auth/authApi";
 
 export class AuthLoader extends BaseLoader {

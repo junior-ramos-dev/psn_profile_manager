@@ -1,7 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { axiosBaseQuery } from "@/services/rtkQueryApi/axiosBaseQuery";
+import { axiosBaseQuery } from "@/services/rtkQueryApi/common/axiosBaseQuery";
 import { IGame } from "@/models/interfaces";
-import { REST_VERB } from "@/utils/api";
+import { VERBS } from "@/utils/restApi";
 
 export const gamesApi = createApi({
   baseQuery: axiosBaseQuery({
@@ -12,7 +12,7 @@ export const gamesApi = createApi({
   keepUnusedDataFor: 60 * 60,
   endpoints: (build) => ({
     getGameList: build.query<IGame[], string>({
-      query: () => ({ url: "", method: REST_VERB.GET, data: {} }),
+      query: () => ({ url: "", method: VERBS.GET, data: {} }),
       providesTags: ["Games"],
     }),
   }),

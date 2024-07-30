@@ -1,6 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { axiosBaseQuery } from "@/services/rtkQueryApi/axiosBaseQuery";
-import { REST_VERB } from "@/utils/api";
+import { axiosBaseQuery } from "@/services/rtkQueryApi/common/axiosBaseQuery";
+import { VERBS } from "@/utils/restApi";
 
 //TODO Refactor types
 
@@ -43,7 +43,7 @@ export const authApi = createApi({
     login: build.mutation<LoginResponse, LoginRequest>({
       query: ({ email, password }) => ({
         url: "/login",
-        method: REST_VERB.POST,
+        method: VERBS.POST,
 
         data: { email, password },
       }),
@@ -51,7 +51,7 @@ export const authApi = createApi({
     register: build.mutation<RegisterResponse, RegisterRequest>({
       query: (data: RegisterRequest) => ({
         url: "/register",
-        method: REST_VERB.POST,
+        method: VERBS.POST,
         data,
       }),
       invalidatesTags: ["Auth"],
@@ -59,13 +59,13 @@ export const authApi = createApi({
     logout: build.mutation<void, void>({
       query: () => ({
         url: "/logout",
-        method: REST_VERB.POST,
+        method: VERBS.POST,
         data: {},
       }),
       invalidatesTags: ["Auth"],
     }),
     getUser: build.query<UserProfileData, string>({
-      query: (id) => ({ url: `/users/${id}`, method: REST_VERB.GET, data: {} }),
+      query: (id) => ({ url: `/users/${id}`, method: VERBS.GET, data: {} }),
       providesTags: (result, error, id) => [{ type: "Auth", id }],
     }),
   }),
