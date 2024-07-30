@@ -1,7 +1,7 @@
 const CLIENTERROR = "Bad request";
 const SERVERERROR = "Server error";
 const UNKNOWNERROR = "Something went wrong";
-const NOTFOUND = "Contact not found";
+const NOTFOUND = "Data not found";
 const NONE = "";
 
 export const getErrorMessage = (status = 403) => {

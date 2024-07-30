@@ -14,12 +14,11 @@ import {
 import storage from "redux-persist/lib/storage";
 import storageSession from "redux-persist/lib/storage/session";
 
+import { axiosBaseQuery } from "./services/rtkQueryApi/common/axiosBaseQuery";
+import { rtkQueryBaseApi } from "./services/rtkQueryApi/common/rtkQueryBaseApi";
+
 import authReducer from "./services/rtkQueryApi/auth/authSlice";
 import gamesReducer from "./services/rtkQueryApi/games/gamesSlice";
-
-import { gamesApi } from "./services/rtkQueryApi/games/gamesApi";
-import { authApi } from "./services/rtkQueryApi/auth/authApi";
-import { axiosBaseQuery } from "./services/rtkQueryApi/common/axiosBaseQuery";
 
 const authPersistConfig = {
   key: "auth",
@@ -43,18 +42,14 @@ const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     games: persistReducer(gamesPersistConfig, gamesReducer),
-    [authApi.reducerPath]: authApi.reducer,
-    [gamesApi.reducerPath]: gamesApi.reducer,
+    [rtkQueryBaseApi.reducerPath]: rtkQueryBaseApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    })
-      .concat(authApi.middleware)
-      .concat(gamesApi.middleware),
-
+    }).concat(rtkQueryBaseApi.middleware),
   devTools: process.env.NODE_ENV !== "production",
 });
 

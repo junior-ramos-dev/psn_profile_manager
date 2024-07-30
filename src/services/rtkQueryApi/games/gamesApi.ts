@@ -1,21 +1,15 @@
-import { createApi } from "@reduxjs/toolkit/query/react";
-import { axiosBaseQuery } from "@/services/rtkQueryApi/common/axiosBaseQuery";
+import { rtkQueryBaseApi } from "../common/rtkQueryBaseApi";
 import { IGame } from "@/models/interfaces";
 import { VERBS } from "@/utils/restApi";
 
-export const gamesApi = createApi({
-  baseQuery: axiosBaseQuery({
-    baseUrl: "/games",
-  }),
-  reducerPath: "gamesApi",
-  tagTypes: ["Games"],
-  keepUnusedDataFor: 60 * 60,
+export const gamesApi = rtkQueryBaseApi.injectEndpoints({
   endpoints: (build) => ({
     getGameList: build.query<IGame[], string>({
-      query: () => ({ url: "", method: VERBS.GET, data: {} }),
+      query: () => ({ url: "/games", method: VERBS.GET, data: {} }),
       providesTags: ["Games"],
     }),
   }),
+  overrideExisting: false,
 });
 
 export const { useGetGameListQuery } = gamesApi;

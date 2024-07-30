@@ -1,5 +1,4 @@
-import { createApi } from "@reduxjs/toolkit/query/react";
-import { axiosBaseQuery } from "@/services/rtkQueryApi/common/axiosBaseQuery";
+import { rtkQueryBaseApi } from "../common/rtkQueryBaseApi";
 import { VERBS } from "@/utils/restApi";
 
 //TODO Refactor types
@@ -32,17 +31,11 @@ type LoginResponse = {
   email: string;
 };
 
-export const authApi = createApi({
-  baseQuery: axiosBaseQuery({
-    baseUrl: "/auth",
-  }),
-  reducerPath: "authApi",
-  tagTypes: ["Auth"],
-  keepUnusedDataFor: 60 * 60,
+export const authApi = rtkQueryBaseApi.injectEndpoints({
   endpoints: (build) => ({
     login: build.mutation<LoginResponse, LoginRequest>({
       query: ({ email, password }) => ({
-        url: "/login",
+        url: "/auth/login",
         method: VERBS.POST,
 
         data: { email, password },
@@ -50,7 +43,7 @@ export const authApi = createApi({
     }),
     register: build.mutation<RegisterResponse, RegisterRequest>({
       query: (data: RegisterRequest) => ({
-        url: "/register",
+        url: "/auth/register",
         method: VERBS.POST,
         data,
       }),
@@ -58,17 +51,23 @@ export const authApi = createApi({
     }),
     logout: build.mutation<void, void>({
       query: () => ({
-        url: "/logout",
+        url: "/auth/logout",
         method: VERBS.POST,
         data: {},
       }),
       invalidatesTags: ["Auth"],
     }),
+    //TODO Move to users api
     getUser: build.query<UserProfileData, string>({
-      query: (id) => ({ url: `/users/${id}`, method: VERBS.GET, data: {} }),
+      query: (id) => ({
+        url: `/auth/users/${id}`,
+        method: VERBS.GET,
+        data: {},
+      }),
       providesTags: (result, error, id) => [{ type: "Auth", id }],
     }),
   }),
+  overrideExisting: false,
 });
 
 export const {

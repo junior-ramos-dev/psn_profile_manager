@@ -19,9 +19,8 @@ export const Games = () => {
     authSelectors.getUserBasicInfo
   );
 
-  console.log(JSON.stringify(userBasicInfo));
-
   //TODO Create user profile endpoint
+  // console.log(JSON.stringify(userBasicInfo));
   // useEffect(() => {
   //   if (userBasicInfo) {
   //     getUserProfile(user.id);
