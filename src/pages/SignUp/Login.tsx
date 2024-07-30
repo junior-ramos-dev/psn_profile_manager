@@ -26,15 +26,15 @@ export const Login = () => {
   const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
+    //TODO Add validations
     // This is only a basic validation of inputs. Improve this as needed.
     if (email && password) {
       try {
-        const result = await login({ email, password });
-        // .unwrap()
-        // .then((data) => console.log(data));
-        if (result.data) {
-          dispatch(setCredentials(result.data));
-        }
+        await login({ email, password })
+          .unwrap()
+          .then((data) => {
+            dispatch(setCredentials(data));
+          });
         navigate("/games");
       } catch (e) {
         console.error(e);

@@ -21,9 +21,8 @@ export const SignOutRoute = () => {
 
   const handleLogout = async () => {
     try {
-      await logout();
+      await logout().unwrap();
       dispatch(unsetCredentials());
-
       navigate("/auth/login");
     } catch (e) {
       console.error(e);
