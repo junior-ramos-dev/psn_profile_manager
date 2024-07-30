@@ -1,6 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { UserBasicInfo } from "@/models/types/user";
 
-const initialState = {
+interface IAuthInitialState {
+  user: UserBasicInfo;
+  token: string;
+  isLoggedIn: boolean;
+}
+
+const initialState: IAuthInitialState = {
   user: {
     id: null,
     name: null,
@@ -8,32 +15,33 @@ const initialState = {
   },
   token: null,
   isLoggedIn: false,
-  isLoggedOut: false,
 };
 
-export const auth = createSlice({
+export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setCredentials: (state, { payload: { user, token } }) => {
-      state.user = user;
-      state.token = token;
+    actionSetCredentials: (state, { payload }) => {
+      state.user = payload;
+      // state.token = token;
       state.isLoggedIn = true;
     },
-    unsetCredentials: (state) => {
+    actionUnsetCredentials: (state) => {
       state.user = { id: null, name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
-      state.isLoggedOut = true;
     },
-    refreshCredentials: (state, { payload }) => {
+    actionRefreshCredentials: (state, { payload }) => {
       state.user = payload;
       state.isLoggedIn = true;
     },
   },
 });
 
-export const { setCredentials, unsetCredentials, refreshCredentials } =
-  auth.actions;
+export const {
+  actionSetCredentials,
+  actionUnsetCredentials,
+  actionRefreshCredentials,
+} = authSlice.actions;
 
-export default auth.reducer;
+export default authSlice.reducer;

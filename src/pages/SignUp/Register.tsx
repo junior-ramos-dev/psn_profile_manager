@@ -13,9 +13,9 @@ import {
 import { LockOutlined } from "@mui/icons-material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useAppDispatch } from "@/temp/redux-hooks";
+import { useAppDispatch } from "@/redux/reduxHooks";
 import { useRegisterMutation } from "@/redux/auth/authApi";
-import { setCredentials } from "@/redux/auth/authSlice";
+import { actionSetCredentials } from "@/redux/auth/authSlice";
 
 export const Register = () => {
   const dispatch = useAppDispatch();
@@ -39,7 +39,7 @@ export const Register = () => {
         // .unwrap()
         // .then((data) => console.log(data));
         if (result.data) {
-          dispatch(setCredentials(result.data));
+          dispatch(actionSetCredentials(result.data));
         }
       } catch (e) {
         console.error(e);

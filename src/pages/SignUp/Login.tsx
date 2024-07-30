@@ -15,7 +15,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "@/redux/auth/authApi";
 import { useDispatch } from "react-redux";
-import { setCredentials } from "@/redux/auth/authSlice";
+import { actionSetCredentials } from "@/redux/auth/authSlice";
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -33,7 +33,8 @@ export const Login = () => {
         await login({ email, password })
           .unwrap()
           .then((data) => {
-            dispatch(setCredentials(data));
+            console.log(data);
+            dispatch(actionSetCredentials(data));
           });
         navigate("/games");
       } catch (e) {

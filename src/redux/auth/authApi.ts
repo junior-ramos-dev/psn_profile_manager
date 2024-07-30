@@ -3,17 +3,6 @@ import { axiosBaseQuery } from "@/services/rtkqApi/axiosBaseQuery";
 import { REST_VERB } from "@/utils/api";
 
 //TODO Refactor types
-type NewUser = {
-  name: string;
-  email: string;
-  password: string;
-};
-
-type UserBasicInfo = {
-  id: string;
-  name: string;
-  email: string;
-};
 
 type UserProfileData = {
   name: string;
@@ -60,7 +49,7 @@ export const authApi = createApi({
       }),
     }),
     register: build.mutation<RegisterResponse, RegisterRequest>({
-      query: (data: NewUser) => ({
+      query: (data: RegisterRequest) => ({
         url: "/register",
         method: REST_VERB.POST,
         data,
@@ -88,27 +77,3 @@ export const {
   useLogoutMutation,
   useGetUserQuery,
 } = authApi;
-
-// export const api = createApi({
-//   baseQuery: fetchBaseQuery({ baseUrl: "https://pokeapi.co/api/v2/" }),
-//   reducerPath: "pokemonApi",
-//   endpoints: (build) => ({
-//     getPokemonByName: build.query<Pokemon, string>({
-//       query: (name) => `pokemon/${name}`,
-//     }),
-//   }),
-// });
-
-// export const { useGetPokemonByNameQuery } = api;
-
-// export const fetchPokemonByName = createAsyncThunk<Pokemon, string>(
-//   "pokemon/fetchByName",
-//   async (name, { rejectWithValue }) => {
-//     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
-//     const data = await response.json();
-//     if (response.status < 200 || response.status >= 300) {
-//       return rejectWithValue(data);
-//     }
-//     return data;
-//   }
-// );

@@ -12,8 +12,10 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import storageSession from "redux-persist/lib/storage/session";
 
 import authReducer from "./auth/authSlice";
+import gamesReducer from "./games/gamesSlice";
 
 import { gamesApi } from "./games/gamesApi";
 import { authApi } from "./auth/authApi";
@@ -21,13 +23,26 @@ import { axiosBaseQuery } from "../services/rtkqApi/axiosBaseQuery";
 
 const authPersistConfig = {
   key: "auth",
+  storage: storageSession,
+  // whitelist: ["token"],
+};
+
+const gamesPersistConfig = {
+  key: "games",
   storage,
   // whitelist: ["token"],
 };
 
+//TODO Verify usage of combinedReducers
+// const rootReducer = combineReducers({
+//   auth: persistReducer(authPersistConfig, authReducer),
+//   games: gamesReducer,
+// });
+
 const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
+    games: persistReducer(gamesPersistConfig, gamesReducer),
     [authApi.reducerPath]: authApi.reducer,
     [gamesApi.reducerPath]: gamesApi.reducer,
   },

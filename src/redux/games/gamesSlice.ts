@@ -1,18 +1,29 @@
-import { IGame } from "@/models/interfaces";
+import { IGame, IRouteItem } from "@/models/interfaces";
 import { createSlice } from "@reduxjs/toolkit";
 
-type Games = {
+interface IGamesInitialState {
   games: IGame[];
-};
+  gamesRoutes: IRouteItem[];
+}
 
-const initialState = {
+const initialState: IGamesInitialState = {
   games: null,
+  gamesRoutes: null,
 };
 
 const gamesSlice = createSlice({
-  name: "games",
+  name: "gamesSlice",
   initialState,
-  reducers: {},
+  reducers: {
+    actionSetGames: (state, { payload: { games } }) => {
+      state.games = games;
+    },
+    actionSetGamesRoutes: (state, { payload: { gamesRoutes } }) => {
+      state.games = gamesRoutes;
+    },
+  },
 });
+
+export const { actionSetGames, actionSetGamesRoutes } = gamesSlice.actions;
 
 export default gamesSlice.reducer;

@@ -9,9 +9,9 @@ import {
   Tooltip,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "@/temp/redux-hooks";
+import { useAppDispatch } from "@/temp/redux_test/redux-hooks";
 import { useLogoutMutation } from "@/redux/auth/authApi";
-import { unsetCredentials } from "@/redux/auth/authSlice";
+import { actionUnsetCredentials } from "@/redux/auth/authSlice";
 
 export const SignOutRoute = () => {
   const dispatch = useAppDispatch();
@@ -22,7 +22,7 @@ export const SignOutRoute = () => {
   const handleLogout = async () => {
     try {
       await logout().unwrap();
-      dispatch(unsetCredentials());
+      dispatch(actionUnsetCredentials());
       navigate("/auth/login");
     } catch (e) {
       console.error(e);
