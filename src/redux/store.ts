@@ -17,7 +17,7 @@ import authReducer from "./auth/authSlice";
 
 import { gamesApi } from "./games/gamesApi";
 import { authApi } from "./auth/authApi";
-import { axiosBaseQuery } from "../services/axiosInstance";
+import { axiosBaseQuery } from "../services/rtkqApi/axiosBaseQuery";
 
 const authPersistConfig = {
   key: "auth",

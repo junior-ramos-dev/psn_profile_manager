@@ -1,5 +1,5 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { axiosBaseQuery } from "../../services/axiosInstance";
+import { axiosBaseQuery } from "@/services/rtkqApi/axiosBaseQuery";
 import { REST_VERB } from "@/utils/api";
 
 export type User = {
