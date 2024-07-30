@@ -2,13 +2,11 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 import { axiosBaseQuery } from "@/services/rtkqApi/axiosBaseQuery";
 import { REST_VERB } from "@/utils/api";
 
-export type User = {
+//TODO Refactor types
+type NewUser = {
+  name: string;
   email: string;
   password: string;
-};
-
-type NewUser = User & {
-  name: string;
 };
 
 type UserBasicInfo = {
@@ -60,15 +58,6 @@ export const authApi = createApi({
 
         data: { email, password },
       }),
-      // // Pick out data and prevent nested properties in a hook or selector
-      // transformResponse: (response: { data: LoginResponse }, meta, arg) =>
-      //   response.data,
-      // // Pick out errors and prevent nested properties in a hook or selector
-      // transformErrorResponse: (
-      //   response: { status: string | number },
-      //   meta,
-      //   arg
-      // ) => response.status,
     }),
     register: build.mutation<RegisterResponse, RegisterRequest>({
       query: (data: NewUser) => ({
@@ -76,15 +65,6 @@ export const authApi = createApi({
         method: REST_VERB.POST,
         data,
       }),
-      // // Pick out data and prevent nested properties in a hook or selector
-      // transformResponse: (response: { data: RegisterResponse }, meta, arg) =>
-      //   response.data,
-      // // Pick out errors and prevent nested properties in a hook or selector
-      // transformErrorResponse: (
-      //   response: { status: string | number },
-      //   meta,
-      //   arg
-      // ) => response.status,
       invalidatesTags: ["Auth"],
     }),
     logout: build.mutation<void, void>({
