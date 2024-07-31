@@ -1,31 +1,33 @@
 import { Routes, Route, useLoaderData } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
-import { PublicRoute, PrivateRoute } from "@/components/Navigation/Routes";
-import { PageDefault } from "../../PageDefault";
-
-import { Login, Register } from "@/pages/SignUp";
-import { IAppRoute, IGameRoute } from "@/models/interfaces";
-
-import { useGetGameListQuery } from "@/services/rtkQueryApi/games/gamesApi";
-import { createIGameRouteList } from "@/utils/routes";
-
-//TODO Ceck if needs persist routes into DB
-import { routes as appRoutes } from "@/data/routes";
-import { GameDetail } from "@/pages/Game";
+import {
+  actionSetGamesList,
+  actionSetGamesRoutesList,
+} from "@/services/rtkQueryApi/games/gamesSlice";
 import { authSelectors } from "@/services/rtkQueryApi/auth";
 import { useAppSelector } from "@/hooks/redux";
+//TODO Ceck if needs persist appRoutes into DB
+import { appRoutes } from "@/data/routes";
+import { createIGameRouteList } from "@/utils/routes";
 
-//TODO Add gamesList to persist store
-import { getIGamesFromLocalStorage } from "@/utils/localStorage";
+import { GameDetail } from "@/pages/Game";
+import { Login, Register } from "@/pages/SignUp";
+import { PageDefault } from "@/components/PageDefault";
+import { PublicRoute, PrivateRoute } from "@/components/Navigation/Routes";
+
+import { IAppRoute, IGame, IGameRoute } from "@/models/interfaces";
 
 export const RoutesChildren = () => {
+  const dispatch = useDispatch();
   const isLoggedIn = useAppSelector(authSelectors.getLoggedIn);
 
-  //TODO Add gamesList to persist store
-  const { data: games } = useGetGameListQuery("");
-  if (games) localStorage.setItem("gamesList", JSON.stringify(games));
-  const localGamesList = getIGamesFromLocalStorage();
-  const gamesRoutes = createIGameRouteList(localGamesList);
+  const gamesList = useLoaderData() as IGame[];
+  const gamesRoutes = createIGameRouteList(gamesList);
+
+  // Add gamesList and gamesRoutes to persist store
+  dispatch(actionSetGamesList(gamesList));
+  dispatch(actionSetGamesRoutesList(gamesRoutes));
 
   const addRoute = (route: IAppRoute) => {
     return (

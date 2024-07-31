@@ -9,7 +9,7 @@ import {
   Tooltip,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "@/temp/redux_test/redux-hooks";
+import { useAppDispatch } from "@/hooks/redux/useAppDispatch";
 import { useLogoutMutation } from "@/services/rtkQueryApi/auth/authApi";
 import { actionUnsetCredentials } from "@/services/rtkQueryApi/auth/authSlice";
 

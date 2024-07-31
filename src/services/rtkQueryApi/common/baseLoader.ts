@@ -23,7 +23,7 @@ export class BaseLoader {
 
   loader = async (endpoint, request, query, queryOptions) => {
     const promise = this.store.dispatch(endpoint.initiate(query, queryOptions));
-    request.signal.onabort = promise.abort;
+    // request.signal.onabort = promise.abort;
     const res = await promise;
     const { data, isError, error } = res;
     if (isError) {

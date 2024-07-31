@@ -1,16 +1,13 @@
 import { List, Divider } from "@mui/material";
 
-import { GameRouteItem } from "./GameRouteItem";
+import { useAppSelector } from "@/hooks/redux/useAppSelector";
+import { gamesSelectors } from "@/services/rtkQueryApi/games";
 
 import { IGameRoute } from "@/models/interfaces";
-import { createIGameRouteList } from "@/utils/routes";
-
-import { getIGamesFromLocalStorage } from "@/utils/localStorage";
+import { GameRouteItem } from "./GameRouteItem";
 
 export const GamesRoutes = () => {
-  const localGamesList = getIGamesFromLocalStorage();
-
-  const gamesRoutes = createIGameRouteList(localGamesList);
+  const gamesRoutes = useAppSelector(gamesSelectors.getGamesRoutesList);
 
   //TODO Edit list details
   return (

@@ -14,7 +14,7 @@ import { AppLayout } from "@/components/Layout/App/AppLayout";
 import { persistor, store } from "@/store";
 import { GamesLoader } from "@/services/rtkQueryApi/games/gamesLoaders";
 //TODO Check if needs persist appRoutes to DB
-import { routes as appRoutes } from "@/data/routes";
+import { appRoutes } from "@/data/routes";
 
 const gamesLoader = new GamesLoader(store);
 
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
           {
             path: "/*",
             element: <RoutesChildren />,
-            loader: gamesLoader.listLoader,
+            loader: async () => await gamesLoader.listLoader({ request: "" }),
           },
           // {
           //   path: "games/:npCommunicationId",

@@ -9,6 +9,6 @@ export class GamesLoader extends BaseLoader {
       "",
       {}
     );
-    return { games };
+    return games;
   };
 }

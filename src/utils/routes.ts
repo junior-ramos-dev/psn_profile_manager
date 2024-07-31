@@ -1,7 +1,7 @@
 import { IGame, IGameRoute } from "@/models/interfaces";
 import { formatStringToTitleCase } from "@/utils/strings";
 
-//TODO Use getting data from API and persist on DB intead of local storage
+//Generate routes for games
 export const createIGameRouteList = (gamesList: IGame[]) => {
   gamesList.forEach((game) => {
     let item: IGame = game;
@@ -9,7 +9,7 @@ export const createIGameRouteList = (gamesList: IGame[]) => {
     if (item.trophyTitleName) formatStringToTitleCase(item.trophyTitleName);
   });
 
-  const iGameRouteList = new Array<IGameRoute>();
+  const iGamesRoutesList = new Array<IGameRoute>();
 
   gamesList.map((game) => {
     let gameRoute: IGameRoute = {
@@ -17,16 +17,14 @@ export const createIGameRouteList = (gamesList: IGame[]) => {
       title: game.trophyTitleName,
       tooltip: game.trophyTitleName,
       path: "/games/" + game.npCommunicationId,
-      //component: game,
       props: game,
       enabled: true,
-      //   subRoutes: [],
       appendDivider: true,
       expanded: false,
     };
 
-    iGameRouteList.push(gameRoute);
+    iGamesRoutesList.push(gameRoute);
   });
 
-  return iGameRouteList;
+  return iGamesRoutesList;
 };

@@ -16,7 +16,7 @@ import { Games } from "@/pages/Game";
 import { IRouteItem } from "@/models/interfaces";
 
 // define app routes
-export const routes: Array<IRouteItem> = [
+export const appRoutes: Array<IRouteItem> = [
   {
     key: "router-game",
     title: "Games",
