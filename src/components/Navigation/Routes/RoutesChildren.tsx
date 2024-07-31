@@ -7,13 +7,13 @@ import {
 } from "@/services/rtkQueryApi/games/gamesSlice";
 import { authSelectors } from "@/services/rtkQueryApi/auth";
 import { useAppSelector } from "@/hooks/redux";
-//TODO Ceck if needs persist appRoutes into DB
+//TODO Check if needs persist appRoutes into DB
 import { appRoutes } from "@/data/routes";
 import { createIGameRouteList } from "@/utils/routes";
 
 import { GameDetail } from "@/pages/Game";
 import { Login, Register } from "@/pages/SignUp";
-import { PageDefault } from "@/components/PageDefault";
+import { IndexPage } from "@/components/IndexPage";
 import { PublicRoute, PrivateRoute } from "@/components/Navigation/Routes";
 
 import { IAppRoute, IGame, IGameRoute } from "@/models/interfaces";
@@ -34,7 +34,7 @@ export const RoutesChildren = () => {
       <Route
         key={route.key}
         path={route.path}
-        Component={route.component || PageDefault}
+        Component={route.component || IndexPage}
       />
     );
   };
@@ -52,6 +52,7 @@ export const RoutesChildren = () => {
   return (
     <Routes>
       <Route element={<PublicRoute isLoggedIn={isLoggedIn} />}>
+        <Route index element={<IndexPage />} />
         <Route path="/auth/login" element={<Login />} />
         <Route path="/auth/register" element={<Register />} />
       </Route>
