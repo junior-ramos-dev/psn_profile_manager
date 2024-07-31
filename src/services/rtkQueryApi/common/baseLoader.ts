@@ -1,18 +1,4 @@
-const CLIENTERROR = "Bad request";
-const SERVERERROR = "Server error";
-const UNKNOWNERROR = "Something went wrong";
-const NOTFOUND = "Data not found";
-const NONE = "";
-
-export const getErrorMessage = (status = 403) => {
-  if (!status) return UNKNOWNERROR;
-  if (status < 300) return NONE;
-  if (status === 404 && status < 500) return NOTFOUND;
-  if (status === 400 && status < 500) return CLIENTERROR;
-  if (status >= 500) return SERVERERROR;
-  return UNKNOWNERROR;
-};
-
+import { getErrorMessage } from "@/utils/restApi";
 export class BaseLoader {
   store = {};
   dispatch = () => {};

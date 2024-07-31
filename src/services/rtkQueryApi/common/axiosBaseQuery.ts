@@ -1,5 +1,6 @@
 import toast from "react-hot-toast";
 import { axiosInstance } from "../../axios/axiosInstance";
+import { getErrorMessage } from "@/utils/restApi";
 
 interface IAxiosBaseQueryArgs {
   url: string;
@@ -23,16 +24,16 @@ const axiosFn = async (
   } catch (axiosError) {
     let err = axiosError;
     if (err.status === 400) {
-      toast.error("The name is already in use 🤷‍♂️");
+      toast.error("The email is already in use");
     } else if (err.status === 401) {
-      toast.error("Please, authenticate first! ✌😎");
+      toast.error("Please, authenticate first!");
     } else {
-      toast.error("Somethings wrong! Please try again later! 😢");
+      toast.error("Somethings wrong! Please try again later!");
     }
 
     return {
       error: {
-        status: err.response?.status,
+        status: getErrorMessage(err.response?.status),
         data: err.response?.data || err.message,
       },
     };
