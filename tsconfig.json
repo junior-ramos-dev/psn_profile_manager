@@ -1,7 +1,9 @@
 {
     "compilerOptions": {
       "target": "es6",
-      
+      "lib": [
+        "es5", "es6", "dom", "ES2021.String",
+      ],
       "baseUrl" : ".",
       "paths": {
         "react": ["./node_modules/@types/react"],
