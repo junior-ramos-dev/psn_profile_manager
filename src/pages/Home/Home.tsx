@@ -12,7 +12,7 @@ import {
   FOOTER_HEIGHT,
 } from "@/settings/app";
 
-import { PageHeader } from "@/components/PageHeader";
+import { PageHeader } from "@/components/DefaultPage/PageHeader";
 import { CustomDrawer } from "@/components/CustomDrawer";
 
 import { GamesRoutes } from "@/components/Navigation/GameRoutes/GamesRoutes";

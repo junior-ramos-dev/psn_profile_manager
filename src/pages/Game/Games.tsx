@@ -5,7 +5,7 @@ import { Box } from "@mui/material";
 
 import { APP_TITLE, PAGE_TITLE_HOME, FOOTER_HEIGHT } from "@/settings/app";
 
-import { PageHeader } from "@/components/PageHeader";
+import { PageHeader } from "@/components/DefaultPage/PageHeader";
 import { GamesRoutes } from "@/components/Navigation/GameRoutes/GamesRoutes";
 import { authSelectors } from "@/services/rtkQueryApi/auth";
 import { useAppSelector } from "@/hooks/redux";
