@@ -2,7 +2,6 @@ import { rtkQueryBaseApi } from "../common/rtkQueryBaseApi";
 import { VERBS } from "@/utils/restApi";
 
 //TODO Refactor types
-
 type UserProfileData = {
   name: string;
   email: string;

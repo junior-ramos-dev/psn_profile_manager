@@ -3,7 +3,7 @@
 // APP TEXT
 export const APP_TITLE = "PSN App";
 export const APP_DESCRIPTION = "React TypeScript Material-UI";
-export const FOOTER_TEXT = `${new Date().getFullYear()} PSN App`;
+export const FOOTER_TEXT = `${new Date().getFullYear()}`;
 // PAGES TITLE
 export const PAGE_TITLE_HOME = "Home";
 export const PAGE_TITLE_GAMES = "Games";

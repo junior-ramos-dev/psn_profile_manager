@@ -2,11 +2,7 @@
 import { css } from "@emotion/react";
 import { Helmet } from "react-helmet-async";
 
-import {
-  APP_TITLE,
-  PAGE_TITLE_GAMES,
-  PAGE_TITLE_HOME,
-} from "@/utils/constants";
+import { APP_TITLE, PAGE_TITLE_GAMES, PAGE_TITLE_HOME } from "@/settings/app";
 import { IGame } from "@/models/interfaces";
 import { Box } from "@mui/material";
 import { PageHeader } from "@/components/PageHeader";

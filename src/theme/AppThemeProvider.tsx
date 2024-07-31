@@ -5,7 +5,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { ThemeProvider, createTheme, ThemeOptions } from "@mui/material/styles";
 import { ThemeContext } from "@/contexts/ThemeContext";
 import { THEME_PRESETS } from "./AppTheme";
-import { DARK_MODE_THEME, LIGHT_MODE_THEME } from "@/utils/constants";
+import { DARK_MODE_THEME, LIGHT_MODE_THEME } from "@/settings/app";
 
 type AppThemeProviderProps = {
   children?: React.ReactNode;

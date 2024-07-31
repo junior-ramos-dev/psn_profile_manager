@@ -8,7 +8,7 @@ import { AppHeader } from "./AppHeader";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { IRouteItem } from "@/models/interfaces";
-import { FOOTER_HEIGHT } from "@/utils/constants";
+import { FOOTER_HEIGHT } from "@/settings/app";
 
 interface LayoutProps {
   routes: Array<IRouteItem>;

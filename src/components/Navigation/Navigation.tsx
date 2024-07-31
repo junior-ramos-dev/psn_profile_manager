@@ -2,11 +2,9 @@ import { Drawer as MuiDrawer, styled } from "@mui/material";
 
 import { Routes } from "./Routes";
 
-import { DRAWER_WIDTH } from "@/utils/constants";
+import { DRAWER_WIDTH } from "@/settings/app";
 import { navClosedMixin, navOpenedMixin } from "@/styles/mixins";
 import { IRouteItem } from "@/models/interfaces";
-//TODO Check if needs persist routes into DB
-import { routes } from "@/data/routes/routes";
 
 interface NavigationProps {
   routes: Array<IRouteItem>;

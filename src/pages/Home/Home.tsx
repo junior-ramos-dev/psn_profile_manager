@@ -10,7 +10,7 @@ import {
   PAGE_TITLE_HOME,
   DRAWER_WIDTH,
   FOOTER_HEIGHT,
-} from "@/utils/constants";
+} from "@/settings/app";
 
 import { PageHeader } from "@/components/PageHeader";
 import { CustomDrawer } from "@/components/CustomDrawer";

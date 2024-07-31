@@ -13,8 +13,7 @@ import { RoutesChildren } from "@/components/Navigation/Routes";
 import { AppLayout } from "@/components/Layout/App/AppLayout";
 import { persistor, store } from "@/store";
 import { GamesLoader } from "@/services/rtkQueryApi/games/gamesLoaders";
-//TODO Check if needs persist appRoutes to DB
-import { appRoutes } from "@/data/routes";
+import { appRoutes } from "@/settings/app";
 
 const gamesLoader = new GamesLoader(store);
 

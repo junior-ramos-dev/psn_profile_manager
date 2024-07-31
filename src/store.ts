@@ -32,12 +32,6 @@ const gamesPersistConfig = {
   // whitelist: ["token"],
 };
 
-//TODO Verify usage of combinedReducers
-// const rootReducer = combineReducers({
-//   auth: persistReducer(authPersistConfig, authReducer),
-//   games: gamesReducer,
-// });
-
 const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),

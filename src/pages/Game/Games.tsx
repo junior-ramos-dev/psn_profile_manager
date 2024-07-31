@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 import { Helmet } from "react-helmet-async";
 import { Box } from "@mui/material";
 
-import { APP_TITLE, PAGE_TITLE_HOME, FOOTER_HEIGHT } from "@/utils/constants";
+import { APP_TITLE, PAGE_TITLE_HOME, FOOTER_HEIGHT } from "@/settings/app";
 
 import { PageHeader } from "@/components/PageHeader";
 import { GamesRoutes } from "@/components/Navigation/GameRoutes/GamesRoutes";

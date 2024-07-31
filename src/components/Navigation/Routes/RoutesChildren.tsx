@@ -7,8 +7,7 @@ import {
 } from "@/services/rtkQueryApi/games/gamesSlice";
 import { authSelectors } from "@/services/rtkQueryApi/auth";
 import { useAppSelector } from "@/hooks/redux";
-//TODO Check if needs persist appRoutes into DB
-import { appRoutes } from "@/data/routes";
+import { appRoutes } from "@/settings/app";
 import { createIGameRouteList } from "@/utils/routes";
 
 import { GameDetail } from "@/pages/Game";

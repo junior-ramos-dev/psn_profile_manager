@@ -6,7 +6,7 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import { ActionItem } from "../Actions/ActionItem";
 
 import { ThemeContext } from "@/contexts";
-import { LIGHT_MODE_THEME } from "@/utils/constants";
+import { LIGHT_MODE_THEME } from "@/settings/app";
 
 export const ThemeModeSwitch = ({
   disableTooltip = false,
