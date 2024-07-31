@@ -1,5 +1,5 @@
 import toast from "react-hot-toast";
-import { axiosInstance } from "../../axios/axiosInstance";
+import { axiosInstance, isServerUp } from "../../axios/axiosInstance";
 import { getErrorMessage } from "@/utils/restApi";
 
 interface IAxiosBaseQueryArgs {
@@ -15,12 +15,16 @@ const axiosFn = async (
   axiosBasequeryArgs: IAxiosBaseQueryArgs
 ) => {
   try {
-    axiosBasequeryArgs.url = baseUrl + axiosBasequeryArgs.url;
+    const serverUp = await isServerUp();
 
-    console.log(axiosBasequeryArgs.url);
+    if (serverUp) {
+      axiosBasequeryArgs.url = baseUrl + axiosBasequeryArgs.url;
 
-    const result = await axiosInstance({ ...axiosBasequeryArgs });
-    return { data: result.data };
+      console.log(axiosBasequeryArgs.url);
+
+      const result = await axiosInstance({ ...axiosBasequeryArgs });
+      return { data: result.data };
+    }
   } catch (axiosError) {
     let err = axiosError;
     if (err.status === 400) {

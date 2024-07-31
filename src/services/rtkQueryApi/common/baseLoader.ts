@@ -1,3 +1,4 @@
+import { isServerUp } from "@/services/axios/axiosInstance";
 import { getErrorMessage } from "@/utils/restApi";
 export class BaseLoader {
   store = {};
@@ -13,11 +14,22 @@ export class BaseLoader {
     const res = await promise;
     const { data, isError, error } = res;
     if (isError) {
-      const { status = 403, data } = error;
-      throw new Response("", {
-        status,
-        statusText: data?.message || getErrorMessage(status),
-      });
+      let { status, data } = error;
+      if (status >= 200 && status <= 599) {
+        console.log(status);
+        throw new Response("", {
+          status,
+          statusText: data?.message || getErrorMessage(status),
+        });
+      } else {
+        // const persistedToken = store.getState().auth.token;
+        console.log("503");
+        status = 503;
+        throw new Response("", {
+          status,
+          statusText: getErrorMessage(status),
+        });
+      }
     }
     return data;
   };
