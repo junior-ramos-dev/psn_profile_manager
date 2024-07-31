@@ -18,16 +18,6 @@ import { IRouteItem } from "@/models/interfaces";
 // define app routes
 export const appRoutes: Array<IRouteItem> = [
   {
-    key: "router-game",
-    title: "Games",
-    tooltip: "Games",
-    path: "/games",
-    enabled: true,
-    component: Games,
-    asset: SportsEsportsIcon,
-    appendDivider: true,
-  },
-  {
     key: "router-home",
     title: "Home",
     tooltip: "Home",
@@ -36,6 +26,16 @@ export const appRoutes: Array<IRouteItem> = [
     component: Home,
     asset: HomeIcon,
     appendDivider: true,
+  },
+  {
+    key: "router-game",
+    title: "Games",
+    tooltip: "Games",
+    path: "/games",
+    enabled: true,
+    component: Games,
+    asset: SportsEsportsIcon,
+    // appendDivider: true,
   },
   {
     key: "router-dashboard",
@@ -91,5 +91,6 @@ export const appRoutes: Array<IRouteItem> = [
     enabled: true,
     // component: Settings,
     asset: SettingsIcon,
+    appendDivider: true,
   },
 ];

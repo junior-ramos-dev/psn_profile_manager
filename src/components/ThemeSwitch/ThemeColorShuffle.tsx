@@ -2,7 +2,7 @@ import React from "react";
 import { ThemeContext } from "@/contexts/ThemeContext";
 import ColorLensIcon from "@mui/icons-material/ColorLens";
 
-import { ActionItem } from "@/components/Actions/ActionItem";
+import { ActionItem } from "@/components/Layout/App/Header/Menu/Actions/ActionItem";
 
 export const ThemeColorShuffle = ({
   disableTooltip = false,

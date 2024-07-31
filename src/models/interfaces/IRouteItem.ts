@@ -1,7 +1,7 @@
 import { ComponentType } from "react";
 
 /**
- * RouteItem is an interface for defining the application routes and navigation menu items
+ * IRouteItem is an interface for defining the application routes and navigation menu items
  */
 interface IRouteItem {
   /**

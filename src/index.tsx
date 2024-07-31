@@ -9,8 +9,8 @@ import { AppThemeProvider } from "./theme/AppThemeProvider";
 import reportWebVitals from "../reportWebVitals";
 
 import { ErrorPage } from "@/pages/Error/ErrorPage";
-import { RoutesChildren } from "@/components/Navigation/Routes";
-import { AppLayout } from "@/components/Layout/App/AppLayout";
+import { RoutesChildren } from "@/components/Layout/App/Routes";
+import { AppLayout } from "@/components/Layout/App";
 import { persistor, store } from "@/store";
 import { GamesLoader } from "@/services/rtkQueryApi/games/gamesLoaders";
 import { appRoutes } from "@/settings/app";
