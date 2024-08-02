@@ -1,7 +1,7 @@
 import { IGame, IRouteItem } from "@/models/interfaces";
 import { createSlice } from "@reduxjs/toolkit";
 
-interface IGamesInitialState {
+export interface IGamesInitialState {
   gamesList: IGame[];
   gamesRoutesList: IRouteItem[];
   eTag: string;

@@ -1,16 +1,16 @@
-import { isServerUp } from "@/services/axios/axiosInstance";
+import { AppDispatch, AppStore, RootState } from "@/store";
 import { getErrorMessage } from "@/utils/restApi";
 export class BaseLoader {
-  store = {};
-  dispatch = () => {};
-  constructor(store) {
-    this.store = store;
+  state: RootState;
+  dispatch: AppDispatch;
+  constructor(store: AppStore) {
+    this.state = store.getState();
     this.dispatch = store.dispatch;
   }
 
   loader = async (endpoint, request, query, queryOptions) => {
-    const promise = this.store.dispatch(endpoint.initiate(query, queryOptions));
-    // request.signal.onabort = promise.abort;
+    const promise = this.dispatch(endpoint.initiate(query, queryOptions));
+    if (request) request.signal.onabort = promise.abort;
     const res = await promise;
     const { data, isError, error } = res;
     if (isError) {

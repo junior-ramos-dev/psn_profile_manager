@@ -49,8 +49,9 @@ const store = configureStore({
 
 store.subscribe(axiosBaseQuery);
 const persistor = persistStore(store);
-export type RootState = ReturnType<typeof store.getState>;
+export type AppStore = typeof store;
 export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;
 export { store, persistor };
 
 setupListeners(store.dispatch);
