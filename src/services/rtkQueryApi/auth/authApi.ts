@@ -1,34 +1,12 @@
+import {
+  LoginRequest,
+  LoginResponse,
+  RegisterRequest,
+  RegisterResponse,
+} from "@/models/types/rtkQuery/auth";
 import { rtkQueryBaseApi } from "../common/rtkQueryBaseApi";
 import { VERBS } from "@/utils/restApi";
-
-//TODO Refactor types
-type UserProfileData = {
-  name: string;
-  email: string;
-};
-
-type RegisterRequest = {
-  name: string;
-  email: string;
-  password: string;
-};
-
-type RegisterResponse = {
-  id: string;
-  name: string;
-  email: string;
-};
-
-type LoginRequest = {
-  email: string;
-  password: string;
-};
-
-type LoginResponse = {
-  id: string;
-  name: string;
-  email: string;
-};
+import { UserProfileData } from "@/models/types/rtkQuery/user";
 
 export const authApi = rtkQueryBaseApi.injectEndpoints({
   endpoints: (build) => ({
