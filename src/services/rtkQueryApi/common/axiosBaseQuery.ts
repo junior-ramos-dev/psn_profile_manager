@@ -4,6 +4,7 @@ import { getErrorMessage } from "@/utils/restApi";
 
 interface IAxiosBaseQueryArgs {
   url: string;
+  headers?: any;
   method?: string;
   data?: any;
   params?: any;
@@ -19,7 +20,6 @@ const axiosFn = async (
 
     if (serverUp) {
       axiosBasequeryArgs.url = baseUrl + axiosBasequeryArgs.url;
-
       console.log(axiosBasequeryArgs.url);
 
       const result = await axiosInstance({ ...axiosBasequeryArgs });
@@ -47,5 +47,5 @@ const axiosFn = async (
 
 export const axiosBaseQuery =
   ({ baseUrl } = { baseUrl: "" }) =>
-  async ({ url, method, data, params, signal }: IAxiosBaseQueryArgs) =>
-    axiosFn(baseUrl, { url, method, data, params, signal });
+  async ({ url, headers, method, data, params, signal }: IAxiosBaseQueryArgs) =>
+    axiosFn(baseUrl, { url, headers, method, data, params, signal });

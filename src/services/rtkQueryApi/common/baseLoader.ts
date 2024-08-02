@@ -1,4 +1,4 @@
-import { AppDispatch, AppStore, RootState } from "@/store";
+import { AppDispatch, AppStore } from "@/store";
 import { getErrorMessage } from "@/utils/restApi";
 export class BaseLoader {
   store: AppStore;
@@ -22,7 +22,6 @@ export class BaseLoader {
           statusText: data?.message || getErrorMessage(status),
         });
       } else {
-        // const persistedToken = store.getState().auth.token;
         console.log("503");
         status = 503;
         throw new Response("", {
