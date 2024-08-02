@@ -21,11 +21,11 @@ export const RoutesChildren = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useAppSelector(authSelectors.getLoggedIn);
 
-  const gamesList = useLoaderData() as IGame[];
+  const { gamesList, eTag } = useLoaderData();
   const gamesRoutes = createIGameRouteList(gamesList);
 
   // Add gamesList and gamesRoutes to persist store
-  dispatch(actionSetGamesList(gamesList));
+  dispatch(actionSetGamesList({ gamesList: gamesList, eTag: eTag }));
   dispatch(actionSetGamesRoutesList(gamesRoutes));
 
   const addRoute = (route: IAppRoute) => {

@@ -28,7 +28,8 @@ const router = createBrowserRouter([
           {
             path: "/*",
             element: <RoutesChildren />,
-            loader: async () => await gamesLoader.listLoader({ request: "" }),
+            loader: async () =>
+              await gamesLoader.gamesListLoader({ request: "" }),
           },
           // {
           //   path: "games/:npCommunicationId",

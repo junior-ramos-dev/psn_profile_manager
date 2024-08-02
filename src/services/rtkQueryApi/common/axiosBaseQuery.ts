@@ -23,7 +23,8 @@ const axiosFn = async (
       console.log(axiosBasequeryArgs.url);
 
       const result = await axiosInstance({ ...axiosBasequeryArgs });
-      return { data: result.data };
+      // const eTag = result.headers["etag"];
+      return { data: result };
     }
   } catch (axiosError) {
     let err = axiosError;
