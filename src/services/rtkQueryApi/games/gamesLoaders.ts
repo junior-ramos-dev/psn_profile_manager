@@ -1,10 +1,8 @@
 import { isServerUp } from "@/services/axios/axiosInstance";
 import { BaseLoader } from "@/services/rtkQueryApi/common/baseLoader";
 import { gamesApi } from "@/services/rtkQueryApi/games/gamesApi";
-import { IGamesInitialState } from "./gamesSlice";
-export class GamesLoader extends BaseLoader {
-  getGameState = () => this.state.games as IGamesInitialState;
 
+export class GamesLoader extends BaseLoader {
   gamesListLoader = async () => {
     const serverUp = await isServerUp();
     if (serverUp) {
@@ -17,8 +15,8 @@ export class GamesLoader extends BaseLoader {
       return gamesListLoaderRes;
     } else {
       //If server is offline retrieve data persisted on localstorage;
-      const gamesList = this.getGameState().gamesList;
-      const eTag = this.getGameState().eTag;
+      const gamesList = this.store.getState().games.gamesList;
+      const eTag = this.store.getState().games.eTag;
       return { gamesList, eTag };
     }
   };

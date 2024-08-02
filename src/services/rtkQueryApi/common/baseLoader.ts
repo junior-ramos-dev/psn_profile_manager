@@ -1,10 +1,10 @@
 import { AppDispatch, AppStore, RootState } from "@/store";
 import { getErrorMessage } from "@/utils/restApi";
 export class BaseLoader {
-  state: RootState;
+  store: AppStore;
   dispatch: AppDispatch;
   constructor(store: AppStore) {
-    this.state = store.getState();
+    this.store = store;
     this.dispatch = store.dispatch;
   }
 
