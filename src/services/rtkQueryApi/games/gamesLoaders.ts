@@ -1,3 +1,5 @@
+import { IGame } from "@/models/interfaces";
+import { IGamesListData } from "@/models/types/rtkQuery/games";
 import { isServerUp } from "@/services/axios/axiosInstance";
 import { BaseLoader } from "@/services/rtkQueryApi/common/baseLoader";
 import { gamesApi } from "@/services/rtkQueryApi/games/gamesApi";
@@ -12,12 +14,13 @@ export class GamesLoader extends BaseLoader {
         {},
         {}
       );
-      return gamesListLoaderRes;
+      return gamesListLoaderRes as IGamesListData;
     } else {
       //If server is offline retrieve data persisted on localstorage;
       const gamesList = this.store.getState().games.gamesList;
-      const eTag = this.store.getState().games.eTag;
-      return { gamesList, eTag };
+      const gamesRoutesList = this.store.getState().games.gamesRoutesList;
+
+      return { gamesList, gamesRoutesList } as IGamesListData;
     }
   };
 }

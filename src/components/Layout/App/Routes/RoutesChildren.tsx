@@ -1,12 +1,8 @@
 import { Routes, Route, useLoaderData } from "react-router-dom";
-import { useDispatch } from "react-redux";
 
-import {
-  actionSetGamesList,
-  actionSetGamesRoutesList,
-} from "@/services/rtkQueryApi/games/gamesSlice";
+import { actionSetGamesRoutesList } from "@/services/rtkQueryApi/games/gamesSlice";
 import { authSelectors } from "@/services/rtkQueryApi/auth";
-import { useAppSelector } from "@/hooks/redux";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { appRoutes } from "@/settings/app";
 import { createIGameRouteList } from "@/utils/routes";
 
@@ -15,18 +11,14 @@ import { Login, Register } from "@/pages/SignUp";
 import { IndexPage } from "@/pages/IndexPage";
 import { PublicRoute, PrivateRoute } from ".";
 
-import { IAppRoute, IGame, IGameRoute } from "@/models/interfaces";
+import { IAppRoute, IGameRoute } from "@/models/interfaces";
+import { IGamesListData } from "@/models/types/rtkQuery/games";
 
 export const RoutesChildren = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const isLoggedIn = useAppSelector(authSelectors.getLoggedIn);
 
-  const { gamesList, eTag } = useLoaderData();
-  const gamesRoutes = createIGameRouteList(gamesList);
-
-  // Add gamesList and gamesRoutes to persist store
-  dispatch(actionSetGamesList({ gamesList: gamesList, eTag: eTag }));
-  dispatch(actionSetGamesRoutesList(gamesRoutes));
+  const { gamesList, gamesRoutesList } = useLoaderData() as IGamesListData;
 
   const addRoute = (route: IAppRoute) => {
     return (
@@ -63,7 +55,7 @@ export const RoutesChildren = () => {
             : addRoute(appRoute)
         )}
         {/* Create Games Routes */}
-        {gamesRoutes.map((gameRoute: IGameRoute, index: number) =>
+        {gamesRoutesList.map((gameRoute: IGameRoute, index: number) =>
           addGameRoute(gameRoute, index)
         )}
       </Route>
