@@ -28,7 +28,7 @@ const Home = () => {
   const [open, setOpen] = useState(false);
   const toggleNavigation = () => setOpen((status) => !status);
 
-  const userBasicInfo = useSelector(authSelectors.getUserBasicInfo);
+  const userBasicInfo = useSelector(authSelectors.getAuthUser);
 
   //TODO Create user profile endpoint
   // useEffect(() => {

@@ -16,7 +16,7 @@ export const Games = () => {
   const toggleNavigation = () => {};
 
   const userBasicInfo: UserBasicInfo = useAppSelector(
-    authSelectors.getUserBasicInfo
+    authSelectors.getAuthUser
   );
 
   //TODO Create user profile endpoint
