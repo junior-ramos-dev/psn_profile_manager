@@ -1,10 +1,8 @@
 import { Routes, Route, useLoaderData } from "react-router-dom";
 
-import { actionSetGamesRoutesList } from "@/services/rtkQueryApi/games/gamesSlice";
 import { authSelectors } from "@/services/rtkQueryApi/auth";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { appRoutes } from "@/settings/app";
-import { createIGameRouteList } from "@/utils/routes";
 
 import { GameDetail } from "@/pages/Game";
 import { Login, Register } from "@/pages/SignUp";
@@ -15,12 +13,12 @@ import { IAppRoute, IGameRoute } from "@/models/interfaces";
 import { IGamesListData } from "@/models/types/rtkQuery/games";
 
 export const RoutesChildren = () => {
-  const dispatch = useAppDispatch();
   const isLoggedIn = useAppSelector(authSelectors.getLoggedIn);
+  const authUser = useAppSelector(authSelectors.getAuthUser);
 
   const { gamesList, gamesRoutesList } = useLoaderData() as IGamesListData;
 
-  const addRoute = (route: IAppRoute) => {
+  const addSideBarRoute = (route: IAppRoute) => {
     return (
       <Route
         key={route.key}
@@ -49,11 +47,16 @@ export const RoutesChildren = () => {
       </Route>
       <Route element={<PrivateRoute isLoggedIn={isLoggedIn} />}>
         {/* Create App Routes */}
-        {appRoutes.map((appRoute: IAppRoute) =>
-          appRoute.subRoutes
-            ? appRoute.subRoutes.map((item: IAppRoute) => addRoute(item))
-            : addRoute(appRoute)
-        )}
+        {appRoutes.map((appRoute: IAppRoute) => {
+          if (appRoute.key === "router-game") {
+            appRoute.path = `/games/${authUser.id}`;
+            appRoute.enabled = isLoggedIn;
+          }
+
+          return appRoute.subRoutes
+            ? appRoute.subRoutes.map((item: IAppRoute) => addSideBarRoute(item))
+            : addSideBarRoute(appRoute);
+        })}
         {/* Create Games Routes */}
         {gamesRoutesList.map((gameRoute: IGameRoute, index: number) =>
           addGameRoute(gameRoute, index)

@@ -20,6 +20,7 @@ import { GamesRoutes } from "@/components/Navigation/GameRoutes/GamesRoutes";
 import useOverFlowHidden from "@/hooks/useOverFlowHidden";
 import { authSelectors } from "@/services/rtkQueryApi/auth";
 import { useSelector } from "react-redux";
+import { useAppSelector } from "@/hooks/redux";
 
 const Home = () => {
   //Disable page scroll
@@ -28,7 +29,7 @@ const Home = () => {
   const [open, setOpen] = useState(false);
   const toggleNavigation = () => setOpen((status) => !status);
 
-  const userBasicInfo = useSelector(authSelectors.getAuthUser);
+  const userBasicInfo = useAppSelector(authSelectors.getAuthUser);
 
   //TODO Create user profile endpoint
   // useEffect(() => {
