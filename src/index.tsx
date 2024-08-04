@@ -28,7 +28,7 @@ const router = createBrowserRouter([
           {
             path: "/*",
             element: <RoutesChildren />,
-            loader: gamesLoader.gamesListLoader,
+            loader: gamesLoader.initGamesListLoader,
             // loader: async () => {
             //   const p = store.dispatch(
             //     gamesApi.endpoints.getGameList({request: "/6690ec7a1b9af84a84b0b425"})
