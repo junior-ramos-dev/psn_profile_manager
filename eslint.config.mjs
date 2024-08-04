@@ -1,36 +1,60 @@
 import globals from "globals";
 import pluginJs from "@eslint/js";
 import tseslint from "typescript-eslint";
-import pluginReactConfig from "eslint-plugin-react/configs/recommended.js";
-import { fixupConfigRules } from "@eslint/compat";
+import pluginReact from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
-import prettier from "eslint-plugin-prettier";
-import babelParser from "@babel/eslint-parser";
+import simpleImportSort from "eslint-plugin-simple-import-sort";
 
 export default [
   { files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"] },
-  { languageOptions: { parserOptions: { ecmaFeatures: { jsx: true } } } },
-  { languageOptions: { globals: globals.browser } },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
-  ...fixupConfigRules(pluginReactConfig),
-  { extends: "airbnb" },
-  { extends: "plugin:react-hooks/recommended" },
+  pluginReact.configs.flat.recommended,
   {
-    files: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
     languageOptions: {
-      parser: babelParser,
-    },
-    plugins: {
-      "react-hooks": reactHooks,
-      prettier: prettier,
-    },
-    rules: {
-      ...reactHooks.configs.recommended.rules,
-      "react-hooks/rules-of-hooks": "error",
-      "react-hooks/exhaustive-deps": "warn",
-      ...prettier.configs.recommended.rules,
-      "prettier/prettier": "warn",
+      ...pluginReact.configs.flat.recommended.languageOptions,
+      globals: {
+        ...globals.serviceworker,
+        ...globals.browser,
+      },
     },
   },
+  {
+    plugins: {
+      "react-hooks": reactHooks,
+      "simple-import-sort": simpleImportSort,
+    },
+    rules: {
+      semi: "error",
+      "no-unused-vars": "error",
+      "react/jsx-uses-react": "off",
+      "react/react-in-jsx-scope": "off",
+      // ...reactHooks.configs.recommended.rules,
+      // "react-hooks/rules-of-hooks": "error",
+      // "react-hooks/exhaustive-deps": "warn",
+      "simple-import-sort/imports": [
+        "error",
+        {
+          groups: [
+            // `react` first, `next` second, then packages starting with a character
+            ["^react$", "^next", "^[a-z]"],
+            // Packages starting with `@`
+            ["^@"],
+            // Packages starting with `~`
+            ["^~"],
+            // Imports starting with `../`
+            ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+            // Imports starting with `./`
+            ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+            // Style imports
+            ["^.+\\.s?css$"],
+            // Side effect imports
+            ["^\\u0000"],
+          ],
+        },
+      ],
+      "simple-import-sort/exports": "error",
+    },
+  },
+  { ignores: ["node_modules/", "dist"] },
 ];
