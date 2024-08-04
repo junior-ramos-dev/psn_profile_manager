@@ -1,11 +1,13 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useMemo,useState } from "react";
+
+import { ThemeContext } from "@/contexts/ThemeContext";
+import { DARK_MODE_THEME, LIGHT_MODE_THEME } from "@/settings/app";
 import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "@mui/material/GlobalStyles";
+import { createTheme, ThemeOptions,ThemeProvider } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { ThemeProvider, createTheme, ThemeOptions } from "@mui/material/styles";
-import { ThemeContext } from "@/contexts/ThemeContext";
+
 import { THEME_PRESETS } from "./AppTheme";
-import { DARK_MODE_THEME, LIGHT_MODE_THEME } from "@/settings/app";
 
 type AppThemeProviderProps = {
   children?: React.ReactNode;

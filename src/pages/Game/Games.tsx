@@ -1,15 +1,14 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
 import { Helmet } from "react-helmet-async";
-import { Box } from "@mui/material";
-
-import { APP_TITLE, PAGE_TITLE_HOME, FOOTER_HEIGHT } from "@/settings/app";
 
 import { PageHeader } from "@/components/DefaultPage/PageHeader";
 import { GamesRoutes } from "@/components/Navigation/GameRoutes/GamesRoutes";
-import { authSelectors } from "@/services/rtkQueryApi/auth";
 import { useAppSelector } from "@/hooks/redux";
 import { UserBasicInfo } from "@/models/types/user";
+import { authSelectors } from "@/services/rtkQueryApi/auth";
+import { APP_TITLE, FOOTER_HEIGHT,PAGE_TITLE_HOME } from "@/settings/app";
+import { css } from "@emotion/react";
+import { Box } from "@mui/material";
 
 export const Games = () => {
   //TODO Edit Games Page to remove hamburger

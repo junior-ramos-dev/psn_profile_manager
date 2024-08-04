@@ -1,7 +1,7 @@
 import { ComponentType } from "react";
-import { Badge, Icon, useTheme } from "@mui/material";
 
 import { LIGHT_MODE_THEME } from "@/settings/app";
+import { Badge, Icon, useTheme } from "@mui/material";
 
 interface ActionIconProps {
   badgeContent?: number;

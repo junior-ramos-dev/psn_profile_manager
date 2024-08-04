@@ -1,4 +1,8 @@
 /** @jsxImportSource @emotion/react */
+import React from "react";
+import { NavLink, useLocation } from "react-router-dom";
+
+import { IRouteItem } from "@/models/interfaces";
 import { css } from "@emotion/react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import {
@@ -11,10 +15,6 @@ import {
   Tooltip,
   useTheme,
 } from "@mui/material";
-import React from "react";
-import { NavLink, useLocation } from "react-router-dom";
-
-import { IRouteItem } from "@/models/interfaces";
 
 interface SidebarItemProps {
   route: IRouteItem;

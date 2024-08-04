@@ -1,4 +1,5 @@
 import { StringUtils } from "@/utils/strings";
+
 import { TrophyCount } from "../types/trophy/TrophyCount";
 
 // IGame is an interface for defining the game object returned from the API with additional properties to generate the routes for games.
@@ -38,7 +39,7 @@ export class ConvertIGame {
       let gameLastUpdatedDateTime;
 
       const gameKeys = Object.keys(game);
-      for (let key in gameKeys) {
+      for (const key in gameKeys) {
         if (gameKeys[key] === "lastUpdatedDateTime") {
           gameLastUpdatedDateTime = Date.parse(game.lastUpdatedDateTime);
         }
@@ -46,14 +47,14 @@ export class ConvertIGame {
 
       type omitIGameFields = Omit<IGame, "lastUpdatedDateTime">;
 
-      let iGameRemainingFields: omitIGameFields = { ...game };
-      let iGamesComplete = {
+      const iGameRemainingFields: omitIGameFields = { ...game };
+      const iGamesComplete = {
         ...iGameRemainingFields,
         lastUpdatedDateTime: gameLastUpdatedDateTime,
       };
 
-      let iGameCompleteString = JSON.stringify(iGamesComplete);
-      let iGame = ConvertIGame.fromJsonObject(iGameCompleteString);
+      const iGameCompleteString = JSON.stringify(iGamesComplete);
+      const iGame = ConvertIGame.fromJsonObject(iGameCompleteString);
 
       if (iGame.trophyTitleDetail)
         iGame.trophyTitleDetail = StringUtils.formatStringToTitleCase(

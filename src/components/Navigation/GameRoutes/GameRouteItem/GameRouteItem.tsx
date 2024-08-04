@@ -1,6 +1,11 @@
 /** @jsxImportSource @emotion/react */
+import React from "react";
+import { NavLink, useLocation } from "react-router-dom";
+
+import { IGameRoute } from "@/models/interfaces";
 import { css } from "@emotion/react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import {
   Icon,
   IconButton,
@@ -11,11 +16,6 @@ import {
   Tooltip,
   useTheme,
 } from "@mui/material";
-import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
-import React from "react";
-import { NavLink, useLocation } from "react-router-dom";
-
-import { IGameRoute } from "@/models/interfaces";
 
 interface GameRouteItemProps {
   gameRoute: IGameRoute;

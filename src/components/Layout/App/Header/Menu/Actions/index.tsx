@@ -1,12 +1,13 @@
 import React from 'react';
+
 import {
-	MoreVert as MoreIcon,
-	Mail as MailIcon,
-	Notifications as NotificationsIcon,
 	Fingerprint as FingerprintIcon,
-	Logout as LogoutIcon,
-	Settings as SettingsIcon,
 	List as PreferencesIcon,
+	Logout as LogoutIcon,
+	Mail as MailIcon,
+	MoreVert as MoreIcon,
+	Notifications as NotificationsIcon,
+	Settings as SettingsIcon,
 } from '@mui/icons-material';
 
 import { ActionItem } from './ActionItem';

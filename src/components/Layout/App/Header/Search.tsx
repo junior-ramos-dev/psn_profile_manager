@@ -1,5 +1,5 @@
-import { alpha, InputBase, styled, Box } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import { alpha, Box,InputBase, styled } from '@mui/material';
 
 export const Search = () => (
 	<Box sx={{ display: { xs: 'none', sm: 'flex' } }}>

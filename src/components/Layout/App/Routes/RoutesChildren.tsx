@@ -1,16 +1,15 @@
-import { Routes, Route, useLoaderData } from "react-router-dom";
+import { Route, Routes, useLoaderData } from "react-router-dom";
 
-import { authSelectors } from "@/services/rtkQueryApi/auth";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
-import { appRoutes } from "@/settings/app";
-
-import { GameDetail } from "@/pages/Game";
-import { Login, Register } from "@/pages/SignUp";
-import { IndexPage } from "@/pages/IndexPage";
-import { PublicRoute, PrivateRoute } from ".";
-
 import { IAppRoute, IGameRoute } from "@/models/interfaces";
 import { IGamesListData } from "@/models/types/rtkQuery/games";
+import { GameDetail } from "@/pages/Game";
+import { IndexPage } from "@/pages/IndexPage";
+import { Login, Register } from "@/pages/SignUp";
+import { authSelectors } from "@/services/rtkQueryApi/auth";
+import { appRoutes } from "@/settings/app";
+
+import { PrivateRoute,PublicRoute } from ".";
 
 export const RoutesChildren = () => {
   const isLoggedIn = useAppSelector(authSelectors.getLoggedIn);

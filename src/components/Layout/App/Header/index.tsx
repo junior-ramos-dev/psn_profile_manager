@@ -1,19 +1,19 @@
 import React, { useState } from "react";
-import { AppBar, Box, Toolbar } from "@mui/material";
 
-import { PsMenuIconButton } from "@/components/Playstation/PSIconButtons";
-import { Search } from "@/components/Layout/App/Header/Search";
-import { Title } from "./Title";
-
-import { ThemeModeSwitch } from "@/components/ThemeSwitch/ThemeModeSwitch";
-import { ThemeColorShuffle } from "@/components/ThemeSwitch/ThemeColorShuffle";
+import { DefaultMenu, MobileMenu } from "@/components/Layout/App/Header/Menu";
 import {
   Messages,
   More,
   Notifications,
   UserAccount,
 } from "@/components/Layout/App/Header/Menu/Actions";
-import { DefaultMenu, MobileMenu } from "@/components/Layout/App/Header/Menu";
+import { Search } from "@/components/Layout/App/Header/Search";
+import { PsMenuIconButton } from "@/components/Playstation/PSIconButtons";
+import { ThemeColorShuffle } from "@/components/ThemeSwitch/ThemeColorShuffle";
+import { ThemeModeSwitch } from "@/components/ThemeSwitch/ThemeModeSwitch";
+import { AppBar, Box, Toolbar } from "@mui/material";
+
+import { Title } from "./Title";
 
 interface HeaderProps {
   toggleNavigation: () => void;

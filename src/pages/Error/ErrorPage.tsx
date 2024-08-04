@@ -1,7 +1,8 @@
-import useNetworkStatus from "@/hooks/useNetworkStatus";
-import { Box } from "@mui/material";
 import React from "react";
 import { isRouteErrorResponse, useRouteError } from "react-router-dom";
+
+import useNetworkStatus from "@/hooks/useNetworkStatus";
+import { Box } from "@mui/material";
 
 export const ErrorPage = () => {
   // you don't need to explicitly set error to `unknown`

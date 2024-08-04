@@ -1,5 +1,6 @@
 import { Divider, Menu, MenuItem } from "@mui/material";
-import { Settings, Preferences, SignOut } from "./Actions";
+
+import { Preferences, Settings, SignOut } from "./Actions";
 
 interface DefaultMenuProps {
   isMenuOpen: boolean;

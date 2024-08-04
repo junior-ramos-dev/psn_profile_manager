@@ -5,7 +5,7 @@ export const createIGameRoutesList = (gamesList: IGame[]) => {
   const iGamesRoutesList = new Array<IGameRoute>();
 
   gamesList.map((game) => {
-    let gameRoute: IGameRoute = {
+    const gameRoute: IGameRoute = {
       key: game.npCommunicationId,
       title: game.trophyTitleName,
       tooltip: game.trophyTitleName,

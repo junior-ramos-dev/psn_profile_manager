@@ -1,5 +1,12 @@
 /** @jsxImportSource @emotion/react */
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
+import { useAppDispatch } from "@/hooks/redux";
+import { useRegisterMutation } from "@/services/rtkQueryApi/auth/authApi";
+import { actionSetCredentials } from "@/services/rtkQueryApi/auth/authSlice";
 import { css } from "@emotion/react";
+import { LockOutlined } from "@mui/icons-material";
 import {
   Avatar,
   Box,
@@ -10,12 +17,6 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { LockOutlined } from "@mui/icons-material";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { useAppDispatch } from "@/hooks/redux";
-import { useRegisterMutation } from "@/services/rtkQueryApi/auth/authApi";
-import { actionSetCredentials } from "@/services/rtkQueryApi/auth/authSlice";
 
 export const Register = () => {
   const dispatch = useAppDispatch();

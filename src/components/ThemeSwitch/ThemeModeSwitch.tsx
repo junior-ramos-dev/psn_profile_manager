@@ -1,12 +1,12 @@
 import { useContext } from "react";
-import { useTheme } from "@mui/material/styles";
-import { NightsStay } from "@mui/icons-material";
-import LightModeIcon from "@mui/icons-material/LightMode";
-
-import { ActionItem } from "../Layout/App/Header/Menu/Actions/ActionItem";
 
 import { ThemeContext } from "@/contexts";
 import { LIGHT_MODE_THEME } from "@/settings/app";
+import { NightsStay } from "@mui/icons-material";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import { useTheme } from "@mui/material/styles";
+
+import { ActionItem } from "../Layout/App/Header/Menu/Actions/ActionItem";
 
 export const ThemeModeSwitch = ({
   disableTooltip = false,

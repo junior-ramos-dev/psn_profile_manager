@@ -1,7 +1,9 @@
-import toast from "react-hot-toast";
-import { axiosInstance, isServerUp } from "../../axios/axiosInstance";
-import { getErrorMessage, VERBS } from "@/utils/restApi";
 import { AxiosResponse } from "axios";
+import toast from "react-hot-toast";
+
+import { getErrorMessage, VERBS } from "@/utils/restApi";
+
+import { axiosInstance, isServerUp } from "../../axios/axiosInstance";
 
 const BASE_URL = process.env.API_BASE_URL;
 
@@ -78,7 +80,7 @@ const axiosApiRepository = async (
         case VERBS.PATCH:
           endpointName ?? console.log(endpointName);
           result = await axiosInstance
-            .put(`${BASE_URL}/${endpointUrl}/${urlParam}`, bodyData)
+            .patch(`${BASE_URL}/${endpointUrl}/${urlParam}`, bodyData)
             .then(transform);
           return { data: result };
         // Delete
@@ -91,7 +93,7 @@ const axiosApiRepository = async (
       }
     }
   } catch (axiosError) {
-    let err = axiosError;
+    const err = axiosError;
     if (err.status === 400) {
       toast.error("The email is already in use");
     } else if (err.status === 401) {

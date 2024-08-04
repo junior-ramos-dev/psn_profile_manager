@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import { Typography } from "@mui/material";
 import { css } from "@emotion/react";
+import { Typography } from "@mui/material";
 
 export const PageTitle = ({ title }: { title: string }) => (
   <Typography

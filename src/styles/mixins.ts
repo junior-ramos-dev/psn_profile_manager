@@ -1,5 +1,5 @@
-import { CSSObject, Theme } from "@mui/material";
 import { DRAWER_WIDTH } from "@/settings/app";
+import { CSSObject, Theme } from "@mui/material";
 
 export const navOpenedMixin = (theme: Theme): CSSObject => ({
   width: DRAWER_WIDTH,

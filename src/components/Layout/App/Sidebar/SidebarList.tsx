@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { List, Divider, Collapse } from "@mui/material";
-
-import { SidebarItem } from "./SidebarItem";
-import { LogoutButton } from "./LogoutButton";
 
 import { IRouteItem } from "@/models/interfaces";
+import { Collapse,Divider, List } from "@mui/material";
+
+import { LogoutButton } from "./LogoutButton";
+import { SidebarItem } from "./SidebarItem";
 
 interface SidebarListProps {
   sidebarList: Array<IRouteItem>;

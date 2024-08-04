@@ -1,9 +1,8 @@
-import { List, Divider } from "@mui/material";
-
 import { useAppSelector } from "@/hooks/redux/useAppSelector";
-import { gamesSelectors } from "@/services/rtkQueryApi/games";
-
 import { IGameRoute } from "@/models/interfaces";
+import { gamesSelectors } from "@/services/rtkQueryApi/games";
+import { Divider,List } from "@mui/material";
+
 import { GameRouteItem } from "./GameRouteItem";
 
 export const GamesRoutes = () => {

@@ -1,26 +1,23 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
-import { Box } from "@mui/material";
 
-import {
-  APP_TITLE,
-  PAGE_TITLE_HOME,
-  DRAWER_WIDTH,
-  FOOTER_HEIGHT,
-} from "@/settings/app";
-
-import { PageHeader } from "@/components/DefaultPage/PageHeader";
 import { CustomDrawer } from "@/components/CustomDrawer";
-
+import { PageHeader } from "@/components/DefaultPage/PageHeader";
 import { GamesRoutes } from "@/components/Navigation/GameRoutes/GamesRoutes";
-
+import { useAppSelector } from "@/hooks/redux";
 import useOverFlowHidden from "@/hooks/useOverFlowHidden";
 import { authSelectors } from "@/services/rtkQueryApi/auth";
-import { useSelector } from "react-redux";
-import { useAppSelector } from "@/hooks/redux";
+import {
+  APP_TITLE,
+  DRAWER_WIDTH,
+  FOOTER_HEIGHT,
+  PAGE_TITLE_HOME,
+} from "@/settings/app";
+import { css } from "@emotion/react";
+import { Box } from "@mui/material";
 
 const Home = () => {
   //Disable page scroll

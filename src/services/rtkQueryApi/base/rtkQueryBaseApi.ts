@@ -1,4 +1,5 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
+
 import { axiosBaseQueryApi } from "./axiosBaseQueryApi";
 
 export const rtkQueryBaseApi = createApi({

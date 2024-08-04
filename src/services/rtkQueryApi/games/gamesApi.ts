@@ -1,10 +1,12 @@
-import { rtkQueryBaseApi } from "../base/rtkQueryBaseApi";
-import { VERBS } from "@/utils/restApi";
-import { actionSetGamesList, actionSetGamesRoutesList } from "./gamesSlice";
-import { store } from "@/store";
-import { createIGameRoutesList } from "@/utils/routes";
-import { IGamesListData } from "@/models/types/rtkQuery/games";
 import { ConvertIGame } from "@/models/interfaces";
+import { IGamesListData } from "@/models/types/rtkQuery/games";
+import { store } from "@/store";
+import { VERBS } from "@/utils/restApi";
+import { createIGameRoutesList } from "@/utils/routes";
+
+import { rtkQueryBaseApi } from "../base/rtkQueryBaseApi";
+
+import { actionSetGamesList, actionSetGamesRoutesList } from "./gamesSlice";
 
 export const gamesApi = rtkQueryBaseApi.injectEndpoints({
   endpoints: (build) => ({

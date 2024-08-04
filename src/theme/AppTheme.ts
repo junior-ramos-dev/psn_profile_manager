@@ -1,9 +1,10 @@
-import { theme as psnTheme } from "./presets/psnTheme";
-import { theme as blue } from "./presets/blue";
-import { theme as green } from "./presets/green";
-import { theme as red } from "./presets/red";
-import { theme as _default } from "./presets/default";
 import { Palette, PaletteColor } from "@mui/material/styles";
+
+import { theme as blue } from "./presets/blue";
+import { theme as _default } from "./presets/default";
+import { theme as green } from "./presets/green";
+import { theme as psnTheme } from "./presets/psnTheme";
+import { theme as red } from "./presets/red";
 
 // this is a typescript utility, if I say DeepPartial<Object> it means any key of that object, is not reauired.
 // this works even when we have nested objects and we want all the keys to be optional. why is this being used?

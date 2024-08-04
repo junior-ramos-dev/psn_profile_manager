@@ -1,5 +1,6 @@
-import { ReactNode } from "react";
-import { Drawer, styled } from "@mui/material";
+import React, { ReactNode } from "react";
+
+import { Drawer } from "@mui/material";
 import Box from "@mui/material/Box";
 
 interface CustomDrawerProps {
@@ -57,6 +58,6 @@ export const CustomDrawer = ({
   );
 };
 
-const DrawerHeader = styled("div")(({ theme }) => ({
-  ...theme.mixins.toolbar,
-}));
+// const DrawerHeader = styled("div")(({ theme }) => ({
+//   ...theme.mixins.toolbar,
+// }));

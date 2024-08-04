@@ -1,5 +1,5 @@
-import { createTheme } from "@mui/material/styles";
 import { AppTheme } from "@/theme/AppTheme";
+import { createTheme } from "@mui/material/styles";
 
 const { palette } = createTheme();
 

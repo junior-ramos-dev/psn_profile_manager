@@ -1,19 +1,21 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import { StyledEngineProvider } from "@mui/material/styles";
-import { AppThemeProvider } from "./theme/AppThemeProvider";
-import reportWebVitals from "../reportWebVitals";
+import { Provider } from "react-redux";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { PersistGate } from "redux-persist/integration/react";
 
-import { ErrorPage } from "@/pages/Error/ErrorPage";
-import { RoutesChildren } from "@/components/Layout/App/Routes";
 import { AppLayout } from "@/components/Layout/App";
-import { persistor, store } from "@/store";
+import { RoutesChildren } from "@/components/Layout/App/Routes";
+import { ErrorPage } from "@/pages/Error/ErrorPage";
 import { GamesLoader } from "@/services/rtkQueryApi/games/gamesLoaders";
 import { appRoutes } from "@/settings/app";
+import { persistor, store } from "@/store";
+import { StyledEngineProvider } from "@mui/material/styles";
+
+import reportWebVitals from "../reportWebVitals";
+
+import { AppThemeProvider } from "./theme/AppThemeProvider";
 
 const gamesLoader = new GamesLoader(store);
 

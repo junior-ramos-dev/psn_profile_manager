@@ -1,11 +1,10 @@
+import { Hamburger } from "@/components/Hamburger";
+import { IRouteItem } from "@/models/interfaces";
+import { DRAWER_WIDTH } from "@/settings/app";
+import { navClosedMixin, navOpenedMixin } from "@/styles/mixins";
 import { Divider, Drawer as MuiDrawer, styled } from "@mui/material";
 
 import { SidebarList } from "./SidebarList";
-
-import { DRAWER_WIDTH } from "@/settings/app";
-import { navClosedMixin, navOpenedMixin } from "@/styles/mixins";
-import { IRouteItem } from "@/models/interfaces";
-import { Hamburger } from "@/components/Hamburger";
 
 interface SidebarProps {
   routes: Array<IRouteItem>;

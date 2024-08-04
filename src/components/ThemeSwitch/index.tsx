@@ -1,2 +1,2 @@
-export { ThemeModeSwitch } from "./ThemeModeSwitch";
 export { ThemeColorShuffle } from "./ThemeColorShuffle";
+export { ThemeModeSwitch } from "./ThemeModeSwitch";

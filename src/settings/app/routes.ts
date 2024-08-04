@@ -1,19 +1,17 @@
 // icons
-import HomeIcon from "@material-ui/icons/Home";
-import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
-import DashboardIcon from "@material-ui/icons/BarChartOutlined";
-import CodeIcon from "@material-ui/icons/CodeOutlined";
-import SettingsIcon from "@material-ui/icons/SettingsOutlined";
-import GitHubIcon from "@material-ui/icons/GitHub";
-import PrivateIcon from "@material-ui/icons/LockOutlined";
-import PublicIcon from "@material-ui/icons/LockOpenOutlined";
-
-// pages
-import Home from "@/pages/Home";
-import { Games } from "@/pages/Game";
-
 // interface
 import { IRouteItem } from "@/models/interfaces";
+import { Games } from "@/pages/Game";
+// pages
+import Home from "@/pages/Home";
+import DashboardIcon from "@material-ui/icons/BarChartOutlined";
+import CodeIcon from "@material-ui/icons/CodeOutlined";
+import GitHubIcon from "@material-ui/icons/GitHub";
+import HomeIcon from "@material-ui/icons/Home";
+import PublicIcon from "@material-ui/icons/LockOpenOutlined";
+import PrivateIcon from "@material-ui/icons/LockOutlined";
+import SettingsIcon from "@material-ui/icons/SettingsOutlined";
+import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 
 // define app routes
 export const appRoutes: Array<IRouteItem> = [

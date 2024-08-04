@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
-import { useTheme } from "@mui/material";
 import Image from "mui-image";
 import { NavLink, useLocation } from "react-router-dom";
-import { List, ListItem } from "@mui/material";
 
 import { TrophyCount } from "@/models/types/trophy/TrophyCount";
+import { useTheme } from "@mui/material";
+import { List, ListItem } from "@mui/material";
 
 interface TrophyEarnedItemProps {
   trophies: TrophyCount;

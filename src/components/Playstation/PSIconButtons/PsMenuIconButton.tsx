@@ -1,4 +1,5 @@
 import { Box, Tooltip } from "@mui/material";
+
 import { PsLogoColorSvg } from "../PsLogoColorSvg";
 
 interface PSMenuIconProps {

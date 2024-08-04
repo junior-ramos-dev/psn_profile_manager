@@ -1,7 +1,7 @@
-import { Typography, Box } from "@mui/material";
 import { useLocation } from "react-router";
 
 import { PageTitle } from "@/components/DefaultPage";
+import { Box,Typography } from "@mui/material";
 
 export const IndexPage = () => {
   const location = useLocation();

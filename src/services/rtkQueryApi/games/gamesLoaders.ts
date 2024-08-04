@@ -2,7 +2,6 @@ import { IGamesListData } from "@/models/types/rtkQuery/games";
 import { isServerUp } from "@/services/axios/axiosInstance";
 import { BaseLoader } from "@/services/rtkQueryApi/base/baseLoader";
 import { gamesApi } from "@/services/rtkQueryApi/games/gamesApi";
-import { store } from "@/store";
 
 export class GamesLoader extends BaseLoader {
   gamesListLoader = async ({ params, request }) => {

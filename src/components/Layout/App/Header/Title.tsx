@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import { Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
 import { APP_TITLE } from "@/settings/app";
+import { css } from "@emotion/react";
+import { Typography } from "@mui/material";
 
 export const Title = () => (
   <NavLink

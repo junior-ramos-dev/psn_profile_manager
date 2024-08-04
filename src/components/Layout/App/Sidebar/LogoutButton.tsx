@@ -1,4 +1,9 @@
 /** @jsxImportSource @emotion/react */
+import { useNavigate } from "react-router-dom";
+
+import { useAppDispatch } from "@/hooks/redux/useAppDispatch";
+import { useLogoutMutation } from "@/services/rtkQueryApi/auth/authApi";
+import { actionUnsetCredentials } from "@/services/rtkQueryApi/auth/authSlice";
 import { css } from "@emotion/react";
 import ExitToApp from "@mui/icons-material/ExitToApp";
 import {
@@ -8,10 +13,6 @@ import {
   ListItemText,
   Tooltip,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "@/hooks/redux/useAppDispatch";
-import { useLogoutMutation } from "@/services/rtkQueryApi/auth/authApi";
-import { actionUnsetCredentials } from "@/services/rtkQueryApi/auth/authSlice";
 
 export const LogoutButton = () => {
   const dispatch = useAppDispatch();

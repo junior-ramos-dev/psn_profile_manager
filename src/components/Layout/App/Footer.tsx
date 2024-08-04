@@ -1,8 +1,7 @@
 /** @jsxImportSource @emotion/react */
+import { FOOTER_HEIGHT,FOOTER_TEXT } from "@/settings/app";
 import { css } from "@emotion/react";
 import { Typography, useTheme } from "@mui/material";
-
-import { FOOTER_TEXT, FOOTER_HEIGHT } from "@/settings/app";
 
 export const Footer = () => {
   const theme = useTheme();

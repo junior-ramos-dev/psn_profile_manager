@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
 import { UserBasicInfo } from "@/models/types/user";
+import { createSlice } from "@reduxjs/toolkit";
 
 interface IAuthInitialState {
   user: UserBasicInfo;

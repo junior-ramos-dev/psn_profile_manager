@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Box, Tooltip } from "@mui/material";
+
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
+import { Box, Tooltip } from "@mui/material";
 
 interface PSMenuIconProps {
   toggleNavigation: () => void;

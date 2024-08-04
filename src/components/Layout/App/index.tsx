@@ -1,14 +1,15 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
+
+import { Footer } from "@/components/Layout/App/Footer";
+import { IRouteItem } from "@/models/interfaces";
+import { FOOTER_HEIGHT } from "@/settings/app";
+import { css } from "@emotion/react";
 import { Box } from "@mui/material";
 
 import { AppHeader } from "./Header";
 import { Sidebar } from "./Sidebar";
-import { Footer } from "@/components/Layout/App/Footer";
-import { IRouteItem } from "@/models/interfaces";
-import { FOOTER_HEIGHT } from "@/settings/app";
 
 interface LayoutProps {
   routes: Array<IRouteItem>;
