@@ -1,10 +1,8 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { axiosBaseQuery } from "./axiosBaseQuery";
-
-// import { cacher } from '~/services/rtk/utils';
+import { axiosBaseQueryApi } from "./axiosBaseQueryApi";
 
 export const rtkQueryBaseApi = createApi({
-  baseQuery: axiosBaseQuery({ baseUrl: "" }),
+  baseQuery: axiosBaseQueryApi({ baseUrl: "" }),
   reducerPath: "rtkqReducer",
   //   tagTypes: Object.values(cacher.tags),
   tagTypes: ["Auth", "Games"],

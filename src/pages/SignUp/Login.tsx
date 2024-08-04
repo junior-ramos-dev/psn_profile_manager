@@ -15,7 +15,8 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "@/services/rtkQueryApi/auth/authApi";
 import { actionSetCredentials } from "@/services/rtkQueryApi/auth/authSlice";
-import { useAppDispatch } from "@/hooks/redux";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux";
+import { authSelectors } from "@/services/rtkQueryApi/auth";
 
 export const Login = () => {
   const dispatch = useAppDispatch();
@@ -28,14 +29,17 @@ export const Login = () => {
   const handleLogin = async () => {
     //TODO Add validations
     // This is only a basic validation of inputs. Improve this as needed.
+    let authUser;
+
     if (email && password) {
       try {
         await login({ email, password })
           .unwrap()
           .then((data) => {
             dispatch(actionSetCredentials(data));
+            authUser = data;
           });
-        navigate("/games");
+        navigate(`/games/${authUser.id}`);
       } catch (e) {
         console.error(e);
       }

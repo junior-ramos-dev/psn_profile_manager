@@ -4,6 +4,7 @@ export enum VERBS {
   PUT = "PUT",
   PATCH = "PATCH",
   DELETE = "DELETE",
+  LIST = "LIST",
 }
 
 export enum HTTP_STATUS_ERROR {

@@ -14,8 +14,8 @@ import {
 import storage from "redux-persist/lib/storage";
 import storageSession from "redux-persist/lib/storage/session";
 
-import { axiosBaseQuery } from "./services/rtkQueryApi/common/axiosBaseQuery";
-import { rtkQueryBaseApi } from "./services/rtkQueryApi/common/rtkQueryBaseApi";
+import { axiosBaseQueryApi } from "./services/rtkQueryApi/base/axiosBaseQueryApi";
+import { rtkQueryBaseApi } from "./services/rtkQueryApi/base/rtkQueryBaseApi";
 
 import authReducer from "./services/rtkQueryApi/auth/authSlice";
 import gamesReducer from "./services/rtkQueryApi/games/gamesSlice";
@@ -47,7 +47,7 @@ const store = configureStore({
   devTools: process.env.NODE_ENV !== "production",
 });
 
-store.subscribe(axiosBaseQuery);
+store.subscribe(axiosBaseQueryApi);
 const persistor = persistStore(store);
 export type AppStore = typeof store;
 export type AppDispatch = typeof store.dispatch;

@@ -1,25 +1,35 @@
-import { rtkQueryBaseApi } from "../common/rtkQueryBaseApi";
+import { rtkQueryBaseApi } from "../base/rtkQueryBaseApi";
 import { VERBS } from "@/utils/restApi";
 import { actionSetGamesList, actionSetGamesRoutesList } from "./gamesSlice";
 import { store } from "@/store";
-import { createIGameRouteList } from "@/utils/routes";
+import { createIGameRoutesList } from "@/utils/routes";
 import { IGamesListData } from "@/models/types/rtkQuery/games";
+import { ConvertIGame } from "@/models/interfaces";
 
 export const gamesApi = rtkQueryBaseApi.injectEndpoints({
   endpoints: (build) => ({
-    getGameList: build.query<IGamesListData, void>({
-      query: () => ({ url: "/games", method: VERBS.GET, data: {} }),
+    getGameList: build.query<IGamesListData, string>({
+      query: (userId) => ({
+        endpointUrl: "games",
+        method: VERBS.GET,
+        urlParam: userId,
+        collection: "Games",
+        endpointName: "getGameList",
+      }),
+      //TODO Create transformResponse for axios
       transformResponse: (response) => {
-        const gamesList = response.data;
+        const gamesList = ConvertIGame.fromApiResponseToIGameList(
+          response.data
+        );
         // Extract the value of the "E-Tag" header from the response
-        const eTag = response.headers["etag"];
+        // const eTag = response.headers["etag"];
 
         // Generate games routes
-        const gamesRoutesList = createIGameRouteList(gamesList);
+        const gamesRoutesList = createIGameRoutesList(gamesList);
 
         // Add gamesList and eTag to persist store
         store.dispatch(
-          actionSetGamesList({ gamesList: gamesList, eTag: eTag })
+          actionSetGamesList({ gamesList: gamesList, eTag: "eTag" })
         );
         // Add gamesRoutes to persist store
         store.dispatch(actionSetGamesRoutesList(gamesRoutesList));

@@ -1,14 +1,7 @@
 import { IGame, IGameRoute } from "@/models/interfaces";
-import { formatStringToTitleCase } from "@/utils/strings";
 
 //Generate routes for games
-export const createIGameRouteList = (gamesList: IGame[]) => {
-  gamesList.forEach((game) => {
-    let item: IGame = game;
-    if (item.trophyTitleDetail) formatStringToTitleCase(item.trophyTitleDetail);
-    if (item.trophyTitleName) formatStringToTitleCase(item.trophyTitleName);
-  });
-
+export const createIGameRoutesList = (gamesList: IGame[]) => {
   const iGamesRoutesList = new Array<IGameRoute>();
 
   gamesList.map((game) => {

@@ -4,7 +4,7 @@ import {
   RegisterRequest,
   RegisterResponse,
 } from "@/models/types/rtkQuery/auth";
-import { rtkQueryBaseApi } from "../common/rtkQueryBaseApi";
+import { rtkQueryBaseApi } from "../base/rtkQueryBaseApi";
 import { VERBS } from "@/utils/restApi";
 import { UserProfileData } from "@/models/types/rtkQuery/user";
 
@@ -12,10 +12,11 @@ export const authApi = rtkQueryBaseApi.injectEndpoints({
   endpoints: (build) => ({
     login: build.mutation<LoginResponse, LoginRequest>({
       query: ({ email, password }) => ({
-        url: "/auth/login",
+        endpointUrl: "auth/login",
         method: VERBS.POST,
-
-        data: { email, password },
+        bodyData: { email, password },
+        collection: "Auth",
+        endpointName: "login",
       }),
       transformResponse: (response) => {
         const loginResponse = response.data;
@@ -26,9 +27,11 @@ export const authApi = rtkQueryBaseApi.injectEndpoints({
     }),
     register: build.mutation<RegisterResponse, RegisterRequest>({
       query: (data: RegisterRequest) => ({
-        url: "/auth/register",
+        endpointUrl: "auth/register",
         method: VERBS.POST,
-        data,
+        bodyData: data,
+        collection: "Auth",
+        endpointName: "register",
       }),
       transformResponse: (response) => {
         const registerResponse = response.data;
@@ -40,9 +43,10 @@ export const authApi = rtkQueryBaseApi.injectEndpoints({
     }),
     logout: build.mutation<void, void>({
       query: () => ({
-        url: "/auth/logout",
+        endpointUrl: "auth/logout",
         method: VERBS.POST,
-        data: {},
+        collection: "Auth",
+        endpointName: "logout",
       }),
       transformResponse: (response) => {
         const logoutResponse = response.data;
@@ -55,9 +59,11 @@ export const authApi = rtkQueryBaseApi.injectEndpoints({
     //TODO Move to users api
     getUser: build.query<UserProfileData, string>({
       query: (id) => ({
-        url: `/auth/users/${id}`,
+        endpointUrl: "auth/users",
         method: VERBS.GET,
-        data: {},
+        urlParam: id,
+        collection: "Auth",
+        endpointName: "getUser",
       }),
       transformResponse: (response) => {
         const userProfileDataResponse = response.data;
