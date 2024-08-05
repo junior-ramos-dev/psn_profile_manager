@@ -15,33 +15,16 @@ interface IAxiosBaseQueryArgs {
   bodyData?: object;
 }
 
-type Response = ReturnType<typeof axiosApiRepository>;
-
-type ApiResponseData = Omit<Response, "succeeded" | "errors">;
-
-interface ApiResponse {
-  data?: ApiResponseData;
-  // succeeded?: boolean;
-  // errors: AxiosError;
-}
-
-const transform = (response: AxiosResponse): Promise<ApiResponse> => {
-  return new Promise((resolve, reject) => {
-    const result: ApiResponse = {
-      data: response.data,
-      // succeeded: response.status === 200,
-      // errors: response.data.errors,
-    };
-    resolve(result);
-  });
-};
-
 const usedAPI = (
   collection: string,
   endpointName: string,
   endpointUrl: string
 ): void =>
   console.log(` > API: ${collection} [${endpointName}: ${endpointUrl}]`);
+
+const transform = (response: AxiosResponse) => {
+  return response.data;
+};
 
 const axiosApiRepository = async (
   collection: string,

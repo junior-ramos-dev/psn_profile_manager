@@ -19,12 +19,6 @@ export const authApi = rtkQueryBaseApi.injectEndpoints({
         collection: "Auth",
         endpointName: "login",
       }),
-      transformResponse: (response) => {
-        const loginResponse = response.data;
-
-        // Return an object containing the response data value
-        return loginResponse;
-      },
     }),
     register: build.mutation<RegisterResponse, RegisterRequest>({
       query: (data: RegisterRequest) => ({
@@ -34,12 +28,6 @@ export const authApi = rtkQueryBaseApi.injectEndpoints({
         collection: "Auth",
         endpointName: "register",
       }),
-      transformResponse: (response) => {
-        const registerResponse = response.data;
-
-        // Return an object containing the response data value
-        return registerResponse;
-      },
       invalidatesTags: ["Auth"],
     }),
     logout: build.mutation<void, void>({
@@ -49,12 +37,6 @@ export const authApi = rtkQueryBaseApi.injectEndpoints({
         collection: "Auth",
         endpointName: "logout",
       }),
-      transformResponse: (response) => {
-        const logoutResponse = response.data;
-
-        // Return an object containing the response data value
-        return logoutResponse;
-      },
       invalidatesTags: ["Auth"],
     }),
     //TODO Move to users api
@@ -66,12 +48,6 @@ export const authApi = rtkQueryBaseApi.injectEndpoints({
         collection: "Auth",
         endpointName: "getUser",
       }),
-      transformResponse: (response) => {
-        const userProfileDataResponse = response.data;
-
-        // Return an object containing the response data value
-        return userProfileDataResponse;
-      },
       providesTags: (result, error, id) => [{ type: "Auth", id }],
     }),
   }),

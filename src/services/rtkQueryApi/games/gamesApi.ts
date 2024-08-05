@@ -20,13 +20,10 @@ export const gamesApi = rtkQueryBaseApi.injectEndpoints({
       }),
       //TODO Create transformResponse for axios
       transformResponse: (response) => {
-        const gamesList = ConvertIGame.fromApiResponseToIGameList(
-          response.data
-        );
-        // Extract the value of the "E-Tag" header from the response
-        // const eTag = response.headers["etag"];
+        // Convert response to IGame list
+        const gamesList = ConvertIGame.fromApiResponseToIGameList(response);
 
-        // Generate games routes
+        // Generate games routes objects from IGame list
         const gamesRoutesList = createIGameRoutesList(gamesList);
 
         // Add gamesList and eTag to persist store
