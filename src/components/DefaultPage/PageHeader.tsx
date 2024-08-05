@@ -18,7 +18,6 @@ export const PageHeader = ({ toggleNavigation }: PageHeaderProps) => {
     >
       <Toolbar disableGutters variant="dense" sx={{ ml: 10.5 }}>
         <Hamburger toggleNavigation={toggleNavigation} />
-        {/* <PsControllerIconButton toggleNavigation={toggleNavigation} /> */}
         <Search />
       </Toolbar>
     </AppBar>

@@ -28,6 +28,7 @@ export default [
     rules: {
       semi: "error",
       "no-unused-vars": "warn",
+      "react/no-unknown-property": ["error", { ignore: ["css"] }],
       "react/jsx-uses-react": "off",
       "react/react-in-jsx-scope": "off",
       // ...reactHooks.configs.recommended.rules,
@@ -57,5 +58,5 @@ export default [
       "simple-import-sort/exports": "error",
     },
   },
-  { ignores: ["node_modules/", "dist"] },
+  { ignores: ["node_modules/", "dist/", "**/temp/*"] },
 ];

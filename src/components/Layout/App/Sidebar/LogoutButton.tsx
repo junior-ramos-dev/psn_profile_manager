@@ -18,7 +18,8 @@ export const LogoutButton = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const [logout, { isLoading, isError, isSuccess, data }] = useLogoutMutation();
+  const [logout /*{ isLoading, isError, isSuccess, data }*/] =
+    useLogoutMutation();
 
   const handleLogout = async () => {
     try {

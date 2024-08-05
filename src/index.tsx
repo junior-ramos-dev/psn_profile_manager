@@ -1,3 +1,4 @@
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Provider } from "react-redux";
@@ -54,7 +55,7 @@ const router = createBrowserRouter([
 const root = createRoot(document.getElementById("root"));
 
 root.render(
-  <React.StrictMode>
+  <StrictMode>
     <HelmetProvider>
       <Helmet>
         <meta
@@ -95,7 +96,7 @@ root.render(
         </PersistGate>
       </Provider>
     </HelmetProvider>
-  </React.StrictMode>
+  </StrictMode>
 );
 
 reportWebVitals();

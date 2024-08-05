@@ -1,3 +1,5 @@
+import { useContext } from "react";
+
 import { ActionItem } from "@/components/Layout/App/Header/Menu/Actions/ActionItem";
 import { ThemeContext } from "@/contexts/ThemeContext";
 import ColorLensIcon from "@mui/icons-material/ColorLens";
@@ -7,7 +9,7 @@ export const ThemeColorShuffle = ({
 }: {
   disableTooltip?: boolean;
 }) => {
-  const colorMode = React.useContext(ThemeContext);
+  const colorMode = useContext(ThemeContext);
   return (
     <ActionItem
       title="Shuffle THeme"

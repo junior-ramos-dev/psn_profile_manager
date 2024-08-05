@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import { Box, Tooltip } from "@mui/material";
 
@@ -10,8 +8,6 @@ interface PSMenuIconProps {
 export const PsControllerIconButton = ({
   toggleNavigation,
 }: PSMenuIconProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <div onClick={toggleNavigation}>
       <Tooltip title="Show Menu" placement="right">

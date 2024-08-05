@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 
 import { Drawer } from "@mui/material";
 import Box from "@mui/material/Box";

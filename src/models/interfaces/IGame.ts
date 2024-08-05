@@ -20,6 +20,10 @@ interface IGame {
   lastUpdatedDateTime: number;
 }
 
+export interface IGameApi extends Omit<IGame, "lastUpdatedDateTime"> {
+  lastUpdatedDateTime: string;
+}
+
 /* 
 # To parse this data:
 #
@@ -34,9 +38,9 @@ interface IGame {
 // Converts JSON strings to/from your types
 // and asserts the results of JSON.parse at runtime
 export class ConvertIGame {
-  public static fromApiResponseToIGameList(gamesList: any[]): IGame[] {
+  public static fromApiResponseToIGameList(gamesList: IGameApi[]): IGame[] {
     const gamesListParsed = gamesList.map((game) => {
-      let gameLastUpdatedDateTime;
+      let gameLastUpdatedDateTime: number;
 
       const gameKeys = Object.keys(game);
       for (const key in gameKeys) {
@@ -45,15 +49,15 @@ export class ConvertIGame {
         }
       }
 
-      type omitIGameFields = Omit<IGame, "lastUpdatedDateTime">;
+      type omitIGameApiFields = Omit<IGame, "lastUpdatedDateTime">;
 
-      const iGameRemainingFields: omitIGameFields = { ...game };
-      const iGamesComplete = {
-        ...iGameRemainingFields,
+      const iGameApiRemainingFields: omitIGameApiFields = { ...game };
+      const iGamesApiComplete = {
+        ...iGameApiRemainingFields,
         lastUpdatedDateTime: gameLastUpdatedDateTime,
       };
 
-      const iGameCompleteString = JSON.stringify(iGamesComplete);
+      const iGameCompleteString = JSON.stringify(iGamesApiComplete);
       const iGame = ConvertIGame.fromJsonObject(iGameCompleteString);
 
       if (iGame.trophyTitleDetail)

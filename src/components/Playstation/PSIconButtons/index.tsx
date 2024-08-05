@@ -1,2 +1,2 @@
-export { PsControllerIconButton } from "./PSControllerIconButton";
-export { PsMenuIconButton } from "./PSMenuIconButton";
+export { PsControllerIconButton } from "./PsControllerIconButton";
+export { PsMenuIconButton } from "./PsMenuIconButton";
