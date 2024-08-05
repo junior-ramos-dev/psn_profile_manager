@@ -15,9 +15,9 @@ export class GamesLoader extends BaseLoader {
 
   initGamesListLoader = async () => {
     const serverUp = await isServerUp();
-    if (serverUp) {
-      const authUser = this.store.getState().auth.user;
-      console.log(authUser.id);
+    const authUser = this.store.getState().auth.user;
+    console.log(authUser.id);
+    if (serverUp && authUser.id) {
       const promise = this.dispatch(
         gamesApi.endpoints.getGameList.initiate(authUser.id)
       );
@@ -30,6 +30,12 @@ export class GamesLoader extends BaseLoader {
       } finally {
         promise.unsubscribe(); // remove the subscription. The data will stay in cache for 60 seconds and the component can subscribe to it in that timeframe.
       }
+    } else {
+      //If server is offline retrieve data persisted on localstorage;
+      const gamesList = this.store.getState().games.gamesList;
+      const gamesRoutesList = this.store.getState().games.gamesRoutesList;
+
+      return { gamesList, gamesRoutesList } as IGamesListData;
     }
   };
 }
