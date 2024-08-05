@@ -12,7 +12,7 @@ interface IAxiosBaseQueryArgs {
   endpointUrl: string;
   method: VERBS;
   urlParam?: string;
-  bodyData?: any;
+  bodyData?: {};
   endpointName?: string;
 }
 
@@ -25,7 +25,7 @@ interface ApiResponse<T> {
 const transform = (response: AxiosResponse): Promise<ApiResponse<any>> => {
   return new Promise((resolve, reject) => {
     const result: any = {
-      data: response.data,
+      data: response.data, //TODO Make generic response type: response.data as <T>
       succeeded: response.status === 200,
       errors: response.data.errors,
     };
@@ -38,7 +38,7 @@ const axiosApiRepository = async (
   endpointUrl: string,
   method: VERBS,
   urlParam?: string,
-  bodyData?: any,
+  bodyData?: {},
   endpointName?: string
 ) => {
   try {

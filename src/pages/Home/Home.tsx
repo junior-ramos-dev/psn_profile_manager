@@ -1,22 +1,13 @@
 /** @jsxImportSource @emotion/react */
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 
-import { CustomDrawer } from "@/components/CustomDrawer";
 import { PageHeader } from "@/components/DefaultPage/PageHeader";
-import { GamesRoutes } from "@/components/Navigation/GameRoutes/GamesRoutes";
 import { useAppSelector } from "@/hooks/redux";
 import useOverFlowHidden from "@/hooks/useOverFlowHidden";
 import { authSelectors } from "@/services/rtkQueryApi/auth";
-import {
-  APP_TITLE,
-  DRAWER_WIDTH,
-  FOOTER_HEIGHT,
-  PAGE_TITLE_HOME,
-} from "@/settings/app";
-import { css } from "@emotion/react";
+import { APP_TITLE, FOOTER_HEIGHT, PAGE_TITLE_HOME } from "@/settings/app";
 import { Box } from "@mui/material";
 
 const Home = () => {
@@ -60,13 +51,7 @@ const Home = () => {
           // boxSizing: "border-box",
         }}
       >
-        <CustomDrawer
-          open={open}
-          toggleNavigation={toggleNavigation}
-          openedWidth={DRAWER_WIDTH}
-          closedWidth={70}
-          children={<GamesRoutes />}
-        />
+        <h2>{userBasicInfo}</h2>
         <Box component="main" sx={{ flexGrow: 1, p: 1, pt: 10 }}>
           <Outlet />
         </Box>

@@ -4,8 +4,7 @@ import { Helmet } from "react-helmet-async";
 
 import { PageHeader } from "@/components/DefaultPage/PageHeader";
 import { IGame } from "@/models/interfaces";
-import { APP_TITLE, PAGE_TITLE_GAMES, PAGE_TITLE_HOME } from "@/settings/app";
-import { css } from "@emotion/react";
+import { APP_TITLE, PAGE_TITLE_GAMES } from "@/settings/app";
 import { Box } from "@mui/material";
 
 interface RoutesChildrenProps {
@@ -20,7 +19,7 @@ export const GameDetail = ({ gameDetail }: RoutesChildrenProps) => {
     <>
       <Helmet>
         <title>
-          {PAGE_TITLE_HOME} | {APP_TITLE}
+          {PAGE_TITLE_GAMES} | {APP_TITLE}
         </title>
       </Helmet>
       <Box component="header">

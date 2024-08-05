@@ -2,8 +2,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { useAppDispatch, useAppSelector } from "@/hooks/redux";
-import { authSelectors } from "@/services/rtkQueryApi/auth";
+import { useAppDispatch } from "@/hooks/redux";
 import { useLoginMutation } from "@/services/rtkQueryApi/auth/authApi";
 import { actionSetCredentials } from "@/services/rtkQueryApi/auth/authSlice";
 import { css } from "@emotion/react";
@@ -22,7 +21,8 @@ import {
 export const Login = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [login, { isLoading, isError, isSuccess, data }] = useLoginMutation();
+  const [login, { isLoading, isError, isSuccess /* ,data */ }] =
+    useLoginMutation();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -111,7 +111,7 @@ export const Login = () => {
                   color: inherit;
                 `}
               >
-                Don't have an account? Register
+                <div>{"Don't have an account? Register"}</div>
               </Link>
             </Grid>
           </Grid>

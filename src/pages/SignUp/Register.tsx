@@ -25,8 +25,9 @@ export const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [register, { isLoading, isError, isSuccess, data }] =
-    useRegisterMutation();
+  const [register] = useRegisterMutation();
+  // const [register, { isLoading, isError, isSuccess, data }] =
+  //   useRegisterMutation();
 
   const handleRegister = async () => {
     // This is only a basic validation of inputs. Improve this as needed.
