@@ -22,11 +22,13 @@ export const isServerUp = async () => {
 
     if (result.status == 200) serverUp = true;
 
-    console.log("SERVER IS UP: " + BASE_URL);
+    console.log(`SERVER UP [BASE_URL: ${BASE_URL}]`);
 
     return serverUp;
   } catch (err) {
-    console.log(`${err.message.toUpperCase()}: SERVER IS DOWN ON ${BASE_URL}`);
+    console.log(
+      `${err.message.toUpperCase()}: SERVER DOWN [BASE_URL: ${BASE_URL}]`
+    );
     return serverUp;
   }
 };

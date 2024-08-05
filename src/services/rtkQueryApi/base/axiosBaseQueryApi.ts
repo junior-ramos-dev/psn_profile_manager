@@ -1,4 +1,4 @@
-import { AxiosResponse } from "axios";
+import { AxiosError, AxiosResponse } from "axios";
 import toast from "react-hot-toast";
 
 import { getErrorMessage, VERBS } from "@/utils/restApi";
@@ -9,37 +9,48 @@ const BASE_URL = process.env.API_BASE_URL;
 
 interface IAxiosBaseQueryArgs {
   collection: string;
+  endpointName: string;
   endpointUrl: string;
   method: VERBS;
   urlParam?: string;
-  bodyData?: {};
-  endpointName?: string;
+  bodyData?: object;
 }
 
-interface ApiResponse<T> {
-  data?: T;
-  succeeded?: boolean;
-  errors: any;
+type Response = ReturnType<typeof axiosApiRepository>;
+
+type ApiResponseData = Omit<Response, "succeeded" | "errors">;
+
+interface ApiResponse {
+  data?: ApiResponseData;
+  // succeeded?: boolean;
+  // errors: AxiosError;
 }
 
-const transform = (response: AxiosResponse): Promise<ApiResponse<any>> => {
+const transform = (response: AxiosResponse): Promise<ApiResponse> => {
   return new Promise((resolve, reject) => {
-    const result: any = {
-      data: response.data, //TODO Make generic response type: response.data as <T>
-      succeeded: response.status === 200,
-      errors: response.data.errors,
+    const result: ApiResponse = {
+      data: response.data,
+      // succeeded: response.status === 200,
+      // errors: response.data.errors,
     };
     resolve(result);
   });
 };
 
+const usedAPI = (
+  collection: string,
+  endpointName: string,
+  endpointUrl: string
+): void =>
+  console.log(` > API: ${collection} [${endpointName}: ${endpointUrl}]`);
+
 const axiosApiRepository = async (
   collection: string,
+  endpointName: string,
   endpointUrl: string,
   method: VERBS,
   urlParam?: string,
-  bodyData?: {},
-  endpointName?: string
+  bodyData?: object
 ) => {
   try {
     const serverUp = await isServerUp();
@@ -47,10 +58,10 @@ const axiosApiRepository = async (
     let result = undefined;
 
     if (serverUp) {
+      usedAPI(collection, endpointName, endpointUrl);
       switch (method) {
         //Get One
         case VERBS.GET:
-          endpointName ?? console.log(endpointName);
           result = await axiosInstance
             .get(`${BASE_URL}/${endpointUrl}/${urlParam}`)
             .then(transform);
@@ -94,13 +105,6 @@ const axiosApiRepository = async (
     }
   } catch (axiosError) {
     const err = axiosError;
-    if (err.status === 400) {
-      toast.error("The email is already in use");
-    } else if (err.status === 401) {
-      toast.error("Please, authenticate first!");
-    } else {
-      toast.error("Somethings wrong! Please try again later!");
-    }
 
     return {
       error: {
@@ -112,20 +116,20 @@ const axiosApiRepository = async (
 };
 
 export const axiosBaseQueryApi =
-  ({ baseUrl } = { baseUrl: "" }) =>
+  () =>
   async ({
     collection,
+    endpointName,
     endpointUrl,
     method,
     urlParam,
     bodyData,
-    endpointName,
   }: IAxiosBaseQueryArgs) =>
     axiosApiRepository(
       collection,
+      endpointName,
       endpointUrl,
       method,
       urlParam,
-      bodyData,
-      endpointName
+      bodyData
     );
