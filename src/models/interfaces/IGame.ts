@@ -34,7 +34,7 @@ interface IGame {
 // Converts JSON strings to/from your types
 // and asserts the results of JSON.parse at runtime
 export class ConvertIGame {
-  public static fromApiResponseToIGameList(gamesList: any): IGame[] {
+  public static fromApiResponseToIGameList(gamesList: any[]): IGame[] {
     const gamesListParsed = gamesList.map((game) => {
       let gameLastUpdatedDateTime;
 

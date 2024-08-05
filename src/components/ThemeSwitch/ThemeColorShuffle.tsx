@@ -1,5 +1,3 @@
-import React from "react";
-
 import { ActionItem } from "@/components/Layout/App/Header/Menu/Actions/ActionItem";
 import { ThemeContext } from "@/contexts/ThemeContext";
 import ColorLensIcon from "@mui/icons-material/ColorLens";

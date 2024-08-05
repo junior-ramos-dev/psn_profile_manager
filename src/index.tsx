@@ -1,4 +1,3 @@
-import React from "react";
 import { createRoot } from "react-dom/client";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Provider } from "react-redux";

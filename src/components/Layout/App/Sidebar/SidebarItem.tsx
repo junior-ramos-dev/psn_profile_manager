@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
 import { IRouteItem } from "@/models/interfaces";

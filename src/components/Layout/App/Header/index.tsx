@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { DefaultMenu, MobileMenu } from "@/components/Layout/App/Header/Menu";
 import {

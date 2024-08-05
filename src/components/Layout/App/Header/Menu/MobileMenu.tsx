@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 
 import { ThemeModeSwitch } from "@/components/ThemeSwitch/ThemeModeSwitch";
 import { ThemeContext } from "@/contexts";
 import { Box, Menu, MenuItem } from "@mui/material";
 
-import { Messages, Notifications, Settings,SignOut } from "./Actions";
+import { Messages, Notifications, Settings, SignOut } from "./Actions";
 
 interface MobileMenuProps {
   isMenuOpen: boolean;

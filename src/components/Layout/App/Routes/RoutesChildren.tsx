@@ -1,6 +1,6 @@
 import { Route, Routes, useLoaderData } from "react-router-dom";
 
-import { useAppDispatch, useAppSelector } from "@/hooks/redux";
+import { useAppSelector } from "@/hooks/redux";
 import { IAppRoute, IGameRoute } from "@/models/interfaces";
 import { IGamesListData } from "@/models/types/rtkQuery/games";
 import { GameDetail } from "@/pages/Game";
@@ -9,7 +9,7 @@ import { Login, Register } from "@/pages/SignUp";
 import { authSelectors } from "@/services/rtkQueryApi/auth";
 import { appRoutes } from "@/settings/app";
 
-import { PrivateRoute,PublicRoute } from ".";
+import { PrivateRoute, PublicRoute } from ".";
 
 export const RoutesChildren = () => {
   const isLoggedIn = useAppSelector(authSelectors.getLoggedIn);
@@ -27,7 +27,7 @@ export const RoutesChildren = () => {
     );
   };
 
-  const addGameRoute = (route: IGameRoute, index: number) => {
+  const addGameRoute = (route: IGameRoute) => {
     return (
       <Route
         key={route.key}
@@ -57,8 +57,8 @@ export const RoutesChildren = () => {
             : addSideBarRoute(appRoute);
         })}
         {/* Create Games Routes */}
-        {gamesRoutesList.map((gameRoute: IGameRoute, index: number) =>
-          addGameRoute(gameRoute, index)
+        {gamesRoutesList.map((gameRoute: IGameRoute) =>
+          addGameRoute(gameRoute)
         )}
       </Route>
     </Routes>

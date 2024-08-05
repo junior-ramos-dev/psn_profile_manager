@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Hamburger } from "@/components/Hamburger";
 //TODO Create Page Search
 import { Search } from "@/components/Layout/App/Header/Search";
