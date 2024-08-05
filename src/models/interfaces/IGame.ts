@@ -17,7 +17,7 @@ interface IGame {
   progress: number;
   earnedTrophies: TrophyCount;
   hiddenFlag: boolean;
-  lastUpdatedDateTime: number;
+  lastUpdatedDateTime: Date | string | number;
 }
 
 export interface IGameApi extends Omit<IGame, "lastUpdatedDateTime"> {
@@ -38,27 +38,19 @@ export interface IGameApi extends Omit<IGame, "lastUpdatedDateTime"> {
 // Converts JSON strings to/from your types
 // and asserts the results of JSON.parse at runtime
 export class ConvertIGame {
-  public static fromApiResponseToIGameList(gamesList: IGameApi[]): IGame[] {
+  public static fromApiResponseToIGameList(gamesList: IGame[]): IGame[] {
     const gamesListParsed = gamesList.map((game) => {
-      let gameLastUpdatedDateTime: number;
-
       const gameKeys = Object.keys(game);
       for (const key in gameKeys) {
         if (gameKeys[key] === "lastUpdatedDateTime") {
-          gameLastUpdatedDateTime = Date.parse(game.lastUpdatedDateTime);
+          game.lastUpdatedDateTime = Date.parse(
+            game.lastUpdatedDateTime as string
+          );
         }
       }
 
-      type omitIGameApiFields = Omit<IGame, "lastUpdatedDateTime">;
-
-      const iGameApiRemainingFields: omitIGameApiFields = { ...game };
-      const iGamesApiComplete = {
-        ...iGameApiRemainingFields,
-        lastUpdatedDateTime: gameLastUpdatedDateTime,
-      };
-
-      const iGameCompleteString = JSON.stringify(iGamesApiComplete);
-      const iGame = ConvertIGame.fromJsonObject(iGameCompleteString);
+      const gameString = JSON.stringify(game);
+      const iGame = ConvertIGame.fromJsonObject(gameString);
 
       if (iGame.trophyTitleDetail)
         iGame.trophyTitleDetail = StringUtils.formatStringToTitleCase(
