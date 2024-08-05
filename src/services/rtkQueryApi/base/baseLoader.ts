@@ -14,19 +14,20 @@ export class BaseLoader {
     const res = await promise;
     const { data, isError, error } = res;
     if (isError) {
-      let { status, data } = error;
-      if (status >= 200 && status <= 599) {
-        console.log(status);
+      const errorInfo = error;
+      if (errorInfo.status >= 200 && errorInfo.status <= 599) {
+        console.log(errorInfo.status);
         throw new Response("", {
-          status,
-          statusText: data?.message || getErrorMessage(status),
+          status: errorInfo.status,
+          statusText:
+            errorInfo.data?.message || getErrorMessage(errorInfo.status),
         });
       } else {
         console.log("503");
-        status = 503;
+        errorInfo.status = 503;
         throw new Response("", {
-          status,
-          statusText: getErrorMessage(status),
+          status: errorInfo.status,
+          statusText: getErrorMessage(errorInfo.status),
         });
       }
     }
