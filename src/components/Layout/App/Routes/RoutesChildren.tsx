@@ -1,7 +1,7 @@
 import { Route, Routes, useLoaderData } from "react-router-dom";
 
 import { useAppSelector } from "@/hooks/redux";
-import { IAppRoute, IGameRoute } from "@/models/interfaces";
+import { IAppRoute, IGame, IGameRoute } from "@/models/interfaces";
 import { IGamesListData } from "@/models/types/rtkQuery/games";
 import { GameDetail } from "@/pages/Game";
 import { IndexPage } from "@/pages/IndexPage";
@@ -32,7 +32,7 @@ export const RoutesChildren = () => {
       <Route
         key={route.key}
         path={route.path}
-        element={<GameDetail gameDetail={route.props} />}
+        element={<GameDetail gameDetail={route.props as IGame} />}
       />
     );
   };

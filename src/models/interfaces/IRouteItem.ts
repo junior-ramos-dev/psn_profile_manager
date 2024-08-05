@@ -52,7 +52,7 @@ interface IRouteItem {
    * @example
    * "<Dashboard />"
    */
-  component?: any;
+  component?: ComponentType;
 
   /**
    * The element referenced by the route
@@ -62,7 +62,7 @@ interface IRouteItem {
    * @example
    * "<Dashboard />"
    */
-  element?: any;
+  element?: ComponentType;
 
   /**
    * The props for component or element referenced by the route
@@ -70,9 +70,9 @@ interface IRouteItem {
    * @memberof IRouteItem
    * @required
    * @example
-   * "<Dashboard />"
+   * "{someProp: propValue}"
    */
-  props?: any;
+  props?: object;
 
   /**
    * The status of the route
