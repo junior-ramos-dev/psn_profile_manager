@@ -1,9 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import Image from "mui-image";
-import { NavLink, useLocation } from "react-router-dom";
+// import Image from "mui-image";
+// import { useLocation } from "react-router-dom";
 
 import { TrophyCount } from "@/models/types/trophy/TrophyCount";
-import { useTheme } from "@mui/material";
 import { List, ListItem } from "@mui/material";
 
 interface TrophyEarnedItemProps {
@@ -15,8 +14,8 @@ export const TrophyEarnedItem = ({
   trophies,
   // handleMenuClick = () => {},
 }: TrophyEarnedItemProps) => {
-  const location = useLocation();
-  const theme = useTheme();
+  // const location = useLocation();
+  // const theme = useTheme();
 
   return (
     <List component="div" disablePadding>

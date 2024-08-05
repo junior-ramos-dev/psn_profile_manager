@@ -15,7 +15,7 @@ export const RoutesChildren = () => {
   const isLoggedIn = useAppSelector(authSelectors.getLoggedIn);
   const authUser = useAppSelector(authSelectors.getAuthUser);
 
-  const { gamesList, gamesRoutesList } = useLoaderData() as IGamesListData;
+  const gamesData = useLoaderData() as IGamesListData;
 
   const addSideBarRoute = (route: IAppRoute) => {
     return (
@@ -57,7 +57,7 @@ export const RoutesChildren = () => {
             : addSideBarRoute(appRoute);
         })}
         {/* Create Games Routes */}
-        {gamesRoutesList.map((gameRoute: IGameRoute) =>
+        {gamesData.gamesRoutesList.map((gameRoute: IGameRoute) =>
           addGameRoute(gameRoute)
         )}
       </Route>

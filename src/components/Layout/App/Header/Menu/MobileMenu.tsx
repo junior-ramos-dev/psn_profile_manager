@@ -8,14 +8,14 @@ import { Messages, Notifications, Settings, SignOut } from "./Actions";
 
 interface MobileMenuProps {
   isMenuOpen: boolean;
-  handleMenuOpen: (event: React.MouseEvent<HTMLElement>) => void;
+  // handleMenuOpen: (event: React.MouseEvent<HTMLElement>) => void;
   handleMenuClose: () => void;
   anchorEl: HTMLElement | null;
 }
 
 export const MobileMenu = ({
   isMenuOpen,
-  handleMenuOpen,
+  // handleMenuOpen,
   handleMenuClose,
   anchorEl,
 }: MobileMenuProps) => {

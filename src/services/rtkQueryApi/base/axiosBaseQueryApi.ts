@@ -1,5 +1,4 @@
-import { AxiosError, AxiosResponse } from "axios";
-import toast from "react-hot-toast";
+import { AxiosResponse } from "axios";
 
 import { getErrorMessage, VERBS } from "@/utils/restApi";
 

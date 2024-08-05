@@ -28,7 +28,10 @@ export default [
     rules: {
       semi: "error",
       "no-unused-vars": "off",
-      "@typescript-eslint/no-unused-vars": ["error"],
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        { ignoreRestSiblings: true },
+      ],
       "react/no-unknown-property": ["error", { ignore: ["css"] }],
       "react/jsx-uses-react": "off",
       "react/react-in-jsx-scope": "off",
