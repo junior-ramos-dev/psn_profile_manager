@@ -1,13 +1,11 @@
-import { Hamburger } from "@/components/Hamburger";
-//TODO Create Page Search
 import { Search } from "@/components/Layout/App/Header/Search";
-import { AppBar, Toolbar } from "@mui/material";
+import { AppBar, Box, Toolbar, Typography } from "@mui/material";
 
 interface PageHeaderProps {
-  toggleNavigation: () => void;
+  pageTitle: string;
 }
 
-export const PageHeader = ({ toggleNavigation }: PageHeaderProps) => {
+export const PageHeader = ({ pageTitle }: PageHeaderProps) => {
   return (
     <AppBar
       component="div"
@@ -17,7 +15,11 @@ export const PageHeader = ({ toggleNavigation }: PageHeaderProps) => {
       sx={{ mt: 8.5 }}
     >
       <Toolbar disableGutters variant="dense" sx={{ ml: 10.5 }}>
-        <Hamburger toggleNavigation={toggleNavigation} />
+        <Box sx={{ width: 100 }}>
+          <Typography variant="h5" sx={{ mr: 5 }}>
+            {pageTitle}
+          </Typography>
+        </Box>
         <Search />
       </Toolbar>
     </AppBar>

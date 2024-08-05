@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Outlet } from "react-router-dom";
 
@@ -13,9 +12,6 @@ import { Box } from "@mui/material";
 const Home = () => {
   //Disable page scroll
   useOverFlowHidden();
-
-  const [open, setOpen] = useState(false);
-  const toggleNavigation = () => setOpen((status) => !status);
 
   const userBasicInfo = useAppSelector(authSelectors.getAuthUser);
 
@@ -34,7 +30,7 @@ const Home = () => {
         </title>
       </Helmet>
       <Box component="header">
-        <PageHeader toggleNavigation={toggleNavigation} />
+        <PageHeader pageTitle={PAGE_TITLE_HOME} />
       </Box>
 
       <div
@@ -44,14 +40,14 @@ const Home = () => {
           height: `calc(100% - ${FOOTER_HEIGHT + 30}px)`,
           position: "relative",
           display: "block",
-          border: "1px solid blue",
+          // border: "1px solid blue",
           marginTop: "85px",
           // flexShrink: 0,
           whiteSpace: "nowrap",
           // boxSizing: "border-box",
         }}
       >
-        <h2>{userBasicInfo}</h2>
+        <div>{JSON.stringify(userBasicInfo)}</div>
         <Box component="main" sx={{ flexGrow: 1, p: 1, pt: 10 }}>
           <Outlet />
         </Box>

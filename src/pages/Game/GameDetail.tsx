@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 
 import { PageHeader } from "@/components/DefaultPage/PageHeader";
@@ -12,9 +11,6 @@ interface RoutesChildrenProps {
 }
 
 export const GameDetail = ({ gameDetail }: RoutesChildrenProps) => {
-  const [open, setOpen] = useState(false);
-  const toggleNavigation = () => setOpen((status) => !status);
-
   return (
     <>
       <Helmet>
@@ -23,7 +19,7 @@ export const GameDetail = ({ gameDetail }: RoutesChildrenProps) => {
         </title>
       </Helmet>
       <Box component="header">
-        <PageHeader toggleNavigation={toggleNavigation} />
+        <PageHeader pageTitle={PAGE_TITLE_GAMES} />
       </Box>
 
       <div>
