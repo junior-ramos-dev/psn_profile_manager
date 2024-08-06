@@ -21,6 +21,11 @@ export default [
     },
   },
   {
+    settings: {
+      react: {
+        version: "detect",
+      },
+    },
     plugins: {
       "react-hooks": reactHooks,
       "simple-import-sort": simpleImportSort,

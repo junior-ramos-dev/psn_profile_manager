@@ -15,14 +15,14 @@ export const transformResponse = (
   endpointHeaders: IEndpointHeaders
 ) => {
   if (endpointHeaders) {
-    getRespondeHeaders(response, endpointHeaders);
+    getResponseHeaders(response, endpointHeaders);
   }
   console.log(getHttpResponseMessage(response.status));
   return response.data;
 };
 
 // Get the headers from the specific endpoint response and saves on localStorge
-export const getRespondeHeaders = (
+export const getResponseHeaders = (
   response: AxiosResponse,
   endpointHeaders: IEndpointHeaders
 ) => {
@@ -48,6 +48,7 @@ export const setRequestHeaders = (
 ) => {
   const interceptorRequest = axiosInstance.interceptors.request;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   interceptorRequest.use((req: any) => {
     req.headers = headers;
     return req;

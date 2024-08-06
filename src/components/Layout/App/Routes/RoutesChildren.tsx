@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router-dom";
 import { Loading } from "@/components/Loading";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { IAppRoute, IGame, IGameRoute } from "@/models/interfaces";
-import { ErrorPage } from "@/pages/Error/ErrorPage";
 import { GameDetail } from "@/pages/Game";
 import { IndexPage } from "@/pages/IndexPage";
 import { Login, Register } from "@/pages/SignUp";
@@ -26,10 +25,11 @@ export const RoutesChildren = () => {
   // const gamesList = useAppSelector(gamesSelectors.getGamesList);
   const gamesRoutesList = useAppSelector(gamesSelectors.getGamesRoutesList);
 
-  const { data, isLoading, isError, isSuccess } = useGetGameListQuery(
+  const { data, isLoading /* isError, isSuccess */ } = useGetGameListQuery(
     authUser.id,
     {
-      pollingInterval: 60 * 60 * 1000 * 2, //60 * 60 * 1000 * 2 = 2h
+      pollingInterval: 60 * 60 * 1000 * 2, //(60 * 60 * 1000 * 2) = 2h
+      // refetchOnFocus: true,
       refetchOnMountOrArgChange: true,
       skip: false,
     }
