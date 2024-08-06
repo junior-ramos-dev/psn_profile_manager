@@ -7,8 +7,18 @@ export enum VERBS {
   LIST = "LIST",
 }
 
-export enum HTTP_STATUS_ERROR {
-  CLIENT_ERROR = "Client Bad Request!",
+enum HTTP_STATUS_SUCCESS {
+  OK = "OK. The request succeeded!",
+  CREATED = "Created. A new resource was created as a result.",
+  NO_CONTENT = "No Content. There is no content to send for this request.",
+}
+
+enum HTTP_STATUS_REDIRECTION {
+  NOT_MODIFIED = "Not Modified. You can continue to use the same cached version of the response.",
+}
+
+enum HTTP_STATUS_ERROR {
+  CLIENT_ERROR = "Client Error. Bad Request!",
   SERVER_ERROR = "Server Error!",
   NOT_FOUND_ERROR = "Not Found Error!",
   SERVICE_UNAVAILABLE = "Service Unavailable. Unable to Communicate with Server!",
@@ -19,45 +29,57 @@ export enum HTTP_STATUS_ERROR {
 const getStatusMessage = (status: number, message: string) =>
   `HTTP(s) ${status}: ${message}`;
 
-export const getErrorMessage = (status) => {
+//TODO Create Record to use with transformResponse
+export const getHttpResponseMessage = (status) => {
   let range = 0;
 
-  console.log(status);
+  // Status OK
+  if (status === 200) range = 1;
+  if (status === 201) range = 2;
+  if (status === 204) range = 3;
+  if (status === 304) range = 4;
 
-  if (status < 300) range = 1;
-  if (status === 400 && status < 403) range = 2;
-  if (status === 404 && status < 500) range = 3;
-  if (status === 503) range = 4;
-  if (status !== 503 && status >= 500) range = 5;
+  // Status Error
+  if (status >= 400 && status < 403) range = 5;
+  if (status >= 404 && status < 500) range = 6;
+  if (status === 503) range = 7;
+  if (status !== 503 && status >= 500) range = 8;
 
-  let errorMessage = "";
+  let message = "";
 
   switch (range) {
+    // Status OK
     case 1:
-      errorMessage = getStatusMessage(status, HTTP_STATUS_ERROR.NO_ERROR);
+      message = getStatusMessage(status, HTTP_STATUS_SUCCESS.OK);
       break;
     case 2:
-      errorMessage = getStatusMessage(status, HTTP_STATUS_ERROR.CLIENT_ERROR);
+      message = getStatusMessage(status, HTTP_STATUS_SUCCESS.CREATED);
       break;
     case 3:
-      errorMessage = getStatusMessage(
-        status,
-        HTTP_STATUS_ERROR.NOT_FOUND_ERROR
-      );
+      message = getStatusMessage(status, HTTP_STATUS_SUCCESS.NO_CONTENT);
       break;
     case 4:
-      errorMessage = getStatusMessage(
-        status,
-        HTTP_STATUS_ERROR.SERVICE_UNAVAILABLE
-      );
+      message = getStatusMessage(status, HTTP_STATUS_REDIRECTION.NOT_MODIFIED);
       break;
+
+    // Status Error
     case 5:
-      errorMessage = getStatusMessage(status, HTTP_STATUS_ERROR.SERVER_ERROR);
+      message = getStatusMessage(status, HTTP_STATUS_ERROR.CLIENT_ERROR);
+      break;
+    case 6:
+      message = getStatusMessage(status, HTTP_STATUS_ERROR.NOT_FOUND_ERROR);
+      break;
+    case 7:
+      message = getStatusMessage(status, HTTP_STATUS_ERROR.SERVICE_UNAVAILABLE);
+      break;
+    case 8:
+      message = getStatusMessage(status, HTTP_STATUS_ERROR.SERVER_ERROR);
       break;
     default:
-      errorMessage = getStatusMessage(status, HTTP_STATUS_ERROR.UNKNOWN_ERROR);
+      message = getStatusMessage(status, HTTP_STATUS_ERROR.UNKNOWN_ERROR);
   }
-  return errorMessage;
+  console.log(message);
+  return message;
 };
 
 export const getEnpointHeaderKey = (endpointName: string, headerKey: string) =>

@@ -1,21 +1,50 @@
-import { Route, Routes, useLoaderData } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
-import { useAppSelector } from "@/hooks/redux";
+import { Loading } from "@/components/Loading";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { IAppRoute, IGame, IGameRoute } from "@/models/interfaces";
-import { IGamesListData } from "@/models/types/rtkQuery/games";
+import { ErrorPage } from "@/pages/Error/ErrorPage";
 import { GameDetail } from "@/pages/Game";
 import { IndexPage } from "@/pages/IndexPage";
 import { Login, Register } from "@/pages/SignUp";
 import { authSelectors } from "@/services/rtkQueryApi/auth";
+import { gamesSelectors } from "@/services/rtkQueryApi/games";
+import { useGetGameListQuery } from "@/services/rtkQueryApi/games/gamesApi";
+import {
+  actionSetGamesList,
+  actionSetGamesRoutesList,
+} from "@/services/rtkQueryApi/games/gamesSlice";
 import { appRoutes } from "@/settings/app";
 
 import { PrivateRoute, PublicRoute } from ".";
 
 export const RoutesChildren = () => {
+  const dispatch = useAppDispatch();
   const isLoggedIn = useAppSelector(authSelectors.getLoggedIn);
   const authUser = useAppSelector(authSelectors.getAuthUser);
 
-  const gamesData = useLoaderData() as IGamesListData;
+  // const gamesList = useAppSelector(gamesSelectors.getGamesList);
+  const gamesRoutesList = useAppSelector(gamesSelectors.getGamesRoutesList);
+
+  const { data, isLoading, isError, isSuccess } = useGetGameListQuery(
+    authUser.id,
+    {
+      pollingInterval: 60 * 60 * 1000 * 2, //60 * 60 * 1000 * 2 = 2h
+      refetchOnMountOrArgChange: true,
+      skip: false,
+    }
+  );
+
+  if (isLoading) return <Loading />;
+
+  // if (isError) return <ErrorPage />;
+
+  if (data) {
+    // Add gamesList and eTag to persist store
+    dispatch(actionSetGamesList(data.gamesList));
+    // Add gamesRoutesList to persist store
+    dispatch(actionSetGamesRoutesList(data.gamesRoutesList));
+  }
 
   const addSideBarRoute = (route: IAppRoute) => {
     return (
@@ -57,7 +86,7 @@ export const RoutesChildren = () => {
             : addSideBarRoute(appRoute);
         })}
         {/* Create Games Routes */}
-        {gamesData.gamesRoutesList.map((gameRoute: IGameRoute) =>
+        {gamesRoutesList.map((gameRoute: IGameRoute) =>
           addGameRoute(gameRoute)
         )}
       </Route>

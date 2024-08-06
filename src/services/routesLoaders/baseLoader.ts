@@ -1,5 +1,5 @@
 import { AppDispatch, AppStore } from "@/store";
-import { getErrorMessage } from "@/utils/http";
+import { getHttpResponseMessage } from "@/utils/http";
 export class BaseLoader {
   store: AppStore;
   dispatch: AppDispatch;
@@ -20,14 +20,14 @@ export class BaseLoader {
         throw new Response("", {
           status: errorInfo.status,
           statusText:
-            errorInfo.data?.message || getErrorMessage(errorInfo.status),
+            errorInfo.data?.message || getHttpResponseMessage(errorInfo.status),
         });
       } else {
         console.log("503");
         errorInfo.status = 503;
         throw new Response("", {
           status: errorInfo.status,
-          statusText: getErrorMessage(errorInfo.status),
+          statusText: getHttpResponseMessage(errorInfo.status),
         });
       }
     }

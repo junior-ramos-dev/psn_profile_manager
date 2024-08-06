@@ -3,7 +3,11 @@ import { isRouteErrorResponse, useRouteError } from "react-router-dom";
 import useNetworkStatus from "@/hooks/useNetworkStatus";
 import { Box } from "@mui/material";
 
-export const ErrorPage = () => {
+interface IErrorPageProps {
+  errorMsg?: string;
+}
+
+export const ErrorPage = ({ errorMsg }: IErrorPageProps) => {
   // you don't need to explicitly set error to `unknown`
   const error = useRouteError();
   let errorMessage: string;
@@ -39,7 +43,7 @@ export const ErrorPage = () => {
             </p>
           ) : (
             <p className="text-slate-400">
-              <i>{errorMessage}</i>
+              <i>{errorMsg ? errorMsg : errorMessage}</i>
             </p>
           )}
         </Box>

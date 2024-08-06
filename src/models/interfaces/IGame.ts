@@ -39,7 +39,9 @@ export interface IGameApi extends Omit<IGame, "lastUpdatedDateTime"> {
 // and asserts the results of JSON.parse at runtime
 export class ConvertIGame {
   public static fromApiResponseToIGameList(gamesList: IGame[]): IGame[] {
-    const gamesListParsed = gamesList.map((game) => {
+    const cloneGamesList = structuredClone(gamesList);
+
+    const gamesListParsed = cloneGamesList.map((game) => {
       const gameKeys = Object.keys(game);
       for (const key in gameKeys) {
         if (gameKeys[key] === "lastUpdatedDateTime") {

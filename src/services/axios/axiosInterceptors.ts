@@ -1,7 +1,7 @@
 import { AxiosInstance, AxiosResponse } from "axios";
 import _ from "lodash";
 
-import { getEnpointHeaderKey } from "@/utils/http";
+import { getEnpointHeaderKey, getHttpResponseMessage } from "@/utils/http";
 
 export interface IEndpointHeaders {
   endpointName: string;
@@ -9,6 +9,7 @@ export interface IEndpointHeaders {
 }
 
 // Transform the data from the api response
+//TODO Fix: send response errors
 export const transformResponse = (
   response: AxiosResponse,
   endpointHeaders: IEndpointHeaders
@@ -16,7 +17,7 @@ export const transformResponse = (
   if (endpointHeaders) {
     getRespondeHeaders(response, endpointHeaders);
   }
-
+  console.log(getHttpResponseMessage(response.status));
   return response.data;
 };
 

@@ -1,4 +1,4 @@
-import { getErrorMessage, VERBS } from "@/utils/http";
+import { getHttpResponseMessage, VERBS } from "@/utils/http";
 
 import {
   axiosInstance,
@@ -86,7 +86,7 @@ export const axiosApiRepository = async (
 
     return {
       error: {
-        status: getErrorMessage(err.response?.status),
+        status: getHttpResponseMessage(err.response?.status),
         data: err.response?.data || err.message,
       },
     };

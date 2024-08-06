@@ -1,12 +1,9 @@
 import { ConvertIGame } from "@/models/interfaces";
 import { IGamesListData } from "@/models/types/rtkQuery/games";
-import { store } from "@/store";
 import { VERBS } from "@/utils/http";
 import { createIGameRoutesList } from "@/utils/routes";
 
 import { rtkQueryBaseApi } from "../rtkQueryBaseApi";
-
-import { actionSetGamesList, actionSetGamesRoutesList } from "./gamesSlice";
 
 export const gamesApi = rtkQueryBaseApi.injectEndpoints({
   endpoints: (build) => ({
@@ -19,7 +16,6 @@ export const gamesApi = rtkQueryBaseApi.injectEndpoints({
         endpointName: "getGameList",
         headers: {
           ETag: localStorage.getItem("getGameList:etag"),
-          // Authorization: `Bearer ${token}`,
         },
       }),
       transformResponse: (response) => {
@@ -29,13 +25,6 @@ export const gamesApi = rtkQueryBaseApi.injectEndpoints({
         // Generate games routes objects from IGame list
         const gamesRoutesList = createIGameRoutesList(gamesList);
 
-        //TODO Move actions to component
-        // Add gamesList and eTag to persist store
-        store.dispatch(actionSetGamesList(gamesList));
-        // Add gamesRoutes to persist store
-        store.dispatch(actionSetGamesRoutesList(gamesRoutesList));
-
-        // Return an object containing the parsed response data and the token value
         return { gamesList, gamesRoutesList };
       },
       providesTags: ["Games"],

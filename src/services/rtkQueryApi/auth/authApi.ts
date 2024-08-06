@@ -21,7 +21,7 @@ export const authApi = rtkQueryBaseApi.injectEndpoints({
       }),
     }),
     register: build.mutation<RegisterResponse, RegisterRequest>({
-      query: (data: RegisterRequest) => ({
+      query: (data) => ({
         endpointUrl: "auth/register",
         method: VERBS.POST,
         bodyData: data,
