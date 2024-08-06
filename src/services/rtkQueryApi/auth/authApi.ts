@@ -5,9 +5,9 @@ import {
   RegisterResponse,
 } from "@/models/types/rtkQuery/auth";
 import { UserProfileData } from "@/models/types/rtkQuery/user";
-import { VERBS } from "@/utils/restApi";
+import { VERBS } from "@/utils/http";
 
-import { rtkQueryBaseApi } from "../base/rtkQueryBaseApi";
+import { rtkQueryBaseApi } from "../rtkQueryBaseApi";
 
 export const authApi = rtkQueryBaseApi.injectEndpoints({
   endpoints: (build) => ({

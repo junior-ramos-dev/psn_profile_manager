@@ -8,7 +8,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { AppLayout } from "@/components/Layout/App";
 import { RoutesChildren } from "@/components/Layout/App/Routes";
 import { ErrorPage } from "@/pages/Error/ErrorPage";
-import { GamesLoader } from "@/services/rtkQueryApi/games/gamesLoaders";
+import { GamesLoader } from "@/services/routesLoaders/games/gamesLoaders";
 import { appRoutes } from "@/settings/app";
 import { persistor, store } from "@/store";
 import { StyledEngineProvider } from "@mui/material/styles";

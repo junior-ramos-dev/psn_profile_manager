@@ -59,3 +59,6 @@ export const getErrorMessage = (status) => {
   }
   return errorMessage;
 };
+
+export const getEnpointHeaderKey = (endpointName: string, headerKey: string) =>
+  `${endpointName}:${headerKey}`;

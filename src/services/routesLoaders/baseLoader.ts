@@ -1,5 +1,5 @@
 import { AppDispatch, AppStore } from "@/store";
-import { getErrorMessage } from "@/utils/restApi";
+import { getErrorMessage } from "@/utils/http";
 export class BaseLoader {
   store: AppStore;
   dispatch: AppDispatch;

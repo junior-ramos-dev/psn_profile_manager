@@ -1,6 +1,6 @@
 import { IGamesListData } from "@/models/types/rtkQuery/games";
-import { isServerUp } from "@/services/axios/axiosInstance";
-import { BaseLoader } from "@/services/rtkQueryApi/base/baseLoader";
+import { isServerUp } from "@/services/axios/axiosApiConfig";
+import { BaseLoader } from "@/services/routesLoaders/baseLoader";
 import { gamesApi } from "@/services/rtkQueryApi/games/gamesApi";
 
 export class GamesLoader extends BaseLoader {

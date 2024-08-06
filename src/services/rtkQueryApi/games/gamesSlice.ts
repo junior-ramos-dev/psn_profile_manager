@@ -4,22 +4,19 @@ import { createSlice } from "@reduxjs/toolkit";
 export interface IGamesInitialState {
   gamesList: IGame[];
   gamesRoutesList: IRouteItem[];
-  eTag: string;
 }
 
 const initialState: IGamesInitialState = {
   gamesList: null,
   gamesRoutesList: null,
-  eTag: "",
 };
 
 const gamesSlice = createSlice({
   name: "games",
   initialState,
   reducers: {
-    actionSetGamesList: (state, { payload: { gamesList, eTag } }) => {
-      state.gamesList = gamesList;
-      state.eTag = eTag;
+    actionSetGamesList: (state, { payload }) => {
+      state.gamesList = payload;
     },
     actionSetGamesRoutesList: (state, { payload }) => {
       state.gamesRoutesList = payload;

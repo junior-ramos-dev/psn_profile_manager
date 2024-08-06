@@ -14,10 +14,10 @@ import storageSession from "redux-persist/lib/storage/session";
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
+import { axiosBaseQueryApi } from "./services/axios/axiosBaseQueryApi";
 import authReducer from "./services/rtkQueryApi/auth/authSlice";
-import { axiosBaseQueryApi } from "./services/rtkQueryApi/base/axiosBaseQueryApi";
-import { rtkQueryBaseApi } from "./services/rtkQueryApi/base/rtkQueryBaseApi";
 import gamesReducer from "./services/rtkQueryApi/games/gamesSlice";
+import { rtkQueryBaseApi } from "./services/rtkQueryApi/rtkQueryBaseApi";
 
 const authPersistConfig = {
   key: "auth",
@@ -51,7 +51,7 @@ const persistor = persistStore(store);
 export type AppStore = typeof store;
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
-export { persistor,store };
+export { persistor, store };
 
 setupListeners(store.dispatch);
 
