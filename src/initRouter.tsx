@@ -33,7 +33,6 @@ export const getRouter = (sidebarRoutes, gamesRoutes) => {
               ],
             },
             {
-              // path: "/*",
               element: <PrivateRoute />,
               children: _.concat(sidebarRoutes, gamesRoutes),
             },
@@ -48,11 +47,6 @@ export const getRouter = (sidebarRoutes, gamesRoutes) => {
             //   const response = await p.unwrap();
             //   console.log(response.gamesList[0]);
 
-            // },
-            // {
-            //   path: "games/:npCommunicationId",
-            //   element: <GameDetail />,
-            //   loader: gamesLoader.detailLoader,
             // },
           ],
         },

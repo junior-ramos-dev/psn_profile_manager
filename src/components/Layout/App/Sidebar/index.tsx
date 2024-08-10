@@ -1,5 +1,4 @@
 import { Hamburger } from "@/components/Hamburger";
-import { IRouteItem } from "@/models/interfaces";
 import { DRAWER_WIDTH } from "@/settings/app/constants";
 import { navClosedMixin, navOpenedMixin } from "@/styles/mixins";
 import { Divider, Drawer as MuiDrawer, styled } from "@mui/material";

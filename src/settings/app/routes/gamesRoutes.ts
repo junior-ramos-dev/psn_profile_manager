@@ -5,14 +5,14 @@ import { GameDetail } from "@/pages/Game";
 import { store } from "@/store";
 
 // Hook used to load games routes into initRouter.tsx
-export const useGamesRouter = () => {
+const useGamesRouter = () => {
   return createGamesRouteObjectList();
 };
 
 /**
  *  Generate IGameRoute list objects from IGame list
  */
-export const createIGameRoutesList = (gamesList: IGame[]): IGameRoute[] => {
+const createIGameRoutesList = (gamesList: IGame[]): IGameRoute[] => {
   const iGamesRoutesList = new Array<IGameRoute>();
 
   gamesList.forEach((game) => {
@@ -21,7 +21,6 @@ export const createIGameRoutesList = (gamesList: IGame[]): IGameRoute[] => {
       title: game.trophyTitleName,
       tooltip: game.trophyTitleName,
       path: "/games/" + game.npCommunicationId,
-      props: game,
       enabled: true,
       appendDivider: true,
       expanded: false,
@@ -47,22 +46,24 @@ const addGameRouteObject = (gameRoute: IGameRoute): RouteObject => {
 /**
  *  Generate RouteObject list from IGameRoute list
  */
-export const createGamesRouteObjectList = (): RouteObject[] => {
-  const gamesList = store.getState().games.gamesList;
-  let gamesRoutesList = [];
+const createGamesRouteObjectList = (): RouteObject[] => {
+  const gamesRoutes = store.getState().games.gamesRoutes;
+  // let gamesRoutesList = [];
 
   // List of RoutObject
   const gameRouteObjectList: RouteObject[] = [];
 
-  if (gamesList) {
+  if (gamesRoutes) {
     // Get the IRouteGame list
-    gamesRoutesList = createIGameRoutesList(gamesList);
+    // gamesRoutesList = createIGameRoutesList(gamesList);
 
     // Iterate over the gamesRoutesParams to add the games list page routes
-    gamesRoutesList.forEach((gameRoute: IGameRoute) => {
+    gamesRoutes.forEach((gameRoute: IGameRoute) => {
       gameRouteObjectList.push(addGameRouteObject(gameRoute));
     });
   }
 
   return gameRouteObjectList;
 };
+
+export { createIGameRoutesList, useGamesRouter };

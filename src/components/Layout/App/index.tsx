@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Outlet } from "react-router-dom";
 
 import { Footer } from "@/components/Layout/App/Footer";
-import { IRouteItem } from "@/models/interfaces";
 import { FOOTER_HEIGHT } from "@/settings/app/constants";
 import { css } from "@emotion/react";
 import { Box } from "@mui/material";

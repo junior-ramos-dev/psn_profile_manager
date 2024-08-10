@@ -85,8 +85,10 @@ export const axiosApiRepository = async (
 
     return {
       error: {
-        status: getHttpResponseMessage(err.response?.status),
-        data: err.response?.data || err.message,
+        status: err.response?.status,
+        data:
+          err.response?.data || getHttpResponseMessage(err.response?.status),
+        // data: err.response?.data || err.message,
       },
     };
   }
