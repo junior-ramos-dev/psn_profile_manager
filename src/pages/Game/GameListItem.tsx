@@ -1,4 +1,5 @@
 /** @jsxImportSource @emotion/react */
+// import { Image } from "mui-image";
 import { NavLink, useLocation } from "react-router-dom";
 
 import { IGameRoute } from "@/models/interfaces";
@@ -16,21 +17,20 @@ import {
   useTheme,
 } from "@mui/material";
 
-interface GameRouteItemProps {
+interface IGameRouteItemProps {
   gameRoute: IGameRoute;
-  // route: Route;
   nested?: boolean;
   hasChildren?: boolean;
   handleMenuClick?: (route: IGameRoute) => void;
 }
 
-export const GameRouteItem = ({
+//TODO Edit list item details
+export const GameListItem = ({
   gameRoute,
-  // route,
   nested = false,
   hasChildren = false,
   handleMenuClick = () => {},
-}: GameRouteItemProps) => {
+}: IGameRouteItemProps) => {
   const location = useLocation();
   const theme = useTheme();
 
@@ -64,6 +64,13 @@ export const GameRouteItem = ({
             transition: "box-shadow 0.1s";
           `}
         >
+          {/* const Example = ({ data }) => <img src={`data:image/jpeg;base64,${data}`} /> */}
+          {/* <Image
+            src={game.trophyTitleIconUrl}
+            width={50}
+            height={50}
+            showLoading
+          /> */}
           <Icon
             component={SportsEsportsIcon}
             css={css`

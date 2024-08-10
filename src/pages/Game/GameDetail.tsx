@@ -2,15 +2,14 @@
 import { Helmet } from "react-helmet-async";
 
 import { PageHeader } from "@/components/DefaultPage/PageHeader";
-import { IGame } from "@/models/interfaces";
 import { APP_TITLE, PAGE_TITLE_GAMES } from "@/settings/app";
 import { Box } from "@mui/material";
 
 interface RoutesChildrenProps {
-  gameDetail: IGame;
+  gameId: string;
 }
 
-export const GameDetail = ({ gameDetail }: RoutesChildrenProps) => {
+export const GameDetail = ({ gameId }: RoutesChildrenProps) => {
   return (
     <>
       <Helmet>
@@ -24,8 +23,7 @@ export const GameDetail = ({ gameDetail }: RoutesChildrenProps) => {
 
       <div>
         <h2>Games Detail</h2>
-        <div>{gameDetail.trophyTitleName}</div>
-        <div>{JSON.stringify(gameDetail.earnedTrophies)}</div>
+        <div>{gameId}</div>
       </div>
     </>
   );

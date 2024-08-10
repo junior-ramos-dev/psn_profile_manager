@@ -1,9 +1,14 @@
 // icons
 // interface
-import { IRouteItem } from "@/models/interfaces";
+import { RouteObject } from "react-router-dom";
+
+import { IAppRoute } from "@/models/interfaces";
 import { Games } from "@/pages/Game";
 // pages
 import Home from "@/pages/Home";
+import { IndexPage } from "@/pages/IndexPage";
+import { GamesLoader } from "@/services/routesLoaders/games/gamesLoaders";
+import { store } from "@/store";
 import DashboardIcon from "@material-ui/icons/BarChartOutlined";
 import CodeIcon from "@material-ui/icons/CodeOutlined";
 import GitHubIcon from "@material-ui/icons/GitHub";
@@ -13,8 +18,46 @@ import PrivateIcon from "@material-ui/icons/LockOutlined";
 import SettingsIcon from "@material-ui/icons/SettingsOutlined";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 
+const gamesLoader = new GamesLoader(store);
+
+// Hook used to load app routes into initRouter.tsx
+export const useAppRouter = () => {
+  return createSidebarRouteObjectList();
+};
+
+// Add routes for the app side bar
+const addSideBarRouteObject = (route: IAppRoute): RouteObject => {
+  const sidebarRouteObject: RouteObject = {
+    id: route.key,
+    path: route.path,
+    Component: route.component || IndexPage,
+    loader: route.loader || undefined,
+  };
+
+  return sidebarRouteObject;
+};
+
+/**
+ *  Generate RouteObject list from IAppRoute list
+ */
+export const createSidebarRouteObjectList = (): RouteObject[] => {
+  // List of RoutObject
+  const sidebarRouteObjectList: RouteObject[] = [];
+
+  // Iterate over appRoutes array to add the sidebar app routes
+  appRoutes.forEach((appRoute: IAppRoute) => {
+    return appRoute.subRoutes
+      ? appRoute.subRoutes.map((item: IAppRoute) =>
+          sidebarRouteObjectList.push(addSideBarRouteObject(item))
+        )
+      : sidebarRouteObjectList.push(addSideBarRouteObject(appRoute));
+  });
+
+  return sidebarRouteObjectList;
+};
+
 // define app routes
-export const appRoutes: Array<IRouteItem> = [
+export const appRoutes: Array<IAppRoute> = [
   {
     key: "router-home",
     title: "Home",
@@ -29,9 +72,10 @@ export const appRoutes: Array<IRouteItem> = [
     key: "router-game",
     title: "Games",
     tooltip: "Games",
-    path: "" /* `/games/${authUser.id}` */,
-    enabled: false,
+    path: "/games",
+    enabled: true,
     component: Games,
+    loader: gamesLoader.initListLoader,
     asset: SportsEsportsIcon,
     // appendDivider: true,
   },

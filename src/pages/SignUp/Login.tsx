@@ -30,7 +30,6 @@ export const Login = () => {
   const handleLogin = async () => {
     //TODO Add validations
     // This is only a basic validation of inputs. Improve this as needed.
-    let authUser;
 
     if (email && password) {
       try {
@@ -38,9 +37,9 @@ export const Login = () => {
           .unwrap()
           .then((data) => {
             dispatch(actionSetCredentials(data));
-            authUser = data;
           });
-        navigate(`/games/${authUser.id}`);
+        console.log("navigate(`/games/${authUser.id}`);");
+        navigate(`/games`);
       } catch (e) {
         console.error(e);
       }
@@ -105,7 +104,7 @@ export const Login = () => {
           <Grid container justifyContent={"flex-end"}>
             <Grid item>
               <Link
-                to="/register"
+                to="/auth/register"
                 css={css`
                   text-decoration: underline;
                   color: inherit;

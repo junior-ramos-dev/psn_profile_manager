@@ -36,7 +36,6 @@ export const axiosApiRepository = async (
           headers,
         };
 
-        //TODO Change backend getGamesList endpoint to use ETag
         setRequestHeaders(axiosInstance, headers);
       }
 

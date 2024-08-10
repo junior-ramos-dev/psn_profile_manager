@@ -1,2 +1,2 @@
 export * from "./constants";
-export { appRoutes } from "./routes";
+export { appRoutes } from "./routes/appRoutes";

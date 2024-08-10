@@ -1,10 +1,12 @@
 /** @jsxImportSource @emotion/react */
+
 import { Helmet } from "react-helmet-async";
 
 import { PageHeader } from "@/components/DefaultPage/PageHeader";
-import { GamesRoutes } from "@/components/Navigation/GameRoutes/GamesRoutes";
 import { APP_TITLE, FOOTER_HEIGHT, PAGE_TITLE_GAMES } from "@/settings/app";
 import { Box } from "@mui/material";
+
+import { GamesList } from "./GamesList";
 
 //TODO Create component SearchGames
 export const Games = () => {
@@ -32,7 +34,7 @@ export const Games = () => {
           // boxSizing: "border-box",
         }}
       >
-        <GamesRoutes />
+        <GamesList />
       </div>
       {/* <Box component="main" sx={{ flexGrow: 1, p: 1, pt: 10 }}>
         <Outlet />

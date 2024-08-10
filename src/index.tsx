@@ -2,52 +2,16 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Provider } from "react-redux";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 
-import { AppLayout } from "@/components/Layout/App";
-import { RoutesChildren } from "@/components/Layout/App/Routes";
-import { ErrorPage } from "@/pages/Error/ErrorPage";
-import { appRoutes } from "@/settings/app";
+import { APP_TITLE } from "@/settings/app";
 import { persistor, store } from "@/store";
 import { StyledEngineProvider } from "@mui/material/styles";
 
 import reportWebVitals from "../reportWebVitals";
 
 import { AppThemeProvider } from "./theme/AppThemeProvider";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <AppLayout routes={appRoutes} />,
-    children: [
-      {
-        errorElement: <ErrorPage />,
-        children: [
-          {
-            path: "/*",
-            element: <RoutesChildren />,
-            // loader: gamesLoader.initGamesListLoader,
-            // loader: async () => {
-            //   const p = store.dispatch(
-            //     gamesApi.endpoints.getGameList({request: "/6690ec7a1b9af84a84b0b425"})
-            //   );
-
-            //   const response = await p.unwrap();
-            //   console.log(response.gamesList[0]);
-
-            // },
-          },
-          // {
-          //   path: "games/:npCommunicationId",
-          //   element: <GameDetail />,
-          //   loader: gamesLoader.detailLoader,
-          // },
-        ],
-      },
-    ],
-  },
-]);
+import { App } from "./App";
 
 const root = createRoot(document.getElementById("root"));
 
@@ -80,6 +44,7 @@ root.render(
           rel="stylesheet"
           href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
         />
+        <title>{APP_TITLE}</title>
       </Helmet>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
@@ -87,7 +52,8 @@ root.render(
           <StyledEngineProvider injectFirst>
             {/* Wrap your app with the Theme Provider */}
             <AppThemeProvider>
-              <RouterProvider router={router} />
+              {/* <RouterProvider router={router} /> */}
+              <App />
             </AppThemeProvider>
           </StyledEngineProvider>
         </PersistGate>

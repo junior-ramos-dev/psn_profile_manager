@@ -23,8 +23,11 @@ export const LogoutButton = () => {
 
   const handleLogout = async () => {
     try {
-      await logout().unwrap();
-      dispatch(actionUnsetCredentials());
+      await logout()
+        .unwrap()
+        .then(() => {
+          dispatch(actionUnsetCredentials());
+        });
       navigate("/auth/login");
     } catch (e) {
       console.error(e);

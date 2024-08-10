@@ -1,22 +1,22 @@
-import { IGamesListData } from "@/models/types/rtkQuery/games";
+import { IGame } from "@/models/interfaces";
 import { isServerUp } from "@/services/axios/axiosApiConfig";
 import { BaseLoader } from "@/services/routesLoaders/baseLoader";
 import { gamesApi } from "@/services/rtkQueryApi/games/gamesApi";
 
 export class GamesLoader extends BaseLoader {
-  gamesListLoader = async ({ params, request }) => {
-    const gamesListLoaderRes = await this.loader(
+  listLoader = async ({ params, request }) => {
+    return await this.loader(
       gamesApi.endpoints.getGameList,
       request,
-      params.userId
+      params.userId,
+      {}
     );
-    return gamesListLoaderRes as IGamesListData;
   };
 
-  initGamesListLoader = async () => {
+  initListLoader = async () => {
     const serverUp = await isServerUp();
     const authUser = this.store.getState().auth.user;
-    console.log(authUser.id);
+
     if (serverUp && authUser.id) {
       const promise = this.dispatch(
         gamesApi.endpoints.getGameList.initiate(authUser.id)
@@ -24,7 +24,11 @@ export class GamesLoader extends BaseLoader {
       try {
         // wait for data to be there
         const response = await promise;
-        return response.data as IGamesListData;
+        if (!response.isError) {
+          return response.data as IGame[];
+        } else {
+          return this.store.getState().games.gamesList as IGame[];
+        }
       } catch (error) {
         console.log(error);
       } finally {
@@ -32,10 +36,7 @@ export class GamesLoader extends BaseLoader {
       }
     } else {
       //If server is offline retrieve data persisted on localstorage;
-      const gamesList = this.store.getState().games.gamesList;
-      const gamesRoutesList = this.store.getState().games.gamesRoutesList;
-
-      return { gamesList, gamesRoutesList } as IGamesListData;
+      return this.store.getState().games.gamesList as IGame[];
     }
   };
 }

@@ -1,13 +1,15 @@
-import { ConvertIGame } from "@/models/interfaces";
-import { IGamesListData } from "@/models/types/rtkQuery/games";
+import { ConvertIGame, IGame } from "@/models/interfaces";
+import { IGameIcon } from "@/models/interfaces/games/IGameIcon";
+import { store } from "@/store";
 import { VERBS } from "@/utils/http";
-import { createIGameRoutesList } from "@/utils/routes";
 
 import { rtkQueryBaseApi } from "../rtkQueryBaseApi";
 
+import { actionSetGamesList } from "./gamesSlice";
+
 export const gamesApi = rtkQueryBaseApi.injectEndpoints({
   endpoints: (build) => ({
-    getGameList: build.query<IGamesListData, string>({
+    getGameList: build.query<IGame[], string>({
       query: (userId) => ({
         endpointUrl: "games",
         method: VERBS.GET,
@@ -15,18 +17,27 @@ export const gamesApi = rtkQueryBaseApi.injectEndpoints({
         collection: "Games",
         endpointName: "getGameList",
         headers: {
-          ETag: localStorage.getItem("getGameList:etag"),
+          ETag: localStorage.getItem("getGameList:etag") ?? "",
+          "if-none-match": localStorage.getItem("getGameList:etag") ?? "",
         },
       }),
       transformResponse: (response) => {
         // Convert response to IGame list
         const gamesList = ConvertIGame.fromApiResponseToIGameList(response);
+        store.dispatch(actionSetGamesList(gamesList));
 
-        // Generate games routes objects from IGame list
-        const gamesRoutesList = createIGameRoutesList(gamesList);
-
-        return { gamesList, gamesRoutesList };
+        return gamesList;
       },
+      providesTags: ["Games"],
+    }),
+    getIconBinByGame: build.query<IGameIcon, string>({
+      query: (npCommunicationId) => ({
+        endpointUrl: "games",
+        method: VERBS.GET,
+        urlParam: npCommunicationId,
+        collection: "GamesIcons",
+        endpointName: "getIconBinByGame",
+      }),
       providesTags: ["Games"],
     }),
   }),

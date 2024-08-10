@@ -116,7 +116,7 @@ export const Register = () => {
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Link
-                to="/login"
+                to="/auth/login"
                 css={css`
                   text-decoration: underline;
                   color: inherit;

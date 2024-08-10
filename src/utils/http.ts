@@ -14,7 +14,7 @@ enum HTTP_STATUS_SUCCESS {
 }
 
 enum HTTP_STATUS_REDIRECTION {
-  NOT_MODIFIED = "Not Modified. You can continue to use the same cached version of the response.",
+  NOT_MODIFIED = "Not Modified. You can continue using the same cached version of the response.",
 }
 
 enum HTTP_STATUS_ERROR {

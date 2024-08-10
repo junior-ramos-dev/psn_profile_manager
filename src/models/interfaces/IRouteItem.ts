@@ -1,4 +1,7 @@
 import { ComponentType } from "react";
+import { LoaderFunction } from "react-router-dom";
+
+import { EmotionJSX } from "@emotion/react/types/jsx-namespace";
 
 /**
  * IRouteItem is an interface for defining the application routes and navigation menu items
@@ -46,7 +49,7 @@ interface IRouteItem {
 
   /**
    * The component referenced by the route
-   * @type {FC}
+   * @type {ComponentType}
    * @memberof IRouteItem
    * @required
    * @example
@@ -56,13 +59,23 @@ interface IRouteItem {
 
   /**
    * The element referenced by the route
-   * @type {FC}
+   * @type {EmotionJSX.Element}
    * @memberof IRouteItem
    * @required
    * @example
    * "<Dashboard />"
    */
-  element?: ComponentType;
+  element?: () => EmotionJSX.Element;
+
+  /**
+   * The loader used by the route
+   * @type {LoaderFunction}
+   * @memberof IRouteItem
+   * @required
+   * @example
+   * "<Dashboard />"
+   */
+  loader?: LoaderFunction;
 
   /**
    * The props for component or element referenced by the route

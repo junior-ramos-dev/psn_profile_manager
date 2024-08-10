@@ -1,6 +1,6 @@
 import { StringUtils } from "@/utils/strings";
 
-import { TrophyCount } from "../types/trophy/TrophyCount";
+import { TrophyCount } from "../../types/trophy/TrophyCount";
 
 // IGame is an interface for defining the game object returned from the API with additional properties to generate the routes for games.
 interface IGame {
@@ -18,10 +18,7 @@ interface IGame {
   earnedTrophies: TrophyCount;
   hiddenFlag: boolean;
   lastUpdatedDateTime: Date | string | number;
-}
-
-export interface IGameApi extends Omit<IGame, "lastUpdatedDateTime"> {
-  lastUpdatedDateTime: string;
+  iconBinaryData: string;
 }
 
 /* 
