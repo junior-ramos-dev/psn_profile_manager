@@ -4,18 +4,14 @@ import { Outlet } from "react-router-dom";
 
 import { Footer } from "@/components/Layout/App/Footer";
 import { IRouteItem } from "@/models/interfaces";
-import { FOOTER_HEIGHT } from "@/settings/app";
+import { FOOTER_HEIGHT } from "@/settings/app/constants";
 import { css } from "@emotion/react";
 import { Box } from "@mui/material";
 
 import { AppHeader } from "./Header";
 import { Sidebar } from "./Sidebar";
 
-interface LayoutProps {
-  routes: Array<IRouteItem>;
-}
-
-export const AppLayout = ({ routes }: LayoutProps) => {
+export const AppLayout = () => {
   const [open, setOpen] = useState(false);
   const toggleNavigation = () => setOpen((status) => !status);
 
@@ -35,7 +31,7 @@ export const AppLayout = ({ routes }: LayoutProps) => {
           <Box component="header">
             <AppHeader toggleNavigation={toggleNavigation} />
           </Box>
-          <Sidebar routes={routes} open={open} handleClose={toggleNavigation} />
+          <Sidebar open={open} handleClose={toggleNavigation} />
           <Box
             component="main"
             sx={{

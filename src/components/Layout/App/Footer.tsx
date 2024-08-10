@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { FOOTER_HEIGHT,FOOTER_TEXT } from "@/settings/app";
+import { FOOTER_HEIGHT, FOOTER_TEXT } from "@/settings/app/constants";
 import { css } from "@emotion/react";
 import { Typography, useTheme } from "@mui/material";
 

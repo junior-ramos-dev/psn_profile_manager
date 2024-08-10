@@ -3,7 +3,11 @@
 import { Helmet } from "react-helmet-async";
 
 import { PageHeader } from "@/components/DefaultPage/PageHeader";
-import { APP_TITLE, FOOTER_HEIGHT, PAGE_TITLE_GAMES } from "@/settings/app";
+import {
+  APP_TITLE,
+  FOOTER_HEIGHT,
+  PAGE_TITLE_GAMES,
+} from "@/settings/app/constants";
 import { Box } from "@mui/material";
 
 import { GamesList } from "./GamesList";

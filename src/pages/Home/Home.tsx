@@ -6,7 +6,11 @@ import { PageHeader } from "@/components/DefaultPage/PageHeader";
 import { useAppSelector } from "@/hooks/redux";
 import useOverFlowHidden from "@/hooks/useOverFlowHidden";
 import { authSelectors } from "@/services/rtkQueryApi/auth";
-import { APP_TITLE, FOOTER_HEIGHT, PAGE_TITLE_HOME } from "@/settings/app";
+import {
+  APP_TITLE,
+  FOOTER_HEIGHT,
+  PAGE_TITLE_HOME,
+} from "@/settings/app/constants";
 import { Box } from "@mui/material";
 
 const Home = () => {

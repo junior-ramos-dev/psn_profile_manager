@@ -1,7 +1,7 @@
 import { useContext } from "react";
 
 import { ThemeContext } from "@/contexts";
-import { LIGHT_MODE_THEME } from "@/settings/app";
+import { LIGHT_MODE_THEME } from "@/settings/app/constants";
 import { NightsStay } from "@mui/icons-material";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import { useTheme } from "@mui/material/styles";

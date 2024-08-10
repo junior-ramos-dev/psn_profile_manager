@@ -4,7 +4,7 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 
-import { APP_TITLE } from "@/settings/app";
+import { APP_TITLE } from "@/settings/app/constants";
 import { persistor, store } from "@/store";
 import { StyledEngineProvider } from "@mui/material/styles";
 

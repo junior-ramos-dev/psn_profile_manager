@@ -1,6 +1,6 @@
 import { ComponentType } from "react";
 
-import { LIGHT_MODE_THEME } from "@/settings/app";
+import { LIGHT_MODE_THEME } from "@/settings/app/constants";
 import { Badge, Icon, useTheme } from "@mui/material";
 
 interface ActionIconProps {

@@ -6,13 +6,12 @@ import { PrivateRoute, PublicRoute } from "@/components/Layout/App/Routes";
 import { ErrorPage } from "@/pages/Error/ErrorPage";
 import { IndexPage } from "@/pages/IndexPage";
 import { Login, Register } from "@/pages/SignUp";
-import { appRoutes } from "@/settings/app";
 
 export const getRouter = (sidebarRoutes, gamesRoutes) => {
   return createBrowserRouter([
     {
       path: "/",
-      element: <AppLayout routes={appRoutes} />,
+      element: <AppLayout />,
       errorElement: <ErrorPage />,
       children: [
         {
