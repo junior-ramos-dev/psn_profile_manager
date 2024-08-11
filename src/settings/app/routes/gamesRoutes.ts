@@ -4,11 +4,6 @@ import { IGame, IGameRoute } from "@/models/interfaces";
 import { GameDetail } from "@/pages/Game";
 import { store } from "@/store";
 
-// Hook used to load games routes into initRouter.tsx
-const useGamesRouter = () => {
-  return createGamesRouteObjectList();
-};
-
 /**
  *  Generate IGameRoute list objects from IGame list
  */
@@ -54,9 +49,6 @@ const createGamesRouteObjectList = (): RouteObject[] => {
   const gameRouteObjectList: RouteObject[] = [];
 
   if (gamesRoutes) {
-    // Get the IRouteGame list
-    // gamesRoutesList = createIGameRoutesList(gamesList);
-
     // Iterate over the gamesRoutesParams to add the games list page routes
     gamesRoutes.forEach((gameRoute: IGameRoute) => {
       gameRouteObjectList.push(addGameRouteObject(gameRoute));
@@ -66,4 +58,4 @@ const createGamesRouteObjectList = (): RouteObject[] => {
   return gameRouteObjectList;
 };
 
-export { createIGameRoutesList, useGamesRouter };
+export { createGamesRouteObjectList, createIGameRoutesList };
