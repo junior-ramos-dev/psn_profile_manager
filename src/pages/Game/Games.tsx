@@ -40,9 +40,6 @@ export const Games = () => {
       >
         <GamesList />
       </div>
-      {/* <Box component="main" sx={{ flexGrow: 1, p: 1, pt: 10 }}>
-        <Outlet />
-      </Box> */}
     </>
   );
 };

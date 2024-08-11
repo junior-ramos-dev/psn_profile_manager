@@ -2,21 +2,24 @@ import { useState } from "react";
 import { RouterProvider } from "react-router-dom";
 
 import { useAppRouter } from "./settings/app/routes/appRoutes";
-import { useGamesRouter } from "./settings/app/routes/gamesRoutes";
+import { createGamesRouteObjectList } from "./settings/app/routes/gamesRoutes";
 import { getRouter } from "./initRouter";
 
 export const App = () => {
-  const [gamesRoutes, setGamesRoutes] = useState([]);
-
   const sidebarRoutes = useAppRouter();
+  const gamesRoutesObj = createGamesRouteObjectList();
 
-  setTimeout(() => {
-    if (!gamesRoutes.length) {
-      console.log("Loading games routes...");
+  const [gamesRoutes, setGamesRoutes] = useState(gamesRoutesObj);
 
-      setGamesRoutes(useGamesRouter());
-    }
-  }, 300);
+  if (!gamesRoutes.length) {
+    setTimeout(() => {
+      if (!gamesRoutes.length) {
+        console.log("Loading games routes...");
+
+        setGamesRoutes(createGamesRouteObjectList());
+      }
+    }, 300);
+  }
 
   const router = getRouter(sidebarRoutes, gamesRoutes);
 
