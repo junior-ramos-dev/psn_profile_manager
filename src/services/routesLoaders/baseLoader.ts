@@ -1,5 +1,5 @@
 import { AppDispatch, AppStore } from "@/store";
-import { getHttpResponseMessage } from "@/utils/http";
+
 export class BaseLoader {
   store: AppStore;
   dispatch: AppDispatch;
@@ -8,27 +8,29 @@ export class BaseLoader {
     this.dispatch = store.dispatch;
   }
 
-  loader = async (endpoint, request, query, queryOptions) => {
+  loader = async (endpointName, endpoint, request, query, queryOptions) => {
     const promise = this.dispatch(endpoint.initiate(query, queryOptions));
     if (request) request.signal.onabort = promise.abort;
     const res = await promise;
     const { data, isError, error } = res;
-    if (isError) {
+    if (isError && error.status !== 304) {
       const errorInfo = error;
-      if (errorInfo.status >= 200 && errorInfo.status <= 599) {
+      if (errorInfo.status >= 400 && errorInfo.status <= 599) {
         console.log(errorInfo.status);
         throw new Response("", {
           status: errorInfo.status,
-          statusText:
-            errorInfo.data?.message || getHttpResponseMessage(errorInfo.status),
+          statusText: errorInfo.data,
         });
-      } else {
-        console.log("503");
-        errorInfo.status = 503;
-        throw new Response("", {
-          status: errorInfo.status,
-          statusText: getHttpResponseMessage(errorInfo.status),
-        });
+      }
+    }
+    return this.handleResponseData(endpointName, data);
+  };
+
+  handleResponseData = (endpointName, data) => {
+    if (!data) {
+      switch (endpointName) {
+        case "getGameList":
+          return null;
       }
     }
     return data;

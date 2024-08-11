@@ -18,10 +18,12 @@ import PrivateIcon from "@material-ui/icons/LockOutlined";
 import SettingsIcon from "@material-ui/icons/SettingsOutlined";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 
-const gamesLoader = new GamesLoader(store);
+import { URL_ALIAS } from "../constants";
+
+const gamesLoader = new GamesLoader(store, 0);
 
 // Hook used to load app routes into initRouter.tsx
-export const useAppRouter = () => {
+const useAppRouter = () => {
   return createSidebarRouteObjectList();
 };
 
@@ -40,7 +42,7 @@ const addSideBarRouteObject = (route: IAppRoute): RouteObject => {
 /**
  *  Generate RouteObject list from IAppRoute list
  */
-export const createSidebarRouteObjectList = (): RouteObject[] => {
+const createSidebarRouteObjectList = (): RouteObject[] => {
   // List of RoutObject
   const sidebarRouteObjectList: RouteObject[] = [];
 
@@ -57,7 +59,7 @@ export const createSidebarRouteObjectList = (): RouteObject[] => {
 };
 
 // define app routes
-export const appRoutes: Array<IAppRoute> = [
+const appRoutes: Array<IAppRoute> = [
   {
     key: "router-home",
     title: "Home",
@@ -72,10 +74,10 @@ export const appRoutes: Array<IAppRoute> = [
     key: "router-game",
     title: "Games",
     tooltip: "Games",
-    path: "/games",
+    path: `/games/${URL_ALIAS.USER_ID}`,
     enabled: true,
     component: Games,
-    loader: gamesLoader.initListLoader,
+    loader: gamesLoader.listLoader,
     asset: SportsEsportsIcon,
     // appendDivider: true,
   },
@@ -136,3 +138,5 @@ export const appRoutes: Array<IAppRoute> = [
     appendDivider: true,
   },
 ];
+
+export { appRoutes, useAppRouter };
