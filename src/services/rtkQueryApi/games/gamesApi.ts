@@ -1,11 +1,12 @@
 import { ConvertIGame, IGame } from "@/models/interfaces";
 import { IGameIcon } from "@/models/interfaces/games/IGameIcon";
+import { createIGameRoutesList } from "@/settings/app/routes/gamesRoutes";
 import { store } from "@/store";
 import { VERBS } from "@/utils/http";
 
 import { rtkQueryBaseApi } from "../rtkQueryBaseApi";
 
-import { actionSetGamesList } from "./gamesSlice";
+import { actionSetGamesList, actionSetGamesRoutes } from "./gamesSlice";
 
 export const gamesApi = rtkQueryBaseApi.injectEndpoints({
   endpoints: (build) => ({
@@ -25,6 +26,10 @@ export const gamesApi = rtkQueryBaseApi.injectEndpoints({
         // Convert response to IGame list
         const gamesList = ConvertIGame.fromApiResponseToIGameList(response);
         store.dispatch(actionSetGamesList(gamesList));
+
+        // Get the IRouteGame list
+        const gamesRoutes = createIGameRoutesList(gamesList);
+        store.dispatch(actionSetGamesRoutes(gamesRoutes));
 
         return gamesList;
       },
