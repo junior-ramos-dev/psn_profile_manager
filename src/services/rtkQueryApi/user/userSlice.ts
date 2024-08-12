@@ -1,14 +1,25 @@
-import User from "@/models/classes/User";
+import { UserProfile } from "@/models/types/rtkQuery/user";
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  user: User,
+interface UserProfileInitialState {
+  userProfile: UserProfile;
+}
+
+const initialState: UserProfileInitialState = {
+  userProfile: null,
 };
 
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    actionSetUseProfile: (state, { payload }) => {
+      state.userProfile = payload;
+    },
+    actionUnsetUserProfile: (state) => {
+      state.userProfile = null;
+    },
+  },
 });
 
 export default userSlice.reducer;

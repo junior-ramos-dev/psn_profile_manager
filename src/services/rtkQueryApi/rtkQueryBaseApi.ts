@@ -6,7 +6,7 @@ export const rtkQueryBaseApi = createApi({
   baseQuery: axiosBaseQueryApi(),
   reducerPath: "rtkqReducer",
   //   tagTypes: Object.values(cacher.tags),
-  tagTypes: ["Auth", "Games"],
+  tagTypes: ["Auth", "User", "Games"],
   keepUnusedDataFor: 60 * 60,
   endpoints: () => ({}),
 });
