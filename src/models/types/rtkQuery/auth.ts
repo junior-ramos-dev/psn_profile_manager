@@ -1,22 +1,11 @@
-export type RegisterRequest = {
-  name: string;
-  email: string;
-  password: string;
-};
+import { IAuthUser } from "../../interfaces/auth/IAuthUser";
 
-export type RegisterResponse = {
-  id: string;
-  name: string;
-  email: string;
-};
+export type AuthUser = Omit<IAuthUser, "password">;
 
-export type LoginRequest = {
-  email: string;
-  password: string;
-};
+export type AuthRegisterRequest = Omit<IAuthUser, "id">;
 
-export type LoginResponse = {
-  id: string;
-  name: string;
-  email: string;
-};
+export type AuthRegisterResponse = Omit<IAuthUser, "password">;
+
+export type AuthLoginRequest = Omit<IAuthUser, "id" | "name">;
+
+export type AuthLoginResponse = Omit<IAuthUser, "password">;

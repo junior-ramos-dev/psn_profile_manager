@@ -1,17 +1,16 @@
 import {
-  LoginRequest,
-  LoginResponse,
-  RegisterRequest,
-  RegisterResponse,
+  AuthLoginRequest,
+  AuthLoginResponse,
+  AuthRegisterRequest,
+  AuthRegisterResponse,
 } from "@/models/types/rtkQuery/auth";
-import { UserProfileData } from "@/models/types/rtkQuery/user";
 import { VERBS } from "@/utils/http";
 
 import { rtkQueryBaseApi } from "../rtkQueryBaseApi";
 
 export const authApi = rtkQueryBaseApi.injectEndpoints({
   endpoints: (build) => ({
-    login: build.mutation<LoginResponse, LoginRequest>({
+    login: build.mutation<AuthLoginResponse, AuthLoginRequest>({
       query: ({ email, password }) => ({
         endpointUrl: "auth/login",
         method: VERBS.POST,
@@ -20,7 +19,7 @@ export const authApi = rtkQueryBaseApi.injectEndpoints({
         endpointName: "login",
       }),
     }),
-    register: build.mutation<RegisterResponse, RegisterRequest>({
+    register: build.mutation<AuthRegisterResponse, AuthRegisterRequest>({
       query: (data) => ({
         endpointUrl: "auth/register",
         method: VERBS.POST,
@@ -39,24 +38,9 @@ export const authApi = rtkQueryBaseApi.injectEndpoints({
       }),
       invalidatesTags: ["Auth"],
     }),
-    //TODO Move to users api
-    getUser: build.query<UserProfileData, string>({
-      query: (id) => ({
-        endpointUrl: "auth/users",
-        method: VERBS.GET,
-        urlParam: id,
-        collection: "Auth",
-        endpointName: "getUser",
-      }),
-      providesTags: (result, error, id) => [{ type: "Auth", id }],
-    }),
   }),
   overrideExisting: false,
 });
 
-export const {
-  useRegisterMutation,
-  useLoginMutation,
-  useLogoutMutation,
-  useGetUserQuery,
-} = authApi;
+export const { useRegisterMutation, useLoginMutation, useLogoutMutation } =
+  authApi;

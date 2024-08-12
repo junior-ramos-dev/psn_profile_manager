@@ -1,18 +1,14 @@
-import { UserBasicInfo } from "@/models/types/user";
+import { AuthUser } from "@/models/types/rtkQuery/auth";
 import { createSlice } from "@reduxjs/toolkit";
 
 interface IAuthInitialState {
-  user: UserBasicInfo;
+  user: AuthUser;
   token: string;
   isLoggedIn: boolean;
 }
 
 const initialState: IAuthInitialState = {
-  user: {
-    id: null,
-    name: null,
-    email: null,
-  },
+  user: null,
   token: null,
   isLoggedIn: false,
 };
