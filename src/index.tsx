@@ -26,7 +26,7 @@ root.render(
                   style-src 'self' https://fonts.googleapis.com https://unpkg.com https://localhost:8001 'unsafe-inline';
                   script-src 'self' https://fonts.googleapis.com https://unpkg.com 'unsafe-inline' 'unsafe-eval';
                   font-src 'self' data: https://fonts.gstatic.com https://unpkg.com;
-                  img-src 'self' https://image.api.playstation.com;"
+                  img-src 'self' data: https://image.api.playstation.com;"
         />
         <meta
           name="viewport"

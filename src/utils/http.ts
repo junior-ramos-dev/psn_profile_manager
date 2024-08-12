@@ -78,7 +78,7 @@ export const getHttpResponseMessage = (status) => {
     default:
       message = getStatusMessage(status, HTTP_STATUS_ERROR.UNKNOWN_ERROR);
   }
-  console.log(message);
+  // console.log(message);
   return message;
 };
 

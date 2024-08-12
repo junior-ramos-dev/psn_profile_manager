@@ -13,7 +13,7 @@ interface IRouteItem {
    * @memberof IRouteItem
    * @required
    * @example
-   * "dashboard"
+   * "router-dashboard"
    */
   key: string;
 
@@ -73,7 +73,7 @@ interface IRouteItem {
    * @memberof IRouteItem
    * @required
    * @example
-   * "<Dashboard />"
+   * "dashboard.loader"
    */
   loader?: LoaderFunction;
 
@@ -88,26 +88,14 @@ interface IRouteItem {
   props?: object;
 
   /**
-   * The status of the route
-   * @type {boolean}
-   * @memberof IRouteItem
-   * @required
-   * @example
-   * true
-   * @default
-   * true
-   */
-  enabled: boolean;
-
-  /**
    * The asset (image/icon) that illustrates the route
-   * @type {string}
+   * @type {ComponentType | object}
    * @memberof IRouteItem
    * @optional
    * @example
-   * DashboardIcon
+   * <DashboardIcon /> | dashboardIconData: {}
    */
-  asset?: ComponentType;
+  asset?: ComponentType | object;
 
   /**
    * The array of sub routes
@@ -120,16 +108,16 @@ interface IRouteItem {
   subRoutes?: IRouteItem[];
 
   /**
-   * The divider indicator for the route
+   * The status of the route
    * @type {boolean}
    * @memberof IRouteItem
-   * @optional
+   * @required
    * @example
    * true
    * @default
-   * false
+   * true
    */
-  appendDivider?: boolean;
+  enabled: boolean;
 
   /**
    * Indicate of menu item is expanded
@@ -142,6 +130,18 @@ interface IRouteItem {
    * false
    */
   expanded?: boolean;
+
+  /**
+   * The divider indicator for the route
+   * @type {boolean}
+   * @memberof IRouteItem
+   * @optional
+   * @example
+   * true
+   * @default
+   * false
+   */
+  appendDivider?: boolean;
 }
 
 export default IRouteItem;

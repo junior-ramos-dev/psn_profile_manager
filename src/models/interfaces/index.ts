@@ -2,8 +2,9 @@ import IGame from "./games/IGame";
 import IRouteItem from "./IRouteItem";
 import IUser from "./IUser";
 
-export type { IGame, IRouteItem, IUser };
-export type IAppRoute = IRouteItem;
-export type IGameRoute = IRouteItem;
+type IAppRoute = IRouteItem;
+type IGameRoute = IRouteItem;
+
+export type { IAppRoute, IGame, IGameRoute, IRouteItem, IUser };
 
 export { ConvertIGame } from "./games/IGame";

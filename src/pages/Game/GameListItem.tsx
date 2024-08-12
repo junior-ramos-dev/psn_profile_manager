@@ -1,13 +1,12 @@
 /** @jsxImportSource @emotion/react */
-// import { Image } from "mui-image";
+import { Image } from "mui-image";
 import { NavLink, useLocation } from "react-router-dom";
 
 import { IGameRoute } from "@/models/interfaces";
+import { IGameIcon } from "@/models/interfaces/games/IGameIcon";
 import { css } from "@emotion/react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import {
-  Icon,
   IconButton,
   lighten,
   ListItemButton,
@@ -19,6 +18,7 @@ import {
 
 interface IGameRouteItemProps {
   gameRoute: IGameRoute;
+  gameIcon: IGameIcon;
   nested?: boolean;
   hasChildren?: boolean;
   handleMenuClick?: (route: IGameRoute) => void;
@@ -27,6 +27,7 @@ interface IGameRouteItemProps {
 //TODO Edit list item details
 export const GameListItem = ({
   gameRoute,
+  gameIcon,
   nested = false,
   hasChildren = false,
   handleMenuClick = () => {},
@@ -64,18 +65,12 @@ export const GameListItem = ({
             transition: "box-shadow 0.1s";
           `}
         >
-          {/* const Example = ({ data }) => <img src={`data:image/jpeg;base64,${data}`} /> */}
-          {/* <Image
-            src={game.trophyTitleIconUrl}
-            width={50}
-            height={50}
+          {/* <img src={`data:image/png;base64,${icon}`} /> */}
+          <Image
+            src={`data:image/png;base64,${gameIcon.iconBinaryData}`}
+            width={60}
+            height={40}
             showLoading
-          /> */}
-          <Icon
-            component={SportsEsportsIcon}
-            css={css`
-              color: ${isSelected && theme.palette.primary.main};
-            `}
           />
         </IconButton>
       </ListItemIcon>

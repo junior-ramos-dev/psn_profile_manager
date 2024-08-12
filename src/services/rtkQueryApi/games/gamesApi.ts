@@ -1,5 +1,6 @@
 import { ConvertIGame, IGame } from "@/models/interfaces";
 import { IGameIcon } from "@/models/interfaces/games/IGameIcon";
+import { GameIconBinListRequest } from "@/models/types/rtkQuery/games";
 import { createIGameRoutesList } from "@/settings/app/routes/gamesRoutes";
 import { store } from "@/store";
 import { VERBS } from "@/utils/http";
@@ -37,7 +38,7 @@ export const gamesApi = rtkQueryBaseApi.injectEndpoints({
     }),
     getIconBinByGame: build.query<IGameIcon, string>({
       query: (npCommunicationId) => ({
-        endpointUrl: "games",
+        endpointUrl: "games/icon",
         method: VERBS.GET,
         urlParam: npCommunicationId,
         collection: "GamesIcons",
@@ -45,8 +46,21 @@ export const gamesApi = rtkQueryBaseApi.injectEndpoints({
       }),
       providesTags: ["Games"],
     }),
+    getIconBinByGameIds: build.mutation<IGameIcon[], GameIconBinListRequest>({
+      query: ({ npCommIdList }) => ({
+        endpointUrl: "games/icon/list",
+        method: VERBS.POST,
+        bodyData: { npCommIdList },
+        collection: "GamesIcons",
+        endpointName: "getIconBinByGameIds",
+      }),
+    }),
   }),
   overrideExisting: false,
 });
 
-export const { useGetGameListQuery } = gamesApi;
+export const {
+  useGetGameListQuery,
+  useGetIconBinByGameQuery,
+  useGetIconBinByGameIdsMutation,
+} = gamesApi;
