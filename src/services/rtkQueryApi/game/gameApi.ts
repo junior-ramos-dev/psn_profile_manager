@@ -7,15 +7,15 @@ import { VERBS } from "@/utils/http";
 
 import { rtkQueryBaseApi } from "../rtkQueryBaseApi";
 
-import { actionSetGamesList, actionSetGamesRoutes } from "./gamesSlice";
+import { actionSetGamesList, actionSetGamesRoutes } from "./gameSlice";
 
-export const gamesApi = rtkQueryBaseApi.injectEndpoints({
+export const gameApi = rtkQueryBaseApi.injectEndpoints({
   endpoints: (build) => ({
     getGameList: build.query<IGame[], string>({
       query: (userId) => ({
-        endpointUrl: "games",
-        method: VERBS.GET,
-        urlParam: userId,
+        endpointUrl: `game/${userId}/list`,
+        method: VERBS.LIST,
+        // urlParam: userId,
         collection: "Games",
         endpointName: "getGameList",
         headers: {
@@ -34,21 +34,21 @@ export const gamesApi = rtkQueryBaseApi.injectEndpoints({
 
         return gamesList;
       },
-      providesTags: ["Games"],
+      providesTags: ["Game"],
     }),
     getIconBinByGame: build.query<IGameIcon, string>({
       query: (npCommunicationId) => ({
-        endpointUrl: "games/icon",
+        endpointUrl: "game/icon",
         method: VERBS.GET,
         urlParam: npCommunicationId,
         collection: "GamesIcons",
         endpointName: "getIconBinByGame",
       }),
-      providesTags: ["Games"],
+      providesTags: ["Game"],
     }),
     getIconBinByGameIds: build.mutation<IGameIcon[], GameIconBinListRequest>({
       query: ({ npCommIdList }) => ({
-        endpointUrl: "games/icon/list",
+        endpointUrl: "game/icon/list",
         method: VERBS.POST,
         bodyData: { npCommIdList },
         collection: "GamesIcons",
@@ -63,4 +63,4 @@ export const {
   useGetGameListQuery,
   useGetIconBinByGameQuery,
   useGetIconBinByGameIdsMutation,
-} = gamesApi;
+} = gameApi;

@@ -11,8 +11,8 @@ const initialState: IGamesInitialState = {
   gamesRoutes: null,
 };
 
-const gamesSlice = createSlice({
-  name: "games",
+const gameSlice = createSlice({
+  name: "game",
   initialState,
   reducers: {
     actionSetGamesList: (state, { payload }) => {
@@ -24,6 +24,6 @@ const gamesSlice = createSlice({
   },
 });
 
-export const { actionSetGamesList, actionSetGamesRoutes } = gamesSlice.actions;
+export const { actionSetGamesList, actionSetGamesRoutes } = gameSlice.actions;
 
-export default gamesSlice.reducer;
+export default gameSlice.reducer;

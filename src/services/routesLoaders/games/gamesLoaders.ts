@@ -1,5 +1,5 @@
 import { BaseLoader } from "@/services/routesLoaders/baseLoader";
-import { gamesApi } from "@/services/rtkQueryApi/games/gamesApi";
+import { gameApi } from "@/services/rtkQueryApi/game/gameApi";
 import { AppStore } from "@/store";
 
 export class GamesLoader extends BaseLoader {
@@ -21,7 +21,7 @@ export class GamesLoader extends BaseLoader {
 
       return await this.loader(
         "getGameList",
-        gamesApi.endpoints.getGameList,
+        gameApi.endpoints.getGameList,
         request,
         params.userId,
         {}
@@ -37,7 +37,7 @@ export class GamesLoader extends BaseLoader {
 
   //   if (serverUp && authUser.id) {
   //     const promise = this.dispatch(
-  //       gamesApi.endpoints.getGameList.initiate(authUser.id)
+  //       gameApi.endpoints.getGameList.initiate(authUser.id)
   //     );
   //     try {
   //       // wait for data to be there
@@ -45,7 +45,7 @@ export class GamesLoader extends BaseLoader {
   //       if (!response.isError) {
   //         return response.data as IGame[];
   //       } else {
-  //         return this.store.getState().games.gamesList as IGame[];
+  //         return this.store.getState().game.gamesList as IGame[];
   //       }
   //     } catch (error) {
   //       console.log(error);
@@ -54,7 +54,7 @@ export class GamesLoader extends BaseLoader {
   //     }
   //   } else {
   //     //If server is offline retrieve data persisted on localstorage;
-  //     return this.store.getState().games.gamesList as IGame[];
+  //     return this.store.getState().game.gamesList as IGame[];
   //   }
   // };
 }

@@ -30,7 +30,7 @@ export const SidebarList = () => {
     <>
       <List component="nav" sx={{ height: "100%", mt: -1 }}>
         {sidebarListState.map((route: IRouteItem) => {
-          if (route.path)
+          if (route.path && authUser)
             route.path = StringUtils.replaceSubstring(
               route.path,
               URL_ALIAS.USER_ID,

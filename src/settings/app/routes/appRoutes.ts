@@ -74,7 +74,7 @@ const appRoutes: Array<IAppRoute> = [
     key: "router-game",
     title: "Games",
     tooltip: "Games",
-    path: `/games/${URL_ALIAS.USER_ID}`,
+    path: `/game/${URL_ALIAS.USER_ID}/list`,
     enabled: true,
     component: Games,
     loader: gamesLoader.listLoader,

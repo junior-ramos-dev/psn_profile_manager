@@ -41,8 +41,8 @@ export const Login = () => {
             dispatch(actionSetCredentials(data));
             authUser = data;
           });
-        console.log("navigate(`/games/${authUser.id}`);");
-        navigate(`/games/${authUser.id}`);
+        console.log("navigate(`/game/${authUser.id}/list`);");
+        navigate(`/game/${authUser.id}/list`);
       } catch (e) {
         console.error(e);
       }

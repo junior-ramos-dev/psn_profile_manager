@@ -41,7 +41,7 @@ export const getRouter = (sidebarRoutes, gamesRoutes) => {
             // loader: gamesLoader.initGamesListLoader,
             // loader: async () => {
             //   const p = store.dispatch(
-            //     gamesApi.endpoints.getGameList({request: "/6690ec7a1b9af84a84b0b425"})
+            //     gameApi.endpoints.getGameList({request: "/6690ec7a1b9af84a84b0b425"})
             //   );
 
             //   const response = await p.unwrap();

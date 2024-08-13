@@ -15,7 +15,7 @@ const createIGameRoutesList = (gamesList: IGame[]): IGameRoute[] => {
       key: game.npCommunicationId,
       title: game.trophyTitleName,
       tooltip: game.trophyTitleName,
-      path: "/games/" + game.npCommunicationId,
+      path: "/game/" + game.npCommunicationId,
       enabled: true,
       appendDivider: true,
       expanded: false,
@@ -42,7 +42,7 @@ const addGameRouteObject = (gameRoute: IGameRoute): RouteObject => {
  *  Generate RouteObject list from IGameRoute list
  */
 const createGamesRouteObjectList = (): RouteObject[] => {
-  const gamesRoutes = store.getState().games.gamesRoutes;
+  const gamesRoutes = store.getState().game.gamesRoutes;
   // let gamesRoutesList = [];
 
   // List of RoutObject

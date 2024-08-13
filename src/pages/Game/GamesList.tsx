@@ -5,8 +5,8 @@ import { useSelector } from "react-redux";
 import { Loading } from "@/components/Loading";
 import { IGameRoute } from "@/models/interfaces";
 import { IGameIcon } from "@/models/interfaces/games/IGameIcon";
-import { useGetIconBinByGameIdsMutation } from "@/services/rtkQueryApi/games/gamesApi";
-import { selectGamesRoutes } from "@/services/rtkQueryApi/games/gamesSelectors";
+import { useGetIconBinByGameIdsMutation } from "@/services/rtkQueryApi/game/gameApi";
+import { selectGamesRoutes } from "@/services/rtkQueryApi/game/gameSelectors";
 import { Divider, List } from "@mui/material";
 
 import { GameListItem } from "./GameListItem";

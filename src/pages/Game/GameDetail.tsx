@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import { stringify } from "json-stable-stringify";
 import { Helmet } from "react-helmet-async";
 import { useSelector } from "react-redux";
 
@@ -8,7 +7,7 @@ import { IGame } from "@/models/interfaces";
 import {
   selectGameById,
   selectGamesList,
-} from "@/services/rtkQueryApi/games/gamesSelectors";
+} from "@/services/rtkQueryApi/game/gameSelectors";
 import { APP_TITLE, PAGE_TITLE_GAMES } from "@/settings/app/constants";
 import { Box } from "@mui/material";
 
@@ -17,6 +16,7 @@ interface RoutesChildrenProps {
 }
 
 export const GameDetail = ({ gameId }: RoutesChildrenProps) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const gamesList = useSelector(selectGamesList);
   const game: IGame = useSelector((gamesList) =>
     selectGameById(gamesList, gameId)

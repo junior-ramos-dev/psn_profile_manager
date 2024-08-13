@@ -16,7 +16,7 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 
 import { axiosBaseQueryApi } from "./services/axios/axiosBaseQueryApi";
 import authReducer from "./services/rtkQueryApi/auth/authSlice";
-import gamesReducer from "./services/rtkQueryApi/games/gamesSlice";
+import gameReducer from "./services/rtkQueryApi/game/gameSlice";
 import { rtkQueryBaseApi } from "./services/rtkQueryApi/rtkQueryBaseApi";
 
 const authPersistConfig = {
@@ -25,8 +25,8 @@ const authPersistConfig = {
   // whitelist: ["token"],
 };
 
-const gamesPersistConfig = {
-  key: "games",
+const gamePersistConfig = {
+  key: "game",
   storage,
   // whitelist: ["token"],
 };
@@ -34,7 +34,7 @@ const gamesPersistConfig = {
 const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
-    games: persistReducer(gamesPersistConfig, gamesReducer),
+    game: persistReducer(gamePersistConfig, gameReducer),
     [rtkQueryBaseApi.reducerPath]: rtkQueryBaseApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
@@ -60,13 +60,13 @@ setupListeners(store.dispatch);
 //     // auth: authReducer,
 //     user: userReducer,
 //     [authApi.reducerPath]: authApi.reducer,
-//     [gamesApi.reducerPath]: gamesApi.reducer,
+//     [gameApi.reducerPath]: gameApi.reducer,
 //   },
 
 //   middleware: (getDefaultMiddleware) =>
 //     getDefaultMiddleware()
 //       .concat(authApi.middleware)
-//       .concat(gamesApi.middleware),
+//       .concat(gameApi.middleware),
 //   devTools: process.env.NODE_ENV !== "production",
 // });
 
