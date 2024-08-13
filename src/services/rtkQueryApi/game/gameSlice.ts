@@ -1,12 +1,12 @@
 import { IGame, IGameRoute } from "@/models/interfaces";
 import { createSlice } from "@reduxjs/toolkit";
 
-export interface IGamesInitialState {
+export interface IGameInitialState {
   gamesList: IGame[];
   gamesRoutes: IGameRoute[];
 }
 
-const initialState: IGamesInitialState = {
+const initialState: IGameInitialState = {
   gamesList: null,
   gamesRoutes: null,
 };
