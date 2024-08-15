@@ -3,24 +3,55 @@ import { Helmet } from "react-helmet-async";
 import { useSelector } from "react-redux";
 
 import { PageHeader } from "@/components/DefaultPage/PageHeader";
+import { Loading } from "@/components/Loading";
 import { IGame } from "@/models/interfaces";
+import { getAuthUser } from "@/services/rtkQueryApi/auth/authSelectors";
 import {
   selectGameById,
   selectGamesList,
 } from "@/services/rtkQueryApi/game/gameSelectors";
+import { useGetTrophyListQuery } from "@/services/rtkQueryApi/trophy/trophyApi";
 import { APP_TITLE, PAGE_TITLE_GAMES } from "@/settings/app/constants";
-import { Box } from "@mui/material";
+import { Box, Divider } from "@mui/material";
 
 interface RoutesChildrenProps {
   gameId: string;
 }
 
 export const GameDetail = ({ gameId }: RoutesChildrenProps) => {
+  const authUser = useSelector(getAuthUser);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const gamesList = useSelector(selectGamesList);
   const game: IGame = useSelector((gamesList) =>
     selectGameById(gamesList, gameId)
   );
+
+  const userId = authUser.id;
+  const trophyTitlePlatform = game.trophyTitlePlatform;
+  const npCommunicationId = game.npCommunicationId;
+
+  // console.log(userId, trophyTitlePlatform, npCommunicationId);
+
+  // const { data, isLoading /* isError, isSuccess */ } = useGetGameListQuery(
+  //   authUser.id,
+  //   {
+  //     pollingInterval: 60 * 60 * 1000 * 2, //(60 * 60 * 1000 * 2) = 2h
+  //     // refetchOnFocus: true,
+  //     refetchOnMountOrArgChange: true,
+  //     skip: false,
+  //   }
+  // );
+
+  const { data: trophyList, isLoading /* isError, isSuccess   */ } =
+    useGetTrophyListQuery(
+      { userId, trophyTitlePlatform, npCommunicationId },
+      {
+        pollingInterval: 60 * 60 * 1000 * 2, //(60 * 60 * 1000 * 2) = 2h
+        // refetchOnFocus: true,
+        refetchOnMountOrArgChange: true,
+        skip: false,
+      }
+    );
 
   return (
     <>
@@ -37,6 +68,21 @@ export const GameDetail = ({ gameId }: RoutesChildrenProps) => {
         <h2>Games Detail</h2>
         <div>{gameId}</div>
         <div>{JSON.stringify(game)}</div>
+        <Divider />
+        {isLoading ? (
+          <div>
+            {" "}
+            <Loading />
+          </div>
+        ) : (
+          <div>
+            <ul>
+              {trophyList.trophies.map((trophy) => (
+                <li key={trophy.trophyId}>{trophy.trophyName}</li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </>
   );

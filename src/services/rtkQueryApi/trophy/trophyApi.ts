@@ -22,8 +22,12 @@ export const trophyApi = rtkQueryBaseApi.injectEndpoints({
         collection: "GameTrophies",
         endpointName: "getTrophyList",
         headers: {
-          ETag: localStorage.getItem("getTrophyList:etag") ?? "",
-          "if-none-match": localStorage.getItem("getTrophyList:etag") ?? "",
+          ETag:
+            localStorage.getItem(`getTrophyList:${npCommunicationId}:etag`) ??
+            "",
+          "if-none-match":
+            localStorage.getItem(`getTrophyList:${npCommunicationId}:etag`) ??
+            "",
         },
       }),
       transformResponse: (response) => {
