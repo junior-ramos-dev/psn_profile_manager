@@ -15,7 +15,7 @@ interface IGameRouteWithIcon extends IGameRoute {
   gameIcon: IGameIcon;
 }
 
-export const GamesList = () => {
+export const GameList = () => {
   const gamesRoutes = useSelector(selectGamesRoutes);
   const [gameRouteWithIconList, setGameRouteWithIconList] = useState([]);
 

@@ -10,7 +10,7 @@ import {
 } from "@/settings/app/constants";
 import { Box } from "@mui/material";
 
-import { GamesList } from "./GamesList";
+import { GameList } from "./GameList";
 
 //TODO Create component SearchGames
 export const Games = () => {
@@ -38,7 +38,7 @@ export const Games = () => {
           // boxSizing: "border-box",
         }}
       >
-        <GamesList />
+        <GameList />
       </div>
     </>
   );
