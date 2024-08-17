@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-
 import { Helmet } from "react-helmet-async";
 
 import { PageHeader } from "@/components/DefaultPage/PageHeader";

@@ -14,6 +14,8 @@ import { useGetTrophyListQuery } from "@/services/rtkQueryApi/trophy/trophyApi";
 import { APP_TITLE, PAGE_TITLE_GAMES } from "@/settings/app/constants";
 import { Box, Divider } from "@mui/material";
 
+import { TrophyList } from "../Trophy/TrophyList";
+
 interface RoutesChildrenProps {
   gameId: string;
 }
@@ -29,18 +31,6 @@ export const GameDetail = ({ gameId }: RoutesChildrenProps) => {
   const userId = authUser.id;
   const trophyTitlePlatform = game.trophyTitlePlatform;
   const npCommunicationId = game.npCommunicationId;
-
-  // console.log(userId, trophyTitlePlatform, npCommunicationId);
-
-  // const { data, isLoading /* isError, isSuccess */ } = useGetGameListQuery(
-  //   authUser.id,
-  //   {
-  //     pollingInterval: 60 * 60 * 1000 * 2, //(60 * 60 * 1000 * 2) = 2h
-  //     // refetchOnFocus: true,
-  //     refetchOnMountOrArgChange: true,
-  //     skip: false,
-  //   }
-  // );
 
   const { data: trophyList, isLoading /* isError, isSuccess   */ } =
     useGetTrophyListQuery(
@@ -70,17 +60,14 @@ export const GameDetail = ({ gameId }: RoutesChildrenProps) => {
         <div>{JSON.stringify(game)}</div>
         <Divider />
         {isLoading ? (
-          <div>
-            {" "}
-            <Loading />
-          </div>
+          <Loading />
         ) : (
           <div>
-            <ul>
-              {trophyList.trophies.map((trophy) => (
-                <li key={trophy.trophyId}>{trophy.trophyName}</li>
-              ))}
-            </ul>
+            TrophyList
+            {/* {trophyList.npCommunicationId}
+            {trophyList.npCommunicationId}
+            {trophyList.trophies[0].trophyName} */}
+            <TrophyList trophyList={trophyList} />
           </div>
         )}
       </div>

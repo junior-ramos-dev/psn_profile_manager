@@ -3,7 +3,6 @@ import { Image } from "mui-image";
 import { NavLink, useLocation } from "react-router-dom";
 
 import { ITrophyRoute } from "@/models/interfaces";
-// import { ITrophyIcon } from "@/models/interfaces/trophy/ITrophyIcon";
 import { css } from "@emotion/react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import {
@@ -18,7 +17,6 @@ import {
 
 interface ITrophyRouteItemProps {
   trophyRoute: ITrophyRoute;
-  // trophyIcon: ITrophyIcon;
   nested?: boolean;
   hasChildren?: boolean;
   handleMenuClick?: (route: ITrophyRoute) => void;
@@ -27,7 +25,6 @@ interface ITrophyRouteItemProps {
 //TODO Edit list item details
 export const TrophyListItem = ({
   trophyRoute,
-  // trophyIcon,
   nested = false,
   hasChildren = false,
   handleMenuClick = () => {},

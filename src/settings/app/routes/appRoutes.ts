@@ -1,10 +1,7 @@
-// icons
-// interface
 import { RouteObject } from "react-router-dom";
 
 import { IAppRoute } from "@/models/interfaces";
 import { Games } from "@/pages/Game";
-// pages
 import Home from "@/pages/Home";
 import { IndexPage } from "@/pages/IndexPage";
 import { GamesLoader } from "@/services/routesLoaders/games/gamesLoaders";
