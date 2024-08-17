@@ -3,10 +3,10 @@ import { IGame, IGameRoute } from "@/models/interfaces";
 /**
  *  Generate IGameRoute list objects from IGame list
  */
-const createIGameRoutesList = (gamesList: IGame[]): IGameRoute[] => {
+const createIGameRoutesList = (gameList: IGame[]): IGameRoute[] => {
   const iGamesRoutesList = new Array<IGameRoute>();
 
-  gamesList.forEach((game) => {
+  gameList.forEach((game) => {
     const gameRoute: IGameRoute = {
       key: game.npCommunicationId,
       title: game.trophyTitleName,

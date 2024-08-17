@@ -1,2 +1,2 @@
 export { appRoutes, useAppRouter } from "./appRoutes";
-export { createIGameRoutesList } from "./gamesRoutes";
+export { createIGameRoutesList } from "./gameRoutes";
