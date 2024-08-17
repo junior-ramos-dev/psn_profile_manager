@@ -1,4 +1,4 @@
-import { IAuthUser } from "./auth/IAuthUser";
+import { IAuthUser } from "../auth/IAuthUser";
 
 /**
  * Represents a user.

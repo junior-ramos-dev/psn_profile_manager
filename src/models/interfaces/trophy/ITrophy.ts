@@ -1,4 +1,4 @@
-export interface ITrophy {
+interface ITrophy {
   trophyId: number;
   trophyHidden: boolean;
   isEarned: boolean | undefined;
@@ -20,3 +20,5 @@ export interface ITrophyList {
   npCommunicationId: string;
   trophies: ITrophy[];
 }
+
+export default ITrophy;
