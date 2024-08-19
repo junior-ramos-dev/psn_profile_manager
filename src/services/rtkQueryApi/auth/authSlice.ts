@@ -23,7 +23,7 @@ export const authSlice = createSlice({
       state.isLoggedIn = true;
     },
     actionUnsetCredentials: (state) => {
-      state.user = { id: null, name: null, email: null };
+      state.user = { id: null, psnUsername: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
     },

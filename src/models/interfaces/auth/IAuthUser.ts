@@ -11,15 +11,15 @@ export interface IAuthUser {
   id: string;
 
   /**
-   * The user's name
+   * The PSN usersname
    * @type {string}
    * @memberof IAuthUser
    * @property name
    * @required
    * @example
-   * "John Smith"
+   * "JohnSmith"
    */
-  name: string;
+  psnUsername: string;
 
   /**
    * The user's email address

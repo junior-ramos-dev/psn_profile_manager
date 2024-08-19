@@ -1,3 +1,5 @@
+import { AxiosError } from "axios";
+
 import { getHttpResponseMessage, VERBS } from "@/utils/http";
 
 import {
@@ -12,6 +14,12 @@ import {
   updatePut,
 } from "./axiosApiConfig";
 import { IEndpointHeaders, setRequestHeaders } from "./axiosInterceptors";
+
+export interface IAxiosApiError {
+  status: number;
+  data: AxiosError<Response>;
+  message: string;
+}
 
 export const axiosApiRepository = async (
   collection: string,
@@ -81,15 +89,16 @@ export const axiosApiRepository = async (
       }
     }
   } catch (axiosError) {
-    const err = axiosError;
+    const error: IAxiosApiError = {
+      status: axiosError.response?.status,
+      data: axiosError.response?.data,
+      message:
+        axiosError.message ||
+        getHttpResponseMessage(axiosError.response?.status),
+    };
 
     return {
-      error: {
-        status: err.response?.status,
-        data:
-          err.response?.data || getHttpResponseMessage(err.response?.status),
-        // data: err.response?.data || err.message,
-      },
+      error,
     };
   }
 };

@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+import { Loading } from "@/components/Loading";
 import { useAppDispatch } from "@/hooks/redux";
 import { useRegisterMutation } from "@/services/rtkQueryApi/auth/authApi";
 import { actionSetCredentials } from "@/services/rtkQueryApi/auth/authSlice";
@@ -21,35 +22,36 @@ import {
 export const Register = () => {
   const dispatch = useAppDispatch();
 
-  const [name, setName] = useState("");
+  const [psnUsername, setPsnUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [register] = useRegisterMutation();
-  // const [register, { isLoading, isError, isSuccess, data }] =
-  //   useRegisterMutation();
+  // const [register] = useRegisterMutation();
+  const [register, { isLoading, isError, error }] = useRegisterMutation();
 
   const handleRegister = async () => {
     // This is only a basic validation of inputs. Improve this as needed.
-    if (name && email && password) {
+    if (psnUsername && email && password) {
       try {
-        const result = await register({
-          name,
+        await register({
+          psnUsername,
           email,
           password,
-        });
-        // .unwrap()
-        // .then((data) => console.log(data));
-        if (result.data) {
-          dispatch(actionSetCredentials(result.data));
-        }
+        })
+          .unwrap()
+          .then((data) => {
+            const authUser = data;
+            dispatch(actionSetCredentials(authUser));
+          });
       } catch (e) {
         console.error(e);
       }
     } else {
-      // Show an error message.
+      //TODO Show an error message.
     }
   };
+
+  if (isLoading) return <Loading />;
 
   return (
     <Container maxWidth="xs">
@@ -66,18 +68,29 @@ export const Register = () => {
           <LockOutlined />
         </Avatar>
         <Typography variant="h5">Register</Typography>
+        {isError && "data" in error ? (
+          <Typography
+            variant="subtitle2"
+            sx={{ mt: 4, fontStyle: "italic" }}
+            color={"error"}
+          >
+            {error.data.message}
+          </Typography>
+        ) : (
+          <></>
+        )}
         <Box sx={{ mt: 3 }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
-                name="name"
+                name="psnUsername"
                 required
                 fullWidth
-                id="name"
-                label="Name"
+                id="psnUsername"
+                label="PSN Username"
                 autoFocus
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={psnUsername}
+                onChange={(e) => setPsnUsername(e.target.value)}
               />
             </Grid>
 
