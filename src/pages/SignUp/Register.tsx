@@ -26,7 +26,6 @@ export const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // const [register] = useRegisterMutation();
   const [register, { isLoading, isError, error }] = useRegisterMutation();
 
   const handleRegister = async () => {

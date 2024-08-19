@@ -17,8 +17,6 @@ interface ITrophyTrophyListProps {
 const createITrophyRoutesList = (trophyList: ITrophyList): ITrophyRoute[] => {
   const iTrophyRoutesList = new Array<ITrophyRoute>();
 
-  console.log(trophyList.trophies[0].trophyName);
-
   trophyList.trophies.forEach((trophy) => {
     const trophyRoute: ITrophyRoute = {
       key: `${trophyList.npCommunicationId}-${trophy.trophyId}`,

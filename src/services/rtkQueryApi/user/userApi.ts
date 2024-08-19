@@ -11,7 +11,7 @@ export const userApi = rtkQueryBaseApi.injectEndpoints({
         method: VERBS.GET,
         urlParam: id,
         collection: "User",
-        endpointName: "getUser",
+        endpointName: "getUserProfile",
       }),
       providesTags: (result, error, id) => [{ type: "User", id }],
     }),
