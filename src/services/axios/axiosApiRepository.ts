@@ -1,19 +1,18 @@
-import { AxiosError } from "axios";
+import { AxiosError, AxiosHeaders } from "axios";
 
 import { getHttpResponseMessage, VERBS } from "@/utils/http";
 
 import {
-  axiosInstance,
   deleteOne,
   getList,
   getOne,
+  IEndpointHeaders,
   isServerUp,
   logApiRequest,
   post,
   updatePatch,
   updatePut,
 } from "./axiosApiConfig";
-import { IEndpointHeaders, setRequestHeaders } from "./axiosInterceptors";
 
 export interface IAxiosApiError {
   status: number;
@@ -26,7 +25,7 @@ export const axiosApiRepository = async (
   endpointName: string,
   endpointUrl: string,
   method: VERBS,
-  headers?: object,
+  headers?: AxiosHeaders,
   urlParam?: string,
   bodyData?: object
 ) => {
@@ -43,8 +42,6 @@ export const axiosApiRepository = async (
           endpointName,
           headers,
         };
-
-        setRequestHeaders(axiosInstance, headers);
       }
 
       // Use the corresponding method defined for the endpoint

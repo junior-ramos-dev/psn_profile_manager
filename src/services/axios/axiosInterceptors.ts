@@ -1,12 +1,15 @@
-import { AxiosInstance, AxiosResponse } from "axios";
+import {
+  AxiosInstance,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from "axios";
 import _ from "lodash";
 
 import { getEnpointHeaderKey, getHttpResponseMessage } from "@/utils/http";
 
-export interface IEndpointHeaders {
-  endpointName: string;
-  headers: object;
-}
+import { AUTH_ENDPOINT_NAME } from "../rtkQueryApi/auth";
+
+import { IEndpointHeaders } from "./axiosApiConfig";
 
 // Transform the data from the api response
 export const transformResponse = (
@@ -15,13 +18,14 @@ export const transformResponse = (
 ) => {
   if (endpointHeaders) {
     getResponseHeaders(response, endpointHeaders);
+    clearEndpointHeaders(endpointHeaders);
   }
   console.log(getHttpResponseMessage(response.status));
   return response.data;
 };
 
 // Get the headers from the specific endpoint response and saves on localStorge
-export const getResponseHeaders = (
+const getResponseHeaders = (
   response: AxiosResponse,
   endpointHeaders: IEndpointHeaders
 ) => {
@@ -40,16 +44,37 @@ export const getResponseHeaders = (
   });
 };
 
+// Clear the headers for an endpoint
+const clearEndpointHeaders = (endpointHeaders: IEndpointHeaders) => {
+  endpointHeaders.endpointName = undefined;
+  endpointHeaders.headers = undefined;
+};
+
 // Set the headers for the specific endpoint
 export const setRequestHeaders = (
   axiosInstance: AxiosInstance,
-  headers: object
+  endpointHeaders: IEndpointHeaders
 ) => {
   const interceptorRequest = axiosInstance.interceptors.request;
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  interceptorRequest.use((req: any) => {
-    req.headers = headers;
-    return req;
-  });
+  interceptorRequest.use(
+    (req: InternalAxiosRequestConfig<object>) => {
+      if (
+        req.url.includes(
+          AUTH_ENDPOINT_NAME.LOGIN || AUTH_ENDPOINT_NAME.REGISTER
+        )
+      ) {
+        req.headers["authorization"] = `Bearer ${process.env.PSN_NPSSO}`;
+        console.log(req.url);
+        console.log(req.headers["authorization"]);
+      } else {
+        req.headers = endpointHeaders.headers;
+      }
+
+      return req;
+    },
+    (error) => {
+      return Promise.reject(new Error(error));
+    }
+  );
 };

@@ -1,6 +1,12 @@
-import axios from "axios";
+import axios, { AxiosHeaders } from "axios";
+import qs from "qs";
 
-import { IEndpointHeaders, transformResponse } from "./axiosInterceptors";
+import { setRequestHeaders, transformResponse } from "./axiosInterceptors";
+
+export interface IEndpointHeaders {
+  endpointName: string;
+  headers: AxiosHeaders;
+}
 
 const BASE_URL = process.env.API_BASE_URL;
 
@@ -17,6 +23,8 @@ export const getOne = async (
   urlParam: string,
   endpointHeaders: IEndpointHeaders
 ) => {
+  if (endpointHeaders) setRequestHeaders(axiosInstance, endpointHeaders);
+
   return await axiosInstance
     .get(`${BASE_URL}/${endpointUrl}/${urlParam}`)
     .then((res) => transformResponse(res, endpointHeaders));
@@ -26,6 +34,8 @@ export const getList = async (
   endpointUrl: string,
   endpointHeaders: IEndpointHeaders
 ) => {
+  if (endpointHeaders) setRequestHeaders(axiosInstance, endpointHeaders);
+
   return await axiosInstance
     .get(`${BASE_URL}/${endpointUrl}/`)
     .then((res) => transformResponse(res, endpointHeaders));
@@ -36,8 +46,10 @@ export const post = async (
   bodyData: object,
   endpointHeaders: IEndpointHeaders
 ) => {
+  if (endpointHeaders) setRequestHeaders(axiosInstance, endpointHeaders);
+
   return await axiosInstance
-    .post(`${BASE_URL}/${endpointUrl}/`, bodyData)
+    .post(`${BASE_URL}/${endpointUrl}/`, qs.stringify(bodyData))
     .then((res) => transformResponse(res, endpointHeaders));
 };
 
@@ -47,6 +59,8 @@ export const updatePut = async (
   bodyData: object,
   endpointHeaders: IEndpointHeaders
 ) => {
+  if (endpointHeaders) setRequestHeaders(axiosInstance, endpointHeaders);
+
   return await axiosInstance
     .put(`${BASE_URL}/${endpointUrl}/${urlParam}`, bodyData)
     .then((res) => transformResponse(res, endpointHeaders));
@@ -58,6 +72,8 @@ export const updatePatch = async (
   bodyData: object,
   endpointHeaders: IEndpointHeaders
 ) => {
+  if (endpointHeaders) setRequestHeaders(axiosInstance, endpointHeaders);
+
   return await axiosInstance
     .patch(`${BASE_URL}/${endpointUrl}/${urlParam}`, bodyData)
     .then((res) => transformResponse(res, endpointHeaders));
@@ -68,6 +84,8 @@ export const deleteOne = async (
   urlParam: string,
   endpointHeaders: IEndpointHeaders
 ) => {
+  if (endpointHeaders) setRequestHeaders(axiosInstance, endpointHeaders);
+
   return await axiosInstance
     .delete(`${BASE_URL}/${endpointUrl}/${urlParam}`)
     .then((res) => transformResponse(res, endpointHeaders));
@@ -77,12 +95,9 @@ export const isServerUp = async () => {
   let serverUp: boolean = false;
 
   try {
-    const result = await axiosInstance({
-      url: BASE_URL + "/status",
-      method: "GET",
-    });
+    const result = await axiosInstance.get(`${BASE_URL}/status`);
 
-    if (result.status == 200) serverUp = true;
+    serverUp = result.status == 200;
 
     console.log(`SERVER UP [BASE_URL: ${BASE_URL}]`);
 
