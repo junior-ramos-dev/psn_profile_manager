@@ -22,7 +22,7 @@ import {
 export const Register = () => {
   const dispatch = useAppDispatch();
 
-  const [psnUsername, setPsnUsername] = useState("");
+  const [psnOnlineId, setPsnOnlineId] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -30,10 +30,10 @@ export const Register = () => {
 
   const handleRegister = async () => {
     // This is only a basic validation of inputs. Improve this as needed.
-    if (psnUsername && email && password) {
+    if (psnOnlineId && email && password) {
       try {
         await register({
-          psnUsername,
+          psnOnlineId,
           email,
           password,
         })
@@ -82,14 +82,14 @@ export const Register = () => {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
-                name="psnUsername"
+                name="psnOnlineId"
                 required
                 fullWidth
-                id="psnUsername"
+                id="psnOnlineId"
                 label="PSN Username"
                 autoFocus
-                value={psnUsername}
-                onChange={(e) => setPsnUsername(e.target.value)}
+                value={psnOnlineId}
+                onChange={(e) => setPsnOnlineId(e.target.value)}
               />
             </Grid>
 

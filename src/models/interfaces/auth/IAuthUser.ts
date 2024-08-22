@@ -19,7 +19,7 @@ export interface IAuthUser {
    * @example
    * "JohnSmith"
    */
-  psnUsername: string;
+  psnOnlineId: string;
 
   /**
    * The user's email address

@@ -20,7 +20,7 @@ export const authSlice = createSlice({
       state.isLoggedIn = true;
     },
     actionUnsetCredentials: (state) => {
-      state.user = { id: null, psnUsername: null, email: null };
+      state.user = { id: null, psnOnlineId: null, email: null };
       state.isLoggedIn = false;
     },
     actionRefreshCredentials: (state, { payload }) => {
