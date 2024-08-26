@@ -31,18 +31,14 @@ export const Login = () => {
     //TODO Add validations
     // This is only a basic validation of inputs. Improve this as needed.
 
-    let authUser;
-
     if (email && password) {
       try {
         await login({ email, password })
           .unwrap()
           .then((data) => {
             dispatch(actionSetCredentials(data));
-            authUser = data;
           });
-        console.log("navigate(`/game/${authUser.id}/list`);");
-        navigate(`/game/${authUser.id}/list`);
+        navigate("/home");
       } catch (e) {
         console.error(e);
       }
