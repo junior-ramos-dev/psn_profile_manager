@@ -18,6 +18,7 @@ import { axiosBaseQueryApi } from "./services/axios/axiosBaseQueryApi";
 import authReducer from "./services/rtkQueryApi/auth/authSlice";
 import gameReducer from "./services/rtkQueryApi/game/gameSlice";
 import { rtkQueryBaseApi } from "./services/rtkQueryApi/rtkQueryBaseApi";
+import { IS_NOT_NODE_ENV_PRODUCTION } from "./utils/env";
 
 const authPersistConfig = {
   key: "auth",
@@ -43,7 +44,7 @@ const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }).concat(rtkQueryBaseApi.middleware),
-  devTools: process.env.NODE_ENV !== "production",
+  devTools: IS_NOT_NODE_ENV_PRODUCTION,
 });
 
 store.subscribe(axiosBaseQueryApi);
@@ -67,7 +68,7 @@ setupListeners(store.dispatch);
 //     getDefaultMiddleware()
 //       .concat(authApi.middleware)
 //       .concat(gameApi.middleware),
-//   devTools: process.env.NODE_ENV !== "production",
+//   devTools: IS_NOT_NODE_ENV_PRODUCTION,
 // });
 
 // setupListeners(store.dispatch);
