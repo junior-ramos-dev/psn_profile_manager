@@ -1,1 +1,1 @@
-export { TrophyCount } from "./TrophyCount";
+export type { TrophyCount } from "./TrophyCount";
