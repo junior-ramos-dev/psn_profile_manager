@@ -4,7 +4,7 @@ import {
   AuthRegisterRequest,
   AuthRegisterResponse,
 } from "@/models/types/rtkQuery/auth";
-import { VERBS } from "@/utils/http";
+import { VERBS } from "@/settings/app/constants";
 
 import { rtkQueryBaseApi } from "../rtkQueryBaseApi";
 

@@ -1,6 +1,7 @@
 import { AxiosError, AxiosHeaders } from "axios";
 
-import { getHttpResponseMessage, VERBS } from "@/utils/http";
+import { VERBS } from "@/settings/app/constants";
+import { getHttpResponseMessage } from "@/utils/http";
 
 import {
   deleteOne,

@@ -1,5 +1,5 @@
 import { UserProfile } from "@/models/types/rtkQuery/user";
-import { VERBS } from "@/utils/http";
+import { VERBS } from "@/settings/app/constants";
 
 import { rtkQueryBaseApi } from "../rtkQueryBaseApi";
 

@@ -1,6 +1,6 @@
 import { ITrophyList } from "@/models/interfaces/trophy/ITrophy";
+import { VERBS } from "@/settings/app/constants";
 import { store } from "@/store";
-import { VERBS } from "@/utils/http";
 
 import { rtkQueryBaseApi } from "../rtkQueryBaseApi";
 

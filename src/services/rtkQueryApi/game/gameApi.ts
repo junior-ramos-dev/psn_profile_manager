@@ -1,9 +1,9 @@
 import { ConvertIGame, IGame } from "@/models/interfaces";
 import { IGameIcon } from "@/models/interfaces/games/IGameIcon";
 import { GameIconBinListRequest } from "@/models/types/rtkQuery/games";
+import { VERBS } from "@/settings/app/constants";
 import { createIGameRoutesList } from "@/settings/app/routes/gameRoutes";
 import { store } from "@/store";
-import { VERBS } from "@/utils/http";
 
 import { rtkQueryBaseApi } from "../rtkQueryBaseApi";
 
