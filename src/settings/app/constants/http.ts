@@ -4,6 +4,8 @@ export enum HEADERS {
   IF_NONE_MATCH = "if-none-match",
 }
 
+export const DUMMY_ETAG_HEADER = "00000-000000000000000000000000000";
+
 export enum VERBS {
   GET = "GET",
   POST = "POST",

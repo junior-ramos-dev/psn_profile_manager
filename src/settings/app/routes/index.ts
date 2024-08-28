@@ -1,2 +1,2 @@
-export { appRoutes, useAppRouter } from "./appRoutes";
 export { createIGameRoutesList } from "./gameRoutes";
+export { sideBarRoutes, useAppRouter } from "./sideBarRoutes";

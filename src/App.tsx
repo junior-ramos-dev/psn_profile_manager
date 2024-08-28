@@ -1,14 +1,41 @@
 import { useState } from "react";
-import { RouteObject, RouterProvider } from "react-router-dom";
+import _ from "lodash";
+import {
+  createBrowserRouter,
+  RouteObject,
+  RouterProvider,
+} from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
 import { IGameRoute } from "./models/interfaces";
 import { GameDetail } from "./pages/Game";
-import { useAppRouter } from "./settings/app/routes/appRoutes";
-import { getRouter } from "./initRouter";
+import { useAppRouter } from "./settings/app/routes/sideBarRoutes";
+import { appDefaultRoutes, initAppRouter, ROUTE_ID } from "./initAppRouter";
 import { store } from "./store";
 
-export const App = () => {
+// export const initAppRouter = (sidebarRoutes, gamesRoutes) => {
+//   return createBrowserRouter(appDefaultRoutes);
+// };
+
+export const App = (appRouter) => {
+  const isLoggedIn = store.getState().auth.isLoggedIn;
   const sidebarRoutes = useAppRouter();
+
+  console.log(isLoggedIn);
+
+  const setPrivateRoutes = (appDefaultRoutes, sidebarRoutes, gamesRoutes) => {
+    appDefaultRoutes.forEach((root) => {
+      root.children.forEach((rootChildren) => {
+        const subRootChildren = rootChildren.children;
+        subRootChildren.forEach((subRoute) => {
+          if (subRoute.id === ROUTE_ID.PRIVATE_ROUTE) {
+            subRoute.children = _.concat(sidebarRoutes, gamesRoutes);
+            console.log(subRoute.children);
+          }
+        });
+      });
+    });
+  };
 
   // Add routes for the games list
   const addGameRouteObject = (gameRoute: IGameRoute): RouteObject => {
@@ -26,6 +53,7 @@ export const App = () => {
    */
   const createGamesRouteObjectList = (): RouteObject[] => {
     const gamesRoutes = store.getState().game.gamesRoutes;
+
     // let gamesRoutesList = [];
 
     // List of RoutObject
@@ -46,7 +74,7 @@ export const App = () => {
   const [gamesRoutes, setGamesRoutes] = useState(gamesRoutesObj);
 
   // Load the gems routes
-  if (!gamesRoutes.length) {
+  if (!gamesRoutes.length && isLoggedIn) {
     setTimeout(() => {
       if (!gamesRoutes.length) {
         console.log("Loading games routes...");
@@ -56,7 +84,9 @@ export const App = () => {
     }, 300);
   }
 
-  const router = getRouter(sidebarRoutes, gamesRoutes);
+  // const router = initAppRouter(sidebarRoutes, gamesRoutes);
+  setPrivateRoutes(appDefaultRoutes, sidebarRoutes, gamesRoutes);
+  appRouter = createBrowserRouter(appDefaultRoutes);
 
-  return <RouterProvider router={router} />;
+  return <RouterProvider router={appRouter} />;
 };

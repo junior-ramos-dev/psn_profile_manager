@@ -1,11 +1,11 @@
 import { BaseLoader } from "@/services/routesLoaders/baseLoader";
+import { GAME_ENDPOINT_NAME } from "@/services/rtkQueryApi/game";
 import { gameApi } from "@/services/rtkQueryApi/game/gameApi";
 
-//TODO Check set games:etag
 export class GamesLoader extends BaseLoader {
   listLoader = async ({ request }) => {
     const games = await this.loader(
-      "getGameList",
+      GAME_ENDPOINT_NAME.GET_GAME_LIST,
       gameApi.endpoints.getGameList,
       request,
       {},

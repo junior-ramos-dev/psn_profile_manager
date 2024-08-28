@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { IRouteItem } from "@/models/interfaces";
-import { appRoutes } from "@/settings/app/routes";
+import { sideBarRoutes } from "@/settings/app/routes";
 import { Collapse, Divider, List } from "@mui/material";
 
 import { LogoutButton } from "./LogoutButton";
@@ -9,7 +9,7 @@ import { SidebarItem } from "./SidebarItem";
 
 export const SidebarList = () => {
   const [sidebarListState, setSidebarListState] =
-    useState<IRouteItem[]>(appRoutes);
+    useState<IRouteItem[]>(sideBarRoutes);
 
   const handleMenuClick = (route: IRouteItem) => {
     const items = sidebarListState.map((item) => {

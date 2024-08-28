@@ -41,8 +41,8 @@ const createSidebarRouteObjectList = (): RouteObject[] => {
   // List of RoutObject
   const sidebarRouteObjectList: RouteObject[] = [];
 
-  // Iterate over appRoutes array to add the sidebar app routes
-  appRoutes.forEach((appRoute: IAppRoute) => {
+  // Iterate over sideBarRoutes array to add the sidebar app routes
+  sideBarRoutes.forEach((appRoute: IAppRoute) => {
     return appRoute.subRoutes
       ? appRoute.subRoutes.map((item: IAppRoute) =>
           sidebarRouteObjectList.push(addSideBarRouteObject(item))
@@ -54,7 +54,7 @@ const createSidebarRouteObjectList = (): RouteObject[] => {
 };
 
 // define app routes
-const appRoutes: Array<IAppRoute> = [
+const sideBarRoutes: Array<IAppRoute> = [
   {
     key: "router-home",
     title: "Home",
@@ -134,4 +134,4 @@ const appRoutes: Array<IAppRoute> = [
   },
 ];
 
-export { appRoutes, useAppRouter };
+export { sideBarRoutes, useAppRouter };
