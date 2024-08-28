@@ -1,9 +1,10 @@
 import { ConvertIGame, IGame } from "@/models/interfaces";
 import { IGameIcon } from "@/models/interfaces/games/IGameIcon";
 import { GameIconBinListRequest } from "@/models/types/rtkQuery/games";
-import { VERBS } from "@/settings/app/constants";
+import { HEADERS, VERBS } from "@/settings/app/constants";
 import { createIGameRoutesList } from "@/settings/app/routes/gameRoutes";
 import { store } from "@/store";
+import { getEnpointHeader } from "@/utils/http";
 
 import { rtkQueryBaseApi } from "../rtkQueryBaseApi";
 
@@ -20,8 +21,12 @@ export const gameApi = rtkQueryBaseApi.injectEndpoints({
         collection: "Games",
         endpointName: GAME_ENDPOINT_NAME.GET_GAME_LIST,
         headers: {
-          ETag: localStorage.getItem("getGameList:etag") ?? "",
-          "if-none-match": localStorage.getItem("getGameList:etag") ?? "",
+          ETag:
+            getEnpointHeader(GAME_ENDPOINT_NAME.GET_GAME_LIST, HEADERS.ETAG) ??
+            "",
+          "if-none-match":
+            getEnpointHeader(GAME_ENDPOINT_NAME.GET_GAME_LIST, HEADERS.ETAG) ??
+            "",
         },
       }),
       transformResponse: (response) => {

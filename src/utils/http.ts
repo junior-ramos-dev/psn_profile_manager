@@ -5,6 +5,29 @@ import {
   HTTP_STATUS_SUCCESS,
 } from "@/settings/app/constants";
 
+export const getEnpointHeaderKey = (
+  endpointName: string,
+  headerKey: string
+): string => `${endpointName}:${headerKey}`;
+
+export const setEnpointHeader = (
+  endpointName: string,
+  headerKey: string,
+  value: string
+): void =>
+  localStorage.setItem(getEnpointHeaderKey(endpointName, headerKey), value);
+
+export const getEnpointHeader = (
+  endpointName: string,
+  headerKey: string
+): string => localStorage.getItem(getEnpointHeaderKey(endpointName, headerKey));
+
+export const clearEnpointHeader = (
+  endpointName: string,
+  headerKey: string
+): void =>
+  localStorage.setItem(getEnpointHeaderKey(endpointName, headerKey), "");
+
 const getStatusMessage = (status: number, message: string) =>
   `HTTP(s) ${status}: ${message}`;
 
@@ -75,6 +98,3 @@ export const getHttpResponseMessage = (status) => {
   // console.log(message);
   return message;
 };
-
-export const getEnpointHeaderKey = (endpointName: string, headerKey: string) =>
-  `${endpointName}:${headerKey}`;

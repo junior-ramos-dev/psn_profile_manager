@@ -5,7 +5,7 @@ import {
 } from "axios";
 import _ from "lodash";
 
-import { getEnpointHeaderKey, getHttpResponseMessage } from "@/utils/http";
+import { getHttpResponseMessage, setEnpointHeader } from "@/utils/http";
 
 import { AUTH_ENDPOINT_NAME } from "../rtkQueryApi/auth";
 
@@ -29,19 +29,20 @@ const getResponseHeaders = (
   response: AxiosResponse,
   endpointHeaders: IEndpointHeaders
 ) => {
-  const headersKeys = Object.keys(endpointHeaders.headers);
+  if (
+    endpointHeaders.endpointName !== AUTH_ENDPOINT_NAME.LOGIN &&
+    endpointHeaders.endpointName !== AUTH_ENDPOINT_NAME.REGISTER
+  ) {
+    const headersKeys = Object.keys(endpointHeaders.headers);
 
-  headersKeys.forEach((key) => {
-    const headerKey = _.toLower(key);
+    headersKeys.forEach((key) => {
+      const headerKey = _.toLower(key);
 
-    const enpointHeaderKey = getEnpointHeaderKey(
-      endpointHeaders.endpointName,
-      headerKey
-    );
-    const headerValue = response.headers[headerKey];
+      const headerValue = response.headers[headerKey];
 
-    localStorage.setItem(enpointHeaderKey, headerValue);
-  });
+      setEnpointHeader(endpointHeaders.endpointName, headerKey, headerValue);
+    });
+  }
 };
 
 // Clear the headers for an endpoint

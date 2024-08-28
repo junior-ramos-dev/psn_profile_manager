@@ -20,7 +20,7 @@ export const authApi = rtkQueryBaseApi.injectEndpoints({
         collection: "Auth",
         endpointName: AUTH_ENDPOINT_NAME.LOGIN,
         headers: {
-          Authorization: true,
+          Authorization: "npsso",
         },
       }),
     }),
@@ -32,7 +32,7 @@ export const authApi = rtkQueryBaseApi.injectEndpoints({
         collection: "Auth",
         endpointName: AUTH_ENDPOINT_NAME.REGISTER,
         headers: {
-          Authorization: true,
+          Authorization: "npsso",
         },
       }),
       invalidatesTags: ["Auth"],
