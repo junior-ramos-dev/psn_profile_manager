@@ -12,7 +12,7 @@ export class GamesLoader extends BaseLoader {
     this.exec = Date.now();
   }
 
-  listLoader = async ({ params, request }) => {
+  listLoader = async ({ request }) => {
     const currentTime = Date.now();
 
     if (currentTime >= this.exec + this.delay) {
@@ -23,7 +23,7 @@ export class GamesLoader extends BaseLoader {
         "getGameList",
         gameApi.endpoints.getGameList,
         request,
-        params.userId,
+        {},
         {}
       );
     } else {

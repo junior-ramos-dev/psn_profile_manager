@@ -15,8 +15,6 @@ import PrivateIcon from "@material-ui/icons/LockOutlined";
 import SettingsIcon from "@material-ui/icons/SettingsOutlined";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 
-import { URL_ALIAS } from "../constants";
-
 const gamesLoader = new GamesLoader(store, 0);
 
 // Hook used to load app routes into initRouter.tsx
@@ -71,7 +69,7 @@ const appRoutes: Array<IAppRoute> = [
     key: "router-game",
     title: "Games",
     tooltip: "Games",
-    path: `/game/${URL_ALIAS.USER_ID}/list`,
+    path: `/game/list`,
     enabled: true,
     component: Games,
     loader: gamesLoader.listLoader,

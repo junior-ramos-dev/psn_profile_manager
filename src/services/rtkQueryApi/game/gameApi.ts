@@ -11,9 +11,9 @@ import { actionSetGamesList, actionSetGamesRoutes } from "./gameSlice";
 
 export const gameApi = rtkQueryBaseApi.injectEndpoints({
   endpoints: (build) => ({
-    getGameList: build.query<IGame[], string>({
-      query: (userId) => ({
-        endpointUrl: `game/${userId}/list`,
+    getGameList: build.query<IGame[], void>({
+      query: () => ({
+        endpointUrl: `game/list`,
         method: VERBS.LIST,
         // urlParam: userId,
         collection: "Games",

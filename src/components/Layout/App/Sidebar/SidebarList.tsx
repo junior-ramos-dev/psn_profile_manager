@@ -1,18 +1,13 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
 
 import { IRouteItem } from "@/models/interfaces";
-import { getAuthUser } from "@/services/rtkQueryApi/auth/authSelectors";
-import { URL_ALIAS } from "@/settings/app/constants";
 import { appRoutes } from "@/settings/app/routes";
-import { StringUtils } from "@/utils/strings";
 import { Collapse, Divider, List } from "@mui/material";
 
 import { LogoutButton } from "./LogoutButton";
 import { SidebarItem } from "./SidebarItem";
 
 export const SidebarList = () => {
-  const authUser = useSelector(getAuthUser);
   const [sidebarListState, setSidebarListState] =
     useState<IRouteItem[]>(appRoutes);
 
@@ -30,13 +25,6 @@ export const SidebarList = () => {
     <>
       <List component="nav" sx={{ height: "100%", mt: -1 }}>
         {sidebarListState.map((route: IRouteItem) => {
-          if (route.path && authUser)
-            route.path = StringUtils.replaceSubstring(
-              route.path,
-              URL_ALIAS.USER_ID,
-              authUser.id
-            );
-
           return (
             <div key={route.key}>
               {route.subRoutes ? (
