@@ -8,16 +8,17 @@ import { store } from "@/store";
 import { rtkQueryBaseApi } from "../rtkQueryBaseApi";
 
 import { actionSetGamesList, actionSetGamesRoutes } from "./gameSlice";
+import { GAME_ENDPOINT_NAME, GAME_URL_MAP } from ".";
 
 export const gameApi = rtkQueryBaseApi.injectEndpoints({
   endpoints: (build) => ({
     getGameList: build.query<IGame[], void>({
       query: () => ({
-        endpointUrl: `game/list`,
+        endpointUrl: GAME_URL_MAP[GAME_ENDPOINT_NAME.GET_GAME_LIST],
         method: VERBS.LIST,
         // urlParam: userId,
         collection: "Games",
-        endpointName: "getGameList",
+        endpointName: GAME_ENDPOINT_NAME.GET_GAME_LIST,
         headers: {
           ETag: localStorage.getItem("getGameList:etag") ?? "",
           "if-none-match": localStorage.getItem("getGameList:etag") ?? "",
@@ -38,21 +39,21 @@ export const gameApi = rtkQueryBaseApi.injectEndpoints({
     }),
     getIconBinByGame: build.query<IGameIcon, string>({
       query: (npCommunicationId) => ({
-        endpointUrl: "game/icon",
+        endpointUrl: GAME_URL_MAP[GAME_ENDPOINT_NAME.GET_ICON_BIN_BY_GAME],
         method: VERBS.GET,
         urlParam: npCommunicationId,
         collection: "GamesIcons",
-        endpointName: "getIconBinByGame",
+        endpointName: GAME_ENDPOINT_NAME.GET_ICON_BIN_BY_GAME,
       }),
       providesTags: ["Game"],
     }),
     getIconBinByGameIds: build.mutation<IGameIcon[], GameIconBinListRequest>({
       query: ({ npCommIdList }) => ({
-        endpointUrl: "game/icon/list",
+        endpointUrl: GAME_URL_MAP[GAME_ENDPOINT_NAME.GET_ICON_BIN_BY_GAME_IDS],
         method: VERBS.POST,
         bodyData: { npCommIdList },
         collection: "GamesIcons",
-        endpointName: "getIconBinByGameIds",
+        endpointName: GAME_ENDPOINT_NAME.GET_ICON_BIN_BY_GAME_IDS,
       }),
     }),
   }),
