@@ -5,7 +5,12 @@ import {
 } from "axios";
 import _ from "lodash";
 
-import { getHttpResponseMessage, setEnpointHeader } from "@/utils/http";
+import { HEADERS } from "@/settings/app/constants";
+import {
+  getHttpResponseMessage,
+  removeEnpointHeaderKey,
+  setEnpointHeader,
+} from "@/utils/http";
 
 import { AUTH_ENDPOINT_NAME } from "../rtkQueryApi/auth";
 
@@ -18,7 +23,7 @@ export const transformResponse = (
 ) => {
   if (endpointHeaders) {
     getResponseHeaders(response, endpointHeaders);
-    clearEndpointHeaders(endpointHeaders);
+    clearEndpointResHeaders(endpointHeaders);
   }
   console.log(getHttpResponseMessage(response.status));
   return response.data;
@@ -29,24 +34,25 @@ const getResponseHeaders = (
   response: AxiosResponse,
   endpointHeaders: IEndpointHeaders
 ) => {
+  const headersKeys = Object.keys(endpointHeaders.headers);
+
+  headersKeys.forEach((key) => {
+    const headerKey = _.toLower(key);
+
+    const headerValue = response.headers[headerKey];
+
+    setEnpointHeader(endpointHeaders.endpointName, headerKey, headerValue);
+  });
   if (
-    endpointHeaders.endpointName !== AUTH_ENDPOINT_NAME.LOGIN &&
-    endpointHeaders.endpointName !== AUTH_ENDPOINT_NAME.REGISTER
+    endpointHeaders.endpointName === AUTH_ENDPOINT_NAME.LOGIN ||
+    endpointHeaders.endpointName === AUTH_ENDPOINT_NAME.REGISTER
   ) {
-    const headersKeys = Object.keys(endpointHeaders.headers);
-
-    headersKeys.forEach((key) => {
-      const headerKey = _.toLower(key);
-
-      const headerValue = response.headers[headerKey];
-
-      setEnpointHeader(endpointHeaders.endpointName, headerKey, headerValue);
-    });
+    removeEnpointHeaderKey(endpointHeaders.endpointName, HEADERS.AUTHORIZATION);
   }
 };
 
-// Clear the headers for an endpoint
-const clearEndpointHeaders = (endpointHeaders: IEndpointHeaders) => {
+// Clear the response headers for an endpoint
+const clearEndpointResHeaders = (endpointHeaders: IEndpointHeaders) => {
   endpointHeaders.endpointName = undefined;
   endpointHeaders.headers = undefined;
 };
@@ -69,6 +75,7 @@ export const setRequestHeaders = (
         console.log(req.url);
         console.log(req.headers["authorization"]);
       } else {
+        console.log(endpointHeaders.headers);
         req.headers = endpointHeaders.headers;
       }
 

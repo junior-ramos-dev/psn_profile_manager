@@ -45,6 +45,7 @@ export const App = () => {
 
   const [gamesRoutes, setGamesRoutes] = useState(gamesRoutesObj);
 
+  // Load the gems routes
   if (!gamesRoutes.length) {
     setTimeout(() => {
       if (!gamesRoutes.length) {

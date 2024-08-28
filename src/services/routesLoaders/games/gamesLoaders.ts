@@ -1,34 +1,17 @@
 import { BaseLoader } from "@/services/routesLoaders/baseLoader";
 import { gameApi } from "@/services/rtkQueryApi/game/gameApi";
-import { AppStore } from "@/store";
 
+//TODO Check set games:etag
 export class GamesLoader extends BaseLoader {
-  delay: number;
-  exec: number;
-
-  constructor(store: AppStore, delay: number) {
-    super(store);
-    this.delay = delay;
-    this.exec = Date.now();
-  }
-
   listLoader = async ({ request }) => {
-    const currentTime = Date.now();
-
-    if (currentTime >= this.exec + this.delay) {
-      this.exec = Date.now();
-      this.delay = 60 * 60 * 1000;
-
-      return await this.loader(
-        "getGameList",
-        gameApi.endpoints.getGameList,
-        request,
-        {},
-        {}
-      );
-    } else {
-      return null;
-    }
+    const games = await this.loader(
+      "getGameList",
+      gameApi.endpoints.getGameList,
+      request,
+      {},
+      {}
+    );
+    return games;
   };
 
   // initListLoader = async () => {

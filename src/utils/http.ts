@@ -10,6 +10,14 @@ export const getEnpointHeaderKey = (
   headerKey: string
 ): string => `${endpointName}:${headerKey}`;
 
+/**
+ * Set the header value for an endpoint in localStorage
+ *
+ * @param endpointName
+ * @param headerKey
+ * @param value
+ * @returns
+ */
 export const setEnpointHeader = (
   endpointName: string,
   headerKey: string,
@@ -17,16 +25,43 @@ export const setEnpointHeader = (
 ): void =>
   localStorage.setItem(getEnpointHeaderKey(endpointName, headerKey), value);
 
+/**
+ * Get header value for an endpoint from localStorage
+ *
+ * @param endpointName
+ * @param headerKey
+ * @returns
+ */
 export const getEnpointHeader = (
   endpointName: string,
   headerKey: string
 ): string => localStorage.getItem(getEnpointHeaderKey(endpointName, headerKey));
 
+/**
+ * Clear the header value for an endpoint in localStorage
+ *
+ * @param endpointName
+ * @param headerKey
+ * @returns
+ */
 export const clearEnpointHeader = (
   endpointName: string,
   headerKey: string
 ): void =>
   localStorage.setItem(getEnpointHeaderKey(endpointName, headerKey), "");
+
+/**
+ * Remove the header key for and endpoint in localStorage
+ *
+ * @param endpointName
+ * @param headerKey
+ * @returns
+ */
+export const removeEnpointHeaderKey = (
+  endpointName: string,
+  headerKey: string
+): void =>
+  localStorage.removeItem(getEnpointHeaderKey(endpointName, headerKey));
 
 const getStatusMessage = (status: number, message: string) =>
   `HTTP(s) ${status}: ${message}`;

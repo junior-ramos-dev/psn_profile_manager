@@ -31,7 +31,9 @@ export const gameApi = rtkQueryBaseApi.injectEndpoints({
       }),
       transformResponse: (response) => {
         // Convert response to IGame list
-        const gamesList = ConvertIGame.fromApiResponseToIGameList(response);
+        const gamesList = ConvertIGame.fromApiResponseToIGameList(
+          response.games
+        );
         store.dispatch(actionSetGamesList(gamesList));
 
         // Get the IRouteGame list
