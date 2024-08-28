@@ -7,7 +7,6 @@ import { rtkQueryBaseApi } from "../rtkQueryBaseApi";
 import { actionSetTrophiesList } from "./trophySlice";
 
 interface GetTrophyListRequest {
-  userId: string;
   trophyTitlePlatform: string;
   npCommunicationId: string;
 }
@@ -15,8 +14,8 @@ interface GetTrophyListRequest {
 export const trophyApi = rtkQueryBaseApi.injectEndpoints({
   endpoints: (build) => ({
     getTrophyList: build.query<ITrophyList, GetTrophyListRequest>({
-      query: ({ userId, trophyTitlePlatform, npCommunicationId }) => ({
-        endpointUrl: `trophy/${userId}/${trophyTitlePlatform}/${npCommunicationId}/list`,
+      query: ({ trophyTitlePlatform, npCommunicationId }) => ({
+        endpointUrl: `trophy/${trophyTitlePlatform}/${npCommunicationId}/list`,
         method: VERBS.LIST,
         // urlParam: userId,
         collection: "GameTrophies",
