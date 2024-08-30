@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
-      "target": "es6",
+      "target": "ES2021",
       "lib": [
-        "es5", "es6", "dom", "ES2021.String",
+        "es5", "es6", "ES2021", "dom",
       ],
       "baseUrl" : ".",
       "paths": {
