@@ -50,3 +50,22 @@ export class StringUtils {
     return str.includes(subStr) ? str.replace(subStr, strRepl) : str;
   }
 }
+
+// Helper to extract URL from string
+export const extractUrlFromString = (str: string) => {
+  const url = str.match(/https?:\/\/[^\s]+/)[0];
+
+  const clearedUrl = clearLeadingAndTrailingDots(url);
+
+  return clearedUrl;
+};
+
+// Helper function to remove leading and trailing dots from string;
+export const clearLeadingAndTrailingDots = (str: string) => {
+  const regex = /^\.*|\.*$/gm;
+  const subst = ``;
+  // The substituted value will be contained in the result variable
+  const result = str.replace(regex, subst);
+
+  return result;
+};

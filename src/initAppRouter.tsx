@@ -1,13 +1,12 @@
-import { createBrowserRouter } from "react-router-dom";
-import { RouteObject } from "react-router-dom";
+import { createBrowserRouter, RouteObject } from "react-router-dom";
 
 import { AppLayout } from "@/components/Layout/App";
 import { PrivateRoute, PublicRoute } from "@/components/Layout/App/Routes";
 import { IndexPage } from "@/pages/IndexPage";
 import { Login, Register } from "@/pages/SignUp";
 
-import { AxiosErrorPage } from "./pages/Error/Axios/AxiosErrorPage";
-import { RouteErrorPage } from "./pages/Error/RouteErrorPage";
+import { AxiosErrorPage } from "./pages/Error/Axios/AxiosError";
+import { RouteErrorPage } from "./pages/Error/RouteError";
 
 export const enum ROUTE_ID {
   ROOT = "root",
@@ -24,10 +23,14 @@ export const appDefaultRoutes = [
     errorElement: <RouteErrorPage />,
     children: [
       {
-        errorElement: <RouteErrorPage />,
+        errorElement: <AxiosErrorPage />,
         children: [
           { id: ROUTE_ID.INDEX, index: true, element: <IndexPage /> },
 
+          {
+            path: "/axioserror",
+            element: <AxiosErrorPage />,
+          },
           {
             id: ROUTE_ID.PUBLIC_ROUTE,
             element: <PublicRoute />,
@@ -40,10 +43,6 @@ export const appDefaultRoutes = [
               {
                 path: "/auth/register",
                 element: <Register />,
-              },
-              {
-                path: "/axios-error-page",
-                element: <AxiosErrorPage />,
               },
             ],
           },
@@ -60,7 +59,6 @@ export const appDefaultRoutes = [
           //   const p = store.dispatch(
           //     gameApi.endpoints.getGameList({request: "/6690ec7a1b9af84a84b0b425"})
           //   );
-
           //   const response = await p.unwrap();
           //   console.log(response.gamesList[0]);
 
