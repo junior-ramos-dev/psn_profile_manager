@@ -5,24 +5,26 @@ import {
   RouteObject,
   RouterProvider,
 } from "react-router-dom";
-import { BrowserRouter as Router } from "react-router-dom";
 
 import { IGameRoute } from "./models/interfaces";
 import { GameDetail } from "./pages/Game";
 import { useAppRouter } from "./settings/app/routes/sideBarRoutes";
-import { appDefaultRoutes, initAppRouter, ROUTE_ID } from "./initAppRouter";
+import { appDefaultRoutes, ROUTE_ID } from "./initAppRouter";
 import { store } from "./store";
-
-// export const initAppRouter = (sidebarRoutes, gamesRoutes) => {
-//   return createBrowserRouter(appDefaultRoutes);
-// };
 
 export const App = (appRouter) => {
   const isLoggedIn = store.getState().auth.isLoggedIn;
   const sidebarRoutes = useAppRouter();
 
-  console.log(isLoggedIn);
+  // console.log(isLoggedIn);
 
+  /**
+   * Set the private routes children from the appDefaultroutes
+   *
+   * @param appDefaultRoutes
+   * @param sidebarRoutes
+   * @param gamesRoutes
+   */
   const setPrivateRoutes = (appDefaultRoutes, sidebarRoutes, gamesRoutes) => {
     appDefaultRoutes.forEach((root) => {
       root.children.forEach((rootChildren) => {
@@ -30,14 +32,18 @@ export const App = (appRouter) => {
         subRootChildren.forEach((subRoute) => {
           if (subRoute.id === ROUTE_ID.PRIVATE_ROUTE) {
             subRoute.children = _.concat(sidebarRoutes, gamesRoutes);
-            console.log(subRoute.children);
           }
         });
       });
     });
   };
 
-  // Add routes for the games list
+  /**
+   * Add routes for the games list
+   *
+   * @param gameRoute
+   * @returns
+   */
   const addGameRouteObject = (gameRoute: IGameRoute): RouteObject => {
     const gameRouteObject: RouteObject = {
       id: gameRoute.key,
@@ -53,8 +59,6 @@ export const App = (appRouter) => {
    */
   const createGamesRouteObjectList = (): RouteObject[] => {
     const gamesRoutes = store.getState().game.gamesRoutes;
-
-    // let gamesRoutesList = [];
 
     // List of RoutObject
     const gameRouteObjectList: RouteObject[] = [];
@@ -84,7 +88,6 @@ export const App = (appRouter) => {
     }, 300);
   }
 
-  // const router = initAppRouter(sidebarRoutes, gamesRoutes);
   setPrivateRoutes(appDefaultRoutes, sidebarRoutes, gamesRoutes);
   appRouter = createBrowserRouter(appDefaultRoutes);
 

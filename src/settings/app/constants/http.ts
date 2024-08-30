@@ -4,7 +4,7 @@ export enum HEADERS {
   IF_NONE_MATCH = "if-none-match",
 }
 
-export const DUMMY_ETAG_HEADER = "00000-000000000000000000000000000";
+export const DUMMY_ETAG_HEADER = "00000-XXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
 export enum VERBS {
   GET = "GET",
@@ -14,6 +14,7 @@ export enum VERBS {
   DELETE = "DELETE",
   LIST = "LIST",
 }
+
 // HTTP STATUS 100-199
 export enum HTTP_STATUS_INFORMATION {
   GENERAL = "Information. An initial part of the request was received and the client should continue.",
