@@ -1,8 +1,9 @@
 /** @jsxImportSource @emotion/react */
-import { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 
 import { Footer } from "@/components/Layout/App/Footer";
+import { setAxiosInterceptorResponse } from "@/services/axios/axiosApiConfig";
 import { FOOTER_HEIGHT } from "@/settings/app/constants";
 import { css } from "@emotion/react";
 import { Box } from "@mui/material";
@@ -13,6 +14,11 @@ import { Sidebar } from "./Sidebar";
 export const AppLayout = () => {
   const [open, setOpen] = useState(false);
   const toggleNavigation = () => setOpen((status) => !status);
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    setAxiosInterceptorResponse(navigate);
+  }, []);
 
   return (
     <>

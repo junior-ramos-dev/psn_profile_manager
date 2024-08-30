@@ -1,12 +1,21 @@
-import axios, { AxiosHeaders } from "axios";
-import qs from "qs";
+import axios, {
+  AxiosHeaders,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from "axios";
+import _ from "lodash";
 
-import { setRequestHeaders, transformResponse } from "./axiosInterceptors";
+import { HEADERS } from "@/settings/app/constants";
+import {
+  getHttpResponseMessage,
+  removeEnpointHeaderKey,
+  setEnpointHeader,
+} from "@/utils/http";
 
-export interface IEndpointHeaders {
-  endpointName: string;
-  headers: AxiosHeaders;
-}
+import { AUTH_ENDPOINT_NAME } from "../rtkQueryApi/auth";
+
+import { AxiosApiError } from "./axiosApiError";
+import { IEndpointHeaders } from "./axiosApiRepository";
 
 const BASE_URL = process.env.API_BASE_URL;
 
@@ -18,101 +27,150 @@ export const axiosInstance = axios.create({
   },
 });
 
-export const getOne = async (
-  endpointUrl: string,
-  urlParam: string,
+/**
+ * Intercepts and handle the axios request
+ *
+ * @param axiosInstance
+ * @param endpointHeaders
+ */
+export const setAxiosInterceptorRequest = (
   endpointHeaders: IEndpointHeaders
 ) => {
-  if (endpointHeaders) setRequestHeaders(axiosInstance, endpointHeaders);
+  const interceptorRequest = axiosInstance.interceptors.request;
 
-  return await axiosInstance
-    .get(`${BASE_URL}/${endpointUrl}/${urlParam}`)
-    .then((res) => transformResponse(res, endpointHeaders));
+  interceptorRequest.use(
+    (req: InternalAxiosRequestConfig<object>) => {
+      // Set headers for an endpoint
+      return handleAxiosRequestHeaders(req, endpointHeaders);
+    },
+    (error) => {
+      return Promise.reject(new Error(error));
+    }
+  );
 };
-
-export const getList = async (
-  endpointUrl: string,
+/**
+ * Set headers for an endpoint
+ *
+ * @param req
+ * @param endpointHeaders
+ * @returns
+ */
+export const handleAxiosRequestHeaders = (
+  req: InternalAxiosRequestConfig<object>,
   endpointHeaders: IEndpointHeaders
 ) => {
-  if (endpointHeaders) setRequestHeaders(axiosInstance, endpointHeaders);
+  if (
+    req.url.includes(AUTH_ENDPOINT_NAME.LOGIN || AUTH_ENDPOINT_NAME.REGISTER)
+  ) {
+    req.headers["authorization"] = `Bearer ${process.env.PSN_NPSSO}x`;
+    console.log(req.url);
+  } else {
+    console.log(endpointHeaders.headers);
+    req.headers = endpointHeaders.headers as AxiosHeaders;
+  }
 
-  return await axiosInstance
-    .get(`${BASE_URL}/${endpointUrl}/`)
-    .then((res) => transformResponse(res, endpointHeaders));
+  return req;
 };
 
-export const post = async (
-  endpointUrl: string,
-  bodyData: object,
+/**
+ * Intercepts and handle the axios response
+ *
+ * @param axiosInstance
+ * @param endpointHeaders
+ * @param navigate
+ */
+export const setAxiosInterceptorResponse = (navigate) => {
+  const interceptorResponse = axiosInstance.interceptors.response;
+  interceptorResponse.use(
+    (response) => {
+      return response;
+    },
+    (error) => {
+      return handleAxiosResponseError(error, navigate);
+    }
+  );
+};
+
+/**
+ * Handle the data from the api response
+ *
+ * @param response
+ * @param endpointHeaders
+ * @returns
+ */
+export const handleAxiosResponseData = (
+  response: AxiosResponse,
   endpointHeaders: IEndpointHeaders
 ) => {
-  if (endpointHeaders) setRequestHeaders(axiosInstance, endpointHeaders);
-
-  return await axiosInstance
-    .post(`${BASE_URL}/${endpointUrl}/`, qs.stringify(bodyData))
-    .then((res) => transformResponse(res, endpointHeaders));
+  if (endpointHeaders) {
+    getResponseHeaders(response, endpointHeaders);
+    clearEndpointResHeaders(endpointHeaders);
+  }
+  console.log(getHttpResponseMessage(response.status));
+  return response.data;
 };
 
-export const updatePut = async (
-  endpointUrl: string,
-  urlParam: string,
-  bodyData: object,
-  endpointHeaders: IEndpointHeaders
-) => {
-  if (endpointHeaders) setRequestHeaders(axiosInstance, endpointHeaders);
+/**
+ * Handle the error from the api response
+ *
+ * @param axiosError
+ * @param navigate
+ * @returns
+ */
+export const handleAxiosResponseError = (axiosError, navigate) => {
+  const status = axiosError.response?.status;
+  const message =
+    axiosError.message || getHttpResponseMessage(axiosError.response?.status);
+  const data = axiosError.response.data;
 
-  return await axiosInstance
-    .put(`${BASE_URL}/${endpointUrl}/${urlParam}`, bodyData)
-    .then((res) => transformResponse(res, endpointHeaders));
-};
+  const axiosApiError = new AxiosApiError(status, message, data);
 
-export const updatePatch = async (
-  endpointUrl: string,
-  urlParam: string,
-  bodyData: object,
-  endpointHeaders: IEndpointHeaders
-) => {
-  if (endpointHeaders) setRequestHeaders(axiosInstance, endpointHeaders);
-
-  return await axiosInstance
-    .patch(`${BASE_URL}/${endpointUrl}/${urlParam}`, bodyData)
-    .then((res) => transformResponse(res, endpointHeaders));
-};
-
-export const deleteOne = async (
-  endpointUrl: string,
-  urlParam: string,
-  endpointHeaders: IEndpointHeaders
-) => {
-  if (endpointHeaders) setRequestHeaders(axiosInstance, endpointHeaders);
-
-  return await axiosInstance
-    .delete(`${BASE_URL}/${endpointUrl}/${urlParam}`)
-    .then((res) => transformResponse(res, endpointHeaders));
-};
-
-export const isServerUp = async () => {
-  let serverUp: boolean = false;
-
-  try {
-    const result = await axiosInstance.get(`${BASE_URL}/status`);
-
-    serverUp = result.status == 200;
-
-    console.log(`SERVER UP [BASE_URL: ${BASE_URL}]`);
-
-    return serverUp;
-  } catch (err) {
-    console.log(
-      `${err.message.toUpperCase()}: SERVER DOWN [BASE_URL: ${BASE_URL}]`
-    );
-    return serverUp;
+  if (status >= 400 && status <= 599) {
+    navigate("/axioserror", {
+      state: { axiosApiError: axiosApiError },
+    });
+  } else if (status === 304) {
+    // Use toast
+    console.log(axiosApiError);
+  } else {
+    return Promise.reject(axiosApiError);
   }
 };
 
-export const logApiRequest = (
-  collection: string,
-  endpointName: string,
-  endpointUrl: string
-): void =>
-  console.log(` > API: ${collection} [${endpointName}: ${endpointUrl}]`);
+/**
+ * Get the headers from the specific endpoint response and saves on localStorge
+ *
+ * @param response
+ * @param endpointHeaders
+ */
+const getResponseHeaders = (
+  response: AxiosResponse,
+  endpointHeaders: IEndpointHeaders
+) => {
+  const headersKeys = Object.keys(endpointHeaders.headers);
+
+  //TODO Check set games:etag
+  headersKeys.forEach((key) => {
+    const headerKey = _.toLower(key);
+
+    const headerValue = response.headers[headerKey];
+
+    setEnpointHeader(endpointHeaders.endpointName, headerKey, headerValue);
+  });
+  if (
+    endpointHeaders.endpointName === AUTH_ENDPOINT_NAME.LOGIN ||
+    endpointHeaders.endpointName === AUTH_ENDPOINT_NAME.REGISTER
+  ) {
+    removeEnpointHeaderKey(endpointHeaders.endpointName, HEADERS.AUTHORIZATION);
+  }
+};
+
+/**
+ * Clear the response headers for an endpoint
+ *
+ * @param endpointHeaders
+ */
+const clearEndpointResHeaders = (endpointHeaders: IEndpointHeaders) => {
+  endpointHeaders.endpointName = undefined;
+  endpointHeaders.headers = undefined;
+};

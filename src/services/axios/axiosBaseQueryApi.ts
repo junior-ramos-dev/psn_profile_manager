@@ -1,5 +1,6 @@
-import { axiosApiRepository } from "@/services/axios/axiosApiRepository";
-import { VERBS } from "@/utils/http";
+import { VERBS } from "@/settings/app/constants";
+
+import { axiosApiRepository } from "./axiosApiRequestHandler";
 
 interface IAxiosBaseQueryArgs {
   collection: string;

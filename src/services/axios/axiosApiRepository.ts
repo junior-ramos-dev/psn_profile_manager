@@ -1,102 +1,113 @@
-import { AxiosError, AxiosHeaders } from "axios";
-
-import { VERBS } from "@/settings/app/constants";
-import { getHttpResponseMessage } from "@/utils/http";
+import qs from "qs";
 
 import {
-  deleteOne,
-  getList,
-  getOne,
-  IEndpointHeaders,
-  isServerUp,
-  logApiRequest,
-  post,
-  updatePatch,
-  updatePut,
+  axiosInstance,
+  handleAxiosResponseData,
+  setAxiosInterceptorRequest,
 } from "./axiosApiConfig";
 
-export interface IAxiosApiError {
-  status: number;
-  data: AxiosError<Response>;
-  message: string;
+export interface IEndpointHeaders {
+  endpointName: string;
+  headers: object;
 }
 
-export const axiosApiRepository = async (
-  collection: string,
-  endpointName: string,
+const BASE_URL = axiosInstance.defaults.baseURL;
+
+export const getOne = async (
   endpointUrl: string,
-  method: VERBS,
-  headers?: AxiosHeaders,
-  urlParam?: string,
-  bodyData?: object
+  urlParam: string,
+  endpointHeaders: IEndpointHeaders
 ) => {
+  if (endpointHeaders) setAxiosInterceptorRequest(endpointHeaders);
+
+  return await axiosInstance
+    .get(`${BASE_URL}/${endpointUrl}/${urlParam}`)
+    .then((res) => handleAxiosResponseData(res, endpointHeaders));
+};
+
+export const getList = async (
+  endpointUrl: string,
+  endpointHeaders: IEndpointHeaders
+) => {
+  if (endpointHeaders) setAxiosInterceptorRequest(endpointHeaders);
+
+  return await axiosInstance
+    .get(`${BASE_URL}/${endpointUrl}/`)
+    .then((res) => handleAxiosResponseData(res, endpointHeaders));
+};
+
+export const post = async (
+  endpointUrl: string,
+  bodyData: object,
+  endpointHeaders: IEndpointHeaders
+) => {
+  if (endpointHeaders) setAxiosInterceptorRequest(endpointHeaders);
+
+  return await axiosInstance
+    .post(`${BASE_URL}/${endpointUrl}/`, qs.stringify(bodyData))
+    .then((res) => handleAxiosResponseData(res, endpointHeaders));
+};
+
+export const updatePut = async (
+  endpointUrl: string,
+  urlParam: string,
+  bodyData: object,
+  endpointHeaders: IEndpointHeaders
+) => {
+  if (endpointHeaders) setAxiosInterceptorRequest(endpointHeaders);
+
+  return await axiosInstance
+    .put(`${BASE_URL}/${endpointUrl}/${urlParam}`, bodyData)
+    .then((res) => handleAxiosResponseData(res, endpointHeaders));
+};
+
+export const updatePatch = async (
+  endpointUrl: string,
+  urlParam: string,
+  bodyData: object,
+  endpointHeaders: IEndpointHeaders
+) => {
+  if (endpointHeaders) setAxiosInterceptorRequest(endpointHeaders);
+
+  return await axiosInstance
+    .patch(`${BASE_URL}/${endpointUrl}/${urlParam}`, bodyData)
+    .then((res) => handleAxiosResponseData(res, endpointHeaders));
+};
+
+export const deleteOne = async (
+  endpointUrl: string,
+  urlParam: string,
+  endpointHeaders: IEndpointHeaders
+) => {
+  if (endpointHeaders) setAxiosInterceptorRequest(endpointHeaders);
+
+  return await axiosInstance
+    .delete(`${BASE_URL}/${endpointUrl}/${urlParam}`)
+    .then((res) => handleAxiosResponseData(res, endpointHeaders));
+};
+
+export const isServerUp = async () => {
+  let serverUp: boolean = false;
+
   try {
-    const serverUp = await isServerUp();
+    const result = await axiosInstance.get(`${BASE_URL}/status`);
 
-    if (serverUp) {
-      logApiRequest(collection, endpointName, endpointUrl);
+    serverUp = result.status == 200;
 
-      let endpointHeaders: IEndpointHeaders;
+    console.log(`SERVER UP [BASE_URL: ${BASE_URL}]`);
 
-      if (headers && endpointName) {
-        endpointHeaders = {
-          endpointName,
-          headers,
-        };
-      }
-
-      // Use the corresponding method defined for the endpoint
-      switch (method) {
-        //GET ONE
-        case VERBS.GET:
-          return { data: await getOne(endpointUrl, urlParam, endpointHeaders) };
-
-        //GET LIST
-        case VERBS.LIST:
-          return { data: await getList(endpointUrl, endpointHeaders) };
-
-        // POST (CREATE)
-        case VERBS.POST:
-          return { data: await post(endpointUrl, bodyData, endpointHeaders) };
-
-        // UPDATE PUT
-        case VERBS.PUT:
-          return {
-            data: await updatePut(
-              endpointUrl,
-              urlParam,
-              bodyData,
-              endpointHeaders
-            ),
-          };
-
-        // UPDATE PATCH
-        case VERBS.PATCH:
-          return {
-            data: await updatePatch(
-              endpointUrl,
-              urlParam,
-              bodyData,
-              endpointHeaders
-            ),
-          };
-
-        // DELETE ONE
-        case VERBS.DELETE:
-          return { data: deleteOne(endpointUrl, urlParam, endpointHeaders) };
-      }
-    }
-  } catch (axiosError) {
-    const error: IAxiosApiError = {
-      status: axiosError.response?.status,
-      data: axiosError.response?.data,
-      message:
-        axiosError.message ||
-        getHttpResponseMessage(axiosError.response?.status),
-    };
-
-    return {
-      error,
-    };
+    return serverUp;
+  } catch (err) {
+    console.log(
+      `${err.message.toUpperCase()}: SERVER DOWN [BASE_URL: ${BASE_URL}]`
+    );
+    return serverUp;
   }
 };
+
+export const logApiRequest = (
+  collection: string,
+  endpointName: string,
+  endpointUrl: string
+): void =>
+  console.log(` > API: ${collection} [${endpointName}: ${endpointUrl}]`);
