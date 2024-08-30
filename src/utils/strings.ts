@@ -53,9 +53,15 @@ export class StringUtils {
 
 // Helper to extract URL from string
 export const extractUrlFromString = (str: string) => {
-  const url = str.match(/https?:\/\/[^\s]+/)[0];
+  const url = str.match(/https?:\/\/[^\s]+/);
 
-  const clearedUrl = clearLeadingAndTrailingDots(url);
+  let clearedUrl;
+
+  if (url) {
+    const urlMatch = url[0];
+    clearedUrl = clearLeadingAndTrailingDots(urlMatch);
+    return clearedUrl;
+  }
 
   return clearedUrl;
 };
