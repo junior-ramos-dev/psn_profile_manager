@@ -62,7 +62,7 @@ export const handleAxiosRequestHeaders = (
   if (
     req.url.includes(AUTH_ENDPOINT_NAME.LOGIN || AUTH_ENDPOINT_NAME.REGISTER)
   ) {
-    req.headers["authorization"] = `Bearer ${process.env.PSN_NPSSO}x`;
+    req.headers["authorization"] = `Bearer ${process.env.PSN_NPSSO}`;
     console.log(req.url);
   } else {
     console.log(endpointHeaders.headers);
