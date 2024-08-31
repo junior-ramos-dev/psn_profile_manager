@@ -1,5 +1,6 @@
 import { ITrophyList } from "@/models/interfaces/trophy/ITrophy";
 import { VERBS } from "@/settings/app/constants";
+import { TROPHY_ENDPOINT_NAME } from "@/settings/app/constants/api";
 import { store } from "@/store";
 
 import { rtkQueryBaseApi } from "../rtkQueryBaseApi";
@@ -19,7 +20,7 @@ export const trophyApi = rtkQueryBaseApi.injectEndpoints({
         method: VERBS.LIST,
         // urlParam: userId,
         collection: "GameTrophies",
-        endpointName: "getTrophyList",
+        endpointName: TROPHY_ENDPOINT_NAME.GET_TROPHY_LIST,
       }),
       transformResponse: (response) => {
         // Convert response to ITrophy list

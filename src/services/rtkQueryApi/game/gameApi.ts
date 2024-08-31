@@ -2,6 +2,7 @@ import { ConvertIGame, IGame } from "@/models/interfaces";
 import { IGameIcon } from "@/models/interfaces/games/IGameIcon";
 import { GameIconBinListRequest } from "@/models/types/rtkQuery/games";
 import { DUMMY_ETAG_HEADER, HEADERS, VERBS } from "@/settings/app/constants";
+import { GAME_ENDPOINT_NAME, GAME_URL_MAP } from "@/settings/app/constants/api";
 import { createIGameRoutesList } from "@/settings/app/routes/gameRoutes";
 import { store } from "@/store";
 import { getEnpointHeader } from "@/utils/http";
@@ -9,7 +10,6 @@ import { getEnpointHeader } from "@/utils/http";
 import { rtkQueryBaseApi } from "../rtkQueryBaseApi";
 
 import { actionSetGamesList, actionSetGamesRoutes } from "./gameSlice";
-import { GAME_ENDPOINT_NAME, GAME_URL_MAP } from ".";
 
 export const gameApi = rtkQueryBaseApi.injectEndpoints({
   endpoints: (build) => ({

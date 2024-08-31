@@ -46,7 +46,7 @@ export const Register = () => {
         console.error(e);
       }
     } else {
-      //TODO Show an error message.
+      // Show an error message.
     }
   };
 

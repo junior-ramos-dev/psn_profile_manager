@@ -1,6 +1,6 @@
 import { BaseLoader } from "@/services/routesLoaders/baseLoader";
-import { GAME_ENDPOINT_NAME } from "@/services/rtkQueryApi/game";
 import { gameApi } from "@/services/rtkQueryApi/game/gameApi";
+import { GAME_ENDPOINT_NAME } from "@/settings/app/constants/api";
 
 export class GamesLoader extends BaseLoader {
   listLoader = async ({ request }) => {

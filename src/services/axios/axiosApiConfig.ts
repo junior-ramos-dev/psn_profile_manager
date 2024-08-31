@@ -6,13 +6,12 @@ import axios, {
 import _ from "lodash";
 
 import { HEADERS } from "@/settings/app/constants";
+import { AUTH_ENDPOINT_NAME } from "@/settings/app/constants/api";
 import {
   getHttpResponseMessage,
   removeEnpointHeaderKey,
   setEnpointHeader,
 } from "@/utils/http";
-
-import { AUTH_ENDPOINT_NAME } from "../rtkQueryApi/auth";
 
 import { AxiosApiError } from "./axiosApiError";
 import { IEndpointHeaders } from "./axiosApiRepository";
