@@ -8,7 +8,7 @@ interface IAxiosBaseQueryArgs {
   endpointUrl: string;
   method: VERBS;
   headers?: object;
-  urlParam?: string;
+  urlParams?: object;
   bodyData?: object;
 }
 
@@ -20,7 +20,7 @@ export const axiosBaseQueryApi =
     endpointUrl,
     method,
     headers,
-    urlParam,
+    urlParams,
     bodyData,
   }: IAxiosBaseQueryArgs) =>
     axiosApiRepository(
@@ -29,6 +29,6 @@ export const axiosBaseQueryApi =
       endpointUrl,
       method,
       headers,
-      urlParam,
+      urlParams,
       bodyData
     );

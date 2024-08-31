@@ -1,3 +1,4 @@
+import _ from "lodash";
 import qs from "qs";
 
 import {
@@ -11,28 +12,50 @@ export interface IEndpointHeaders {
   headers: object;
 }
 
-const BASE_URL = axiosInstance.defaults.baseURL;
+const AXIOS_BASE_URL = axiosInstance.defaults.baseURL;
+
+/**
+ * Build url with params
+ *
+ * @param endpointUrl
+ * @param urlParams
+ * @returns
+ */
+const buildUrlWithParams = (endpointUrl: string, urlParams: object) => {
+  const keys = Object.keys(urlParams);
+
+  keys.forEach((key) => {
+    endpointUrl = _.replace(endpointUrl, `:${key}`, urlParams[key]);
+  });
+
+  console.log(endpointUrl);
+
+  return endpointUrl;
+};
 
 export const getOne = async (
   endpointUrl: string,
-  urlParam: string,
-  endpointHeaders: IEndpointHeaders
+  endpointHeaders: IEndpointHeaders,
+  urlParams: object
 ) => {
   if (endpointHeaders) setAxiosInterceptorRequest(endpointHeaders);
 
   return await axiosInstance
-    .get(`${BASE_URL}/${endpointUrl}/${urlParam}`)
+    .get(`${AXIOS_BASE_URL}/${endpointUrl}/${urlParams}`)
     .then((res) => handleAxiosResponseData(res, endpointHeaders));
 };
 
 export const getList = async (
   endpointUrl: string,
-  endpointHeaders: IEndpointHeaders
+  endpointHeaders: IEndpointHeaders,
+  urlParams?: object
 ) => {
   if (endpointHeaders) setAxiosInterceptorRequest(endpointHeaders);
 
+  if (urlParams) endpointUrl = buildUrlWithParams(endpointUrl, urlParams);
+
   return await axiosInstance
-    .get(`${BASE_URL}/${endpointUrl}/`)
+    .get(`${AXIOS_BASE_URL}/${endpointUrl}/`)
     .then((res) => handleAxiosResponseData(res, endpointHeaders));
 };
 
@@ -44,45 +67,45 @@ export const post = async (
   if (endpointHeaders) setAxiosInterceptorRequest(endpointHeaders);
 
   return await axiosInstance
-    .post(`${BASE_URL}/${endpointUrl}/`, qs.stringify(bodyData))
+    .post(`${AXIOS_BASE_URL}/${endpointUrl}/`, qs.stringify(bodyData))
     .then((res) => handleAxiosResponseData(res, endpointHeaders));
 };
 
 export const updatePut = async (
   endpointUrl: string,
-  urlParam: string,
   bodyData: object,
-  endpointHeaders: IEndpointHeaders
+  endpointHeaders: IEndpointHeaders,
+  urlParams: object
 ) => {
   if (endpointHeaders) setAxiosInterceptorRequest(endpointHeaders);
 
   return await axiosInstance
-    .put(`${BASE_URL}/${endpointUrl}/${urlParam}`, bodyData)
+    .put(`${AXIOS_BASE_URL}/${endpointUrl}/${urlParams}`, bodyData)
     .then((res) => handleAxiosResponseData(res, endpointHeaders));
 };
 
 export const updatePatch = async (
   endpointUrl: string,
-  urlParam: string,
   bodyData: object,
-  endpointHeaders: IEndpointHeaders
+  endpointHeaders: IEndpointHeaders,
+  urlParams: object
 ) => {
   if (endpointHeaders) setAxiosInterceptorRequest(endpointHeaders);
 
   return await axiosInstance
-    .patch(`${BASE_URL}/${endpointUrl}/${urlParam}`, bodyData)
+    .patch(`${AXIOS_BASE_URL}/${endpointUrl}/${urlParams}`, bodyData)
     .then((res) => handleAxiosResponseData(res, endpointHeaders));
 };
 
 export const deleteOne = async (
   endpointUrl: string,
-  urlParam: string,
-  endpointHeaders: IEndpointHeaders
+  endpointHeaders: IEndpointHeaders,
+  urlParams: object
 ) => {
   if (endpointHeaders) setAxiosInterceptorRequest(endpointHeaders);
 
   return await axiosInstance
-    .delete(`${BASE_URL}/${endpointUrl}/${urlParam}`)
+    .delete(`${AXIOS_BASE_URL}/${endpointUrl}/${urlParams}`)
     .then((res) => handleAxiosResponseData(res, endpointHeaders));
 };
 
@@ -90,16 +113,16 @@ export const isServerUp = async () => {
   let serverUp: boolean = false;
 
   try {
-    const result = await axiosInstance.get(`${BASE_URL}/status`);
+    const result = await axiosInstance.get(`${AXIOS_BASE_URL}/status`);
 
     serverUp = result.status == 200;
 
-    console.log(`SERVER UP [BASE_URL: ${BASE_URL}]`);
+    console.log(`SERVER UP [AXIOS_BASE_URL: ${AXIOS_BASE_URL}]`);
 
     return serverUp;
   } catch (err) {
     console.log(
-      `${err.message.toUpperCase()}: SERVER DOWN [BASE_URL: ${BASE_URL}]`
+      `${err.message.toUpperCase()}: SERVER DOWN [AXIOS_BASE_URL: ${AXIOS_BASE_URL}]`
     );
     return serverUp;
   }

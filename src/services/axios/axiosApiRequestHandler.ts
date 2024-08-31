@@ -20,7 +20,7 @@ export const axiosApiRepository = async (
   endpointUrl: string,
   method: VERBS,
   headers?: object,
-  urlParam?: string,
+  urlParams?: object,
   bodyData?: object
 ) => {
   try {
@@ -42,11 +42,15 @@ export const axiosApiRepository = async (
       switch (method) {
         //GET ONE
         case VERBS.GET:
-          return { data: await getOne(endpointUrl, urlParam, endpointHeaders) };
+          return {
+            data: await getOne(endpointUrl, endpointHeaders, urlParams),
+          };
 
         //GET LIST
         case VERBS.LIST:
-          return { data: await getList(endpointUrl, endpointHeaders) };
+          return {
+            data: await getList(endpointUrl, endpointHeaders, urlParams),
+          };
 
         // POST (CREATE)
         case VERBS.POST:
@@ -57,9 +61,9 @@ export const axiosApiRepository = async (
           return {
             data: await updatePut(
               endpointUrl,
-              urlParam,
               bodyData,
-              endpointHeaders
+              endpointHeaders,
+              urlParams
             ),
           };
 
@@ -68,15 +72,15 @@ export const axiosApiRepository = async (
           return {
             data: await updatePatch(
               endpointUrl,
-              urlParam,
-              bodyData,
-              endpointHeaders
+              urlParams,
+              endpointHeaders,
+              bodyData
             ),
           };
 
         // DELETE ONE
         case VERBS.DELETE:
-          return { data: deleteOne(endpointUrl, urlParam, endpointHeaders) };
+          return { data: deleteOne(endpointUrl, endpointHeaders, urlParams) };
       }
     }
   } catch (axiosError) {
