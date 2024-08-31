@@ -5,7 +5,8 @@ import { Outlet } from "react-router-dom";
 import { PageHeader } from "@/components/DefaultPage/PageHeader";
 import { useAppSelector } from "@/hooks/redux";
 import useOverFlowHidden from "@/hooks/useOverFlowHidden";
-import { authSelectors } from "@/services/rtkQueryApi/auth";
+import { selectAuthUser } from "@/services/rtkQueryApi/auth/authSelectors";
+import { selectUserProfile } from "@/services/rtkQueryApi/user/userSelectors";
 import {
   APP_TITLE,
   FOOTER_HEIGHT,
@@ -17,14 +18,8 @@ const Home = () => {
   //Disable page scroll
   useOverFlowHidden();
 
-  const userBasicInfo = useAppSelector(authSelectors.getAuthUser);
-
-  //TODO Create user profile endpoint
-  // useEffect(() => {
-  //   if (userBasicInfo) {
-  //     getUserProfile(user.id);
-  //   }
-  // }, [userBasicInfo]);
+  const user = useAppSelector(selectAuthUser);
+  const userProfile = useAppSelector(selectUserProfile);
 
   return (
     <>
@@ -51,7 +46,8 @@ const Home = () => {
           // boxSizing: "border-box",
         }}
       >
-        <div>{JSON.stringify(userBasicInfo)}</div>
+        <div>{JSON.stringify(user)}</div>
+        <div>{JSON.stringify(userProfile)}</div>
         <Box component="main" sx={{ flexGrow: 1, p: 1, pt: 10 }}>
           <Outlet />
         </Box>

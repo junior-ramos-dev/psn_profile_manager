@@ -1,11 +1,11 @@
-import { UserProfile } from "@/models/types/rtkQuery/user";
+import { IUserProfile } from "@/models/interfaces/user/IUserProfile";
 import { VERBS } from "@/settings/app/constants";
 
 import { rtkQueryBaseApi } from "../rtkQueryBaseApi";
 
 export const userApi = rtkQueryBaseApi.injectEndpoints({
   endpoints: (build) => ({
-    getUserProfile: build.query<UserProfile, string>({
+    getUserProfile: build.query<IUserProfile, string>({
       query: (id) => ({
         endpointUrl: "user",
         method: VERBS.GET,

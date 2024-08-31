@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "@/hooks/redux";
 import { useLoginMutation } from "@/services/rtkQueryApi/auth/authApi";
 import { actionSetCredentials } from "@/services/rtkQueryApi/auth/authSlice";
+import { actionSetUseProfile } from "@/services/rtkQueryApi/user/userSlice";
 import { css } from "@emotion/react";
 import { LockOutlined } from "@mui/icons-material";
 import {
@@ -36,7 +37,10 @@ export const Login = () => {
         await login({ email, password })
           .unwrap()
           .then((data) => {
-            dispatch(actionSetCredentials(data));
+            const { user, profile } = data;
+            console.log(user, profile);
+            dispatch(actionSetCredentials(user));
+            dispatch(actionSetUseProfile(profile));
           });
         navigate("/home");
       } catch (e) {

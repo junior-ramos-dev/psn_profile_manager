@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { PageHeader } from "@/components/DefaultPage/PageHeader";
 import { Loading } from "@/components/Loading";
 import { IGame } from "@/models/interfaces";
-import { getAuthUser } from "@/services/rtkQueryApi/auth/authSelectors";
+import { selectAuthUser } from "@/services/rtkQueryApi/auth/authSelectors";
 import {
   selectGameById,
   selectGamesList,
@@ -21,7 +21,7 @@ interface RoutesChildrenProps {
 }
 
 export const GameDetail = ({ gameId }: RoutesChildrenProps) => {
-  const authUser = useSelector(getAuthUser);
+  const authUser = useSelector(selectAuthUser);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const gamesList = useSelector(selectGamesList);
   const game: IGame = useSelector((gamesList) =>

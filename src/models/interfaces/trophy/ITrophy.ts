@@ -21,4 +21,17 @@ export interface ITrophyList {
   trophies: ITrophy[];
 }
 
+export interface ITrophyCount {
+  bronze: number;
+  silver: number;
+  gold: number;
+  platinum: number;
+}
+
+export interface ITrophySummary {
+  level: number;
+  progress: number;
+  earnedTrophies: ITrophyCount;
+}
+
 export default ITrophy;

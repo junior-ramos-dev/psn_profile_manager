@@ -1,8 +1,8 @@
-import { UserProfile } from "@/models/types/rtkQuery/user";
+import { IUserProfile } from "@/models/interfaces/user/IUserProfile";
 import { createSlice } from "@reduxjs/toolkit";
 
 interface UserProfileInitialState {
-  userProfile: UserProfile;
+  userProfile: IUserProfile;
 }
 
 const initialState: UserProfileInitialState = {
@@ -21,5 +21,8 @@ const userSlice = createSlice({
     },
   },
 });
+
+export const { actionSetUseProfile, actionUnsetUserProfile } =
+  userSlice.actions;
 
 export default userSlice.reducer;

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "@/hooks/redux/useAppDispatch";
 import { useLogoutMutation } from "@/services/rtkQueryApi/auth/authApi";
 import { actionUnsetCredentials } from "@/services/rtkQueryApi/auth/authSlice";
+import { actionUnsetUserProfile } from "@/services/rtkQueryApi/user/userSlice";
 import { DUMMY_ETAG_HEADER, HEADERS } from "@/settings/app/constants";
 import { GAME_ENDPOINT_NAME } from "@/settings/app/constants/api";
 import { setEnpointHeader } from "@/utils/http";
@@ -44,6 +45,7 @@ export const LogoutButton = () => {
         .unwrap()
         .then(() => {
           dispatch(actionUnsetCredentials());
+          dispatch(actionUnsetUserProfile());
           resetEndpointHeaders();
         });
       navigate("/auth/login");

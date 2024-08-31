@@ -6,6 +6,7 @@ import { Loading } from "@/components/Loading";
 import { useAppDispatch } from "@/hooks/redux";
 import { useRegisterMutation } from "@/services/rtkQueryApi/auth/authApi";
 import { actionSetCredentials } from "@/services/rtkQueryApi/auth/authSlice";
+import { actionSetUseProfile } from "@/services/rtkQueryApi/user/userSlice";
 import { css } from "@emotion/react";
 import { LockOutlined } from "@mui/icons-material";
 import {
@@ -39,8 +40,9 @@ export const Register = () => {
         })
           .unwrap()
           .then((data) => {
-            const authUser = data;
-            dispatch(actionSetCredentials(authUser));
+            const { user, profile } = data;
+            dispatch(actionSetCredentials(user));
+            dispatch(actionSetUseProfile(profile));
           });
       } catch (e) {
         console.error(e);
