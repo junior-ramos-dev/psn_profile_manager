@@ -9,7 +9,7 @@ export const userApi = rtkQueryBaseApi.injectEndpoints({
       query: (id) => ({
         endpointUrl: "user",
         method: VERBS.GET,
-        urlParam: id,
+        urlParams: { id },
         collection: "User",
         endpointName: "getUserProfile",
       }),

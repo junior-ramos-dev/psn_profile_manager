@@ -17,7 +17,6 @@ export const gameApi = rtkQueryBaseApi.injectEndpoints({
       query: () => ({
         endpointUrl: GAME_URL_MAP[GAME_ENDPOINT_NAME.GET_GAME_LIST],
         method: VERBS.LIST,
-        // urlParam: userId,
         collection: "Games",
         endpointName: GAME_ENDPOINT_NAME.GET_GAME_LIST,
         headers: {
@@ -48,7 +47,7 @@ export const gameApi = rtkQueryBaseApi.injectEndpoints({
       query: (npCommunicationId) => ({
         endpointUrl: GAME_URL_MAP[GAME_ENDPOINT_NAME.GET_ICON_BIN_BY_GAME],
         method: VERBS.GET,
-        urlParam: npCommunicationId,
+        urlParams: { npCommunicationId },
         collection: "GamesIcons",
         endpointName: GAME_ENDPOINT_NAME.GET_ICON_BIN_BY_GAME,
       }),

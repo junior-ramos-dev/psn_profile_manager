@@ -40,8 +40,10 @@ export const getOne = async (
 ) => {
   if (endpointHeaders) setAxiosInterceptorRequest(endpointHeaders);
 
+  if (urlParams) endpointUrl = buildUrlWithParams(endpointUrl, urlParams);
+
   return await axiosInstance
-    .get(`${AXIOS_BASE_URL}/${endpointUrl}/${urlParams}`)
+    .get(`${AXIOS_BASE_URL}/${endpointUrl}`)
     .then((res) => handleAxiosResponseData(res, endpointHeaders));
 };
 
@@ -79,8 +81,10 @@ export const updatePut = async (
 ) => {
   if (endpointHeaders) setAxiosInterceptorRequest(endpointHeaders);
 
+  if (urlParams) endpointUrl = buildUrlWithParams(endpointUrl, urlParams);
+
   return await axiosInstance
-    .put(`${AXIOS_BASE_URL}/${endpointUrl}/${urlParams}`, bodyData)
+    .put(`${AXIOS_BASE_URL}/${endpointUrl}`, bodyData)
     .then((res) => handleAxiosResponseData(res, endpointHeaders));
 };
 
@@ -92,8 +96,10 @@ export const updatePatch = async (
 ) => {
   if (endpointHeaders) setAxiosInterceptorRequest(endpointHeaders);
 
+  if (urlParams) endpointUrl = buildUrlWithParams(endpointUrl, urlParams);
+
   return await axiosInstance
-    .patch(`${AXIOS_BASE_URL}/${endpointUrl}/${urlParams}`, bodyData)
+    .patch(`${AXIOS_BASE_URL}/${endpointUrl}`, bodyData)
     .then((res) => handleAxiosResponseData(res, endpointHeaders));
 };
 
@@ -104,8 +110,10 @@ export const deleteOne = async (
 ) => {
   if (endpointHeaders) setAxiosInterceptorRequest(endpointHeaders);
 
+  if (urlParams) endpointUrl = buildUrlWithParams(endpointUrl, urlParams);
+
   return await axiosInstance
-    .delete(`${AXIOS_BASE_URL}/${endpointUrl}/${urlParams}`)
+    .delete(`${AXIOS_BASE_URL}/${endpointUrl}`)
     .then((res) => handleAxiosResponseData(res, endpointHeaders));
 };
 
