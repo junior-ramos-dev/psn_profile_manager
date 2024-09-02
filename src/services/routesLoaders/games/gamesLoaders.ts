@@ -1,17 +1,42 @@
+import { IAxiosBaseQueryArgs } from "@/services/axios/axiosBaseQueryApi";
 import { BaseLoader } from "@/services/routesLoaders/baseLoader";
-import { gameApi } from "@/services/rtkQueryApi/game/gameApi";
-import { GAME_ENDPOINT_NAME } from "@/settings/app/constants/api";
+import { gameApiLoader } from "@/services/rtkQueryApi/game/gameApiLoader";
+import { DUMMY_ETAG_HEADER, HEADERS, VERBS } from "@/settings/app/constants";
+import {
+  GAME_ENDPOINT_NAME,
+  GAME_LOADER_ENDPOINT_NAME,
+  GAME_LOADER_URL_MAP,
+} from "@/settings/app/constants/api";
+import { getEnpointHeader } from "@/utils/http";
 
 export class GamesLoader extends BaseLoader {
   listLoader = async ({ request }) => {
     const games = await this.loader(
-      GAME_ENDPOINT_NAME.GET_GAME_LIST,
-      gameApi.endpoints.getGameList,
+      GAME_LOADER_ENDPOINT_NAME.GAME_LIST_LOADER,
+      gameApiLoader.endpoints.gameListLoader,
       request,
-      {},
+      this.getGamesListLoaderQuery(),
       {}
     );
     return games;
+  };
+
+  getGamesListLoaderQuery = (): IAxiosBaseQueryArgs => {
+    return {
+      endpointUrl:
+        GAME_LOADER_URL_MAP[GAME_LOADER_ENDPOINT_NAME.GAME_LIST_LOADER],
+      method: VERBS.LIST,
+      collection: "Games",
+      endpointName: GAME_LOADER_ENDPOINT_NAME.GAME_LIST_LOADER,
+      headers: {
+        ETag:
+          getEnpointHeader(GAME_ENDPOINT_NAME.GET_GAME_LIST, HEADERS.ETAG) ??
+          DUMMY_ETAG_HEADER,
+        "if-none-match":
+          getEnpointHeader(GAME_ENDPOINT_NAME.GET_GAME_LIST, HEADERS.ETAG) ??
+          DUMMY_ETAG_HEADER,
+      },
+    };
   };
 
   // initListLoader = async () => {

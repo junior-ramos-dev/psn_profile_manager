@@ -1,3 +1,4 @@
+import { GAME_LOADER_ENDPOINT_NAME } from "@/settings/app/constants/api";
 import { AppDispatch, AppStore } from "@/store";
 
 export class BaseLoader {
@@ -10,9 +11,12 @@ export class BaseLoader {
 
   loader = async (endpointName, endpoint, request, query, queryOptions) => {
     const promise = this.dispatch(endpoint.initiate(query, queryOptions));
+
     if (request) request.signal.onabort = promise.abort;
+
     const res = await promise;
     const { data, isError, error } = res;
+
     if (isError && error.status !== 304) {
       const errorInfo = error;
       if (errorInfo.status >= 400 && errorInfo.status <= 599) {
@@ -28,10 +32,8 @@ export class BaseLoader {
 
   handleResponseData = (endpointName, data) => {
     if (!data) {
-      switch (endpointName) {
-        case "getGameList":
-          return null;
-      }
+      if (endpointName === GAME_LOADER_ENDPOINT_NAME.GAME_LIST_LOADER)
+        return null;
     }
     return data;
   };

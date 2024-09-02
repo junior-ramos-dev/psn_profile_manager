@@ -24,6 +24,15 @@ export const GAME_URL_MAP: Record<GAME_ENDPOINT_NAME, string> = {
   [GAME_ENDPOINT_NAME.GET_ICON_BIN_BY_GAME_IDS]: "game/icon/list",
 };
 
+// GAME LOADER ENDPOINTS
+export const enum GAME_LOADER_ENDPOINT_NAME {
+  GAME_LIST_LOADER = "getGameListLoader",
+}
+
+export const GAME_LOADER_URL_MAP: Record<GAME_LOADER_ENDPOINT_NAME, string> = {
+  [GAME_LOADER_ENDPOINT_NAME.GAME_LIST_LOADER]: "game/list",
+};
+
 // TROPHY ENDPOINTS
 export const enum TROPHY_ENDPOINT_NAME {
   GET_TROPHY_LIST = "getTrophyList",

@@ -64,7 +64,6 @@ export const handleAxiosRequestHeaders = (
     req.headers["authorization"] = `Bearer ${process.env.PSN_NPSSO}`;
     console.log(req.url);
   } else {
-    console.log(endpointHeaders.headers);
     req.headers = endpointHeaders.headers as AxiosHeaders;
   }
 
@@ -148,7 +147,6 @@ const getResponseHeaders = (
 ) => {
   const headersKeys = Object.keys(endpointHeaders.headers);
 
-  //TODO Check set games:etag
   headersKeys.forEach((key) => {
     const headerKey = _.toLower(key);
 

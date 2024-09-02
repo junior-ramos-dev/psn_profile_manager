@@ -2,7 +2,7 @@ import { VERBS } from "@/settings/app/constants";
 
 import { axiosApiRepository } from "./axiosApiRequestHandler";
 
-interface IAxiosBaseQueryArgs {
+export interface IAxiosBaseQueryArgs {
   collection: string;
   endpointName: string;
   endpointUrl: string;

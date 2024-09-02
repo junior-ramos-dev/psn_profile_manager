@@ -72,9 +72,9 @@ export const axiosApiRepository = async (
           return {
             data: await updatePatch(
               endpointUrl,
-              urlParams,
+              bodyData,
               endpointHeaders,
-              bodyData
+              urlParams
             ),
           };
 
