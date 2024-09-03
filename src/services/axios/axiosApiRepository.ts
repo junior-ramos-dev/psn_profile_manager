@@ -120,20 +120,13 @@ export const deleteOne = async (
 export const isServerUp = async () => {
   let serverUp: boolean = false;
 
-  try {
-    const result = await axiosInstance.get(`${AXIOS_BASE_URL}/status`);
+  const result = await axiosInstance.get(`${AXIOS_BASE_URL}/status`);
 
-    serverUp = result.status == 200;
+  if (result) serverUp = result.status == 200;
 
-    console.log(`SERVER UP [AXIOS_BASE_URL: ${AXIOS_BASE_URL}]`);
+  console.log(`SERVER UP [AXIOS_BASE_URL: ${AXIOS_BASE_URL}]`);
 
-    return serverUp;
-  } catch (err) {
-    console.log(
-      `${err.message.toUpperCase()}: SERVER DOWN [AXIOS_BASE_URL: ${AXIOS_BASE_URL}]`
-    );
-    return serverUp;
-  }
+  return serverUp;
 };
 
 export const logApiRequest = (

@@ -5,9 +5,7 @@ import { useAppDispatch } from "@/hooks/redux/useAppDispatch";
 import { useLogoutMutation } from "@/services/rtkQueryApi/auth/authApi";
 import { actionUnsetCredentials } from "@/services/rtkQueryApi/auth/authSlice";
 import { actionUnsetUserProfile } from "@/services/rtkQueryApi/user/userSlice";
-import { DUMMY_ETAG_HEADER, HEADERS } from "@/settings/app/constants";
-import { GAME_ENDPOINT_NAME } from "@/settings/app/constants/api";
-import { setEnpointHeader } from "@/utils/http";
+import { resetGameEndpointHeaders } from "@/settings/app/constants/api/game";
 import { css } from "@emotion/react";
 import ExitToApp from "@mui/icons-material/ExitToApp";
 import {
@@ -27,16 +25,7 @@ export const LogoutButton = () => {
   const resetEndpointHeaders = () => {
     // Reset/Remove headers in localStorage
     // Game endpoints
-    setEnpointHeader(
-      GAME_ENDPOINT_NAME.GET_GAME_LIST,
-      HEADERS.ETAG,
-      DUMMY_ETAG_HEADER
-    );
-    setEnpointHeader(
-      GAME_ENDPOINT_NAME.GET_GAME_LIST,
-      HEADERS.IF_NONE_MATCH,
-      DUMMY_ETAG_HEADER
-    );
+    resetGameEndpointHeaders();
   };
 
   const handleLogout = async () => {

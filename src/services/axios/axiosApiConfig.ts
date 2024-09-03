@@ -5,8 +5,8 @@ import axios, {
 } from "axios";
 import _ from "lodash";
 
-import { HEADERS } from "@/settings/app/constants";
-import { AUTH_ENDPOINT_NAME } from "@/settings/app/constants/api";
+import { ERR_NETWORK, HEADERS } from "@/settings/app/constants";
+import { AUTH_ENDPOINT_NAME } from "@/settings/app/constants/api/auth";
 import {
   getHttpResponseMessage,
   removeEnpointHeaderKey,
@@ -16,7 +16,7 @@ import {
 import { AxiosApiError } from "./axiosApiError";
 import { IEndpointHeaders } from "./axiosApiRepository";
 
-const BASE_URL = process.env.API_BASE_URL;
+export const BASE_URL = process.env.API_BASE_URL;
 
 export const axiosInstance = axios.create({
   baseURL: BASE_URL,
@@ -63,8 +63,13 @@ export const handleAxiosRequestHeaders = (
   ) {
     req.headers["authorization"] = `Bearer ${process.env.PSN_NPSSO}`;
     console.log(req.url);
+  } else if (req.url.includes(AUTH_ENDPOINT_NAME.LOGOUT)) {
+    clearEndpointResHeaders(endpointHeaders);
   } else {
     req.headers = endpointHeaders.headers as AxiosHeaders;
+    //TODO remove
+    console.log(req.url);
+    console.log(req.headers);
   }
 
   return req;
@@ -116,10 +121,23 @@ export const handleAxiosResponseData = (
  * @returns
  */
 export const handleAxiosResponseError = (axiosError, navigate) => {
-  const status = axiosError.response?.status;
-  const message =
-    axiosError.message || getHttpResponseMessage(axiosError.response?.status);
-  const data = axiosError.response.data;
+  let status;
+  let message;
+  let data;
+
+  if (axiosError.code === ERR_NETWORK) {
+    const baseUrl = axiosError.config.baseURL;
+
+    status = 500;
+    message = `Server Unavailable [URL: ${baseUrl}]`;
+
+    console.log(status, message);
+  } else {
+    status = axiosError.response?.status;
+    message =
+      axiosError.message || getHttpResponseMessage(axiosError.response?.status);
+    data = axiosError.response.data;
+  }
 
   const axiosApiError = new AxiosApiError(status, message, data);
 

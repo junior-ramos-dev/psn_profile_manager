@@ -4,16 +4,30 @@ import { StringWithExternalUrl } from "@/components/StringWithExternalUrl";
 import { Box, Button, Typography } from "@mui/material";
 
 import { ErrorStatusMessage } from "../ErrorStatusMessage";
+import { NetworkError } from "../NetworkError";
 
 import { ReqValidationErrorList } from "./ReqValidationErrorList";
 
 export const AxiosErrorPage = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
-  console.log(state);
   const { axiosApiError } = state; // Read values passed on state
+  console.log(axiosApiError);
 
-  const validationErrors = axiosApiError.data.errors;
+  const errorStatus = axiosApiError.status;
+  const errorMessage = axiosApiError.message;
+
+  let errorData;
+  let validationErrors;
+  let errorDataName;
+  let errorDataMesssage;
+
+  if (axiosApiError.data) {
+    errorData = axiosApiError.data;
+    validationErrors = errorData.errors;
+    errorDataName = errorData.name;
+    errorDataMesssage = errorData.message;
+  }
 
   const refreshPage = () => {
     window.location.reload();
@@ -30,14 +44,14 @@ export const AxiosErrorPage = () => {
           <Typography variant="subtitle1" style={{ fontWeight: 600 }}>
             Sorry, an unexpected error has occurred.
           </Typography>
-          {
+          {errorData ? (
             <Box>
               <ErrorStatusMessage
-                errorName={axiosApiError.data.name}
-                errorStatus={axiosApiError.status}
-                errorMessage={axiosApiError.message}
+                errorName={errorDataName}
+                errorStatus={errorStatus}
+                errorMessage={errorMessage}
               />
-              <StringWithExternalUrl str={axiosApiError.data.message} />
+              <StringWithExternalUrl str={errorDataMesssage} />
 
               {validationErrors ? (
                 <ReqValidationErrorList reqErrors={validationErrors} />
@@ -45,7 +59,12 @@ export const AxiosErrorPage = () => {
                 <></>
               )}
             </Box>
-          }
+          ) : (
+            <NetworkError
+              errorStatus={errorStatus}
+              errorMessage={errorMessage}
+            />
+          )}
           <Button
             variant="outlined"
             sx={{ mt: 3, mb: 2, width: 100 }}

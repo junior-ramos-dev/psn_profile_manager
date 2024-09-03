@@ -38,7 +38,6 @@ export const Login = () => {
           .unwrap()
           .then((data) => {
             const { user, profile } = data;
-            console.log(user, profile);
             dispatch(actionSetCredentials(user));
             dispatch(actionSetUseProfile(profile));
           });
