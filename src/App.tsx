@@ -6,89 +6,104 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
+import { GameDetail } from "./components/Game";
+import { useAppSelector } from "./hooks/redux";
 import { IGameRoute } from "./models/interfaces";
-import { GameDetail } from "./pages/Game";
-import { useAppRouter } from "./settings/app/routes/sideBarRoutes";
+import { selectIsLoggedIn } from "./services/rtkQueryApi/auth/authSelectors";
+import { selectGamesRoutes } from "./services/rtkQueryApi/game/gameSelectors";
+import { useSidebarRoutes } from "./settings/app/routes/sideBarRoutes";
 import { appDefaultRoutes, ROUTE_ID } from "./initAppRouter";
-import { store } from "./store";
 
-export const App = (appRouter) => {
-  const isLoggedIn = store.getState().auth.isLoggedIn;
-  const sidebarRoutes = useAppRouter();
+/**
+ * Create game RouteObject from IGameRoute
+ *
+ * @param gameRoute
+ * @returns
+ */
+const createGameRouteObject = (gameRoute: IGameRoute): RouteObject => {
+  const gameRouteObject: RouteObject = {
+    id: gameRoute.key,
+    path: gameRoute.path,
+    element: <GameDetail gameId={gameRoute.key} />,
+  };
 
-  // console.log(isLoggedIn);
+  return gameRouteObject;
+};
 
-  /**
-   * Set the private routes children from the appDefaultroutes
-   *
-   * @param appDefaultRoutes
-   * @param sidebarRoutes
-   * @param gamesRoutes
-   */
-  const setPrivateRoutes = (appDefaultRoutes, sidebarRoutes, gamesRoutes) => {
-    appDefaultRoutes.forEach((root) => {
-      root.children.forEach((rootChildren) => {
-        const subRootChildren = rootChildren.children;
-        subRootChildren.forEach((subRoute) => {
-          if (subRoute.id === ROUTE_ID.PRIVATE_ROUTE) {
-            subRoute.children = _.concat(sidebarRoutes, gamesRoutes);
-          }
-        });
+/**
+ * Generate RouteObject list from IGameRoute list
+ *
+ * @param gamesRoutesList
+ * @returns
+ */
+const generateGamesRouteObjectList = (
+  gamesRoutesList: IGameRoute[]
+): RouteObject[] => {
+  // List of RoutObject
+  const gameRouteObjectList: RouteObject[] = [];
+
+  if (gamesRoutesList) {
+    // Iterate over the gamesRoutesParams to add the games list page routes
+    gamesRoutesList.forEach((gameRoute: IGameRoute) => {
+      gameRouteObjectList.push(createGameRouteObject(gameRoute));
+    });
+  }
+
+  return gameRouteObjectList;
+};
+
+/**
+ * Append routes to the appDefaultRoutes
+ *
+ * @param appDefaultRoutes
+ * @param routes
+ */
+export const appendRoutesToDefaultRoutes = (
+  appDefaultRoutes,
+  sideBarRoutes,
+  gameRoutes
+) => {
+  appDefaultRoutes.forEach((root) => {
+    root.children.forEach((rootChildren) => {
+      const subRootChildren = rootChildren.children;
+      subRootChildren.forEach((subRoute) => {
+        if (subRoute.id === ROUTE_ID.PRIVATE_ROUTE) {
+          subRoute.children = _.concat(sideBarRoutes, gameRoutes);
+        }
       });
     });
-  };
+  });
+};
 
-  /**
-   * Add routes for the games list
-   *
-   * @param gameRoute
-   * @returns
-   */
-  const addGameRouteObject = (gameRoute: IGameRoute): RouteObject => {
-    const gameRouteObject: RouteObject = {
-      id: gameRoute.key,
-      path: gameRoute.path,
-      element: <GameDetail gameId={gameRoute.key} />,
-    };
+export const App = (appRouter) => {
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
 
-    return gameRouteObject;
-  };
+  // Load sidebar routes and set into the default routes
+  const sidebarRoutes = useSidebarRoutes();
 
-  /**
-   *  Generate RouteObject list from IGameRoute list
-   */
-  const createGamesRouteObjectList = (): RouteObject[] => {
-    const gamesRoutes = store.getState().game.gamesRoutes;
+  // Get gamesROutes from gameSlice
+  const gamesRoutesList = useAppSelector(selectGamesRoutes);
+  // Create games routes objects to set into the default routes
+  const gamesRoutesObj = generateGamesRouteObjectList(gamesRoutesList);
 
-    // List of RoutObject
-    const gameRouteObjectList: RouteObject[] = [];
-
-    if (gamesRoutes) {
-      // Iterate over the gamesRoutesParams to add the games list page routes
-      gamesRoutes.forEach((gameRoute: IGameRoute) => {
-        gameRouteObjectList.push(addGameRouteObject(gameRoute));
-      });
-    }
-
-    return gameRouteObjectList;
-  };
-
-  const gamesRoutesObj = createGamesRouteObjectList();
-
+  // Init gamesRoutes state with games routes objects
   const [gamesRoutes, setGamesRoutes] = useState(gamesRoutesObj);
 
-  // Load the gems routes
+  // Try to setup the games routes if they are not got from the gameLoader when the app starts
   if (!gamesRoutes.length && isLoggedIn) {
     setTimeout(() => {
       if (!gamesRoutes.length) {
         console.log("Loading games routes...");
 
-        setGamesRoutes(createGamesRouteObjectList());
+        setGamesRoutes(generateGamesRouteObjectList(gamesRoutesList));
       }
     }, 300);
   }
 
-  setPrivateRoutes(appDefaultRoutes, sidebarRoutes, gamesRoutes);
+  // Append routes into the default routes
+  appendRoutesToDefaultRoutes(appDefaultRoutes, sidebarRoutes, gamesRoutes);
+
+  // Update the default routes with sidebar/games routes
   appRouter = createBrowserRouter(appDefaultRoutes);
 
   return <RouterProvider router={appRouter} />;

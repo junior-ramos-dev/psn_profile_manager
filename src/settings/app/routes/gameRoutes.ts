@@ -3,8 +3,8 @@ import { IGame, IGameRoute } from "@/models/interfaces";
 /**
  *  Generate IGameRoute list objects from IGame list
  */
-const createIGameRoutesList = (gameList: IGame[]): IGameRoute[] => {
-  const iGamesRoutesList = new Array<IGameRoute>();
+export const createIGameRoutesList = (gameList: IGame[]): IGameRoute[] => {
+  const gamesRoutesList = new Array<IGameRoute>();
 
   gameList.forEach((game) => {
     const gameRoute: IGameRoute = {
@@ -17,10 +17,8 @@ const createIGameRoutesList = (gameList: IGame[]): IGameRoute[] => {
       expanded: false,
     };
 
-    iGamesRoutesList.push(gameRoute);
+    gamesRoutesList.push(gameRoute);
   });
 
-  return iGamesRoutesList;
+  return gamesRoutesList;
 };
-
-export { createIGameRoutesList };

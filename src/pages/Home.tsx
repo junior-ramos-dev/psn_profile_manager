@@ -1,12 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { Helmet } from "react-helmet-async";
-import { Outlet, useLoaderData } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 import { PageHeader } from "@/components/DefaultPage/PageHeader";
 import { useAppSelector } from "@/hooks/redux";
 import useOverFlowHidden from "@/hooks/useOverFlowHidden";
 import { selectAuthUser } from "@/services/rtkQueryApi/auth/authSelectors";
-import { selectGamesRoutes } from "@/services/rtkQueryApi/game/gameSelectors";
 import { selectUserProfile } from "@/services/rtkQueryApi/user/userSelectors";
 import {
   APP_TITLE,
@@ -21,13 +20,6 @@ const Home = () => {
 
   const user = useAppSelector(selectAuthUser);
   const userProfile = useAppSelector(selectUserProfile);
-
-  const gamesRoutes = useAppSelector(selectGamesRoutes);
-
-  if (!gamesRoutes) {
-    // const gamesList = useLoaderData();
-    console.log("gamesList");
-  }
 
   return (
     <>

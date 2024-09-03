@@ -1,9 +1,9 @@
 import { RouteObject } from "react-router-dom";
 
 import { IAppRoute } from "@/models/interfaces";
-import { Games } from "@/pages/Game";
+import Games from "@/pages/Games";
 import Home from "@/pages/Home";
-import { IndexPage } from "@/pages/IndexPage";
+import Index from "@/pages/Index";
 import { GamesLoader } from "@/services/routesLoaders/games/gamesLoaders";
 import { store } from "@/store";
 import DashboardIcon from "@material-ui/icons/BarChartOutlined";
@@ -18,16 +18,21 @@ import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 const gamesLoader = new GamesLoader(store);
 
 // Hook used to load app routes into initRouter.tsx
-const useAppRouter = () => {
-  return createSidebarRouteObjectList();
+const useSidebarRoutes = () => {
+  return generateSidebarRouteObjectList();
 };
 
-// Add routes for the app side bar
-const addSideBarRouteObject = (route: IAppRoute): RouteObject => {
+/**
+ * Create game RouteObject from IAppRoute
+ *
+ * @param route
+ * @returns
+ */
+const createSideBarRouteObject = (route: IAppRoute): RouteObject => {
   const sidebarRouteObject: RouteObject = {
     id: route.key,
     path: route.path,
-    Component: route.component || IndexPage,
+    Component: route.component || Index,
     loader: route.loader || undefined,
   };
 
@@ -37,7 +42,7 @@ const addSideBarRouteObject = (route: IAppRoute): RouteObject => {
 /**
  *  Generate RouteObject list from IAppRoute list
  */
-const createSidebarRouteObjectList = (): RouteObject[] => {
+const generateSidebarRouteObjectList = (): RouteObject[] => {
   // List of RoutObject
   const sidebarRouteObjectList: RouteObject[] = [];
 
@@ -45,9 +50,9 @@ const createSidebarRouteObjectList = (): RouteObject[] => {
   sideBarRoutes.forEach((appRoute: IAppRoute) => {
     return appRoute.subRoutes
       ? appRoute.subRoutes.map((item: IAppRoute) =>
-          sidebarRouteObjectList.push(addSideBarRouteObject(item))
+          sidebarRouteObjectList.push(createSideBarRouteObject(item))
         )
-      : sidebarRouteObjectList.push(addSideBarRouteObject(appRoute));
+      : sidebarRouteObjectList.push(createSideBarRouteObject(appRoute));
   });
 
   return sidebarRouteObjectList;
@@ -82,7 +87,7 @@ const sideBarRoutes: Array<IAppRoute> = [
     tooltip: "Dashboard",
     path: "/dashboard",
     enabled: true,
-    // component: ThemesDemo,
+    // component: Dashboard,
     asset: DashboardIcon,
   },
   {
@@ -134,4 +139,4 @@ const sideBarRoutes: Array<IAppRoute> = [
   },
 ];
 
-export { sideBarRoutes, useAppRouter };
+export { sideBarRoutes, useSidebarRoutes };
