@@ -1,11 +1,14 @@
 import { ConvertIGame, IGame } from "@/models/interfaces";
 import { IGameIcon } from "@/models/interfaces/games/IGameIcon";
 import { GameIconBinListRequest } from "@/models/types/rtkQuery/games";
-import { DUMMY_ETAG_HEADER, HEADERS, VERBS } from "@/settings/app/constants";
-import { GAME_ENDPOINT_NAME, GAME_URL_MAP } from "@/settings/app/constants/api";
+import { IAxiosBaseQueryArgs } from "@/services/axios/axiosBaseQueryApi";
+import { VERBS } from "@/settings/app/constants";
+import {
+  GAME_ENDPOINT_NAME,
+  GAME_URL_MAP,
+} from "@/settings/app/constants/api/game";
 import { createIGameRoutesList } from "@/settings/app/routes/gameRoutes";
 import { store } from "@/store";
-import { getEnpointHeader } from "@/utils/http";
 
 import { rtkQueryBaseApi } from "../rtkQueryBaseApi";
 
@@ -19,14 +22,29 @@ export const gameApi = rtkQueryBaseApi.injectEndpoints({
         method: VERBS.LIST,
         collection: "Games",
         endpointName: GAME_ENDPOINT_NAME.GET_GAME_LIST,
-        headers: {
-          ETag:
-            getEnpointHeader(GAME_ENDPOINT_NAME.GET_GAME_LIST, HEADERS.ETAG) ??
-            DUMMY_ETAG_HEADER,
-          "if-none-match":
-            getEnpointHeader(GAME_ENDPOINT_NAME.GET_GAME_LIST, HEADERS.ETAG) ??
-            DUMMY_ETAG_HEADER,
-        },
+      }),
+      transformResponse: (response) => {
+        // Convert response to IGame list
+        const gamesList = ConvertIGame.fromApiResponseToIGameList(
+          response.games
+        );
+        store.dispatch(actionSetGamesList(gamesList));
+
+        // Get the IRouteGame list
+        const gamesRoutes = createIGameRoutesList(gamesList);
+        store.dispatch(actionSetGamesRoutes(gamesRoutes));
+
+        return gamesList;
+      },
+      providesTags: ["Game"],
+    }),
+    // Used by GameLoaders
+    gameListLoader: build.query<IGame[], IAxiosBaseQueryArgs>({
+      query: ({ endpointUrl, method, collection, endpointName }) => ({
+        endpointUrl: endpointUrl,
+        method: method,
+        collection: collection,
+        endpointName: endpointName,
       }),
       transformResponse: (response) => {
         // Convert response to IGame list
@@ -68,6 +86,7 @@ export const gameApi = rtkQueryBaseApi.injectEndpoints({
 
 export const {
   useGetGameListQuery,
+  useGameListLoaderQuery,
   useGetIconBinByGameQuery,
   useGetIconBinByGameIdsMutation,
 } = gameApi;

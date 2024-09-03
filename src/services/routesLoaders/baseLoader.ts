@@ -1,4 +1,4 @@
-import { GAME_LOADER_ENDPOINT_NAME } from "@/settings/app/constants/api";
+import { GAME_ENDPOINT_NAME } from "@/settings/app/constants/api/game";
 import { AppDispatch, AppStore } from "@/store";
 
 export class BaseLoader {
@@ -32,8 +32,7 @@ export class BaseLoader {
 
   handleResponseData = (endpointName, data) => {
     if (!data) {
-      if (endpointName === GAME_LOADER_ENDPOINT_NAME.GAME_LIST_LOADER)
-        return null;
+      if (endpointName === GAME_ENDPOINT_NAME.GAME_LIST_LOADER) return null;
     }
     return data;
   };

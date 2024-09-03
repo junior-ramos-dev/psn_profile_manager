@@ -5,7 +5,6 @@ import { useAppDispatch } from "@/hooks/redux/useAppDispatch";
 import { useLogoutMutation } from "@/services/rtkQueryApi/auth/authApi";
 import { actionUnsetCredentials } from "@/services/rtkQueryApi/auth/authSlice";
 import { actionUnsetUserProfile } from "@/services/rtkQueryApi/user/userSlice";
-import { resetGameEndpointHeaders } from "@/settings/app/constants/api/game";
 import { css } from "@emotion/react";
 import ExitToApp from "@mui/icons-material/ExitToApp";
 import {
@@ -22,12 +21,6 @@ export const LogoutButton = () => {
 
   const [logout] = useLogoutMutation();
 
-  const resetEndpointHeaders = () => {
-    // Reset/Remove headers in localStorage
-    // Game endpoints
-    resetGameEndpointHeaders();
-  };
-
   const handleLogout = async () => {
     try {
       await logout()
@@ -35,7 +28,6 @@ export const LogoutButton = () => {
         .then(() => {
           dispatch(actionUnsetCredentials());
           dispatch(actionUnsetUserProfile());
-          resetEndpointHeaders();
         });
       navigate("/auth/login");
     } catch (e) {
