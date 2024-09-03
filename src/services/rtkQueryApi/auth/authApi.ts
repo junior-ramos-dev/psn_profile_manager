@@ -5,7 +5,10 @@ import {
   AuthRegisterResponse,
 } from "@/models/types/rtkQuery/auth";
 import { VERBS } from "@/settings/app/constants";
-import { AUTH_ENDPOINT_NAME, AUTH_URL_MAP } from "@/settings/app/constants/api";
+import {
+  AUTH_ENDPOINT_NAME,
+  AUTH_URL_MAP,
+} from "@/settings/app/constants/api/auth";
 
 import { rtkQueryBaseApi } from "../rtkQueryBaseApi";
 

@@ -3,7 +3,7 @@ import { VERBS } from "@/settings/app/constants";
 import {
   TROPHY_ENDPOINT_NAME,
   TROPHY_URL_MAP,
-} from "@/settings/app/constants/api";
+} from "@/settings/app/constants/api/trophy";
 import { store } from "@/store";
 
 import { rtkQueryBaseApi } from "../rtkQueryBaseApi";
@@ -35,28 +35,6 @@ export const trophyApi = rtkQueryBaseApi.injectEndpoints({
       },
       providesTags: ["Trophy"],
     }),
-    // getIconBinByTrophy: build.query<ITrophyIcon, string>({
-    //   query: (npCommunicationId) => ({
-    //     endpointUrl: "trophy/icon",
-    //     method: VERBS.GET,
-    //     urlParam: npCommunicationId,
-    //     collection: "TrophiesIcons",
-    //     endpointName: "getIconBinByGame",
-    //   }),
-    //   providesTags: ["Trophy"],
-    // }),
-    // getIconBinByTrophyIds: build.mutation<
-    //   ITrophyIcon[],
-    //   TrophyIconBinListRequest
-    // >({
-    //   query: ({ npCommIdList }) => ({
-    //     endpointUrl: "trophy/icon/list",
-    //     method: VERBS.POST,
-    //     bodyData: { npCommIdList },
-    //     collection: "TrophiesIcons",
-    //     endpointName: "getIconBinByTrophyIds",
-    //   }),
-    // }),
   }),
   overrideExisting: false,
 });
