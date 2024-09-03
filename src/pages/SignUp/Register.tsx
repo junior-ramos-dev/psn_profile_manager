@@ -20,7 +20,7 @@ import {
   Typography,
 } from "@mui/material";
 
-export const Register = () => {
+const Register = () => {
   const dispatch = useAppDispatch();
 
   const [psnOnlineId, setPsnOnlineId] = useState("");
@@ -145,3 +145,5 @@ export const Register = () => {
     </Container>
   );
 };
+
+export default Register;

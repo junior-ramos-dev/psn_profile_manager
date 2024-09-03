@@ -9,10 +9,10 @@ import {
 } from "@/settings/app/constants";
 import { Box } from "@mui/material";
 
-import { GameList } from "./GameList";
+import { GameList } from "../components/Game/GameList";
 
 //TODO Create component SearchGames
-export const Games = () => {
+const Games = () => {
   return (
     <>
       <Helmet>
@@ -42,3 +42,5 @@ export const Games = () => {
     </>
   );
 };
+
+export default Games;

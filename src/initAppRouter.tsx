@@ -2,11 +2,12 @@ import { createBrowserRouter, RouteObject } from "react-router-dom";
 
 import { AppLayout } from "@/components/Layout/App";
 import { PrivateRoute, PublicRoute } from "@/components/Layout/App/Routes";
-import { IndexPage } from "@/pages/IndexPage";
-import { Login, Register } from "@/pages/SignUp";
+import Index from "@/pages/Index";
+import Login from "@/pages/SignUp/Login";
+import Register from "@/pages/SignUp/Register";
 
-import { AxiosErrorPage } from "./pages/Error/Axios/AxiosError";
-import { RouteErrorPage } from "./pages/Error/RouteError";
+import AxiosError from "./pages/Error/AxiosError";
+import RouteError from "./pages/Error/RouteError";
 
 export const enum ROUTE_ID {
   ROOT = "root",
@@ -15,33 +16,40 @@ export const enum ROUTE_ID {
   PRIVATE_ROUTE = "privateRoute",
 }
 
+export const enum ROUTE_PATH {
+  ROOT = "/",
+  LOGIN = "/auth/login",
+  REGISTER = "/auth/register",
+  AXIOS_ERROR = "/axioserror",
+}
+
 export const appDefaultRoutes = [
   {
     id: ROUTE_ID.ROOT,
-    path: "/",
+    path: ROUTE_PATH.ROOT,
     element: <AppLayout />,
-    errorElement: <RouteErrorPage />,
+    errorElement: <RouteError />,
     children: [
       {
-        errorElement: <AxiosErrorPage />,
+        errorElement: <AxiosError />,
         children: [
-          { id: ROUTE_ID.INDEX, index: true, element: <IndexPage /> },
+          { id: ROUTE_ID.INDEX, index: true, element: <Index /> },
 
           {
-            path: "/axioserror",
-            element: <AxiosErrorPage />,
+            path: ROUTE_PATH.AXIOS_ERROR,
+            element: <AxiosError />,
           },
           {
             id: ROUTE_ID.PUBLIC_ROUTE,
             element: <PublicRoute />,
-            errorElement: <RouteErrorPage />,
+            errorElement: <RouteError />,
             children: [
               {
-                path: "/auth/login",
+                path: ROUTE_PATH.LOGIN,
                 element: <Login />,
               },
               {
-                path: "/auth/register",
+                path: ROUTE_PATH.REGISTER,
                 element: <Register />,
               },
             ],
@@ -49,7 +57,7 @@ export const appDefaultRoutes = [
           {
             id: ROUTE_ID.PRIVATE_ROUTE,
             element: <PrivateRoute />,
-            errorElement: <RouteErrorPage />,
+            errorElement: <RouteError />,
             children: [] as RouteObject[], //_.concat(sidebarRoutes, gamesRoutes),
           },
 

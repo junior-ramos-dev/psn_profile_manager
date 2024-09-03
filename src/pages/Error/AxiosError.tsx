@@ -3,12 +3,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { StringWithExternalUrl } from "@/components/StringWithExternalUrl";
 import { Box, Button, Typography } from "@mui/material";
 
-import { ErrorStatusMessage } from "../ErrorStatusMessage";
-import { NetworkError } from "../NetworkError";
+import { ErrorStatusMessage } from "../../components/Error/ErrorStatusMessage";
+import { NetworkError } from "../../components/Error/NetworkError";
+import { ReqValidationErrorList } from "../../components/Error/ReqValidationErrorList";
 
-import { ReqValidationErrorList } from "./ReqValidationErrorList";
-
-export const AxiosErrorPage = () => {
+const AxiosError = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const { axiosApiError } = state; // Read values passed on state
@@ -86,3 +85,5 @@ export const AxiosErrorPage = () => {
     </div>
   );
 };
+
+export default AxiosError;

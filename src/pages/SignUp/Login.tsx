@@ -19,7 +19,7 @@ import {
   Typography,
 } from "@mui/material";
 
-export const Login = () => {
+const Login = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [login, { isLoading, isError, isSuccess /* ,data */ }] =
@@ -121,3 +121,5 @@ export const Login = () => {
     </Container>
   );
 };
+
+export default Login;

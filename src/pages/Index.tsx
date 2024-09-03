@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { PageTitle } from "@/components/DefaultPage";
 import { Box, Typography } from "@mui/material";
 
-export const IndexPage = () => {
+const Index = () => {
   const location = useLocation();
 
   return (
@@ -33,3 +33,5 @@ export const IndexPage = () => {
     </Box>
   );
 };
+
+export default Index;

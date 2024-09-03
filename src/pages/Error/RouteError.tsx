@@ -6,7 +6,7 @@ import {
 
 import { Box, Button, Typography } from "@mui/material";
 
-export const RouteErrorPage = () => {
+const RouteError = () => {
   const navigate = useNavigate();
   // you don't need to explicitly set error to `unknown`
   const error = useRouteError();
@@ -67,3 +67,5 @@ export const RouteErrorPage = () => {
     </div>
   );
 };
+
+export default RouteError;

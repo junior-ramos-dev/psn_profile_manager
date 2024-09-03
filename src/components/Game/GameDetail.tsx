@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import { PageHeader } from "@/components/DefaultPage/PageHeader";
 import { Loading } from "@/components/Loading";
 import { IGame } from "@/models/interfaces";
-import { selectAuthUser } from "@/services/rtkQueryApi/auth/authSelectors";
 import {
   selectGameById,
   selectGamesList,
@@ -21,20 +20,18 @@ interface RoutesChildrenProps {
 }
 
 export const GameDetail = ({ gameId }: RoutesChildrenProps) => {
-  const authUser = useSelector(selectAuthUser);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const gamesList = useSelector(selectGamesList);
   const game: IGame = useSelector((gamesList) =>
     selectGameById(gamesList, gameId)
   );
 
-  const userId = authUser.id;
   const trophyTitlePlatform = game.trophyTitlePlatform;
   const npCommunicationId = game.npCommunicationId;
 
   const { data: trophyList, isLoading /* isError, isSuccess   */ } =
     useGetTrophyListQuery(
-      { userId, trophyTitlePlatform, npCommunicationId },
+      { trophyTitlePlatform, npCommunicationId },
       {
         pollingInterval: 60 * 60 * 1000 * 2, //(60 * 60 * 1000 * 2) = 2h
         // refetchOnFocus: true,
