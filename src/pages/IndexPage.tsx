@@ -1,7 +1,7 @@
-import { useLocation } from "react-router";
+import { useLocation } from "react-router-dom";
 
 import { PageTitle } from "@/components/DefaultPage";
-import { Box,Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 export const IndexPage = () => {
   const location = useLocation();
@@ -14,7 +14,7 @@ export const IndexPage = () => {
         {location.pathname.replaceAll("/", " ").toUpperCase().trimStart()}
       </h3>
       <Box sx={{ p: 3 }}>
-        <Typography paragraph>
+        <Typography>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
           dolor purus non enim praesent elementum facilisis leo vel. Risus at
