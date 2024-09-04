@@ -1,25 +1,25 @@
 /** @jsxImportSource @emotion/react */
 import { FOOTER_HEIGHT, FOOTER_TEXT } from "@/settings/app/constants";
 import { css } from "@emotion/react";
-import { Typography, useTheme } from "@mui/material";
+import { styled, Typography } from "@mui/material";
+
+const FooterWrapper = styled("div")(({ theme }) => ({
+  flex: 1,
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  backgroundColor: theme.palette.background.paper,
+  minHeight: FOOTER_HEIGHT - 18,
+  position: "fixed",
+  left: 0,
+  bottom: 0,
+  width: "100%",
+  zIndex: theme.zIndex.drawer + 2,
+}));
 
 export const Footer = () => {
-  const theme = useTheme();
   return (
-    <div
-      css={css`
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        background: ${theme.palette.background.paper};
-        min-height: ${FOOTER_HEIGHT};
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        z-index: ${theme.zIndex.drawer + 2};
-      `}
-    >
+    <FooterWrapper>
       <Typography
         css={css`
           word-spacing: 0.1rem;
@@ -30,6 +30,6 @@ export const Footer = () => {
       >
         {FOOTER_TEXT}
       </Typography>
-    </div>
+    </FooterWrapper>
   );
 };

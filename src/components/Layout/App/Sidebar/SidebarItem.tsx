@@ -44,7 +44,7 @@ export const SidebarItem = ({
   const item = (
     <ListItemButton
       css={css`
-        pl: ${nested ? 3 : 1};
+        padding-left: ${nested ? 3 : 1};
         cursor: ${!route.enabled ? "not-allowed" : "auto"};
         color: ${!route.enabled ? theme.palette.text.secondary : "auto"};
       `}

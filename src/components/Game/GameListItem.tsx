@@ -49,7 +49,7 @@ export const GameListItem = ({
   const item = (
     <ListItemButton
       css={css`
-        pl: ${nested ? 3 : 1};
+        padding-left: ${nested ? 3 : 1};
         cursor: ${!gameRoute.enabled ? "not-allowed" : "auto"};
         color: ${!gameRoute.enabled ? theme.palette.text.secondary : "auto"};
       `}

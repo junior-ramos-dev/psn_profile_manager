@@ -40,7 +40,7 @@ export const TrophyListItem = ({
   const item = (
     <ListItemButton
       css={css`
-        pl: ${nested ? 3 : 1};
+        padding-left: ${nested ? 3 : 1};
         cursor: ${!trophyRoute.enabled ? "not-allowed" : "auto"};
         color: ${!trophyRoute.enabled ? theme.palette.text.secondary : "auto"};
       `}

@@ -5,11 +5,19 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { Footer } from "@/components/Layout/App/Footer";
 import { setAxiosInterceptorResponse } from "@/services/axios/axiosApiConfig";
 import { FOOTER_HEIGHT } from "@/settings/app/constants";
-import { css } from "@emotion/react";
-import { Box } from "@mui/material";
+import { Box, styled } from "@mui/material";
 
 import { AppHeader } from "./Header";
 import { Sidebar } from "./Sidebar";
+
+const LayoutWrapper = styled("div")(() => ({
+  minHeight: "100vh",
+}));
+
+const LayoutChildrenWrapper = styled("div")(() => ({
+  display: "flex",
+  minHeight: `calc(100vh - ${FOOTER_HEIGHT - 9}px)`,
+}));
 
 export const AppLayout = () => {
   const [open, setOpen] = useState(false);
@@ -22,17 +30,8 @@ export const AppLayout = () => {
 
   return (
     <>
-      <div
-        css={css`
-          min-height: 100vh;
-        `}
-      >
-        <div
-          css={css`
-            display: flex;
-            min-height: calc(100vh - ${FOOTER_HEIGHT - 9}px);
-          `}
-        >
+      <LayoutWrapper>
+        <LayoutChildrenWrapper>
           <Box component="header">
             <AppHeader toggleNavigation={toggleNavigation} />
           </Box>
@@ -48,8 +47,8 @@ export const AppLayout = () => {
           >
             <Outlet />
           </Box>
-        </div>
-      </div>
+        </LayoutChildrenWrapper>
+      </LayoutWrapper>
       <Box component="footer">
         <Footer />
       </Box>

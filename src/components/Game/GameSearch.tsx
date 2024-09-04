@@ -1,21 +1,6 @@
 import SearchIcon from "@mui/icons-material/Search";
 import { alpha, Box, InputBase, styled } from "@mui/material";
 
-//TODO Implement search function
-export const GameSearch = () => (
-  <Box sx={{ display: { xs: "none", sm: "flex" } }}>
-    <SearchWrapper>
-      <SearchIconWrapper>
-        <SearchIcon />
-      </SearchIconWrapper>
-      <StyledInputBase
-        placeholder="Search…"
-        inputProps={{ "aria-label": "search" }}
-      />
-    </SearchWrapper>
-  </Box>
-);
-
 const SearchWrapper = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -57,3 +42,18 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
+
+//TODO Implement search function
+export const GameSearch = () => (
+  <Box sx={{ display: { xs: "none", sm: "flex" } }}>
+    <SearchWrapper>
+      <SearchIconWrapper>
+        <SearchIcon />
+      </SearchIconWrapper>
+      <StyledInputBase
+        placeholder="Search…"
+        inputProps={{ "aria-label": "search" }}
+      />
+    </SearchWrapper>
+  </Box>
+);
