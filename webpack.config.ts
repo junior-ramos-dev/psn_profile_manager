@@ -1,13 +1,12 @@
-/* eslint-disable no-undef */
 /* eslint @typescript-eslint/no-var-requires: "off" */
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { HotModuleReplacementPlugin } = require("webpack");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
-const Dotenv = require("dotenv-webpack");
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
+import Dotenv from "dotenv-webpack";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import path from "path";
+import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
+import { HotModuleReplacementPlugin } from "webpack";
 
 module.exports = {
   //index file
