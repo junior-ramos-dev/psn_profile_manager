@@ -23,10 +23,37 @@ export const GameList = () => {
   const [getGamesIconBinList, { isLoading /* isError, isSuccess  data */ }] =
     useGetGamesIconBinListMutation();
 
+  // Get the list of game ids (npCommunicationId) to use with the getGamesIconBinList endpoint
   const npCommIdList: string[] = [];
   gamesRoutes.forEach((gameRoute) => {
     npCommIdList.push(gameRoute.key);
   });
+
+  // Get the game icon for each game route
+  const getGameIcon = (gameIconList: IGameIcon[], gameRouteKey: string) => {
+    return _.find(
+      gameIconList,
+      (gameIcon) => gameRouteKey === gameIcon.npCommunicationId
+    );
+  };
+
+  // Add the game icom to the game routes
+  const getGameRoutesWithIcons = (gameIconList: IGameIcon[]) => {
+    const gameRoutesWithIcons: IGameRouteWithIcon[] = [];
+
+    gamesRoutes.forEach((gameRoute) => {
+      const gameIcon = getGameIcon(gameIconList, gameRoute.key);
+
+      const gameRouteWithIcon: IGameRouteWithIcon = {
+        ...gameRoute,
+        gameIcon: gameIcon,
+      };
+
+      gameRoutesWithIcons.push(gameRouteWithIcon);
+    });
+
+    return gameRoutesWithIcons;
+  };
 
   useEffect(() => {
     // React advises to declare the async function directly inside useEffect
@@ -38,20 +65,8 @@ export const GameList = () => {
           await getGamesIconBinList({ npCommIdList, imgType })
             .unwrap()
             .then((gameIconList) => {
-              const gameRoutesWithIcons: IGameRouteWithIcon[] = [];
-
-              gamesRoutes.forEach((gameRoute) => {
-                const gameIcon = _.find(gameIconList, (gameIcon) => {
-                  return gameRoute.key === gameIcon.npCommunicationId;
-                });
-
-                const gameRouteWithIcon: IGameRouteWithIcon = {
-                  ...gameRoute,
-                  gameIcon: gameIcon,
-                };
-
-                gameRoutesWithIcons.push(gameRouteWithIcon);
-              });
+              const gameRoutesWithIcons: IGameRouteWithIcon[] =
+                getGameRoutesWithIcons(gameIconList);
               setGameRouteWithIconList(gameRoutesWithIcons);
             });
         } catch (e) {
@@ -65,7 +80,6 @@ export const GameList = () => {
     if (!gameRouteWithIconList.length) getIconBinList(npCommIdList);
   }, []);
 
-  //TODO Edit list details
   return (
     <List component="nav" sx={{ height: "100%" }}>
       {gameRouteWithIconList.map((gameRoute: IGameRouteWithIcon) => {
