@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 
 import { DefaultMenu, MobileMenu } from "@/components/Layout/App/Header/Menu";
-import {
-  Messages,
-  More,
-  Notifications,
-  UserAccount,
-} from "@/components/Layout/App/Header/Menu/Actions";
-import { Search } from "@/components/Layout/App/Header/Search";
+import { More, UserAccount } from "@/components/Layout/App/Header/Menu/Actions";
 import { PsMenuIconButton } from "@/components/Playstation/PSIconButtons";
 import { ThemeColorShuffle } from "@/components/ThemeSwitch/ThemeColorShuffle";
 import { ThemeModeSwitch } from "@/components/ThemeSwitch/ThemeModeSwitch";
@@ -47,15 +41,14 @@ export const AppHeader = ({ toggleNavigation }: HeaderProps) => {
         <Toolbar disableGutters variant="dense">
           <PsMenuIconButton toggleNavigation={toggleNavigation} />
           <Title />
-          <Search />
           <Box sx={{ flexGrow: 1 }} />
           <Box
             sx={{ display: { xs: "none", md: "flex", alignItems: "center" } }}
           >
             <ThemeModeSwitch />
             <ThemeColorShuffle />
-            <Messages total={15} />
-            <Notifications total={20} />
+            {/* <Messages total={0} /> */}
+            {/* <Notifications total={0} /> */}
             <UserAccount onClick={handleProfileMenuOpen} />
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
