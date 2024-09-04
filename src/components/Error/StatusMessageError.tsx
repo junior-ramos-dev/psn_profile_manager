@@ -6,7 +6,7 @@ interface ErrorStatusMessageProps {
   errorMessage: string;
 }
 
-export const ErrorStatusMessage = ({
+export const StatusMessageError = ({
   errorName,
   errorStatus,
   errorMessage,

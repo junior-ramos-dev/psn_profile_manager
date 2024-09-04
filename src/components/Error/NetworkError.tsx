@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 
-import { ErrorStatusMessage } from "./ErrorStatusMessage";
+import { StatusMessageError } from "./StatusMessageError";
 
 interface NetworkErrorProps {
   errorStatus: number;
@@ -12,7 +12,7 @@ export const NetworkError = ({
   errorMessage,
 }: NetworkErrorProps) => (
   <Box>
-    <ErrorStatusMessage
+    <StatusMessageError
       errorName="NETWORK ERROR"
       errorStatus={errorStatus}
       errorMessage={errorMessage}

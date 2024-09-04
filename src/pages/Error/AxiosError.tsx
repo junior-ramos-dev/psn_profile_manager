@@ -1,11 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { StringWithExternalUrl } from "@/components/StringWithExternalUrl";
+import { ApiResponseError } from "@/components/Error/ApiResponseError";
+import { NetworkError } from "@/components/Error/NetworkError";
 import { Box, Button, Typography } from "@mui/material";
-
-import { ErrorStatusMessage } from "../../components/Error/ErrorStatusMessage";
-import { NetworkError } from "../../components/Error/NetworkError";
-import { ReqValidationErrorList } from "../../components/Error/ReqValidationErrorList";
 
 const AxiosError = () => {
   const navigate = useNavigate();
@@ -44,20 +41,13 @@ const AxiosError = () => {
             Sorry, an unexpected error has occurred.
           </Typography>
           {errorData ? (
-            <Box>
-              <ErrorStatusMessage
-                errorName={errorDataName}
-                errorStatus={errorStatus}
-                errorMessage={errorMessage}
-              />
-              <StringWithExternalUrl str={errorDataMesssage} />
-
-              {validationErrors ? (
-                <ReqValidationErrorList reqErrors={validationErrors} />
-              ) : (
-                <></>
-              )}
-            </Box>
+            <ApiResponseError
+              errorDataName={errorDataName}
+              errorStatus={errorStatus}
+              errorMessage={errorMessage}
+              errorDataMesssage={errorDataMesssage}
+              validationErrors={validationErrors}
+            />
           ) : (
             <NetworkError
               errorStatus={errorStatus}
