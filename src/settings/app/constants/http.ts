@@ -8,6 +8,11 @@ export enum HEADERS {
 
 export const DUMMY_ETAG_HEADER = "00000-XXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
+export enum IMG_TYPE {
+  PNG = "png",
+  WEBP = "webp",
+}
+
 export enum VERBS {
   GET = "GET",
   POST = "POST",

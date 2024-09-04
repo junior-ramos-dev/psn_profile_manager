@@ -67,7 +67,7 @@ export const GameListItem = ({
         >
           {/* <img src={`data:image/png;base64,${icon}`} /> */}
           <Image
-            src={`data:image/png;base64,${gameIcon.iconBinaryData}`}
+            src={`data:image/webp;base64,${gameIcon.iconBinWebp}`}
             width={60}
             height={40}
             showLoading

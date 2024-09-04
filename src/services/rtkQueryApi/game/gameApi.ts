@@ -1,6 +1,9 @@
 import { ConvertIGame, IGame } from "@/models/interfaces";
 import { IGameIcon } from "@/models/interfaces/games/IGameIcon";
-import { GameIconBinListRequest } from "@/models/types/rtkQuery/games";
+import {
+  IconBinByImgTypeRequest,
+  IconBinListRequest,
+} from "@/models/types/rtkQuery/games";
 import { IAxiosBaseQueryArgs } from "@/services/axios/axiosBaseQueryApi";
 import { VERBS } from "@/settings/app/constants";
 import {
@@ -61,23 +64,34 @@ export const gameApi = rtkQueryBaseApi.injectEndpoints({
       },
       providesTags: ["Game"],
     }),
-    getIconBinByGame: build.query<IGameIcon, string>({
+    getGameIconBin: build.query<IGameIcon, string>({
       query: (npCommunicationId) => ({
-        endpointUrl: GAME_URL_MAP[GAME_ENDPOINT_NAME.GET_ICON_BIN_BY_GAME],
+        endpointUrl: GAME_URL_MAP[GAME_ENDPOINT_NAME.GET_GAME_ICON_BIN],
         method: VERBS.GET,
         urlParams: { npCommunicationId },
         collection: "GamesIcons",
-        endpointName: GAME_ENDPOINT_NAME.GET_ICON_BIN_BY_GAME,
+        endpointName: GAME_ENDPOINT_NAME.GET_GAME_ICON_BIN,
       }),
       providesTags: ["Game"],
     }),
-    getIconBinByGameIds: build.mutation<IGameIcon[], GameIconBinListRequest>({
-      query: ({ npCommIdList }) => ({
-        endpointUrl: GAME_URL_MAP[GAME_ENDPOINT_NAME.GET_ICON_BIN_BY_GAME_IDS],
-        method: VERBS.POST,
-        bodyData: { npCommIdList },
+    getGameIconBinByImgType: build.query<IGameIcon, IconBinByImgTypeRequest>({
+      query: ({ npCommunicationId, imgType }) => ({
+        endpointUrl:
+          GAME_URL_MAP[GAME_ENDPOINT_NAME.GET_GAME_ICON_BIN_BY_IMG_TYPE],
+        method: VERBS.GET,
+        urlParams: { npCommunicationId, imgType },
         collection: "GamesIcons",
-        endpointName: GAME_ENDPOINT_NAME.GET_ICON_BIN_BY_GAME_IDS,
+        endpointName: GAME_ENDPOINT_NAME.GET_GAME_ICON_BIN_BY_IMG_TYPE,
+      }),
+      providesTags: ["Game"],
+    }),
+    getGamesIconBinList: build.mutation<IGameIcon[], IconBinListRequest>({
+      query: ({ npCommIdList, imgType }) => ({
+        endpointUrl: GAME_URL_MAP[GAME_ENDPOINT_NAME.GET_GAMES_ICON_BIN_LIST],
+        method: VERBS.POST,
+        bodyData: { npCommIdList, imgType },
+        collection: "GamesIcons",
+        endpointName: GAME_ENDPOINT_NAME.GET_GAMES_ICON_BIN_LIST,
       }),
     }),
   }),
@@ -87,6 +101,7 @@ export const gameApi = rtkQueryBaseApi.injectEndpoints({
 export const {
   useGetGameListQuery,
   useGameListLoaderQuery,
-  useGetIconBinByGameQuery,
-  useGetIconBinByGameIdsMutation,
+  useGetGameIconBinQuery,
+  useGetGameIconBinByImgTypeQuery,
+  useGetGamesIconBinListMutation,
 } = gameApi;

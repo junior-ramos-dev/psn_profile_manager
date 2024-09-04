@@ -5,8 +5,9 @@ import { useSelector } from "react-redux";
 import { Loading } from "@/components/Loading";
 import { IGameRoute } from "@/models/interfaces";
 import { IGameIcon } from "@/models/interfaces/games/IGameIcon";
-import { useGetIconBinByGameIdsMutation } from "@/services/rtkQueryApi/game/gameApi";
+import { useGetGamesIconBinListMutation } from "@/services/rtkQueryApi/game/gameApi";
 import { selectGamesRoutes } from "@/services/rtkQueryApi/game/gameSelectors";
+import { IMG_TYPE } from "@/settings/app/constants";
 import { Divider, List } from "@mui/material";
 
 import { GameListItem } from "./GameListItem";
@@ -19,8 +20,8 @@ export const GameList = () => {
   const gamesRoutes = useSelector(selectGamesRoutes);
   const [gameRouteWithIconList, setGameRouteWithIconList] = useState([]);
 
-  const [getIconBinByGameIds, { isLoading /* isError, isSuccess  data */ }] =
-    useGetIconBinByGameIdsMutation();
+  const [getGamesIconBinList, { isLoading /* isError, isSuccess  data */ }] =
+    useGetGamesIconBinListMutation();
 
   const npCommIdList: string[] = [];
   gamesRoutes.forEach((gameRoute) => {
@@ -31,8 +32,10 @@ export const GameList = () => {
     // React advises to declare the async function directly inside useEffect
     const getIconBinList = async (npCommIdList: string[]): Promise<void> => {
       if (npCommIdList.length) {
+        const imgType = IMG_TYPE.WEBP;
+
         try {
-          await getIconBinByGameIds({ npCommIdList })
+          await getGamesIconBinList({ npCommIdList, imgType })
             .unwrap()
             .then((gameIconList) => {
               const gameRoutesWithIcons: IGameRouteWithIcon[] = [];

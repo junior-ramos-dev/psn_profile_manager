@@ -6,15 +6,18 @@ import { DUMMY_ETAG_HEADER, HEADERS } from "../http";
 export const enum GAME_ENDPOINT_NAME {
   GET_GAME_LIST = "getGameList",
   GAME_LIST_LOADER = "gameListLoader",
-  GET_ICON_BIN_BY_GAME = "getIconBinByGame",
-  GET_ICON_BIN_BY_GAME_IDS = "getIconBinByGameIds",
+  GET_GAME_ICON_BIN = "getGameIconBin",
+  GET_GAME_ICON_BIN_BY_IMG_TYPE = "getGameIconBinByImgType",
+  GET_GAMES_ICON_BIN_LIST = "getGamesIconBinList",
 }
 
 export const GAME_URL_MAP: Record<GAME_ENDPOINT_NAME, string> = {
   [GAME_ENDPOINT_NAME.GET_GAME_LIST]: "game/list",
   [GAME_ENDPOINT_NAME.GAME_LIST_LOADER]: "game/list",
-  [GAME_ENDPOINT_NAME.GET_ICON_BIN_BY_GAME]: "game/icon",
-  [GAME_ENDPOINT_NAME.GET_ICON_BIN_BY_GAME_IDS]: "game/icon/list",
+  [GAME_ENDPOINT_NAME.GET_GAME_ICON_BIN]: "game/icon/:npCommunicationId",
+  [GAME_ENDPOINT_NAME.GET_GAME_ICON_BIN_BY_IMG_TYPE]:
+    "game/icon/:imgType/:npCommunicationId",
+  [GAME_ENDPOINT_NAME.GET_GAMES_ICON_BIN_LIST]: "game/icon/list",
 };
 
 // Reset/Remove headers in localStorage
