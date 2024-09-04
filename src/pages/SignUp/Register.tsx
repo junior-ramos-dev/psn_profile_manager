@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from "react";
+import { AxiosError } from "axios";
 import { Link } from "react-router-dom";
 
 import { Loading } from "@/components/Loading";
@@ -15,7 +16,7 @@ import {
   Button,
   Container,
   CssBaseline,
-  Grid,
+  Grid2,
   TextField,
   Typography,
 } from "@mui/material";
@@ -69,7 +70,7 @@ const Register = () => {
           <LockOutlined />
         </Avatar>
         <Typography variant="h5">Register</Typography>
-        {isError && "data" in error ? (
+        {isError && error instanceof AxiosError && "data" in error ? (
           <Typography
             variant="subtitle2"
             sx={{ mt: 4, fontStyle: "italic" }}
@@ -81,8 +82,8 @@ const Register = () => {
           <></>
         )}
         <Box sx={{ mt: 3 }}>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
+          <Grid2 container spacing={2}>
+            <Grid2 size={12}>
               <TextField
                 name="psnOnlineId"
                 required
@@ -93,9 +94,9 @@ const Register = () => {
                 value={psnOnlineId}
                 onChange={(e) => setPsnOnlineId(e.target.value)}
               />
-            </Grid>
+            </Grid2>
 
-            <Grid item xs={12}>
+            <Grid2 size={12}>
               <TextField
                 required
                 fullWidth
@@ -105,8 +106,8 @@ const Register = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-            </Grid>
-            <Grid item xs={12}>
+            </Grid2>
+            <Grid2 size={12}>
               <TextField
                 required
                 fullWidth
@@ -117,8 +118,8 @@ const Register = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-            </Grid>
-          </Grid>
+            </Grid2>
+          </Grid2>
           <Button
             fullWidth
             variant="contained"
@@ -127,8 +128,8 @@ const Register = () => {
           >
             Register
           </Button>
-          <Grid container justifyContent="flex-end">
-            <Grid item>
+          <Grid2 container justifyContent="flex-end">
+            <Grid2 size={6}>
               <Link
                 to="/auth/login"
                 css={css`
@@ -138,8 +139,8 @@ const Register = () => {
               >
                 Already have an account? Login
               </Link>
-            </Grid>
-          </Grid>
+            </Grid2>
+          </Grid2>
         </Box>
       </Box>
     </Container>

@@ -7,8 +7,8 @@ export const PageTitle = ({ title }: { title: string }) => (
     css={css`
       text-transform: uppercase;
     `}
-    variant="h3"
-    component="h4"
+    variant="h4"
+    component="h5"
     color="textSecondary"
   >
     {title}

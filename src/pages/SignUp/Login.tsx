@@ -14,7 +14,6 @@ import {
   Button,
   Container,
   CssBaseline,
-  Grid,
   Grid2,
   TextField,
   Typography,
@@ -105,7 +104,7 @@ const Login = () => {
           {isError && <p>Error logging in</p>}
           {isSuccess && <p>Login successful</p>}
           <Grid2 container justifyContent={"flex-end"}>
-            <Grid item>
+            <Grid2 size={6}>
               <Link
                 to="/auth/register"
                 css={css`
@@ -115,7 +114,7 @@ const Login = () => {
               >
                 <div>{"Don't have an account? Register"}</div>
               </Link>
-            </Grid>
+            </Grid2>
           </Grid2>
         </Box>
       </Box>
