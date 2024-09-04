@@ -21,9 +21,6 @@ export const authApi = rtkQueryBaseApi.injectEndpoints({
         bodyData: { email, password },
         collection: "Auth",
         endpointName: AUTH_ENDPOINT_NAME.LOGIN,
-        headers: {
-          Authorization: "npsso",
-        },
       }),
     }),
     register: build.mutation<AuthRegisterResponse, AuthRegisterRequest>({
@@ -33,9 +30,6 @@ export const authApi = rtkQueryBaseApi.injectEndpoints({
         bodyData: data,
         collection: "Auth",
         endpointName: AUTH_ENDPOINT_NAME.REGISTER,
-        headers: {
-          Authorization: "npsso",
-        },
       }),
       invalidatesTags: ["Auth"],
     }),

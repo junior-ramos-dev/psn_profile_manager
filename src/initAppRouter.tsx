@@ -33,8 +33,6 @@ export const appDefaultRoutes = [
       {
         errorElement: <AxiosError />,
         children: [
-          { id: ROUTE_ID.INDEX, index: true, element: <Index /> },
-
           {
             path: ROUTE_PATH.AXIOS_ERROR,
             element: <AxiosError />,
@@ -44,6 +42,7 @@ export const appDefaultRoutes = [
             element: <PublicRoute />,
             errorElement: <RouteError />,
             children: [
+              { id: ROUTE_ID.INDEX, index: true, element: <Index /> },
               {
                 path: ROUTE_PATH.LOGIN,
                 element: <Login />,

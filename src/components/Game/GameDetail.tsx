@@ -5,10 +5,7 @@ import { useSelector } from "react-redux";
 import { PageHeader } from "@/components/DefaultPage/PageHeader";
 import { Loading } from "@/components/Loading";
 import { IGame } from "@/models/interfaces";
-import {
-  selectGameById,
-  selectGamesList,
-} from "@/services/rtkQueryApi/game/gameSelectors";
+import { selectGameById } from "@/services/rtkQueryApi/game/gameSelectors";
 import { useGetTrophyListQuery } from "@/services/rtkQueryApi/trophy/trophyApi";
 import { APP_TITLE, PAGE_TITLE_GAMES } from "@/settings/app/constants";
 import { Box, Divider } from "@mui/material";
@@ -20,8 +17,6 @@ interface RoutesChildrenProps {
 }
 
 export const GameDetail = ({ gameId }: RoutesChildrenProps) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const gamesList = useSelector(selectGamesList);
   const game: IGame = useSelector((gamesList) =>
     selectGameById(gamesList, gameId)
   );
@@ -61,9 +56,6 @@ export const GameDetail = ({ gameId }: RoutesChildrenProps) => {
         ) : (
           <div>
             TrophyList
-            {/* {trophyList.npCommunicationId}
-            {trophyList.npCommunicationId}
-            {trophyList.trophies[0].trophyName} */}
             <TrophyList trophyList={trophyList} />
           </div>
         )}

@@ -1,6 +1,6 @@
 import { StringUtils } from "@/utils/strings";
 
-import { TrophyCount } from "../../types/trophy/TrophyCount";
+import { ITrophyCount } from "../trophy/ITrophy";
 
 // IGame is an interface for defining the game object returned from the API with additional properties to generate the routes for games.
 interface IGame {
@@ -13,27 +13,23 @@ interface IGame {
   trophyTitlePlatform: string;
   hasTrophyGroups: boolean;
   trophyGroupCount: number;
-  definedTrophies: TrophyCount;
+  definedTrophies: ITrophyCount;
   progress: number;
-  earnedTrophies: TrophyCount;
+  earnedTrophies: ITrophyCount;
   hiddenFlag: boolean;
   lastUpdatedDateTime: Date | string | number;
   iconBinaryData: string;
 }
 
-/* 
-# To parse this data:
-#
-#   import { ConvertIGame, IGame } from "./file";
-# 
-#   const game = Convert.fromApiResponseToIGameList(gamesList);
-# 
-# These functions will throw an error if the JSON doesn't
-# match the expected interface, even if the JSON is valid.
-*/
-
-// Converts JSON strings to/from your types
-// and asserts the results of JSON.parse at runtime
+/**
+ * Converts JSON strings from api response into IGame
+ *
+ * To parse this data:
+ *
+ *  import { ConvertIGame, IGame } from "./file";
+ *
+ *  const game = Convert.fromApiResponseToIGameList(gamesList);
+ */
 export class ConvertIGame {
   public static fromApiResponseToIGameList(gamesList: IGame[]): IGame[] {
     const cloneGamesList = structuredClone(gamesList);
@@ -76,19 +72,15 @@ export class ConvertIGame {
 
   // public static fromJsonList(array: string): IGame[] {
   //   const iGameArray = new Array<IGame>();
-
   //   const jsonArray = JSON.parse(array);
   //   jsonArray.forEach((json) => iGameArray.push(cast(json, r("IGame"))));
-
   //   return iGameArray;
   // }
-
   // public static toJsonList(array: IGame[]): string[] {
   //   const jsonArray = new Array<string>();
   //   array.forEach((iGame) =>
   //     jsonArray.push(cast(JSON.stringify(iGame), r("IGame")))
   //   );
-
   //   return jsonArray;
   // }
 }
