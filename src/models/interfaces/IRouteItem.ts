@@ -1,4 +1,4 @@
-import { ComponentType } from "react";
+import { ComponentType, ElementType } from "react";
 import { LoaderFunction } from "react-router-dom";
 
 import { EmotionJSX } from "@emotion/react/types/jsx-namespace";
@@ -89,13 +89,13 @@ interface IRouteItem {
 
   /**
    * The asset (image/icon) that illustrates the route
-   * @type {ComponentType | object}
+   * @type {ElementType<ComponentType> | ElementType<object>}
    * @memberof IRouteItem
    * @optional
    * @example
    * <DashboardIcon /> | dashboardIconData: {}
    */
-  asset?: ComponentType | object;
+  asset?: ElementType<ComponentType> | ElementType<object>;
 
   /**
    * The array of sub routes

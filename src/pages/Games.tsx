@@ -1,4 +1,5 @@
 /** @jsxImportSource @emotion/react */
+import { Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 
 import { GameList } from "@/components/Game";
@@ -35,7 +36,9 @@ const Games = () => {
           // boxSizing: "border-box",
         }}
       >
-        <GameList />
+        <Suspense>
+          <GameList />
+        </Suspense>
       </div>
     </>
   );
