@@ -75,7 +75,7 @@ export const appendRoutesToDefaultRoutes = (
   });
 };
 
-export const App = (appRouter) => {
+export const App = () => {
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
 
   // Load sidebar routes and set into the default routes
@@ -104,7 +104,7 @@ export const App = (appRouter) => {
   appendRoutesToDefaultRoutes(appDefaultRoutes, sidebarRoutes, gamesRoutes);
 
   // Update the default routes with sidebar/games routes
-  appRouter = createBrowserRouter(appDefaultRoutes);
+  const appendedRouter = createBrowserRouter(appDefaultRoutes);
 
-  return <RouterProvider router={appRouter} />;
+  return <RouterProvider router={appendedRouter} />;
 };

@@ -12,7 +12,6 @@ import reportWebVitals from "../reportWebVitals";
 
 import { AppThemeProvider } from "./theme/AppThemeProvider";
 import { App } from "./App";
-import { router } from "./initAppRouter";
 
 const root = createRoot(document.getElementById("root"));
 
@@ -54,7 +53,7 @@ root.render(
             {/* Wrap your app with the Theme Provider */}
             <AppThemeProvider>
               {/* <RouterProvider router={router} /> */}
-              <App appRouter={router} />
+              <App />
             </AppThemeProvider>
           </StyledEngineProvider>
         </PersistGate>
