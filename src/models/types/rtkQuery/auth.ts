@@ -1,5 +1,5 @@
 import { IAuthUser } from "@/models/interfaces/auth/IAuthUser";
-import { IUserProfile } from "@/models/interfaces/user/IUserProfile";
+import IUserProfile from "@/models/interfaces/user/IUserProfile";
 
 export type AuthUser = Omit<IAuthUser, "password">;
 

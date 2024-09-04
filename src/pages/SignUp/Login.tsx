@@ -15,6 +15,7 @@ import {
   Container,
   CssBaseline,
   Grid,
+  Grid2,
   TextField,
   Typography,
 } from "@mui/material";
@@ -103,7 +104,7 @@ const Login = () => {
           </Button>
           {isError && <p>Error logging in</p>}
           {isSuccess && <p>Login successful</p>}
-          <Grid container justifyContent={"flex-end"}>
+          <Grid2 container justifyContent={"flex-end"}>
             <Grid item>
               <Link
                 to="/auth/register"
@@ -115,7 +116,7 @@ const Login = () => {
                 <div>{"Don't have an account? Register"}</div>
               </Link>
             </Grid>
-          </Grid>
+          </Grid2>
         </Box>
       </Box>
     </Container>

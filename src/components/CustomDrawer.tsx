@@ -57,7 +57,3 @@ export const CustomDrawer = ({
     </Box>
   );
 };
-
-// const DrawerHeader = styled("div")(({ theme }) => ({
-//   ...theme.mixins.toolbar,
-// }));

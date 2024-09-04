@@ -1,12 +1,10 @@
 /** @jsxImportSource @emotion/react */
-// import Image from "mui-image";
-// import { useLocation } from "react-router-dom";
 
-import { TrophyCount } from "@/models/types/trophy/TrophyCount";
+import { ITrophyCount } from "@/models/interfaces/trophy/ITrophy";
 import { List, ListItem } from "@mui/material";
 
 interface TrophyEarnedItemProps {
-  trophies: TrophyCount;
+  trophies: ITrophyCount;
   // handleMenuClick?: (gameItem: Game) => void;
 }
 
@@ -14,9 +12,6 @@ export const TrophyEarnedItem = ({
   trophies,
   // handleMenuClick = () => {},
 }: TrophyEarnedItemProps) => {
-  // const location = useLocation();
-  // const theme = useTheme();
-
   return (
     <List component="div" disablePadding>
       <ListItem key={1}>Platinum: {trophies.platinum}</ListItem>

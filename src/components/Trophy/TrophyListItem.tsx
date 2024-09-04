@@ -32,12 +32,6 @@ export const TrophyListItem = ({
   const location = useLocation();
   const theme = useTheme();
 
-  // const handleNavigate = (
-  //   e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
-  // ) => {
-  //   if (!trophyRoute.enabled || hasChildren) e.preventDefault();
-  // };
-
   const isSelected =
     location.pathname === trophyRoute.path ||
     (hasChildren &&

@@ -2,14 +2,13 @@
 import { Helmet } from "react-helmet-async";
 
 import { PageHeader } from "@/components/DefaultPage/PageHeader";
+import { GameList } from "@/components/Game";
 import {
   APP_TITLE,
   FOOTER_HEIGHT,
   PAGE_TITLE_GAMES,
 } from "@/settings/app/constants";
 import { Box } from "@mui/material";
-
-import { GameList } from "../components/Game/GameList";
 
 //TODO Create component SearchGames
 const Games = () => {

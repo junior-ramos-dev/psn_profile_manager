@@ -1,12 +1,6 @@
-// To parse this data:
-//
-//   import { ConvertIUserProfile, IUserProfile } from "./file";
-//
-//   const iUserProfile = ConvertIUserProfile.fromJson(json);
-
 import { ITrophySummary } from "@/models/interfaces/trophy/ITrophy";
 
-export interface IUserProfile {
+interface IUserProfile {
   userId: string;
   onlineId: string;
   accountId: string;
@@ -51,7 +45,14 @@ export interface IConsoleAvailability {
   availabilityStatus: string;
 }
 
-// Converts JSON strings to/from your types
+/**
+ * Converts JSON strings to/from your types
+ * To parse this data:
+ *
+ *  import { ConvertIUserProfile, IUserProfile } from "./file";
+ *
+ *  const iUserProfile = ConvertIUserProfile.fromJson(json);
+ */
 export class ConvertIUserProfile {
   public static fromJson(json: string): IUserProfile {
     return JSON.parse(json);
@@ -61,3 +62,5 @@ export class ConvertIUserProfile {
     return JSON.stringify(value);
   }
 }
+
+export default IUserProfile;
