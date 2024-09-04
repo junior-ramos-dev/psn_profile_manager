@@ -54,7 +54,14 @@ export const axiosApiRepository = async (
 
         // POST (CREATE)
         case VERBS.POST:
-          return { data: await post(endpointUrl, bodyData, endpointHeaders) };
+          return {
+            data: await post(
+              endpointUrl,
+              endpointName,
+              bodyData,
+              endpointHeaders
+            ),
+          };
 
         // UPDATE PUT
         case VERBS.PUT:

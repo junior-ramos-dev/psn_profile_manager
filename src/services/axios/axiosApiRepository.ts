@@ -4,6 +4,7 @@ import qs from "qs";
 import {
   axiosInstance,
   handleAxiosResponseData,
+  interceptAxiosAuthRequests,
   setAxiosInterceptorRequest,
 } from "./axiosApiConfig";
 
@@ -63,10 +64,14 @@ export const getList = async (
 
 export const post = async (
   endpointUrl: string,
+  endpointName: string,
   bodyData: object,
   endpointHeaders: IEndpointHeaders
 ) => {
+  console.log(endpointUrl, endpointHeaders);
   if (endpointHeaders) setAxiosInterceptorRequest(endpointHeaders);
+
+  interceptAxiosAuthRequests(endpointName, endpointHeaders);
 
   return await axiosInstance
     .post(`${AXIOS_BASE_URL}/${endpointUrl}/`, qs.stringify(bodyData))

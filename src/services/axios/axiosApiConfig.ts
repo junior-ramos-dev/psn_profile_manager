@@ -47,6 +47,35 @@ export const setAxiosInterceptorRequest = (
     }
   );
 };
+
+/**
+ * Intercepts and handle axios auth request
+ *
+ * @param axiosInstance
+ * @param endpointHeaders
+ */
+export const interceptAxiosAuthRequests = (
+  endpointName: string,
+  endpointHeaders: IEndpointHeaders
+) => {
+  const interceptorRequest = axiosInstance.interceptors.request;
+
+  interceptorRequest.use((req: InternalAxiosRequestConfig<object>) => {
+    // Set headers for auth endpoint
+    if (
+      endpointName === AUTH_ENDPOINT_NAME.LOGIN ||
+      endpointName === AUTH_ENDPOINT_NAME.REGISTER
+    ) {
+      req.headers["authorization"] = `Bearer ${process.env.PSN_NPSSO}`;
+      console.log(req.url);
+    } else if (endpointName === AUTH_ENDPOINT_NAME.LOGOUT) {
+      console.log(req.url);
+      if (endpointHeaders) clearEndpointResHeaders(endpointHeaders);
+    }
+    return req;
+  });
+};
+
 /**
  * Set headers for an endpoint
  *
@@ -58,19 +87,7 @@ export const handleAxiosRequestHeaders = (
   req: InternalAxiosRequestConfig<object>,
   endpointHeaders: IEndpointHeaders
 ) => {
-  if (
-    req.url.includes(AUTH_ENDPOINT_NAME.LOGIN || AUTH_ENDPOINT_NAME.REGISTER)
-  ) {
-    req.headers["authorization"] = `Bearer ${process.env.PSN_NPSSO}`;
-    console.log(req.url);
-  } else if (req.url.includes(AUTH_ENDPOINT_NAME.LOGOUT)) {
-    clearEndpointResHeaders(endpointHeaders);
-  } else {
-    req.headers = endpointHeaders.headers as AxiosHeaders;
-    //TODO remove
-    console.log(req.url);
-    console.log(req.headers);
-  }
+  req.headers = endpointHeaders.headers as AxiosHeaders;
 
   return req;
 };
@@ -133,6 +150,7 @@ export const handleAxiosResponseError = (axiosError, navigate) => {
 
     console.log(status, message);
   } else {
+    console.log(axiosError);
     status = axiosError.response?.status;
     message =
       axiosError.message || getHttpResponseMessage(axiosError.response?.status);
@@ -145,11 +163,8 @@ export const handleAxiosResponseError = (axiosError, navigate) => {
     navigate("/axioserror", {
       state: { axiosApiError: axiosApiError },
     });
-  } else if (status === 304) {
-    // Use toast
-    console.log(axiosApiError);
   } else {
-    return Promise.reject(axiosApiError);
+    console.log(axiosApiError);
   }
 };
 
