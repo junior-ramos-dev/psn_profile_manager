@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { Helmet } from "react-helmet-async";
 
-import { PageHeader } from "@/components/DefaultPage/PageHeader";
 import { GameList } from "@/components/Game";
+import { GamePageHeader } from "@/components/Game/GamePageHeader";
 import {
   APP_TITLE,
   FOOTER_HEIGHT,
@@ -10,7 +10,6 @@ import {
 } from "@/settings/app/constants";
 import { Box } from "@mui/material";
 
-//TODO Create component SearchGames
 const Games = () => {
   return (
     <>
@@ -20,7 +19,7 @@ const Games = () => {
         </title>
       </Helmet>
       <Box component="header">
-        <PageHeader pageTitle={PAGE_TITLE_GAMES} />
+        <GamePageHeader pageTitle={PAGE_TITLE_GAMES} />
       </Box>
       <div
         id="container"
