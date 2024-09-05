@@ -1,20 +1,16 @@
 /** @jsxImportSource @emotion/react */
-import { Image } from "mui-image";
+
+import { useSelector } from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
 
-import { IGameRoute } from "@/models/interfaces";
+import { IGame, IGameRoute } from "@/models/interfaces";
 import { IGameIcon } from "@/models/interfaces/games/IGameIcon";
+import { selectGameById } from "@/services/rtkQueryApi/game/gameSelectors";
 import { css } from "@emotion/react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import {
-  IconButton,
-  lighten,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Tooltip,
-  useTheme,
-} from "@mui/material";
+import { ListItemButton, Tooltip, useTheme } from "@mui/material";
+
+import { GameListItemDetail } from "./GameListItemDetail";
 
 interface IGameRouteItemProps {
   gameRoute: IGameRoute;
@@ -24,7 +20,6 @@ interface IGameRouteItemProps {
   handleMenuClick?: (route: IGameRoute) => void;
 }
 
-//TODO Edit list item details
 export const GameListItem = ({
   gameRoute,
   gameIcon,
@@ -46,6 +41,10 @@ export const GameListItem = ({
     (hasChildren &&
       gameRoute.subRoutes?.some((e) => location.pathname === e.path));
 
+  const game: IGame = useSelector((gamesList) =>
+    selectGameById(gamesList, gameRoute.key)
+  );
+
   const item = (
     <ListItemButton
       css={css`
@@ -55,26 +54,11 @@ export const GameListItem = ({
       `}
       onClick={() => handleMenuClick(gameRoute)}
     >
-      <ListItemIcon>
-        <IconButton
-          size="medium"
-          css={css`
-            box-shadow: ${isSelected
-              ? `0 0 0 2px ${lighten(theme.palette.primary.main, 0.6)}`
-              : "default"};
-            transition: "box-shadow 0.1s";
-          `}
-        >
-          {/* <img src={`data:image/png;base64,${icon}`} /> */}
-          <Image
-            src={`data:image/webp;base64,${gameIcon.iconBinWebp}`}
-            width={60}
-            height={40}
-            showLoading
-          />
-        </IconButton>
-      </ListItemIcon>
-      <ListItemText primary={gameRoute.title} />
+      <GameListItemDetail
+        game={game}
+        gameIcon={gameIcon}
+        isSelected={isSelected}
+      />
       {hasChildren && (gameRoute.expanded ? <ExpandLess /> : <ExpandMore />)}
     </ListItemButton>
   );
