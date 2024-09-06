@@ -30,7 +30,7 @@ export const GameListItemDetail = ({
   return (
     <Box key={`box-${game.npCommunicationId}`} sx={{ alignItems: "baseline" }}>
       <ListItem
-        key={`${game.npCommunicationId}`}
+        key={`${game.npCommunicationId}-01`}
         sx={{ height: 40, alignItems: "center" }}
       >
         <ListItemIcon>
@@ -59,7 +59,7 @@ export const GameListItemDetail = ({
         <Typography variant="subtitle2">{game.trophyTitleName}</Typography>
       </ListItem>
       <ListItem
-        key={`${game.npCommunicationId}`}
+        key={`${game.npCommunicationId}-02`}
         sx={{ height: 20, alignItems: "baseline", ml: 1, mb: 2 }}
       >
         <Typography variant="subtitle2" sx={{ fontSize: 12 }}>
