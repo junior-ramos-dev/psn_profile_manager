@@ -7,7 +7,17 @@ type IAppRoute = IRouteItem;
 type IGameRoute = IRouteItem;
 type ITrophyRoute = IRouteItem;
 
-export type { IAppRoute, IGameRoute, IRouteItem, ITrophyRoute };
+interface ITrophyRouteWithTrophy extends ITrophyRoute {
+  trophy: ITrophy;
+}
+
+export type {
+  IAppRoute,
+  IGameRoute,
+  IRouteItem,
+  ITrophyRoute,
+  ITrophyRouteWithTrophy,
+};
 
 export type { IGame, ITrophy, ITrophyList, IUser };
 

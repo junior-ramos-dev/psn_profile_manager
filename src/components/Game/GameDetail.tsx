@@ -3,10 +3,8 @@ import { Helmet } from "react-helmet-async";
 import { useSelector } from "react-redux";
 
 import { PageHeader } from "@/components/DefaultPage/PageHeader";
-import { Loading } from "@/components/Loading";
 import { IGame } from "@/models/interfaces";
 import { selectGameById } from "@/services/rtkQueryApi/game/gameSelectors";
-import { useGetTrophyListQuery } from "@/services/rtkQueryApi/trophy/trophyApi";
 import { APP_TITLE, PAGE_TITLE_GAMES } from "@/settings/app/constants";
 import { Box, Divider } from "@mui/material";
 
@@ -24,17 +22,6 @@ export const GameDetail = ({ gameId }: RoutesChildrenProps) => {
   const trophyTitlePlatform = game.trophyTitlePlatform;
   const npCommunicationId = game.npCommunicationId;
 
-  const { data: trophyList, isLoading /* isError, isSuccess   */ } =
-    useGetTrophyListQuery(
-      { trophyTitlePlatform, npCommunicationId },
-      {
-        pollingInterval: 60 * 60 * 1000 * 2, //(60 * 60 * 1000 * 2) = 2h
-        // refetchOnFocus: true,
-        refetchOnMountOrArgChange: true,
-        skip: false,
-      }
-    );
-
   return (
     <>
       <Helmet>
@@ -51,14 +38,14 @@ export const GameDetail = ({ gameId }: RoutesChildrenProps) => {
         <div>{gameId}</div>
         <div>{JSON.stringify(game)}</div>
         <Divider />
-        {isLoading ? (
-          <Loading />
-        ) : (
-          <div>
-            TrophyList
-            <TrophyList trophyList={trophyList} />
-          </div>
-        )}
+
+        <div>
+          TrophyList
+          <TrophyList
+            trophyTitlePlatform={trophyTitlePlatform}
+            npCommunicationId={npCommunicationId}
+          />
+        </div>
       </div>
     </>
   );

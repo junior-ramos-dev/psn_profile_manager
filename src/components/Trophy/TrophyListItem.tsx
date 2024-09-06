@@ -2,7 +2,7 @@
 import { Image } from "mui-image";
 import { NavLink, useLocation } from "react-router-dom";
 
-import { ITrophyRoute } from "@/models/interfaces";
+import { ITrophyRouteWithTrophy } from "@/models/interfaces";
 import { css } from "@emotion/react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import {
@@ -16,10 +16,10 @@ import {
 } from "@mui/material";
 
 interface ITrophyRouteItemProps {
-  trophyRoute: ITrophyRoute;
+  trophyRoute: ITrophyRouteWithTrophy;
   nested?: boolean;
   hasChildren?: boolean;
-  handleMenuClick?: (route: ITrophyRoute) => void;
+  handleMenuClick?: (route: ITrophyRouteWithTrophy) => void;
 }
 
 //TODO Edit list item details
@@ -36,6 +36,8 @@ export const TrophyListItem = ({
     location.pathname === trophyRoute.path ||
     (hasChildren &&
       trophyRoute.subRoutes?.some((e) => location.pathname === e.path));
+
+  const trophy = trophyRoute.trophy;
 
   const item = (
     <ListItemButton
@@ -57,7 +59,12 @@ export const TrophyListItem = ({
           `}
         >
           {/* <img src={`data:image/png;base64,${icon}`} /> */}
-          <Image src={""} width={30} height={30} showLoading />
+          <Image
+            src={trophy.isEarned ? trophy.trophyIconUrl : ""}
+            width={30}
+            height={30}
+            showLoading
+          />
         </IconButton>
       </ListItemIcon>
       <ListItemText primary={trophyRoute.title} />

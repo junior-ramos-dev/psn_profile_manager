@@ -17,8 +17,16 @@ interface ITrophy {
 
 export interface ITrophyList {
   userId: string;
+  gamesTrophies: GamesTrophies;
+}
+
+export interface GamesTrophies {
   npCommunicationId: string;
+  trophyTitlePlatform: string;
   trophies: ITrophy[];
+  createdAt: Date;
+  updatedAt: Date;
+  _id: string;
 }
 
 export interface ITrophyCount {
