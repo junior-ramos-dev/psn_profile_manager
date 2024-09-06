@@ -17,7 +17,7 @@ import {
 interface IGameListItemDetailProps {
   game: IGame;
   gameIcon: IGameIcon;
-  isSelected: boolean;
+  isSelected?: boolean;
 }
 
 export const GameListItemDetail = ({

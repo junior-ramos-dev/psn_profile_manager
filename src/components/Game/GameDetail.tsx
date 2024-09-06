@@ -4,11 +4,19 @@ import { useSelector } from "react-redux";
 
 import { PageHeader } from "@/components/DefaultPage/PageHeader";
 import { IGame } from "@/models/interfaces";
+import { useGetGameIconBinByImgTypeQuery } from "@/services/rtkQueryApi/game/gameApi";
 import { selectGameById } from "@/services/rtkQueryApi/game/gameSelectors";
-import { APP_TITLE, PAGE_TITLE_GAMES } from "@/settings/app/constants";
+import {
+  APP_TITLE,
+  IMG_TYPE,
+  PAGE_TITLE_GAMES,
+} from "@/settings/app/constants";
 import { Box, Divider } from "@mui/material";
 
+import { Loading } from "../Loading";
 import { TrophyList } from "../Trophy/TrophyList";
+
+import { GameListItemDetail } from "./GameListItemDetail";
 
 interface RoutesChildrenProps {
   gameId: string;
@@ -22,6 +30,19 @@ export const GameDetail = ({ gameId }: RoutesChildrenProps) => {
   const trophyTitlePlatform = game.trophyTitlePlatform;
   const npCommunicationId = game.npCommunicationId;
 
+  const { data: gameIcon, isLoading /* isError, isSuccess   */ } =
+    useGetGameIconBinByImgTypeQuery(
+      { npCommunicationId, imgType: IMG_TYPE.WEBP }
+      // {
+      //   pollingInterval: 60 * 60 * 1000 * 2, //(60 * 60 * 1000 * 2) = 2h
+      //   // refetchOnFocus: true,
+      //   refetchOnMountOrArgChange: true,
+      //   skip: false,
+      // }
+    );
+
+  if (isLoading) return <Loading />;
+
   return (
     <>
       <Helmet>
@@ -30,23 +51,19 @@ export const GameDetail = ({ gameId }: RoutesChildrenProps) => {
         </title>
       </Helmet>
       <Box component="header">
-        <PageHeader pageTitle={PAGE_TITLE_GAMES} />
+        <PageHeader
+          pageTitle={`[${game.trophyTitlePlatform}] ${game.trophyTitleName}`}
+        />
       </Box>
 
-      <div>
-        <h2>Games Detail</h2>
-        <div>{gameId}</div>
-        <div>{JSON.stringify(game)}</div>
+      <Box sx={{ mt: 12 }}>
+        <GameListItemDetail game={game} gameIcon={gameIcon} />
         <Divider />
-
-        <div>
-          TrophyList
-          <TrophyList
-            trophyTitlePlatform={trophyTitlePlatform}
-            npCommunicationId={npCommunicationId}
-          />
-        </div>
-      </div>
+        <TrophyList
+          trophyTitlePlatform={trophyTitlePlatform}
+          npCommunicationId={npCommunicationId}
+        />
+      </Box>
     </>
   );
 };

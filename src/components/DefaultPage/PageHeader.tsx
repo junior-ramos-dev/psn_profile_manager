@@ -14,7 +14,7 @@ export const PageHeader = ({ pageTitle }: PageHeaderProps) => {
       sx={{ mt: 8.5 }}
     >
       <Toolbar disableGutters variant="dense" sx={{ ml: 10.5 }}>
-        <Box sx={{ width: 100 }}>
+        <Box sx={{ width: "80%" }}>
           <Typography variant="h6" sx={{ mr: 5 }}>
             {pageTitle}
           </Typography>
