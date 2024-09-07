@@ -4,19 +4,19 @@ import { selectIsLoggedIn } from "@/services/rtkQueryApi/auth/authSelectors";
 import { selectUserProfile } from "@/services/rtkQueryApi/user/userSelectors";
 import { Divider, Menu, MenuItem } from "@mui/material";
 
-import { Preferences, Settings, SignOut } from "./Actions";
+import { LogIn, LogOut, Preferences, Settings } from "./Actions";
 
-interface DefaultMenuProps {
+interface AccountDefaultMenuProps {
   isMenuOpen: boolean;
   handleMenuClose: () => void;
   anchorEl: HTMLElement | null;
 }
 
-export const DefaultMenu = ({
+export const AccountDefaultMenu = ({
   isMenuOpen,
   handleMenuClose,
   anchorEl,
-}: DefaultMenuProps) => {
+}: AccountDefaultMenuProps) => {
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
 
   const userProfile = useAppSelector(selectUserProfile);
@@ -43,18 +43,18 @@ export const DefaultMenu = ({
       ) : (
         <></>
       )}
-      <MenuItem onClick={handleMenuClose}>
+      <MenuItem onClick={handleMenuClose} sx={{ mt: 2, mb: 3, height: 5 }}>
         <Settings disableTooltip />
-        Settings
       </MenuItem>
-      <MenuItem onClick={handleMenuClose}>
+      <MenuItem onClick={handleMenuClose} sx={{ mt: 2, mb: 3, height: 5 }}>
         <Preferences disableTooltip />
-        Preferences
       </MenuItem>
       <Divider />
-      <MenuItem onClick={handleMenuClose}>
-        <SignOut disableTooltip />
-        Sign Out
+      <MenuItem onClick={handleMenuClose} sx={{ mt: 2, mb: 3, height: 5 }}>
+        <LogIn disableTooltip />
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose} sx={{ mt: 2, mb: 3, height: 5 }}>
+        <LogOut disableTooltip />
       </MenuItem>
     </Menu>
   );

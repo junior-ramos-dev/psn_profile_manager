@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 
-import { DefaultMenu, MobileMenu } from "@/components/Layout/App/Header/Menu";
-import { More, UserAccount } from "@/components/Layout/App/Header/Menu/Actions";
+import {
+  AccountDefaultMenu,
+  AccountMobileMenu,
+  ToolbarMenuActions,
+} from "@/components/Layout/App/Header/Menu";
 import { PsMenuIconButton } from "@/components/Playstation/PSIconButtons";
-import { ThemeColorShuffle } from "@/components/ThemeSwitch/ThemeColorShuffle";
-import { ThemeModeSwitch } from "@/components/ThemeSwitch/ThemeModeSwitch";
-import { AppBar, Box, Stack, Toolbar } from "@mui/material";
+import { AppBar, Box, Toolbar } from "@mui/material";
 
 import { Title } from "./Title";
 
@@ -21,14 +22,14 @@ export const AppHeader = ({ toggleNavigation }: HeaderProps) => {
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) =>
+  const handleAccountMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) =>
     setMobileMoreAnchorEl(event.currentTarget);
 
-  const handleMobileMenuClose = () => setMobileMoreAnchorEl(null);
+  const handleAccountMobileMenuClose = () => setMobileMoreAnchorEl(null);
 
   const handleMenuClose = () => {
     setAnchorEl(null);
-    handleMobileMenuClose();
+    handleAccountMobileMenuClose();
   };
 
   return (
@@ -42,36 +43,19 @@ export const AppHeader = ({ toggleNavigation }: HeaderProps) => {
           <PsMenuIconButton toggleNavigation={toggleNavigation} />
           <Title />
           <Box sx={{ flexGrow: 1 }} />
-          <Stack spacing={0.1}>
-            <Box
-              sx={{
-                display: {
-                  xs: "none",
-                  md: "flex",
-                  alignItems: "center",
-                  justifyContent: "right",
-                },
-              }}
-            >
-              <ThemeModeSwitch />
-              <ThemeColorShuffle />
-              {/* <Messages total={0} /> */}
-              {/* <Notifications total={0} /> */}
-              <UserAccount onClick={handleProfileMenuOpen} />
-            </Box>
-          </Stack>
-          <Box sx={{ display: { xs: "flex", md: "none" } }}>
-            <More onClick={handleMobileMenuOpen} />
-          </Box>
+          <ToolbarMenuActions
+            handleProfileMenuOpen={handleProfileMenuOpen}
+            handleAccountMobileMenuOpen={handleAccountMobileMenuOpen}
+          />
         </Toolbar>
       </AppBar>
-      <MobileMenu
+      <AccountMobileMenu
         isMenuOpen={Boolean(mobileMoreAnchorEl)}
-        handleMenuOpen={handleMobileMenuOpen}
-        handleMenuClose={handleMobileMenuClose}
+        handleMenuOpen={handleAccountMobileMenuOpen}
+        handleMenuClose={handleAccountMobileMenuClose}
         anchorEl={mobileMoreAnchorEl}
       />
-      <DefaultMenu
+      <AccountDefaultMenu
         isMenuOpen={Boolean(anchorEl)}
         handleMenuClose={handleMenuClose}
         anchorEl={anchorEl}

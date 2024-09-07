@@ -1,42 +1,43 @@
-import { ComponentType } from "react";
+import { IconButton, Tooltip, Typography } from "@mui/material";
 
-import { IconButton, Tooltip } from "@mui/material";
-
-import { ActionIcon } from "./ActionIcon";
 import { ActionImg } from "./ActionImg";
 
-interface ActionItemProps {
+interface ActionItemImgProps {
   title: string;
-  icon?: ComponentType;
   imageUrl?: string;
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   badgeContent?: number;
+  disableTitle?: boolean;
   disableTooltip?: boolean;
 }
 
-export const ActionItem = ({
+export const ActionItemImg = ({
   title,
-  icon,
   imageUrl,
   onClick,
   badgeContent,
+  disableTitle = false,
   disableTooltip = false,
-}: ActionItemProps) => {
-  const buttonIcon = icon ? (
-    <IconButton size="large" color="inherit" onClick={onClick}>
-      <ActionIcon badgeContent={badgeContent} icon={icon} />
-    </IconButton>
-  ) : (
+}: ActionItemImgProps) => {
+  const buttonImg = (
     <IconButton size="large" color="inherit" onClick={onClick}>
       <ActionImg badgeContent={badgeContent} imageUrl={imageUrl} />
+      &nbsp;
+      {disableTitle ? (
+        <></>
+      ) : (
+        <Typography variant="body2" sx={{ fontSize: 14 }}>
+          {title}
+        </Typography>
+      )}
     </IconButton>
   );
 
   return disableTooltip ? (
-    buttonIcon
+    buttonImg
   ) : (
     <Tooltip title={title} placement="bottom" arrow>
-      {buttonIcon}
+      {buttonImg}
     </Tooltip>
   );
 };
