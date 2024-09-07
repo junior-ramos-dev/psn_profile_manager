@@ -10,11 +10,11 @@ import { AppBar, Box, Toolbar } from "@mui/material";
 
 import { Title } from "./Title";
 
-interface HeaderProps {
+interface AppHeaderProps {
   toggleNavigation: () => void;
 }
 
-export const AppHeader = ({ toggleNavigation }: HeaderProps) => {
+export const HeaderIndex = ({ toggleNavigation }: AppHeaderProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     useState<null | HTMLElement>(null);

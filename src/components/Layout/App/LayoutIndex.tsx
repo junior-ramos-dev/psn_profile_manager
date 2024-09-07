@@ -7,8 +7,8 @@ import { setAxiosInterceptorResponse } from "@/services/axios/axiosApiConfig";
 import { FOOTER_HEIGHT } from "@/settings/app/constants";
 import { Box, styled } from "@mui/material";
 
-import { AppHeader } from "./Header";
-import { Sidebar } from "./Sidebar";
+import { HeaderIndex } from "./Header/HeaderIndex";
+import { SidebarIndex } from "./Sidebar/SidebarIndex";
 
 const LayoutWrapper = styled("div")(() => ({
   minHeight: "100vh",
@@ -19,7 +19,7 @@ const LayoutChildrenWrapper = styled("div")(() => ({
   minHeight: `calc(100vh - ${FOOTER_HEIGHT - 9}px)`,
 }));
 
-export const AppLayout = () => {
+export const LayoutIndex = () => {
   const [open, setOpen] = useState(false);
   const toggleNavigation = () => setOpen((status) => !status);
 
@@ -33,9 +33,9 @@ export const AppLayout = () => {
       <LayoutWrapper>
         <LayoutChildrenWrapper>
           <Box component="header">
-            <AppHeader toggleNavigation={toggleNavigation} />
+            <HeaderIndex toggleNavigation={toggleNavigation} />
           </Box>
-          <Sidebar open={open} handleClose={toggleNavigation} />
+          <SidebarIndex open={open} handleClose={toggleNavigation} />
           <Box
             component="main"
             sx={{

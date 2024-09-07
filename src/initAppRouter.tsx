@@ -1,11 +1,11 @@
 import { createBrowserRouter, RouteObject } from "react-router-dom";
 
-import { AppLayout } from "@/components/Layout/App";
 import { PrivateRoute, PublicRoute } from "@/components/Layout/App/Routes";
 import Index from "@/pages/Index";
 import Login from "@/pages/SignUp/Login";
 import Register from "@/pages/SignUp/Register";
 
+import { LayoutIndex } from "./components/Layout/App/LayoutIndex";
 import AxiosError from "./pages/Error/AxiosError";
 import RouteError from "./pages/Error/RouteError";
 
@@ -27,7 +27,7 @@ export const appDefaultRoutes = [
   {
     id: ROUTE_ID.ROOT,
     path: ROUTE_PATH.ROOT,
-    element: <AppLayout />,
+    element: <LayoutIndex />,
     errorElement: <RouteError />,
     children: [
       {

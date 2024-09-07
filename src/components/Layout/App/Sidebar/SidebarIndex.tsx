@@ -5,12 +5,12 @@ import { Divider, Drawer as MuiDrawer, styled } from "@mui/material";
 
 import { SidebarList } from "./SidebarList";
 
-interface SidebarProps {
+interface SidebarIndexProps {
   open: boolean | undefined;
   handleClose: () => void;
 }
 
-export const Sidebar = ({ open, handleClose }: SidebarProps) => {
+export const SidebarIndex = ({ open, handleClose }: SidebarIndexProps) => {
   return (
     <Drawer variant="permanent" open={open} onClose={handleClose}>
       <DrawerHeader sx={{ ml: 1.1, mt: 9, mb: -2 }}>
