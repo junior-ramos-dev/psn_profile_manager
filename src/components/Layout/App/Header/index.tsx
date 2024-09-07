@@ -5,7 +5,7 @@ import { More, UserAccount } from "@/components/Layout/App/Header/Menu/Actions";
 import { PsMenuIconButton } from "@/components/Playstation/PSIconButtons";
 import { ThemeColorShuffle } from "@/components/ThemeSwitch/ThemeColorShuffle";
 import { ThemeModeSwitch } from "@/components/ThemeSwitch/ThemeModeSwitch";
-import { AppBar, Box, Toolbar } from "@mui/material";
+import { AppBar, Box, Stack, Toolbar } from "@mui/material";
 
 import { Title } from "./Title";
 
@@ -42,15 +42,24 @@ export const AppHeader = ({ toggleNavigation }: HeaderProps) => {
           <PsMenuIconButton toggleNavigation={toggleNavigation} />
           <Title />
           <Box sx={{ flexGrow: 1 }} />
-          <Box
-            sx={{ display: { xs: "none", md: "flex", alignItems: "center" } }}
-          >
-            <ThemeModeSwitch />
-            <ThemeColorShuffle />
-            {/* <Messages total={0} /> */}
-            {/* <Notifications total={0} /> */}
-            <UserAccount onClick={handleProfileMenuOpen} />
-          </Box>
+          <Stack spacing={0.1}>
+            <Box
+              sx={{
+                display: {
+                  xs: "none",
+                  md: "flex",
+                  alignItems: "center",
+                  justifyContent: "right",
+                },
+              }}
+            >
+              <ThemeModeSwitch />
+              <ThemeColorShuffle />
+              {/* <Messages total={0} /> */}
+              {/* <Notifications total={0} /> */}
+              <UserAccount onClick={handleProfileMenuOpen} />
+            </Box>
+          </Stack>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <More onClick={handleMobileMenuOpen} />
           </Box>

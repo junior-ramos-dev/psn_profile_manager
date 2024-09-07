@@ -1,10 +1,15 @@
 import { useContext } from "react";
 
+import { ThemeColorShuffle } from "@/components/ThemeSwitch";
 import { ThemeModeSwitch } from "@/components/ThemeSwitch/ThemeModeSwitch";
+import { UserProfileIdAndName } from "@/components/User/UserProfileIdAndName";
 import { ThemeContext } from "@/contexts";
-import { Box, Menu, MenuItem } from "@mui/material";
+import { useAppSelector } from "@/hooks/redux";
+import { selectIsLoggedIn } from "@/services/rtkQueryApi/auth/authSelectors";
+import { selectUserProfile } from "@/services/rtkQueryApi/user/userSelectors";
+import { Box, Divider, Menu, MenuItem } from "@mui/material";
 
-import { Messages, Notifications, Settings, SignOut } from "./Actions";
+import { Settings, SignOut } from "./Actions";
 
 interface MobileMenuProps {
   isMenuOpen: boolean;
@@ -19,7 +24,11 @@ export const MobileMenu = ({
   handleMenuClose,
   anchorEl,
 }: MobileMenuProps) => {
-  const { toggleThemeMode } = useContext(ThemeContext);
+  const { toggleThemeMode, shuffleThemeColor } = useContext(ThemeContext);
+
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
+
+  const userProfile = useAppSelector(selectUserProfile);
 
   return (
     <Menu
@@ -38,18 +47,36 @@ export const MobileMenu = ({
       onClose={handleMenuClose}
     >
       <Box sx={{ textAlign: "center" }}>
+        {isLoggedIn ? (
+          <>
+            <MenuItem onClick={handleMenuClose}>
+              <UserProfileIdAndName
+                onlineId={userProfile.onlineId}
+                firstName={userProfile.personalDetail.firstName}
+                lastName={userProfile.personalDetail.lastName}
+              />
+            </MenuItem>
+            <Divider />
+          </>
+        ) : (
+          <></>
+        )}
         <MenuItem onClick={toggleThemeMode}>
           <ThemeModeSwitch disableTooltip />
           Toggle Theme
         </MenuItem>
-        <MenuItem onClick={handleMenuClose}>
-          <Messages total={15} disableTooltip />
+        <MenuItem onClick={shuffleThemeColor}>
+          <ThemeColorShuffle />
+          Color Shuffle
+        </MenuItem>
+        {/* <MenuItem onClick={handleMenuClose}>
+          <Messages total={0} disableTooltip />
           Messages
         </MenuItem>
         <MenuItem onClick={handleMenuClose}>
-          <Notifications total={20} disableTooltip />
+          <Notifications total={0} disableTooltip />
           Notifications
-        </MenuItem>
+        </MenuItem> */}
         <MenuItem onClick={handleMenuClose}>
           <Settings disableTooltip />
           Settings

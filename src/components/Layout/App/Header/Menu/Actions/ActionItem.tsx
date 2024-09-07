@@ -3,10 +3,12 @@ import { ComponentType } from "react";
 import { IconButton, Tooltip } from "@mui/material";
 
 import { ActionIcon } from "./ActionIcon";
+import { ActionImg } from "./ActionImg";
 
 interface ActionItemProps {
   title: string;
-  icon: ComponentType;
+  icon?: ComponentType;
+  imageUrl?: string;
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   badgeContent?: number;
   disableTooltip?: boolean;
@@ -15,13 +17,18 @@ interface ActionItemProps {
 export const ActionItem = ({
   title,
   icon,
+  imageUrl,
   onClick,
   badgeContent,
   disableTooltip = false,
 }: ActionItemProps) => {
-  const buttonIcon = (
+  const buttonIcon = icon ? (
     <IconButton size="large" color="inherit" onClick={onClick}>
       <ActionIcon badgeContent={badgeContent} icon={icon} />
+    </IconButton>
+  ) : (
+    <IconButton size="large" color="inherit" onClick={onClick}>
+      <ActionImg badgeContent={badgeContent} imageUrl={imageUrl} />
     </IconButton>
   );
 

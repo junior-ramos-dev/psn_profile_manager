@@ -1,3 +1,6 @@
+import { useAppSelector } from "@/hooks/redux";
+import { selectIsLoggedIn } from "@/services/rtkQueryApi/auth/authSelectors";
+import { selectUserProfile } from "@/services/rtkQueryApi/user/userSelectors";
 import {
   Fingerprint as FingerprintIcon,
   List as PreferencesIcon,
@@ -56,14 +59,27 @@ export const Notifications = ({
 export const UserAccount = ({
   onClick,
   disableTooltip = false,
-}: ActionProps) => (
-  <ActionItem
-    title="My Account"
-    icon={FingerprintIcon}
-    onClick={onClick}
-    disableTooltip={disableTooltip}
-  />
-);
+}: ActionProps) => {
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
+
+  const userProfile = useAppSelector(selectUserProfile);
+
+  const actionIcon = isLoggedIn ? undefined : FingerprintIcon;
+
+  const actionImg = isLoggedIn
+    ? userProfile.avatarUrls[0].avatarUrl
+    : undefined;
+
+  return (
+    <ActionItem
+      title="My Account"
+      icon={actionIcon}
+      imageUrl={actionImg}
+      onClick={onClick}
+      disableTooltip={disableTooltip}
+    />
+  );
+};
 
 export const SignOut = ({ onClick, disableTooltip = false }: ActionProps) => (
   <ActionItem
