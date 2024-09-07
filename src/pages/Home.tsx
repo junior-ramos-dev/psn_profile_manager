@@ -5,7 +5,6 @@ import { Outlet } from "react-router-dom";
 import { PageHeader } from "@/components/DefaultPage/PageHeader";
 import { UserProfile } from "@/components/User/UserProfile";
 import { useAppSelector } from "@/hooks/redux";
-import useOverFlowHidden from "@/hooks/useOverFlowHidden";
 import { selectUserProfile } from "@/services/rtkQueryApi/user/userSelectors";
 import {
   APP_TITLE,
@@ -16,7 +15,7 @@ import { Box } from "@mui/material";
 
 const Home = () => {
   //Disable page scroll
-  useOverFlowHidden();
+  // useOverFlowHidden();
 
   const userProfile = useAppSelector(selectUserProfile);
 
