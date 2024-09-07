@@ -23,18 +23,18 @@ import { useTheme } from "@mui/material/styles";
 import { ActionItemIcon } from "./ActionItemIcon";
 import { ActionItemImg } from "./ActionItemImg";
 
-interface ActionProps {
+interface ActionIndexProps {
   total?: number;
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   disableTitle?: boolean;
   disableTooltip?: boolean;
 }
 
-export const UserAccount = ({
+export const ActionUserAccount = ({
   onClick,
   disableTooltip = false,
   disableTitle = false,
-}: ActionProps) => {
+}: ActionIndexProps) => {
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
 
   const userProfile = useAppSelector(selectUserProfile);
@@ -43,7 +43,7 @@ export const UserAccount = ({
 
   return isLoggedIn ? (
     <ActionItemImg
-      title="My Account"
+      title="Account"
       imageUrl={imageUrl}
       onClick={onClick}
       disableTooltip={disableTooltip}
@@ -51,7 +51,7 @@ export const UserAccount = ({
     />
   ) : (
     <ActionItemIcon
-      title="My Account"
+      title="Account"
       icon={FingerprintIcon}
       onClick={onClick}
       disableTooltip={disableTooltip}
@@ -60,11 +60,11 @@ export const UserAccount = ({
   );
 };
 
-export const Preferences = ({
+export const ActionPreferences = ({
   onClick,
   disableTooltip = false,
   disableTitle = false,
-}: ActionProps) => (
+}: ActionIndexProps) => (
   <ActionItemIcon
     title="Preferences"
     icon={PreferencesIcon}
@@ -74,11 +74,11 @@ export const Preferences = ({
   />
 );
 
-export const Settings = ({
+export const ActionSettings = ({
   onClick,
   disableTooltip = false,
   disableTitle = false,
-}: ActionProps) => (
+}: ActionIndexProps) => (
   <ActionItemIcon
     title="Settings"
     icon={SettingsIcon}
@@ -88,11 +88,11 @@ export const Settings = ({
   />
 );
 
-export const LogIn = ({
+export const ActionLogin = ({
   onClick,
   disableTooltip = false,
   disableTitle = false,
-}: ActionProps) => (
+}: ActionIndexProps) => (
   <ActionItemIcon
     title="Login"
     icon={LoginIcon}
@@ -102,11 +102,11 @@ export const LogIn = ({
   />
 );
 
-export const LogOut = ({
+export const ActionLogout = ({
   onClick,
   disableTooltip = false,
   disableTitle = false,
-}: ActionProps) => (
+}: ActionIndexProps) => (
   <ActionItemIcon
     title="Logout"
     icon={LogoutIcon}
@@ -116,14 +116,14 @@ export const LogOut = ({
   />
 );
 
-export const Messages = ({
+export const ActionMessages = ({
   total,
   onClick,
   disableTooltip = false,
   disableTitle = false,
-}: ActionProps) => (
+}: ActionIndexProps) => (
   <ActionItemIcon
-    title="My Messages"
+    title="Messages"
     icon={MailIcon}
     onClick={onClick}
     badgeContent={total}
@@ -132,26 +132,12 @@ export const Messages = ({
   />
 );
 
-export const More = ({
-  onClick,
-  disableTooltip = false,
-  disableTitle = false,
-}: ActionProps) => (
-  <ActionItemIcon
-    title="More"
-    icon={MoreIcon}
-    onClick={onClick}
-    disableTooltip={disableTooltip}
-    disableTitle={disableTitle}
-  />
-);
-
-export const Notifications = ({
+export const ActionNotifications = ({
   total,
   onClick,
   disableTooltip = false,
   disableTitle = false,
-}: ActionProps) => (
+}: ActionIndexProps) => (
   <ActionItemIcon
     title="Notifications"
     icon={NotificationsIcon}
@@ -162,7 +148,7 @@ export const Notifications = ({
   />
 );
 
-export const ThemeModeSwitch = ({
+export const ActionToggleThemeMode = ({
   disableTooltip = false,
   disableTitle = false,
 }: {
@@ -174,7 +160,7 @@ export const ThemeModeSwitch = ({
 
   return (
     <ActionItemIcon
-      title="Toggle Theme"
+      title="Toggle Theme Mode"
       icon={
         theme.palette.mode === LIGHT_MODE_THEME ? LightModeIcon : NightsStay
       }
@@ -185,7 +171,7 @@ export const ThemeModeSwitch = ({
   );
 };
 
-export const ThemeColorShuffle = ({
+export const ActionChangeThemeColor = ({
   disableTooltip = false,
   disableTitle = false,
 }: {
@@ -195,7 +181,7 @@ export const ThemeColorShuffle = ({
   const colorMode = useContext(ThemeContext);
   return (
     <ActionItemIcon
-      title="Shuffle Theme"
+      title="Change Theme Color"
       icon={ColorLensIcon}
       onClick={colorMode.shuffleThemeColor}
       disableTooltip={disableTooltip}
@@ -203,3 +189,17 @@ export const ThemeColorShuffle = ({
     />
   );
 };
+
+export const ActionMore = ({
+  onClick,
+  disableTooltip = false,
+  disableTitle = false,
+}: ActionIndexProps) => (
+  <ActionItemIcon
+    title="ActionMore"
+    icon={MoreIcon}
+    onClick={onClick}
+    disableTooltip={disableTooltip}
+    disableTitle={disableTitle}
+  />
+);

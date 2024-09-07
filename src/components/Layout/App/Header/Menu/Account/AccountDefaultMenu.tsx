@@ -4,7 +4,12 @@ import { selectIsLoggedIn } from "@/services/rtkQueryApi/auth/authSelectors";
 import { selectUserProfile } from "@/services/rtkQueryApi/user/userSelectors";
 import { Divider, Menu, MenuItem } from "@mui/material";
 
-import { LogIn, LogOut, Preferences, Settings } from "./Actions";
+import {
+  ActionLogin,
+  ActionLogout,
+  ActionPreferences,
+  ActionSettings,
+} from "../Actions/ActionItemsIndex";
 
 interface AccountDefaultMenuProps {
   isMenuOpen: boolean;
@@ -39,23 +44,22 @@ export const AccountDefaultMenu = ({
             />
           </MenuItem>
           <Divider />
+          <MenuItem onClick={handleMenuClose} sx={{ mt: 2, mb: 3, height: 5 }}>
+            <ActionSettings disableTooltip />
+          </MenuItem>
+          <MenuItem onClick={handleMenuClose} sx={{ mt: 2, mb: 3, height: 5 }}>
+            <ActionPreferences disableTooltip />
+          </MenuItem>
+          <Divider />
+          <MenuItem onClick={handleMenuClose} sx={{ mt: 2, mb: 3, height: 5 }}>
+            <ActionLogout disableTooltip />
+          </MenuItem>
         </>
       ) : (
-        <></>
+        <MenuItem onClick={handleMenuClose} sx={{ mt: 2, mb: 3, height: 5 }}>
+          <ActionLogin disableTooltip />
+        </MenuItem>
       )}
-      <MenuItem onClick={handleMenuClose} sx={{ mt: 2, mb: 3, height: 5 }}>
-        <Settings disableTooltip />
-      </MenuItem>
-      <MenuItem onClick={handleMenuClose} sx={{ mt: 2, mb: 3, height: 5 }}>
-        <Preferences disableTooltip />
-      </MenuItem>
-      <Divider />
-      <MenuItem onClick={handleMenuClose} sx={{ mt: 2, mb: 3, height: 5 }}>
-        <LogIn disableTooltip />
-      </MenuItem>
-      <MenuItem onClick={handleMenuClose} sx={{ mt: 2, mb: 3, height: 5 }}>
-        <LogOut disableTooltip />
-      </MenuItem>
     </Menu>
   );
 };

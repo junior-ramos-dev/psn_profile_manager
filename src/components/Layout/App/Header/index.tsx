@@ -4,7 +4,7 @@ import {
   AccountDefaultMenu,
   AccountMobileMenu,
   ToolbarMenuActions,
-} from "@/components/Layout/App/Header/Menu";
+} from "@/components/Layout/App/Header/Menu/Account";
 import { PsMenuIconButton } from "@/components/Playstation/PSIconButtons";
 import { AppBar, Box, Toolbar } from "@mui/material";
 
