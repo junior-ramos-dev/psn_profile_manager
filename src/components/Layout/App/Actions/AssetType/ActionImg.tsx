@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import { Image } from "mui-image";
 
 import { LIGHT_MODE_THEME } from "@/settings/app/constants";

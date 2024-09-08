@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import { Box, Tooltip } from "@mui/material";
 

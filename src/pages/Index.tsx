@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import { useLocation } from "react-router-dom";
 
 import { PageTitle } from "@/components/DefaultPage";

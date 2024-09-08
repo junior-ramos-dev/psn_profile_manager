@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import { useAppSelector } from "@/hooks/redux";
 import { selectIsLoggedIn } from "@/services/rtkQueryApi/auth/authSelectors";
 import { selectUserProfile } from "@/services/rtkQueryApi/user/userSelectors";

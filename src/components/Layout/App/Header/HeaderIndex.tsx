@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/** @jsxImportSource @emotion/react */
+import { useState } from "react";
 
 import {
   AccountDefaultMenu,

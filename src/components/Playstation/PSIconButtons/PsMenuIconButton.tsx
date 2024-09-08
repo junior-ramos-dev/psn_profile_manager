@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import { Box, Tooltip } from "@mui/material";
 
 import { PsLogoColorSvg } from "../PsLogoColorSvg";

@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import { Hamburger } from "@/components/Hamburger";
 import { DRAWER_WIDTH } from "@/settings/app/constants";
 import { navClosedMixin, navOpenedMixin } from "@/styles/mixins";

@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import { ActionAccountPreferences } from "@/components/Layout/App/Actions/AccountActionItems";
 import { ActionAppSettings } from "@/components/Layout/App/Actions/AppActionItems";
 import {

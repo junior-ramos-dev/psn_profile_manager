@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import { ComponentType } from "react";
 
 import { LIGHT_MODE_THEME } from "@/settings/app/constants";

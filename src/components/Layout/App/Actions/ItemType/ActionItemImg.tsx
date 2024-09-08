@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import { IconButton, Tooltip, Typography } from "@mui/material";
 
 import { ActionImg } from "../AssetType/ActionImg";

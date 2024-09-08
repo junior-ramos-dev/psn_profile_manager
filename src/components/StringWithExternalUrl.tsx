@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import _ from "lodash";
 
 import { extractUrlFromString } from "@/utils/strings";

@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import { Box } from "@mui/material";
 
 import { StatusMessageError } from "./StatusMessageError";

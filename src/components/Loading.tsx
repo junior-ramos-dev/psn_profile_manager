@@ -1,4 +1,4 @@
-import * as React from "react";
+/** @jsxImportSource @emotion/react */
 
 //TODO Refactor change to match page layout
 import Box from "@mui/material/Box";

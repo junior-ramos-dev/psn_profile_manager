@@ -1,6 +1,5 @@
+import { axiosBaseQueryApi } from "@/services/axios/axiosBaseQueryApi";
 import { createApi } from "@reduxjs/toolkit/query/react";
-
-import { axiosBaseQueryApi } from "../axios/axiosBaseQueryApi";
 
 export const rtkQueryBaseApi = createApi({
   baseQuery: axiosBaseQueryApi(),

@@ -1,4 +1,4 @@
-import { IUserProfile } from "@/models/interfaces/user/IUserProfile";
+import IUserProfile from "@/models/interfaces/user/IUserProfile";
 import { VERBS } from "@/settings/app/constants";
 import {
   USER_ENDPOINT_NAME,

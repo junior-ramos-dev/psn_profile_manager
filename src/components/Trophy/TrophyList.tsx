@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import { ITrophyRoute, ITrophyRouteWithTrophy } from "@/models/interfaces";
 import { ITrophyList } from "@/models/interfaces/trophy/ITrophy";
 import { useGetTrophyListQuery } from "@/services/rtkQueryApi/trophy/trophyApi";

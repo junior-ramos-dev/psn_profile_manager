@@ -1,4 +1,4 @@
-import * as React from "react";
+/** @jsxImportSource @emotion/react */
 import { SVGProps } from "react";
 export const PsLogoColorSvg = (props: SVGProps<SVGSVGElement>) => (
   <svg

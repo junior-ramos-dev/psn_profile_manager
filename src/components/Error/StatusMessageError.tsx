@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import { Typography } from "@mui/material";
 
 interface ErrorStatusMessageProps {

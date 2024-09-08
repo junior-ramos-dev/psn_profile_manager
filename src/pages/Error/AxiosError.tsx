@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { ApiResponseError } from "@/components/Error/ApiResponseError";

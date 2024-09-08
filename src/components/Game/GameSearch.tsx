@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import SearchIcon from "@mui/icons-material/Search";
 import { alpha, Box, InputBase, styled } from "@mui/material";
 

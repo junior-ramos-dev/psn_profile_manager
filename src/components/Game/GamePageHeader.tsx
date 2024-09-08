@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import { AppBar, Box, Toolbar, Typography } from "@mui/material";
 
 import { GameSearch } from "./GameSearch";
