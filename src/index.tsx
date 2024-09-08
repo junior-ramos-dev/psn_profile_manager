@@ -4,14 +4,13 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 
+import { App } from "@/App";
+import { AppThemeProvider } from "@/AppThemeProvider";
 import { APP_TITLE } from "@/settings/app/constants";
 import { persistor, store } from "@/store";
 import { StyledEngineProvider } from "@mui/material/styles";
 
 import reportWebVitals from "../reportWebVitals";
-
-import { AppThemeProvider } from "./theme/AppThemeProvider";
-import { App } from "./App";
 
 const root = createRoot(document.getElementById("root"));
 

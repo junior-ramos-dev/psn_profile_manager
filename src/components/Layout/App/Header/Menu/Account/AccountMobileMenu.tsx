@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import { useContext } from "react";
 
 import { ActionAccountPreferences } from "@/components/Layout/App/Actions/AccountActionItems";
@@ -11,15 +12,15 @@ import {
   ActionLogout,
 } from "@/components/Layout/App/Actions/AuthActionItems";
 import { UserProfileIdAndName } from "@/components/User/UserProfileIdAndName";
-import { ThemeContext } from "@/contexts";
 import { useAppSelector } from "@/hooks/redux";
 import { selectIsLoggedIn } from "@/services/rtkQueryApi/auth/authSelectors";
 import { selectUserProfile } from "@/services/rtkQueryApi/user/userSelectors";
+import { ThemeContext } from "@/settings/app/theme/themeContext";
 import { Box, Divider, Menu, MenuItem } from "@mui/material";
 
 interface AccountMobileMenuProps {
   isMenuOpen: boolean;
-  // handleMenuOpen: (event: React.MouseEvent<HTMLElement>) => void;
+  handleMenuOpen: (event: React.MouseEvent<HTMLElement>) => void;
   handleMenuClose: () => void;
   anchorEl: HTMLElement | null;
 }

@@ -1,13 +1,12 @@
 import { createBrowserRouter, RouteObject } from "react-router-dom";
 
+import { LayoutIndex } from "@/components/Layout/App/LayoutIndex";
 import { PrivateRoute, PublicRoute } from "@/components/Layout/App/Routes";
+import AxiosError from "@/pages/Error/AxiosError";
+import RouteError from "@/pages/Error/RouteError";
 import Index from "@/pages/Index";
 import Login from "@/pages/SignUp/Login";
 import Register from "@/pages/SignUp/Register";
-
-import { LayoutIndex } from "./components/Layout/App/LayoutIndex";
-import AxiosError from "./pages/Error/AxiosError";
-import RouteError from "./pages/Error/RouteError";
 
 export const enum ROUTE_ID {
   ROOT = "root",

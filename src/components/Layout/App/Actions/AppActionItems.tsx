@@ -1,7 +1,8 @@
+/** @jsxImportSource @emotion/react */
 import { useContext } from "react";
 
-import { ThemeContext } from "@/contexts";
 import { LIGHT_MODE_THEME } from "@/settings/app/constants";
+import { ThemeContext } from "@/settings/app/theme/themeContext";
 import {
   MoreVert as MoreIcon,
   NightsStay,

@@ -6,13 +6,13 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-import { GameDetail } from "./components/Game";
-import { useAppSelector } from "./hooks/redux";
-import { IGameRoute } from "./models/interfaces";
-import { selectIsLoggedIn } from "./services/rtkQueryApi/auth/authSelectors";
-import { selectGamesRoutes } from "./services/rtkQueryApi/game/gameSelectors";
-import { useSidebarRoutes } from "./settings/app/routes/sideBarRoutes";
-import { appDefaultRoutes, ROUTE_ID } from "./initAppRouter";
+import { appDefaultRoutes, ROUTE_ID } from "@/AppInitRouterProvider";
+import { GameDetail } from "@/components/Game";
+import { useAppSelector } from "@/hooks/redux";
+import { IGameRoute } from "@/models/interfaces";
+import { selectIsLoggedIn } from "@/services/rtkQueryApi/auth/authSelectors";
+import { selectGamesRoutes } from "@/services/rtkQueryApi/game/gameSelectors";
+import { useSidebarRoutes } from "@/settings/app/routes/sideBarRoutes";
 
 /**
  * Create game RouteObject from IGameRoute

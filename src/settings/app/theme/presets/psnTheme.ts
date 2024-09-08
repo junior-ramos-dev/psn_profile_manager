@@ -1,4 +1,4 @@
-import { AppTheme } from "@/theme/AppTheme";
+import { AppTheme } from "@/settings/app/theme/appTheme";
 import { createTheme } from "@mui/material/styles";
 
 const { palette } = createTheme();

@@ -1,4 +1,4 @@
-import { AppTheme } from "@/theme/AppTheme";
+import { AppTheme } from "@/settings/app/theme/appTheme";
 import { createTheme } from "@mui/material/styles";
 
 const { palette } = createTheme();
@@ -9,28 +9,28 @@ export const theme: AppTheme = {
       mode: "dark",
       primary: palette.augmentColor({
         color: {
-          main: "#cdbeff",
-          contrastText: "#32009a",
+          main: "#ffb3b0",
+          contrastText: "#68000c",
         },
       }),
       secondary: palette.augmentColor({
         color: {
-          main: "#cac3dc",
-          contrastText: "#322e41",
+          main: "#4fd8eb",
+          contrastText: "#00363d",
         },
       }),
       text: {
-        primary: "#e6e1e6",
-        secondary: "#e6e1e6",
+        primary: "#E6E1E5",
+        secondary: "#E6E1E5",
       },
       background: {
-        default: "#1c1b1e",
-        paper: "#1c1b1e",
+        default: "#1C1B1F",
+        paper: "#1C1B1F",
       },
       error: palette.augmentColor({
         color: {
-          main: "#ffb4a9",
-          contrastText: "#680003",
+          main: "#F2B8B5",
+          contrastText: "#601410",
         },
       }),
       success: palette.augmentColor({
@@ -51,29 +51,29 @@ export const theme: AppTheme = {
           contrastText: "#313300",
         },
       }),
-      divider: "#938f99",
+      divider: "#938F99",
       upvote: palette.augmentColor({
         color: {
-          main: "#cdbeff",
-          contrastText: "#32009a",
+          main: "#bd0b25",
+          contrastText: "#68000c",
         },
       }),
       downvote: palette.augmentColor({
         color: {
-          main: "#ffb4a9",
-          contrastText: "#680003",
+          main: "#4fd8eb",
+          contrastText: "#00363d",
         },
       }),
       containerPrimary: palette.augmentColor({
         color: {
-          main: "#4b24ba",
-          contrastText: "#e8deff",
+          main: "#920016",
+          contrastText: "#ffdad6",
         },
       }),
       containerSecondary: palette.augmentColor({
         color: {
-          main: "#494458",
-          contrastText: "#e7dff8",
+          main: "#5c3f3d",
+          contrastText: "#ffdad8",
         },
       }),
     },
@@ -83,28 +83,28 @@ export const theme: AppTheme = {
       mode: "light",
       primary: palette.augmentColor({
         color: {
-          main: "#6342d2",
+          main: "#bd0b25",
           contrastText: "#ffffff",
         },
       }),
       secondary: palette.augmentColor({
         color: {
-          main: "#605b71",
+          main: "#006874",
           contrastText: "#ffffff",
         },
       }),
       text: {
-        primary: "#1c1b1e",
-        secondary: "#1c1b1e",
+        primary: "#1C1B1F",
+        secondary: "#1C1B1F",
       },
       background: {
-        default: "#fffbff",
+        default: "#FFFBFE",
         paper: "#fffbff",
       },
       error: palette.augmentColor({
         color: {
-          main: "#ba1b1b",
-          contrastText: "#ffffff",
+          main: "#B3261E",
+          contrastText: "#FFFFFF",
         },
       }),
       success: palette.augmentColor({
@@ -125,29 +125,29 @@ export const theme: AppTheme = {
           contrastText: "#313300",
         },
       }),
-      divider: "#79757f",
+      divider: "#79747E",
       upvote: palette.augmentColor({
         color: {
-          main: "#6342d2",
+          main: "#bd0b25",
           contrastText: "#ffffff",
         },
       }),
       downvote: palette.augmentColor({
         color: {
-          main: "#ba1b1b",
+          main: "#006874",
           contrastText: "#ffffff",
         },
       }),
       containerPrimary: palette.augmentColor({
         color: {
-          main: "#e8deff",
-          contrastText: "#1c0062",
+          main: "#ffdad6",
+          contrastText: "#410005",
         },
       }),
       containerSecondary: palette.augmentColor({
         color: {
-          main: "#e7dff8",
-          contrastText: "#1d192b",
+          main: "#ffdad8",
+          contrastText: "#2d1514",
         },
       }),
     },

@@ -1,4 +1,4 @@
-import { AppTheme } from "@/theme/AppTheme";
+import { AppTheme } from "@/settings/app/theme/appTheme";
 import { createTheme } from "@mui/material/styles";
 
 const { palette } = createTheme();
@@ -9,28 +9,28 @@ export const theme: AppTheme = {
       mode: "dark",
       primary: palette.augmentColor({
         color: {
-          main: "#ffb3b0",
-          contrastText: "#68000c",
+          main: "#acd452",
+          contrastText: "#253600",
         },
       }),
       secondary: palette.augmentColor({
         color: {
-          main: "#4fd8eb",
-          contrastText: "#00363d",
+          main: "#c2caaa",
+          contrastText: "#2c331c",
         },
       }),
       text: {
-        primary: "#E6E1E5",
-        secondary: "#E6E1E5",
+        primary: "#e4e2db",
+        secondary: "#e4e2db",
       },
       background: {
-        default: "#1C1B1F",
-        paper: "#1C1B1F",
+        default: "#1b1c17",
+        paper: "#1b1c17",
       },
       error: palette.augmentColor({
         color: {
-          main: "#F2B8B5",
-          contrastText: "#601410",
+          main: "#ffb4a9",
+          contrastText: "#680003",
         },
       }),
       success: palette.augmentColor({
@@ -41,39 +41,39 @@ export const theme: AppTheme = {
       }),
       info: palette.augmentColor({
         color: {
-          main: "#99cbff",
-          contrastText: "#003257",
+          main: "#0062a2",
+          contrastText: "#ffffff",
         },
       }),
       warning: palette.augmentColor({
         color: {
-          main: "#cace09",
-          contrastText: "#313300",
+          main: "#606200",
+          contrastText: "#ffffff",
         },
       }),
-      divider: "#938F99",
+      divider: "#909284",
       upvote: palette.augmentColor({
         color: {
-          main: "#bd0b25",
-          contrastText: "#68000c",
+          main: "#acd452",
+          contrastText: "#253600",
         },
       }),
       downvote: palette.augmentColor({
         color: {
-          main: "#4fd8eb",
-          contrastText: "#00363d",
+          main: "#ffb4a9",
+          contrastText: "#680003",
         },
       }),
       containerPrimary: palette.augmentColor({
         color: {
-          main: "#920016",
-          contrastText: "#ffdad6",
+          main: "#374e00",
+          contrastText: "#c8f16c",
         },
       }),
       containerSecondary: palette.augmentColor({
         color: {
-          main: "#5c3f3d",
-          contrastText: "#ffdad8",
+          main: "#3d4a36",
+          contrastText: "#d8e8cb",
         },
       }),
     },
@@ -83,28 +83,28 @@ export const theme: AppTheme = {
       mode: "light",
       primary: palette.augmentColor({
         color: {
-          main: "#bd0b25",
+          main: "#4a6800",
           contrastText: "#ffffff",
         },
       }),
       secondary: palette.augmentColor({
         color: {
-          main: "#006874",
+          main: "#5a6147",
           contrastText: "#ffffff",
         },
       }),
       text: {
-        primary: "#1C1B1F",
-        secondary: "#1C1B1F",
+        primary: "#1b1c17",
+        secondary: "#1b1c17",
       },
       background: {
-        default: "#FFFBFE",
-        paper: "#fffbff",
+        default: "#fefdf4",
+        paper: "#fefcf4",
       },
       error: palette.augmentColor({
         color: {
-          main: "#B3261E",
-          contrastText: "#FFFFFF",
+          main: "#ba1b1b",
+          contrastText: "#ffffff",
         },
       }),
       success: palette.augmentColor({
@@ -122,32 +122,32 @@ export const theme: AppTheme = {
       warning: palette.augmentColor({
         color: {
           main: "#606200",
-          contrastText: "#313300",
+          contrastText: "#ffffff",
         },
       }),
-      divider: "#79747E",
+      divider: "#75786a",
       upvote: palette.augmentColor({
         color: {
-          main: "#bd0b25",
+          main: "#4a6800",
           contrastText: "#ffffff",
         },
       }),
       downvote: palette.augmentColor({
         color: {
-          main: "#006874",
+          main: "#ba1b1b",
           contrastText: "#ffffff",
         },
       }),
       containerPrimary: palette.augmentColor({
         color: {
-          main: "#ffdad6",
-          contrastText: "#410005",
+          main: "#c8f16c",
+          contrastText: "#131f00",
         },
       }),
       containerSecondary: palette.augmentColor({
         color: {
-          main: "#ffdad8",
-          contrastText: "#2d1514",
+          main: "#d8e8cb",
+          contrastText: "#131f0e",
         },
       }),
     },

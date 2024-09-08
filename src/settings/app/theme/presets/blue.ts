@@ -1,4 +1,4 @@
-import { AppTheme } from "@/theme/AppTheme";
+import { AppTheme } from "@/settings/app/theme/appTheme";
 import { createTheme } from "@mui/material/styles";
 
 const { palette } = createTheme();
@@ -9,23 +9,23 @@ export const theme: AppTheme = {
       mode: "dark",
       primary: palette.augmentColor({
         color: {
-          main: "#acd452",
-          contrastText: "#253600",
+          main: "#cdbeff",
+          contrastText: "#32009a",
         },
       }),
       secondary: palette.augmentColor({
         color: {
-          main: "#c2caaa",
-          contrastText: "#2c331c",
+          main: "#cac3dc",
+          contrastText: "#322e41",
         },
       }),
       text: {
-        primary: "#e4e2db",
-        secondary: "#e4e2db",
+        primary: "#e6e1e6",
+        secondary: "#e6e1e6",
       },
       background: {
-        default: "#1b1c17",
-        paper: "#1b1c17",
+        default: "#1c1b1e",
+        paper: "#1c1b1e",
       },
       error: palette.augmentColor({
         color: {
@@ -41,21 +41,21 @@ export const theme: AppTheme = {
       }),
       info: palette.augmentColor({
         color: {
-          main: "#0062a2",
-          contrastText: "#ffffff",
+          main: "#99cbff",
+          contrastText: "#003257",
         },
       }),
       warning: palette.augmentColor({
         color: {
-          main: "#606200",
-          contrastText: "#ffffff",
+          main: "#cace09",
+          contrastText: "#313300",
         },
       }),
-      divider: "#909284",
+      divider: "#938f99",
       upvote: palette.augmentColor({
         color: {
-          main: "#acd452",
-          contrastText: "#253600",
+          main: "#cdbeff",
+          contrastText: "#32009a",
         },
       }),
       downvote: palette.augmentColor({
@@ -66,14 +66,14 @@ export const theme: AppTheme = {
       }),
       containerPrimary: palette.augmentColor({
         color: {
-          main: "#374e00",
-          contrastText: "#c8f16c",
+          main: "#4b24ba",
+          contrastText: "#e8deff",
         },
       }),
       containerSecondary: palette.augmentColor({
         color: {
-          main: "#3d4a36",
-          contrastText: "#d8e8cb",
+          main: "#494458",
+          contrastText: "#e7dff8",
         },
       }),
     },
@@ -83,23 +83,23 @@ export const theme: AppTheme = {
       mode: "light",
       primary: palette.augmentColor({
         color: {
-          main: "#4a6800",
+          main: "#6342d2",
           contrastText: "#ffffff",
         },
       }),
       secondary: palette.augmentColor({
         color: {
-          main: "#5a6147",
+          main: "#605b71",
           contrastText: "#ffffff",
         },
       }),
       text: {
-        primary: "#1b1c17",
-        secondary: "#1b1c17",
+        primary: "#1c1b1e",
+        secondary: "#1c1b1e",
       },
       background: {
-        default: "#fefdf4",
-        paper: "#fefcf4",
+        default: "#fffbff",
+        paper: "#fffbff",
       },
       error: palette.augmentColor({
         color: {
@@ -122,13 +122,13 @@ export const theme: AppTheme = {
       warning: palette.augmentColor({
         color: {
           main: "#606200",
-          contrastText: "#ffffff",
+          contrastText: "#313300",
         },
       }),
-      divider: "#75786a",
+      divider: "#79757f",
       upvote: palette.augmentColor({
         color: {
-          main: "#4a6800",
+          main: "#6342d2",
           contrastText: "#ffffff",
         },
       }),
@@ -140,14 +140,14 @@ export const theme: AppTheme = {
       }),
       containerPrimary: palette.augmentColor({
         color: {
-          main: "#c8f16c",
-          contrastText: "#131f00",
+          main: "#e8deff",
+          contrastText: "#1c0062",
         },
       }),
       containerSecondary: palette.augmentColor({
         color: {
-          main: "#d8e8cb",
-          contrastText: "#131f0e",
+          main: "#e7dff8",
+          contrastText: "#1d192b",
         },
       }),
     },

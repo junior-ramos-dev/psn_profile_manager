@@ -1,6 +1,7 @@
+/** @jsxImportSource @emotion/react */
 import { ComponentType } from "react";
 
-import { AppThemeColor } from "@/theme/AppTheme";
+import { AppThemeColor } from "@/settings/app/theme/appTheme";
 import { IconButton, Tooltip, Typography } from "@mui/material";
 
 import { ActionIcon } from "../AssetType/ActionIcon";
