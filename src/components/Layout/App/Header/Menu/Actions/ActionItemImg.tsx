@@ -20,7 +20,7 @@ export const ActionItemImg = ({
   disableTooltip = false,
 }: ActionItemImgProps) => {
   const buttonImg = (
-    <IconButton size="large" color="inherit" onClick={onClick}>
+    <IconButton size="small" color="inherit" onClick={onClick}>
       <ActionImg badgeContent={badgeContent} imageUrl={imageUrl} />
       &nbsp;
       {disableTitle ? (

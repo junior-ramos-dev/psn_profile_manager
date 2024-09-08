@@ -1,10 +1,15 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { ThemeContext } from "@/contexts";
-import { useAppSelector } from "@/hooks/redux";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux";
+import { useLogoutMutation } from "@/services/rtkQueryApi/auth/authApi";
 import { selectIsLoggedIn } from "@/services/rtkQueryApi/auth/authSelectors";
+import { actionUnsetCredentials } from "@/services/rtkQueryApi/auth/authSlice";
 import { selectUserProfile } from "@/services/rtkQueryApi/user/userSelectors";
+import { actionUnsetUserProfile } from "@/services/rtkQueryApi/user/userSlice";
 import { LIGHT_MODE_THEME } from "@/settings/app/constants";
+import { AppThemeColor } from "@/theme/AppTheme";
 import {
   Fingerprint as FingerprintIcon,
   List as PreferencesIcon,
@@ -28,6 +33,7 @@ interface ActionIndexProps {
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   disableTitle?: boolean;
   disableTooltip?: boolean;
+  iconColor?: AppThemeColor;
 }
 
 export const ActionUserAccount = ({
@@ -38,8 +44,10 @@ export const ActionUserAccount = ({
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
 
   const userProfile = useAppSelector(selectUserProfile);
+  let imageUrl = "";
 
-  const imageUrl = userProfile.avatarUrls[0].avatarUrl;
+  if (isLoggedIn && userProfile)
+    imageUrl = userProfile.avatarUrls[0]?.avatarUrl;
 
   return isLoggedIn ? (
     <ActionItemImg
@@ -103,18 +111,40 @@ export const ActionLogin = ({
 );
 
 export const ActionLogout = ({
-  onClick,
+  iconColor,
   disableTooltip = false,
   disableTitle = false,
-}: ActionIndexProps) => (
-  <ActionItemIcon
-    title="Logout"
-    icon={LogoutIcon}
-    onClick={onClick}
-    disableTooltip={disableTooltip}
-    disableTitle={disableTitle}
-  />
-);
+}: ActionIndexProps) => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const [logout] = useLogoutMutation();
+
+  const handleLogout = async () => {
+    try {
+      await logout()
+        .unwrap()
+        .then(() => {
+          dispatch(actionUnsetCredentials());
+          dispatch(actionUnsetUserProfile());
+        });
+      navigate("/auth/login");
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  return (
+    <ActionItemIcon
+      title="Logout"
+      icon={LogoutIcon}
+      iconColor={iconColor}
+      onClick={handleLogout}
+      disableTooltip={disableTooltip}
+      disableTitle={disableTitle}
+    />
+  );
+};
 
 export const ActionMessages = ({
   total,

@@ -1,5 +1,6 @@
 import { ComponentType } from "react";
 
+import { AppThemeColor } from "@/theme/AppTheme";
 import { IconButton, Tooltip, Typography } from "@mui/material";
 
 import { ActionIcon } from "./ActionIcon";
@@ -7,6 +8,7 @@ import { ActionIcon } from "./ActionIcon";
 interface ActionItemIconProps {
   title: string;
   icon?: ComponentType;
+  iconColor?: AppThemeColor;
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   badgeContent?: number;
   disableTitle?: boolean;
@@ -16,13 +18,14 @@ interface ActionItemIconProps {
 export const ActionItemIcon = ({
   title,
   icon,
+  iconColor = "inherit",
   onClick,
   badgeContent,
   disableTitle = false,
   disableTooltip = false,
 }: ActionItemIconProps) => {
   const buttonIcon = (
-    <IconButton size="large" color="inherit" onClick={onClick}>
+    <IconButton size="small" color={iconColor} onClick={onClick}>
       <ActionIcon badgeContent={badgeContent} icon={icon} />
       &nbsp;
       {disableTitle ? (

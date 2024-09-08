@@ -52,7 +52,7 @@ export const AccountDefaultMenu = ({
           </MenuItem>
           <Divider />
           <MenuItem onClick={handleMenuClose} sx={{ mt: 2, mb: 3, height: 5 }}>
-            <ActionLogout disableTooltip />
+            <ActionLogout disableTooltip iconColor="warning" />
           </MenuItem>
         </>
       ) : (

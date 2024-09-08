@@ -62,3 +62,13 @@ export const THEME_PRESETS = {
   3: red,
   4: _default,
 };
+
+export type AppThemeColor =
+  | "default"
+  | "error"
+  | "secondary"
+  | "primary"
+  | "info"
+  | "success"
+  | "warning"
+  | "inherit";

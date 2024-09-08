@@ -92,24 +92,15 @@ export const AccountMobileMenu = ({
               onClick={handleMenuClose}
               sx={{ mt: 2, mb: 3, height: 5 }}
             >
-              <ActionLogout
-                disableTooltip
-                onClick={() => alert("Signing out...")}
-              />
+              <ActionLogout disableTooltip iconColor="warning" />
             </MenuItem>
           </>
         ) : (
           <>
-            <MenuItem
-              onClick={toggleThemeMode}
-              sx={{ mt: 2, mb: 3, height: 5 }}
-            >
+            <MenuItem sx={{ mt: 2, mb: 3, height: 5 }}>
               <ActionToggleThemeMode disableTooltip />
             </MenuItem>
-            <MenuItem
-              onClick={shuffleThemeColor}
-              sx={{ mt: 2, mb: 3, height: 5 }}
-            >
+            <MenuItem sx={{ mt: 2, mb: 3, height: 5 }}>
               <ActionChangeThemeColor />
             </MenuItem>
             <Divider />
