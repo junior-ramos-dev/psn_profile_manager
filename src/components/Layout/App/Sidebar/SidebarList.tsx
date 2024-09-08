@@ -4,7 +4,7 @@ import { IRouteItem } from "@/models/interfaces";
 import { sideBarRoutes } from "@/settings/app/routes";
 import { Box, Collapse, Divider, List } from "@mui/material";
 
-import { ActionLogout } from "../Header/Menu/Actions/ActionItemsIndex";
+import { ActionLogout } from "../Actions/AuthActionItems";
 
 import { SidebarItem } from "./SidebarItem";
 

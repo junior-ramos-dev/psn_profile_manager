@@ -65,10 +65,10 @@ export const THEME_PRESETS = {
 
 export type AppThemeColor =
   | "default"
-  | "error"
-  | "secondary"
+  | "inherit"
   | "primary"
+  | "secondary"
   | "info"
   | "success"
   | "warning"
-  | "inherit";
+  | "error";

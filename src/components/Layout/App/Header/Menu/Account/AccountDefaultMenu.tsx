@@ -1,15 +1,14 @@
+import { ActionAccountPreferences } from "@/components/Layout/App/Actions/AccountActionItems";
+import { ActionAppSettings } from "@/components/Layout/App/Actions/AppActionItems";
+import {
+  ActionLogin,
+  ActionLogout,
+} from "@/components/Layout/App/Actions/AuthActionItems";
 import { UserProfileIdAndName } from "@/components/User/UserProfileIdAndName";
 import { useAppSelector } from "@/hooks/redux";
 import { selectIsLoggedIn } from "@/services/rtkQueryApi/auth/authSelectors";
 import { selectUserProfile } from "@/services/rtkQueryApi/user/userSelectors";
-import { Divider, Menu, MenuItem } from "@mui/material";
-
-import {
-  ActionLogin,
-  ActionLogout,
-  ActionPreferences,
-  ActionSettings,
-} from "../Actions/ActionItemsIndex";
+import { Box, Divider, Menu, MenuItem } from "@mui/material";
 
 interface AccountDefaultMenuProps {
   isMenuOpen: boolean;
@@ -35,7 +34,7 @@ export const AccountDefaultMenu = ({
       onClose={handleMenuClose}
     >
       {isLoggedIn ? (
-        <>
+        <Box>
           <MenuItem onClick={handleMenuClose}>
             <UserProfileIdAndName
               onlineId={userProfile.onlineId}
@@ -45,19 +44,22 @@ export const AccountDefaultMenu = ({
           </MenuItem>
           <Divider />
           <MenuItem onClick={handleMenuClose} sx={{ mt: 2, mb: 3, height: 5 }}>
-            <ActionSettings disableTooltip />
+            <ActionAppSettings disableTooltip />
           </MenuItem>
           <MenuItem onClick={handleMenuClose} sx={{ mt: 2, mb: 3, height: 5 }}>
-            <ActionPreferences disableTooltip />
+            <ActionAccountPreferences disableTooltip />
           </MenuItem>
           <Divider />
-          <MenuItem onClick={handleMenuClose} sx={{ mt: 2, mb: 3, height: 5 }}>
-            <ActionLogout disableTooltip iconColor="warning" />
+          <MenuItem onClick={handleMenuClose} sx={{ mt: 2, mb: 2, height: 5 }}>
+            <ActionLogout
+              handleMenuClose={handleMenuClose}
+              iconColor="warning"
+            />
           </MenuItem>
-        </>
+        </Box>
       ) : (
-        <MenuItem onClick={handleMenuClose} sx={{ mt: 2, mb: 3, height: 5 }}>
-          <ActionLogin disableTooltip />
+        <MenuItem sx={{ mt: 2, mb: 2, height: 5 }}>
+          <ActionLogin handleMenuClose={handleMenuClose} iconColor="success" />
         </MenuItem>
       )}
     </Menu>

@@ -3,12 +3,12 @@ import React, { useState } from "react";
 import {
   AccountDefaultMenu,
   AccountMobileMenu,
-  ToolbarMenuActions,
 } from "@/components/Layout/App/Header/Menu/Account";
 import { PsMenuIconButton } from "@/components/Playstation/PSIconButtons";
 import { AppBar, Box, Toolbar } from "@mui/material";
 
 import { Title } from "./Title";
+import { ToolbarMenuActions } from "./ToolbarMenuActions";
 
 interface AppHeaderProps {
   toggleNavigation: () => void;

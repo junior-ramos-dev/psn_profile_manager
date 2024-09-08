@@ -1,11 +1,11 @@
 import { Box, Stack } from "@mui/material";
 
+import { ActionAccountUser } from "../Actions/AccountActionItems";
 import {
-  ActionChangeThemeColor,
-  ActionMore,
-  ActionToggleThemeMode,
-  ActionUserAccount,
-} from "../Actions/ActionItemsIndex";
+  ActionAppChangeThemeColor,
+  ActionAppMore,
+  ActionAppToggleThemeMode,
+} from "../Actions/AppActionItems";
 
 interface ToolbarMenuActionsProps {
   handleProfileMenuOpen: (event: React.MouseEvent<HTMLElement>) => void;
@@ -29,16 +29,19 @@ export const ToolbarMenuActions = ({
             },
           }}
         >
-          <ActionToggleThemeMode disableTitle={true} />
-          <ActionChangeThemeColor disableTitle={true} />
-          <ActionUserAccount
+          <ActionAppToggleThemeMode disableTitle={true} />
+          <ActionAppChangeThemeColor disableTitle={true} />
+          <ActionAccountUser
             onClick={handleProfileMenuOpen}
             disableTitle={true}
           />
         </Box>
       </Stack>
       <Box sx={{ display: { xs: "flex", md: "none" } }}>
-        <ActionMore onClick={handleAccountMobileMenuOpen} disableTitle={true} />
+        <ActionAppMore
+          onClick={handleAccountMobileMenuOpen}
+          disableTitle={true}
+        />
       </Box>
     </>
   );

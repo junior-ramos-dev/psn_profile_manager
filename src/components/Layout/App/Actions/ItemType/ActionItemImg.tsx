@@ -1,6 +1,6 @@
 import { IconButton, Tooltip, Typography } from "@mui/material";
 
-import { ActionImg } from "./ActionImg";
+import { ActionImg } from "../AssetType/ActionImg";
 
 interface ActionItemImgProps {
   title: string;
@@ -26,7 +26,7 @@ export const ActionItemImg = ({
       {disableTitle ? (
         <></>
       ) : (
-        <Typography variant="body2" sx={{ fontSize: 14 }}>
+        <Typography variant="subtitle2" sx={{ fontSize: 12 }}>
           {title}
         </Typography>
       )}

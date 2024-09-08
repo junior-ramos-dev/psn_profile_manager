@@ -1,20 +1,21 @@
 import { useContext } from "react";
 
+import { ActionAccountPreferences } from "@/components/Layout/App/Actions/AccountActionItems";
+import {
+  ActionAppChangeThemeColor,
+  ActionAppSettings,
+  ActionAppToggleThemeMode,
+} from "@/components/Layout/App/Actions/AppActionItems";
+import {
+  ActionLogin,
+  ActionLogout,
+} from "@/components/Layout/App/Actions/AuthActionItems";
 import { UserProfileIdAndName } from "@/components/User/UserProfileIdAndName";
 import { ThemeContext } from "@/contexts";
 import { useAppSelector } from "@/hooks/redux";
 import { selectIsLoggedIn } from "@/services/rtkQueryApi/auth/authSelectors";
 import { selectUserProfile } from "@/services/rtkQueryApi/user/userSelectors";
 import { Box, Divider, Menu, MenuItem } from "@mui/material";
-
-import {
-  ActionChangeThemeColor,
-  ActionLogin,
-  ActionLogout,
-  ActionPreferences,
-  ActionSettings,
-  ActionToggleThemeMode,
-} from "../Actions/ActionItemsIndex";
 
 interface AccountMobileMenuProps {
   isMenuOpen: boolean;
@@ -53,7 +54,7 @@ export const AccountMobileMenu = ({
     >
       <Box sx={{ textAlign: "center" }}>
         {isLoggedIn ? (
-          <>
+          <Box>
             <MenuItem onClick={handleMenuClose}>
               <UserProfileIdAndName
                 onlineId={userProfile.onlineId}
@@ -66,49 +67,54 @@ export const AccountMobileMenu = ({
               onClick={handleMenuClose}
               sx={{ mt: 2, mb: 3, height: 5 }}
             >
-              <ActionSettings disableTooltip />
+              <ActionAppSettings disableTooltip />
             </MenuItem>
             <MenuItem
               onClick={handleMenuClose}
               sx={{ mt: 2, mb: 3, height: 5 }}
             >
-              <ActionPreferences disableTooltip />
+              <ActionAccountPreferences disableTooltip />
             </MenuItem>
             <Divider />
             <MenuItem
               onClick={toggleThemeMode}
               sx={{ mt: 2, mb: 3, height: 5 }}
             >
-              <ActionToggleThemeMode disableTooltip />
+              <ActionAppToggleThemeMode disableTooltip />
             </MenuItem>
             <MenuItem
               onClick={shuffleThemeColor}
               sx={{ mt: 2, mb: 3, height: 5 }}
             >
-              <ActionChangeThemeColor />
+              <ActionAppChangeThemeColor />
             </MenuItem>
             <Divider />
             <MenuItem
               onClick={handleMenuClose}
-              sx={{ mt: 2, mb: 3, height: 5 }}
+              sx={{ mt: 2, mb: 2, height: 5 }}
             >
-              <ActionLogout disableTooltip iconColor="warning" />
+              <ActionLogout
+                handleMenuClose={handleMenuClose}
+                disableTooltip
+                iconColor="warning"
+              />
             </MenuItem>
-          </>
+          </Box>
         ) : (
           <>
             <MenuItem sx={{ mt: 2, mb: 3, height: 5 }}>
-              <ActionToggleThemeMode disableTooltip />
+              <ActionAppToggleThemeMode disableTooltip />
             </MenuItem>
             <MenuItem sx={{ mt: 2, mb: 3, height: 5 }}>
-              <ActionChangeThemeColor />
+              <ActionAppChangeThemeColor />
             </MenuItem>
             <Divider />
-            <MenuItem
-              onClick={handleMenuClose}
-              sx={{ mt: 2, mb: 3, height: 5 }}
-            >
-              <ActionLogin disableTooltip />
+            <MenuItem sx={{ mt: 2, mb: 2, height: 5 }}>
+              <ActionLogin
+                handleMenuClose={handleMenuClose}
+                disableTooltip
+                iconColor="success"
+              />
             </MenuItem>
           </>
         )}

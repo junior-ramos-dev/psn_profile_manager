@@ -3,7 +3,7 @@ import { ComponentType } from "react";
 import { AppThemeColor } from "@/theme/AppTheme";
 import { IconButton, Tooltip, Typography } from "@mui/material";
 
-import { ActionIcon } from "./ActionIcon";
+import { ActionIcon } from "../AssetType/ActionIcon";
 
 interface ActionItemIconProps {
   title: string;
@@ -31,7 +31,7 @@ export const ActionItemIcon = ({
       {disableTitle ? (
         <></>
       ) : (
-        <Typography variant="body2" sx={{ fontSize: 14 }}>
+        <Typography variant="subtitle2" sx={{ fontSize: 12 }}>
           {title}
         </Typography>
       )}
