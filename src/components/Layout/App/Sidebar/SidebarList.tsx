@@ -2,9 +2,10 @@ import { useState } from "react";
 
 import { IRouteItem } from "@/models/interfaces";
 import { sideBarRoutes } from "@/settings/app/routes";
-import { Collapse, Divider, List } from "@mui/material";
+import { Box, Collapse, Divider, List } from "@mui/material";
 
-import { LogoutButton } from "./LogoutButton";
+import { ActionLogout } from "../Header/Menu/Actions/ActionItemsIndex";
+
 import { SidebarItem } from "./SidebarItem";
 
 export const SidebarList = () => {
@@ -23,7 +24,7 @@ export const SidebarList = () => {
 
   return (
     <>
-      <List component="nav" sx={{ height: "100%", mt: -1 }}>
+      <List component="nav" sx={{ height: "72.5%", mt: -1 }}>
         {sidebarListState.map((route: IRouteItem) => {
           return (
             <div key={route.key}>
@@ -55,7 +56,11 @@ export const SidebarList = () => {
           );
         })}
       </List>
-      <LogoutButton />
+      <Divider />
+      <Box sx={{ alignItems: "center", ml: 2, mt: 1, mb: 1 }}>
+        <ActionLogout disableTitle={true} iconColor="warning" />
+      </Box>
+      <Divider />
     </>
   );
 };
