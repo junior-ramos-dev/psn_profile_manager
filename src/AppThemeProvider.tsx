@@ -2,10 +2,9 @@ import { useEffect, useMemo, useState } from "react";
 
 import { DARK_MODE_THEME, LIGHT_MODE_THEME } from "@/settings/app/constants";
 import {
-  PRESETS,
+  PRESET_THEME_MAP,
   PRESETS_COLORS,
   THEME_PRESETS,
-  TOTAL_PRESETS,
 } from "@/settings/app/theme/appTheme";
 import { ThemeContext } from "@/settings/app/theme/themeContext";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -18,6 +17,8 @@ type AppThemeProviderProps = {
 };
 
 export const AppThemeProvider = (props: AppThemeProviderProps) => {
+  const TOTAL_PRESETS = Object.keys(PRESETS_COLORS).length / 2;
+
   const prefersDarkMode = useMediaQuery(
     `(prefers-color-scheme: ${DARK_MODE_THEME})`
   );
@@ -48,7 +49,7 @@ export const AppThemeProvider = (props: AppThemeProviderProps) => {
   );
 
   const _theme = useMemo(
-    () => createTheme(PRESETS[theme][mode] as ThemeOptions),
+    () => createTheme(PRESET_THEME_MAP[theme][mode] as ThemeOptions),
     [mode, theme]
   );
 
