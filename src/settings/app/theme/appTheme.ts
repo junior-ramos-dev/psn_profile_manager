@@ -55,12 +55,37 @@ export interface AppTheme {
 }
 // finally we export a final object that contains all our themes which we can
 // use to pick our desired palette.
-export const THEME_PRESETS = {
+export const PRESETS = {
   0: psnTheme,
   1: blue,
   2: green,
   3: red,
   4: _default,
+};
+
+export enum PRESETS_COLORS {
+  PSN = 0,
+  BLUE = 1,
+  GREEN = 2,
+  RED = 3,
+  DEFAULT = 4,
+}
+
+export const TOTAL_PRESETS = Object.keys(PRESETS_COLORS).length / 2;
+
+export type THEME_PRESETS =
+  | PRESETS_COLORS.PSN
+  | PRESETS_COLORS.BLUE
+  | PRESETS_COLORS.GREEN
+  | PRESETS_COLORS.RED
+  | PRESETS_COLORS.DEFAULT;
+
+export const PRESET_NAME_MAP: Record<PRESETS_COLORS, string> = {
+  [PRESETS_COLORS.PSN]: "PSN Theme",
+  [PRESETS_COLORS.BLUE]: "Blue Theme",
+  [PRESETS_COLORS.GREEN]: "Green Theme",
+  [PRESETS_COLORS.RED]: "Ted Theme",
+  [PRESETS_COLORS.DEFAULT]: "Default Theme",
 };
 
 export type AppThemeColor =

@@ -1,7 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
 
 import { DARK_MODE_THEME, LIGHT_MODE_THEME } from "@/settings/app/constants";
-import { THEME_PRESETS } from "@/settings/app/theme/appTheme";
+import {
+  PRESETS,
+  PRESETS_COLORS,
+  THEME_PRESETS,
+  TOTAL_PRESETS,
+} from "@/settings/app/theme/appTheme";
 import { ThemeContext } from "@/settings/app/theme/themeContext";
 import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "@mui/material/GlobalStyles";
@@ -20,7 +25,7 @@ export const AppThemeProvider = (props: AppThemeProviderProps) => {
   const [mode, setMode] = useState<
     typeof LIGHT_MODE_THEME | typeof DARK_MODE_THEME
   >(prefersDarkMode ? DARK_MODE_THEME : LIGHT_MODE_THEME);
-  const [theme, setTheme] = useState<0 | 1 | 2 | 3>(0);
+  const [theme, setTheme] = useState<THEME_PRESETS>(PRESETS_COLORS.PSN);
 
   useEffect(() => {
     setMode(prefersDarkMode ? DARK_MODE_THEME : LIGHT_MODE_THEME);
@@ -34,14 +39,16 @@ export const AppThemeProvider = (props: AppThemeProviderProps) => {
         );
       },
       shuffleThemeColor: () => {
-        setTheme((prevTheme) => ((prevTheme + 1) % 4) as 0 | 1 | 2 | 3);
+        setTheme(
+          (prevTheme) => ((prevTheme + 1) % TOTAL_PRESETS) as THEME_PRESETS
+        );
       },
     }),
     []
   );
 
   const _theme = useMemo(
-    () => createTheme(THEME_PRESETS[theme][mode] as ThemeOptions),
+    () => createTheme(PRESETS[theme][mode] as ThemeOptions),
     [mode, theme]
   );
 
