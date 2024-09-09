@@ -13,7 +13,9 @@ type AppThemeProviderProps = {
 };
 
 export const AppThemeProvider = (props: AppThemeProviderProps) => {
-  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+  const prefersDarkMode = useMediaQuery(
+    `(prefers-color-scheme: ${DARK_MODE_THEME})`
+  );
 
   const [mode, setMode] = useState<
     typeof LIGHT_MODE_THEME | typeof DARK_MODE_THEME
