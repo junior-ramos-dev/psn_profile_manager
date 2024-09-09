@@ -24,6 +24,7 @@
     "@types/material-ui": "^0.21.17",
     "@types/mui-image": "^1.0.5",
     "@types/react": "^18.3.3",
+    "@zenfs/core": "^0.17.1",
     "axios": "^1.7.2",
     "hamburger-react": "^2.5.1",
     "mui-image": "^1.0.7",

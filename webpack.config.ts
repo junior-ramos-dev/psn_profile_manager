@@ -23,8 +23,10 @@ module.exports = {
   mode: "development",
   resolve: {
     extensions: [".tsx", ".ts", ".js", ".jsx", ".css"],
-    // Allows to use path aliases
-    plugins: [new TsconfigPathsPlugin()],
+    plugins: [
+      // Allows to use path aliases defined in tsconfig.json
+      new TsconfigPathsPlugin(),
+    ],
   },
   module: {
     /* ############################################################################# 
@@ -123,6 +125,10 @@ module.exports = {
     static: path.resolve(__dirname, "dist"),
     compress: true,
     port: 8001,
+    // Aloows webapack-dev-ser write file to disk
+    // devMiddleware: {
+    //   writeToDisk: true,
+    // },
     // open: "/",
     // hot: true,
     // http2: true,
