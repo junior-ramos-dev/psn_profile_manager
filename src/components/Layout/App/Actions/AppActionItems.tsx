@@ -66,11 +66,11 @@ export const ActionAppChangeThemeColor = ({
   disableTooltip?: boolean;
   disableTitle?: boolean;
 }) => {
-  const { changeThemeColor, themeColorName } = useContext(ThemeContext);
+  const { changeThemeColor } = useContext(ThemeContext);
 
   return (
     <ActionItemIcon
-      title={`Theme Color ${themeColorName}`}
+      title="Change Theme Color"
       icon={ColorLensIcon}
       onClick={changeThemeColor}
       disableTooltip={disableTooltip}
