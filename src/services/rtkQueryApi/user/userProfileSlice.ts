@@ -2,22 +2,22 @@ import IUserProfile from "@/models/interfaces/user/IUserProfile";
 import { createSlice } from "@reduxjs/toolkit";
 
 interface UserProfileInitialState {
-  userProfile: IUserProfile;
+  profile: IUserProfile;
 }
 
 const initialState: UserProfileInitialState = {
-  userProfile: null,
+  profile: null,
 };
 
 const userProfileSlice = createSlice({
-  name: "user",
+  name: "userProfile",
   initialState,
   reducers: {
     actionSetUseProfile: (state, { payload }) => {
-      state.userProfile = payload;
+      state.profile = payload;
     },
     actionUnsetUserProfile: (state) => {
-      state.userProfile = null;
+      state.profile = null;
     },
   },
 });

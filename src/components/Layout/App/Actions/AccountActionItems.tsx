@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { useAppSelector } from "@/hooks/redux";
 import { selectIsLoggedIn } from "@/services/rtkQueryApi/auth/authSelectors";
-import { selectUserProfile } from "@/services/rtkQueryApi/user/userSelectors";
+import { selectUserProfile } from "@/services/rtkQueryApi/user/userProfileSelectors";
 import {
   AccountCircle as AccountIcon,
   List as PreferencesIcon,

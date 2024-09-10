@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 import { PageHeader } from "@/components/DefaultPage/PageHeader";
 import { UserProfile } from "@/components/User/UserProfile";
 import { useAppSelector } from "@/hooks/redux";
-import { selectUserProfile } from "@/services/rtkQueryApi/user/userSelectors";
+import { selectUserProfile } from "@/services/rtkQueryApi/user/userProfileSelectors";
 import {
   APP_TITLE,
   FOOTER_HEIGHT,

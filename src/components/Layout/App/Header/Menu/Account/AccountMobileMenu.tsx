@@ -14,7 +14,7 @@ import {
 import { UserProfileIdAndName } from "@/components/User/UserProfileIdAndName";
 import { useAppSelector } from "@/hooks/redux";
 import { selectIsLoggedIn } from "@/services/rtkQueryApi/auth/authSelectors";
-import { selectUserProfile } from "@/services/rtkQueryApi/user/userSelectors";
+import { selectUserProfile } from "@/services/rtkQueryApi/user/userProfileSelectors";
 import { ThemeContext } from "@/settings/app/theme/themeContext";
 import { Box, Divider, Menu, MenuItem } from "@mui/material";
 
