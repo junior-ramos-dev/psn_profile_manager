@@ -1,4 +1,4 @@
-import { IUserProfile } from "@/models/interfaces/user/IUserProfile";
+import IUserProfile from "@/models/interfaces/user/IUserProfile";
 import { createSlice } from "@reduxjs/toolkit";
 
 interface UserProfileInitialState {
@@ -9,7 +9,7 @@ const initialState: UserProfileInitialState = {
   userProfile: null,
 };
 
-const userSlice = createSlice({
+const userProfileSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
@@ -23,6 +23,6 @@ const userSlice = createSlice({
 });
 
 export const { actionSetUseProfile, actionUnsetUserProfile } =
-  userSlice.actions;
+  userProfileSlice.actions;
 
-export default userSlice.reducer;
+export default userProfileSlice.reducer;

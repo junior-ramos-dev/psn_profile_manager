@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "@/hooks/redux";
 import { useLogoutMutation } from "@/services/rtkQueryApi/auth/authApi";
 import { actionUnsetCredentials } from "@/services/rtkQueryApi/auth/authSlice";
-import { actionUnsetUserProfile } from "@/services/rtkQueryApi/user/userSlice";
+import { actionUnsetUserProfile } from "@/services/rtkQueryApi/user/userProfileSlice";
 import { AppThemeColor } from "@/settings/app/theme/appTheme";
 import { Login as LoginIcon, Logout as LogoutIcon } from "@mui/icons-material";
 

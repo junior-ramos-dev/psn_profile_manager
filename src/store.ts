@@ -18,7 +18,7 @@ import { axiosBaseQueryApi } from "./services/axios/axiosBaseQueryApi";
 import authReducer from "./services/rtkQueryApi/auth/authSlice";
 import gameReducer from "./services/rtkQueryApi/game/gameSlice";
 import { rtkQueryBaseApi } from "./services/rtkQueryApi/rtkQueryBaseApi";
-import userReducer from "./services/rtkQueryApi/user/userSlice";
+import userProfileReducer from "./services/rtkQueryApi/user/userProfileSlice";
 import { IS_NOT_NODE_ENV_PRODUCTION } from "./utils/env";
 
 const authPersistConfig = {
@@ -27,7 +27,7 @@ const authPersistConfig = {
   // whitelist: ["token"],
 };
 
-const userPersistConfig = {
+const userProfilePersistConfig = {
   key: "user",
   storage: storageSession,
   // whitelist: ["token"],
@@ -42,7 +42,7 @@ const gamePersistConfig = {
 const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
-    user: persistReducer(userPersistConfig, userReducer),
+    user: persistReducer(userProfilePersistConfig, userProfileReducer),
     game: persistReducer(gamePersistConfig, gameReducer),
     [rtkQueryBaseApi.reducerPath]: rtkQueryBaseApi.reducer,
   },
@@ -67,7 +67,7 @@ setupListeners(store.dispatch);
 // export const store = configureStore({
 //   reducer: {
 //     // auth: authReducer,
-//     user: userReducer,
+//     user: userProfileReducer,
 //     [authApi.reducerPath]: authApi.reducer,
 //     [gameApi.reducerPath]: gameApi.reducer,
 //   },

@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "@/hooks/redux";
 import { useLoginMutation } from "@/services/rtkQueryApi/auth/authApi";
 import { actionSetCredentials } from "@/services/rtkQueryApi/auth/authSlice";
-import { actionSetUseProfile } from "@/services/rtkQueryApi/user/userSlice";
+import { actionSetUseProfile } from "@/services/rtkQueryApi/user/userProfileSlice";
 import { css } from "@emotion/react";
 import { LockOutlined } from "@mui/icons-material";
 import {
