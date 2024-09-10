@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { ComponentType } from "react";
 
-import { LIGHT_MODE_THEME } from "@/settings/app/constants";
+import { THEME_MODE } from "@/settings/app/theme/appTheme";
 import { Badge, Icon, useTheme } from "@mui/material";
 
 interface ActionIconProps {
@@ -14,7 +14,7 @@ export const ActionIcon = ({ badgeContent, icon }: ActionIconProps) => {
   return badgeContent ? (
     <Badge
       badgeContent={badgeContent}
-      color={theme.palette.mode === LIGHT_MODE_THEME ? "error" : "secondary"}
+      color={theme.palette.mode === THEME_MODE.LIGHT ? "error" : "secondary"}
     >
       <Icon component={icon} />
     </Badge>

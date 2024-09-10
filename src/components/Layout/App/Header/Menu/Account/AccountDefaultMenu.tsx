@@ -1,6 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { ActionAccountPreferences } from "@/components/Layout/App/Actions/AccountActionItems";
-import { ActionAppSettings } from "@/components/Layout/App/Actions/AppActionItems";
+import {
+  ActionAppChangeThemeColor,
+  ActionAppSettings,
+} from "@/components/Layout/App/Actions/AppActionItems";
 import {
   ActionLogin,
   ActionLogout,
@@ -49,6 +52,9 @@ export const AccountDefaultMenu = ({
           </MenuItem>
           <MenuItem onClick={handleMenuClose} sx={{ mt: 2, mb: 3, height: 5 }}>
             <ActionAccountPreferences disableTooltip />
+          </MenuItem>
+          <MenuItem sx={{ mt: 2, mb: 3, height: 5 }}>
+            <ActionAppChangeThemeColor disableTooltip />
           </MenuItem>
           <Divider />
           <MenuItem onClick={handleMenuClose} sx={{ mt: 2, mb: 2, height: 5 }}>

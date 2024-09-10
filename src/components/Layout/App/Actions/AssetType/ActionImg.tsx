@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { Image } from "mui-image";
 
-import { LIGHT_MODE_THEME } from "@/settings/app/constants";
+import { THEME_MODE } from "@/settings/app/theme/appTheme";
 import { Badge, useTheme } from "@mui/material";
 
 interface ActionImgProps {
@@ -14,7 +14,7 @@ export const ActionImg = ({ badgeContent, imageUrl }: ActionImgProps) => {
   return badgeContent ? (
     <Badge
       badgeContent={badgeContent}
-      color={theme.palette.mode === LIGHT_MODE_THEME ? "error" : "secondary"}
+      color={theme.palette.mode === THEME_MODE.LIGHT ? "error" : "secondary"}
     >
       <Image src={imageUrl} width={30} height={30} showLoading />
     </Badge>

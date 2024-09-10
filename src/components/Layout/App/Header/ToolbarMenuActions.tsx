@@ -3,7 +3,6 @@ import { Box, Stack } from "@mui/material";
 
 import { ActionAccountUser } from "../Actions/AccountActionItems";
 import {
-  ActionAppChangeThemeColor,
   ActionAppMore,
   ActionAppToggleThemeMode,
 } from "../Actions/AppActionItems";
@@ -19,7 +18,7 @@ export const ToolbarMenuActions = ({
 }: ToolbarMenuActionsProps) => {
   return (
     <>
-      <Stack spacing={0.1}>
+      <Stack direction="row" spacing={0.7} sx={{ mr: 2 }}>
         <Box
           sx={{
             display: {
@@ -30,12 +29,11 @@ export const ToolbarMenuActions = ({
             },
           }}
         >
-          <ActionAppToggleThemeMode disableTitle={true} />
-          <ActionAppChangeThemeColor disableTitle={true} />
           <ActionAccountUser
             onClick={handleProfileMenuOpen}
             disableTitle={true}
           />
+          <ActionAppToggleThemeMode disableTitle={true} />
         </Box>
       </Stack>
       <Box sx={{ display: { xs: "flex", md: "none" } }}>

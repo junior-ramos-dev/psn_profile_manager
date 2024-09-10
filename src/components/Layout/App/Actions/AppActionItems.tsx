@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { useContext } from "react";
 
-import { LIGHT_MODE_THEME } from "@/settings/app/constants";
+import { THEME_MODE } from "@/settings/app/theme/appTheme";
 import { ThemeContext } from "@/settings/app/theme/themeContext";
 import {
   MoreVert as MoreIcon,
@@ -50,7 +50,7 @@ export const ActionAppToggleThemeMode = ({
     <ActionItemIcon
       title="Toggle Theme Mode"
       icon={
-        theme.palette.mode === LIGHT_MODE_THEME ? LightModeIcon : NightsStay
+        theme.palette.mode === THEME_MODE.LIGHT ? LightModeIcon : NightsStay
       }
       onClick={toggleThemeMode}
       disableTooltip={disableTooltip}
@@ -66,12 +66,13 @@ export const ActionAppChangeThemeColor = ({
   disableTooltip?: boolean;
   disableTitle?: boolean;
 }) => {
-  const colorMode = useContext(ThemeContext);
+  const { changeThemeColor, themeColorName } = useContext(ThemeContext);
+
   return (
     <ActionItemIcon
-      title="Change Theme Color"
+      title={`Theme Color ${themeColorName}`}
       icon={ColorLensIcon}
-      onClick={colorMode.shuffleThemeColor}
+      onClick={changeThemeColor}
       disableTooltip={disableTooltip}
       disableTitle={disableTitle}
     />

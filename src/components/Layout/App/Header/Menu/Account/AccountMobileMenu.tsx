@@ -31,7 +31,7 @@ export const AccountMobileMenu = ({
   handleMenuClose,
   anchorEl,
 }: AccountMobileMenuProps) => {
-  const { toggleThemeMode, shuffleThemeColor } = useContext(ThemeContext);
+  const { toggleThemeMode, changeThemeColor } = useContext(ThemeContext);
 
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
 
@@ -84,7 +84,7 @@ export const AccountMobileMenu = ({
               <ActionAppToggleThemeMode disableTooltip />
             </MenuItem>
             <MenuItem
-              onClick={shuffleThemeColor}
+              onClick={changeThemeColor}
               sx={{ mt: 2, mb: 3, height: 5 }}
             >
               <ActionAppChangeThemeColor />

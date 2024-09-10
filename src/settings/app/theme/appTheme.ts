@@ -52,8 +52,13 @@ export interface AppTheme {
   };
 }
 
+export enum THEME_MODE {
+  DARK = "dark",
+  LIGHT = "light",
+}
+
 // Define an identifier for each preset
-export enum PRESETS_COLORS {
+export enum THEME_PRESET {
   PSN = 0,
   BLUE = 1,
   GREEN = 2,
@@ -61,30 +66,22 @@ export enum PRESETS_COLORS {
   DEFAULT = 4,
 }
 
-// Define a type for all presets
-export type THEME_PRESETS =
-  | PRESETS_COLORS.PSN
-  | PRESETS_COLORS.BLUE
-  | PRESETS_COLORS.GREEN
-  | PRESETS_COLORS.RED
-  | PRESETS_COLORS.DEFAULT;
-
 // Create a record mapping the theme identifier and returning its respective color scheme.
-export const PRESET_THEME_MAP: Record<PRESETS_COLORS, AppTheme> = {
-  [PRESETS_COLORS.PSN]: psnTheme,
-  [PRESETS_COLORS.BLUE]: blue,
-  [PRESETS_COLORS.GREEN]: green,
-  [PRESETS_COLORS.RED]: red,
-  [PRESETS_COLORS.DEFAULT]: _default,
+export const PRESET_THEME_MAP: Record<THEME_PRESET, AppTheme> = {
+  [THEME_PRESET.PSN]: psnTheme,
+  [THEME_PRESET.BLUE]: blue,
+  [THEME_PRESET.GREEN]: green,
+  [THEME_PRESET.RED]: red,
+  [THEME_PRESET.DEFAULT]: _default,
 };
 
 // Create a record mapping the theme identifier and returning its respective name.
-export const PRESET_NAME_MAP: Record<PRESETS_COLORS, string> = {
-  [PRESETS_COLORS.PSN]: "PSN Theme",
-  [PRESETS_COLORS.BLUE]: "Blue Theme",
-  [PRESETS_COLORS.GREEN]: "Green Theme",
-  [PRESETS_COLORS.RED]: "Ted Theme",
-  [PRESETS_COLORS.DEFAULT]: "Default Theme",
+export const PRESET_NAME_MAP: Record<THEME_PRESET, string> = {
+  [THEME_PRESET.PSN]: "PSN",
+  [THEME_PRESET.BLUE]: "Blue",
+  [THEME_PRESET.GREEN]: "Green",
+  [THEME_PRESET.RED]: "Red",
+  [THEME_PRESET.DEFAULT]: "Default",
 };
 
 // Define a type for all colors used by a theme

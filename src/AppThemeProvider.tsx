@@ -1,10 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 
-import { DARK_MODE_THEME, LIGHT_MODE_THEME } from "@/settings/app/constants";
 import {
   PRESET_THEME_MAP,
-  PRESETS_COLORS,
-  THEME_PRESETS,
+  THEME_MODE,
+  THEME_PRESET,
 } from "@/settings/app/theme/appTheme";
 import { ThemeContext } from "@/settings/app/theme/themeContext";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -17,31 +16,32 @@ type AppThemeProviderProps = {
 };
 
 export const AppThemeProvider = (props: AppThemeProviderProps) => {
-  const TOTAL_PRESETS = Object.keys(PRESETS_COLORS).length / 2;
+  const TOTAL_PRESETS = Object.keys(THEME_PRESET).length / 2;
 
   const prefersDarkMode = useMediaQuery(
-    `(prefers-color-scheme: ${DARK_MODE_THEME})`
+    `(prefers-color-scheme: ${THEME_MODE.DARK})`
   );
 
-  const [mode, setMode] = useState<
-    typeof LIGHT_MODE_THEME | typeof DARK_MODE_THEME
-  >(prefersDarkMode ? DARK_MODE_THEME : LIGHT_MODE_THEME);
-  const [theme, setTheme] = useState<THEME_PRESETS>(PRESETS_COLORS.PSN);
+  const [mode, setMode] = useState<THEME_MODE>(
+    prefersDarkMode ? THEME_MODE.DARK : THEME_MODE.LIGHT
+  );
+
+  const [theme, setTheme] = useState<THEME_PRESET>(THEME_PRESET.PSN);
 
   useEffect(() => {
-    setMode(prefersDarkMode ? DARK_MODE_THEME : LIGHT_MODE_THEME);
+    setMode(prefersDarkMode ? THEME_MODE.DARK : THEME_MODE.LIGHT);
   }, [prefersDarkMode]);
 
   const colorMode = useMemo(
     () => ({
       toggleThemeMode: () => {
         setMode((prevMode) =>
-          prevMode === LIGHT_MODE_THEME ? DARK_MODE_THEME : LIGHT_MODE_THEME
+          prevMode === THEME_MODE.LIGHT ? THEME_MODE.DARK : THEME_MODE.LIGHT
         );
       },
-      shuffleThemeColor: () => {
+      changeThemeColor: () => {
         setTheme(
-          (prevTheme) => ((prevTheme + 1) % TOTAL_PRESETS) as THEME_PRESETS
+          (prevTheme) => ((prevTheme + 1) % TOTAL_PRESETS) as THEME_PRESET
         );
       },
     }),
