@@ -67,8 +67,8 @@ module.exports = {
       {
         test: /\.(jpe?g|png|gif|svg)$/i, // a regular expression that catches images extensions
         exclude: /node_modules/,
-        // type: "asset/resource",
-        use: ["asset/resource", "asset/inline"],
+        type: "asset/resource",
+        // use: ["asset/resource", "asset/inline"],
       },
       //[3] Allows to import SVGR as React components.
       {
@@ -86,7 +86,8 @@ module.exports = {
       //[5] Allows use of fonts
       {
         test: /\.(png|woff|woff2|eot|ttf|svg)$/, // a regular expression that catches fonts extensions
-        use: ["asset", "asset/resource"],
+        type: "asset/resource",
+        // use: ["asset", "asset/resource"],
       },
     ],
   },
