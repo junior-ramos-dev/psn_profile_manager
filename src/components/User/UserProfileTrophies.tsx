@@ -1,6 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { Stack, Typography } from "@mui/material";
 
+import {
+  PsTrophyBronze,
+  PsTrophyGold,
+  PsTrophyPlatinum,
+  PsTrophySilver,
+} from "../Playstation/PsTrophyIcon";
+
 interface UserProfileTrophiesProps {
   platinum: number;
   gold: number;
@@ -21,19 +28,23 @@ export const UserProfileTrophies = ({
       sx={{ mr: 1.8, justifyContent: "right" }}
     >
       <Typography variant="body2" sx={{ fontSize: 12 }}>
-        [P {platinum}]
+        <PsTrophyPlatinum />
+        &nbsp;{platinum}
       </Typography>
       &nbsp;
       <Typography variant="body2" sx={{ fontSize: 12 }}>
-        [G {gold}]
+        <PsTrophyGold />
+        &nbsp;{gold}
       </Typography>
       &nbsp;
       <Typography variant="body2" sx={{ fontSize: 12 }}>
-        [S {silver}]
+        <PsTrophySilver />
+        &nbsp;{silver}
       </Typography>
       &nbsp;
       <Typography variant="body2" sx={{ fontSize: 12 }}>
-        [B {bronze}]
+        <PsTrophyBronze />
+        &nbsp;{bronze}
       </Typography>
     </Stack>
   );

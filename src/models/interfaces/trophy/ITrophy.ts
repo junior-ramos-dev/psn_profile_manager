@@ -42,4 +42,11 @@ export interface ITrophySummary {
   earnedTrophies: ITrophyCount;
 }
 
+export enum TROPHY_TYPE_NAME {
+  BRONZE = "bronze",
+  SILVER = "silver",
+  GOLD = "gold",
+  PLATINUM = "platinum",
+}
+
 export default ITrophy;

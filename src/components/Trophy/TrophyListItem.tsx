@@ -19,6 +19,8 @@ import {
   useTheme,
 } from "@mui/material";
 
+import { getTrophyIconByType } from "../Playstation/PsTrophyIcon";
+
 interface ITrophyRouteItemProps {
   trophyRoute: ITrophyRouteWithTrophy;
   nested?: boolean;
@@ -79,6 +81,17 @@ export const TrophyListItem = ({
       onClick={() => handleMenuClick(trophyRoute)}
     >
       <ListItemIcon>
+        <Box
+          key={`${trophy.trophyName}-00`}
+          sx={{
+            height: 14,
+            alignItems: "baseline",
+            mr: 1,
+            mt: 1,
+          }}
+        >
+          {getTrophyIconByType(trophy.trophyType, 18, 24)}
+        </Box>
         <IconButton
           size="medium"
           css={css`

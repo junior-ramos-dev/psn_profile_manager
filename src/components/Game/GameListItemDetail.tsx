@@ -15,6 +15,13 @@ import {
   useTheme,
 } from "@mui/material";
 
+import {
+  PsTrophyBronze,
+  PsTrophyGold,
+  PsTrophyPlatinum,
+  PsTrophySilver,
+} from "../Playstation/PsTrophyIcon";
+
 interface IGameListItemDetailProps {
   game: IGame;
   gameIcon: IGameIcon;
@@ -80,19 +87,23 @@ export const GameListItemDetail = ({
         </Typography>
         &nbsp;
         <Typography variant="body2" sx={{ fontSize: 12 }}>
-          [Platinum {game.earnedTrophies.platinum}]
+          <PsTrophyPlatinum />
+          &nbsp;{game.earnedTrophies.platinum}
         </Typography>
         &nbsp;
         <Typography variant="body2" sx={{ fontSize: 12 }}>
-          [Gold {game.earnedTrophies.gold}]
+          <PsTrophyGold />
+          &nbsp;{game.earnedTrophies.gold}
         </Typography>
         &nbsp;
         <Typography variant="body2" sx={{ fontSize: 12 }}>
-          [Silver {game.earnedTrophies.silver}]
+          <PsTrophySilver />
+          &nbsp;{game.earnedTrophies.silver}
         </Typography>
         &nbsp;
         <Typography variant="body2" sx={{ fontSize: 12 }}>
-          [Bronze {game.earnedTrophies.bronze}]
+          <PsTrophyBronze />
+          &nbsp;{game.earnedTrophies.bronze}
         </Typography>
       </ListItem>
     </Box>
