@@ -1,17 +1,21 @@
 /** @jsxImportSource @emotion/react */
+import { useState } from "react";
 import { Image } from "mui-image";
-import { NavLink, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import { ITrophyRouteWithTrophy } from "@/models/interfaces";
 import { css } from "@emotion/react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import {
+  Box,
+  Checkbox,
   IconButton,
   lighten,
-  ListItemButton,
+  ListItem,
   ListItemIcon,
-  ListItemText,
+  Stack,
   Tooltip,
+  Typography,
   useTheme,
 } from "@mui/material";
 
@@ -22,7 +26,6 @@ interface ITrophyRouteItemProps {
   handleMenuClick?: (route: ITrophyRouteWithTrophy) => void;
 }
 
-//TODO Edit list item details
 export const TrophyListItem = ({
   trophyRoute,
   nested = false,
@@ -39,12 +42,39 @@ export const TrophyListItem = ({
 
   const trophy = trophyRoute.trophy;
 
+  //   {
+  //     "trophyId": 0,
+  //     "trophyHidden": false,
+  //     "isEarned": false,
+  //     "isEarnedDateTime": "1970-01-01T00:00:00.000Z",
+  //     "trophyType": "Platinum",
+  //     "trophyRare": "0",
+  //     "trophyEarnedRate": 0.8,
+  //     "trophyName": "Biomutant Platinum Trophy",
+  //     "trophyDetail": "Unlock every Trophy in Biomutant",
+  //     "trophyIconUrl": "https://psnobj.prod.dl.playstation.net/psnobj/NPWR28020_00/0031fe3e-3ee2-4ace-860e-f49b61f42673.png",
+  //     "trophyGroupId": "default",
+  //     "rarity": "Ultra Rare",
+  //     "groupId": "default",
+  //     "points": 180,
+  //     "_id": "66da23f407ca893694641954"
+  // },
+
+  // const [checkBox, setCheckBox] = useState(false);
+
+  const [checkBox, setCheckBox] = useState(false);
+
+  const handleCheckbox = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCheckBox(event.currentTarget.checked);
+  };
+
   const item = (
-    <ListItemButton
+    <ListItem
       css={css`
         padding-left: ${nested ? 3 : 1};
         cursor: ${!trophyRoute.enabled ? "not-allowed" : "auto"};
         color: ${!trophyRoute.enabled ? theme.palette.text.secondary : "auto"};
+        background-color: ${checkBox ? "#282d23" : "#3a3a3a"};
       `}
       onClick={() => handleMenuClick(trophyRoute)}
     >
@@ -60,38 +90,63 @@ export const TrophyListItem = ({
         >
           {/* <img src={`data:image/png;base64,${icon}`} /> */}
           <Image
-            src={trophy.isEarned ? trophy.trophyIconUrl : ""}
+            src={trophy.trophyIconUrl}
             width={30}
             height={30}
             showLoading
           />
         </IconButton>
       </ListItemIcon>
-      <ListItemText primary={trophyRoute.title} />
+      <Stack spacing={1.5}>
+        <Box
+          key={`${trophy.trophyName}-01`}
+          sx={{ height: 10, alignItems: "baseline", ml: 1, mb: 2 }}
+        >
+          <Typography variant="subtitle2">{trophy.trophyName}</Typography>
+        </Box>
+        <Box
+          key={`${trophy.trophyName}-02`}
+          sx={{ height: 10, alignItems: "baseline", ml: 1, mb: 2 }}
+        >
+          <Typography variant="body2" sx={{ fontSize: 12 }}>
+            {trophy.trophyDetail}
+          </Typography>
+        </Box>
+      </Stack>
+      <Box sx={{ flexGrow: 1 }} />
+      <Box
+        key={`${trophy.trophyName}-02`}
+        sx={{ height: 10, alignItems: "baseline", ml: 1, mb: 2 }}
+      >
+        <Stack direction="row" spacing={0.1}>
+          <Typography variant="body2" sx={{ fontSize: 12 }}>
+            Type: {trophy.trophyType}
+          </Typography>
+          &nbsp;
+          <Typography variant="body2" sx={{ fontSize: 12 }}>
+            Rarity: {trophy.rarity}
+          </Typography>
+          &nbsp;
+          <Typography variant="body2" sx={{ fontSize: 12 }}>
+            Earned Rate: {trophy.trophyEarnedRate}
+          </Typography>
+          <Checkbox checked={checkBox} onChange={handleCheckbox} />
+        </Stack>
+      </Box>
       {hasChildren && (trophyRoute.expanded ? <ExpandLess /> : <ExpandMore />)}
-    </ListItemButton>
+    </ListItem>
   );
 
-  return (
-    <NavLink
-      to={`${trophyRoute.path}`}
-      key={trophyRoute.key}
-      // onClick={handleNavigate}
-      css={css`
-        text-decoration: none;
-        color: inherit;
-      `}
-    >
-      {trophyRoute.tooltip ? (
-        <Tooltip
-          title={`${trophyRoute.tooltip}${!trophyRoute.enabled ? " (Not Allowed)" : ""}`}
-          placement="right"
-        >
-          {item}
-        </Tooltip>
-      ) : (
-        item
-      )}
-    </NavLink>
+  return trophyRoute.tooltip ? (
+    <>
+      <Tooltip
+        title={`${trophyRoute.tooltip}${!trophyRoute.enabled ? " (Not Allowed)" : ""}`}
+        placement="right"
+      >
+        {item}
+      </Tooltip>
+    </>
+  ) : (
+    item
   );
 };
