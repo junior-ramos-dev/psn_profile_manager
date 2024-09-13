@@ -3,6 +3,7 @@ import { Image } from "mui-image";
 
 import { IGame } from "@/models/interfaces";
 import { IGameIcon } from "@/models/interfaces/games/IGameIcon";
+import { IMG_PLACEHOLDER } from "@/settings/app/constants";
 import { css } from "@emotion/react";
 import {
   Box,
@@ -45,7 +46,11 @@ export const GameListItemDetail = ({
           >
             {/* <img src={`data:image/png;base64,${icon}`} /> */}
             <Image
-              src={`data:image/webp;base64,${gameIcon.iconBinWebp}`}
+              src={
+                gameIcon
+                  ? `data:image/webp;base64,${gameIcon.iconBinWebp}`
+                  : IMG_PLACEHOLDER
+              }
               width={60}
               height={40}
               showLoading

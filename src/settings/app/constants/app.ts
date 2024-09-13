@@ -1,3 +1,5 @@
+import imgPlaceholder from "@/assets/images/imgPlaceholder.png";
+
 // APP TEXT
 export const APP_TITLE = "PSN App";
 export const APP_DESCRIPTION = "React TypeScript Material-UI";
@@ -17,3 +19,5 @@ export const PAGE_TITLE_PREFERENCES = "Preferences";
 export const FOOTER_HEIGHT = 40;
 export const HEADER_HEIGHT = 60;
 export const DRAWER_WIDTH = 250;
+
+export const IMG_PLACEHOLDER = imgPlaceholder;
