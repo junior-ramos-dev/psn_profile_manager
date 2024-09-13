@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { THEME_MODE } from "@/settings/app/theme/appTheme";
 import { ThemeContext } from "@/settings/app/theme/themeContext";
@@ -16,25 +17,39 @@ import { ActionItemIcon } from "./ItemType/ActionItemIcon";
 
 interface IAppActionItemsProps {
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
+  handleMenuClose?: () => void;
   disableTitle?: boolean;
   disableTooltip?: boolean;
   // iconColor?: AppThemeColor;
 }
 
 export const ActionAppSettings = ({
-  onClick,
+  handleMenuClose,
   disableTooltip = false,
   disableTitle = false,
   // iconColor,
-}: IAppActionItemsProps) => (
-  <ActionItemIcon
-    title="Settings"
-    icon={SettingsIcon}
-    onClick={onClick}
-    disableTooltip={disableTooltip}
-    disableTitle={disableTitle}
-  />
-);
+}: IAppActionItemsProps) => {
+  const navigate = useNavigate();
+
+  const handleActionSettings = async () => {
+    try {
+      navigate("/settings");
+      if (handleMenuClose) handleMenuClose();
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  return (
+    <ActionItemIcon
+      title="Settings"
+      icon={SettingsIcon}
+      onClick={handleActionSettings}
+      disableTooltip={disableTooltip}
+      disableTitle={disableTitle}
+    />
+  );
+};
 
 export const ActionAppToggleThemeMode = ({
   disableTooltip = false,

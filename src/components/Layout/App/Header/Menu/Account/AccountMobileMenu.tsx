@@ -68,7 +68,10 @@ export const AccountMobileMenu = ({
               onClick={handleMenuClose}
               sx={{ mt: 2, mb: 3, height: 5 }}
             >
-              <ActionAppSettings disableTooltip />
+              <ActionAppSettings
+                disableTooltip
+                handleMenuClose={handleMenuClose}
+              />
             </MenuItem>
             <MenuItem
               onClick={handleMenuClose}
