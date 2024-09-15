@@ -1,6 +1,8 @@
 import { ConvertIGame, IGame } from "@/models/interfaces";
+import { IUserGameDetails } from "@/models/interfaces/games/IGame";
 import { IGameIcon } from "@/models/interfaces/games/IGameIcon";
 import {
+  GameDetailsRequest,
   IconBinByImgTypeRequest,
   IconBinListRequest,
 } from "@/models/types/rtkQuery/games";
@@ -19,6 +21,7 @@ import { actionSetGamesList, actionSetGamesRoutes } from "./gameSlice";
 
 export const gameApi = rtkQueryBaseApi.injectEndpoints({
   endpoints: (build) => ({
+    //Get the list of games from a user
     getGameList: build.query<IGame[], void>({
       query: () => ({
         endpointUrl: GAME_URL_MAP[GAME_ENDPOINT_NAME.GET_GAME_LIST],
@@ -41,7 +44,7 @@ export const gameApi = rtkQueryBaseApi.injectEndpoints({
       },
       providesTags: ["Game"],
     }),
-    // Used by GameLoaders
+    // Get the list of games from a user (Used by GameLoaders)
     gameListLoader: build.query<IGame[], IAxiosBaseQueryArgs>({
       query: ({ endpointUrl, method, collection, endpointName }) => ({
         endpointUrl: endpointUrl,
@@ -64,6 +67,28 @@ export const gameApi = rtkQueryBaseApi.injectEndpoints({
       },
       providesTags: ["Game"],
     }),
+    // Get a game with its respective icon, trophies and total points
+    getGameDetails: build.query<IUserGameDetails, GameDetailsRequest>({
+      query: ({
+        trophyTitlePlatform,
+        npCommunicationId,
+        imgType,
+        getTrophies,
+      }) => ({
+        endpointUrl: GAME_URL_MAP[GAME_ENDPOINT_NAME.GAME_GAME_DETAILS],
+        method: VERBS.GET,
+        urlParams: {
+          trophyTitlePlatform,
+          npCommunicationId,
+          imgType,
+          getTrophies,
+        },
+        collection: "Games",
+        endpointName: GAME_ENDPOINT_NAME.GAME_GAME_DETAILS,
+      }),
+      providesTags: ["Game"],
+    }),
+    // Get the game icon object from a game
     getGameIconBin: build.query<IGameIcon, string>({
       query: (npCommunicationId) => ({
         endpointUrl: GAME_URL_MAP[GAME_ENDPOINT_NAME.GET_GAME_ICON_BIN],
@@ -74,6 +99,7 @@ export const gameApi = rtkQueryBaseApi.injectEndpoints({
       }),
       providesTags: ["Game"],
     }),
+    // Get the game icon object by image type (PNG/WEBP) from a game
     getGameIconBinByImgType: build.query<IGameIcon, IconBinByImgTypeRequest>({
       query: ({ npCommunicationId, imgType }) => ({
         endpointUrl:
@@ -85,6 +111,7 @@ export const gameApi = rtkQueryBaseApi.injectEndpoints({
       }),
       providesTags: ["Game"],
     }),
+    // Get a list of icons for the given list of game IDs (npCommunicationId)
     getGamesIconBinList: build.mutation<IGameIcon[], IconBinListRequest>({
       query: ({ npCommIdList, imgType }) => ({
         endpointUrl: GAME_URL_MAP[GAME_ENDPOINT_NAME.GET_GAMES_ICON_BIN_LIST],
@@ -101,6 +128,7 @@ export const gameApi = rtkQueryBaseApi.injectEndpoints({
 export const {
   useGetGameListQuery,
   useGameListLoaderQuery,
+  useGetGameDetailsQuery,
   useGetGameIconBinQuery,
   useGetGameIconBinByImgTypeQuery,
   useGetGamesIconBinListMutation,
