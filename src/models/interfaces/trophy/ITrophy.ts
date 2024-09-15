@@ -49,4 +49,11 @@ export enum TROPHY_TYPE_NAME {
   PLATINUM = "platinum",
 }
 
+export const TROPHY_POINTS_MAP: Record<TROPHY_TYPE_NAME, number> = {
+  [TROPHY_TYPE_NAME.BRONZE]: 15,
+  [TROPHY_TYPE_NAME.SILVER]: 30,
+  [TROPHY_TYPE_NAME.GOLD]: 90,
+  [TROPHY_TYPE_NAME.PLATINUM]: 300,
+};
+
 export default ITrophy;
