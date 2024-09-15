@@ -2,7 +2,6 @@
 import { Image } from "mui-image";
 
 import { IGame } from "@/models/interfaces";
-import { IGameIcon } from "@/models/interfaces/games/IGameIcon";
 import { IMG_PLACEHOLDER } from "@/settings/app/constants";
 import { css } from "@emotion/react";
 import {
@@ -24,7 +23,7 @@ import {
 
 interface IGameListItemDetailProps {
   game: IGame;
-  gameIcon: IGameIcon;
+  gameIcon: string;
   isSelected?: boolean;
 }
 
@@ -54,9 +53,7 @@ export const GameListItemDetail = ({
             {/* <img src={`data:image/png;base64,${icon}`} /> */}
             <Image
               src={
-                gameIcon
-                  ? `data:image/webp;base64,${gameIcon.iconBinWebp}`
-                  : IMG_PLACEHOLDER
+                gameIcon ? `data:image/png;base64,${gameIcon}` : IMG_PLACEHOLDER
               }
               width={60}
               height={40}
@@ -83,7 +80,7 @@ export const GameListItemDetail = ({
         </Typography>
         &nbsp; &nbsp;
         <Typography variant="subtitle2" sx={{ fontSize: 12 }}>
-          Trophies:
+          Points: {game.earnedTrophiesPoints}/{game.definedTrophiesPoints}
         </Typography>
         &nbsp;
         <Typography variant="body2" sx={{ fontSize: 12 }}>

@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
 
 import { IGame, IGameRoute } from "@/models/interfaces";
-import { IGameIcon } from "@/models/interfaces/games/IGameIcon";
 import { selectGameById } from "@/services/rtkQueryApi/game/gameSelectors";
 import { css } from "@emotion/react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
@@ -14,7 +13,7 @@ import { GameListItemDetail } from "./GameListItemDetail";
 
 interface IGameRouteItemProps {
   gameRoute: IGameRoute;
-  gameIcon: IGameIcon;
+  gameIcon: string;
   nested?: boolean;
   hasChildren?: boolean;
   handleMenuClick?: (route: IGameRoute) => void;

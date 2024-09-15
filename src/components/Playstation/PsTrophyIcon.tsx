@@ -41,6 +41,14 @@ export const PsTrophyBronze = ({
   <img alt="Bronze" src={psTrophyBronze} width={width} height={height} />
 );
 
+/**
+ * Get trophy icon by trophy type
+ *
+ * @param trophyType
+ * @param width
+ * @param height
+ * @returns
+ */
 export const getTrophyIconByType = (
   trophyType: string,
   width?: number,
