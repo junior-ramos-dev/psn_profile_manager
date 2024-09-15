@@ -6,7 +6,11 @@ import { PageHeader } from "@/components/DefaultPage/PageHeader";
 import { IGame } from "@/models/interfaces";
 import { useGetGameDetailsQuery } from "@/services/rtkQueryApi/game/gameApi";
 import { selectGameById } from "@/services/rtkQueryApi/game/gameSelectors";
-import { APP_TITLE, PAGE_TITLE_GAMES } from "@/settings/app/constants";
+import {
+  APP_TITLE,
+  IMG_TYPE,
+  PAGE_TITLE_GAMES,
+} from "@/settings/app/constants";
 import { Box, Divider } from "@mui/material";
 
 import { Loading } from "../Loading";
@@ -26,35 +30,23 @@ export const GameDetail = ({ gameId }: RoutesChildrenProps) => {
   const trophyTitlePlatform = iGame.trophyTitlePlatform;
   const npCommunicationId = iGame.npCommunicationId;
 
-  // const {
-  //   data: gameIcon,
-  //   isLoading: isLoadingIcon /* isError, isSuccess   */,
-  // } = useGetGameIconBinByImgTypeQuery(
-  //   { npCommunicationId, imgType: IMG_TYPE.WEBP }
-  //   // {
-  //   //   pollingInterval: 60 * 60 * 1000 * 2, //(60 * 60 * 1000 * 2) = 2h
-  //   //   // refetchOnFocus: true,
-  //   //   refetchOnMountOrArgChange: true,
-  //   //   skip: false,
-  //   // }
-  // );
+  const { data: gameDetails, isLoading: isLoading /* isError, isSuccess   */ } =
+    useGetGameDetailsQuery(
+      {
+        trophyTitlePlatform,
+        npCommunicationId,
+        imgType: IMG_TYPE.WEBP,
+        getTrophies: 1, //true
+      }
+      // {
+      //   pollingInterval: 60 * 60 * 1000 * 2, //(60 * 60 * 1000 * 2) = 2h
+      //   refetchOnFocus: true,
+      //   refetchOnMountOrArgChange: true,
+      //   skip: false,
+      // }
+    );
 
-  // if (isLoadingIcon) return <Loading />;
-
-  const {
-    data: gameDetails,
-    isLoading: isLoadingGameWithTrophies /* isError, isSuccess   */,
-  } = useGetGameDetailsQuery(
-    { trophyTitlePlatform, npCommunicationId }
-    // {
-    //   pollingInterval: 60 * 60 * 1000 * 2, //(60 * 60 * 1000 * 2) = 2h
-    //   // refetchOnFocus: true,
-    //   refetchOnMountOrArgChange: true,
-    //   skip: false,
-    // }
-  );
-
-  if (isLoadingGameWithTrophies) return <Loading />;
+  if (isLoading) return <Loading />;
 
   console.log(gameDetails);
 

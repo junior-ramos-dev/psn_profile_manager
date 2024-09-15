@@ -81,17 +81,6 @@ export const TrophyListItem = ({
       onClick={() => handleMenuClick(trophyRoute)}
     >
       <ListItemIcon>
-        <Box
-          key={`${trophy.trophyName}-00`}
-          sx={{
-            height: 14,
-            alignItems: "baseline",
-            mr: 1,
-            mt: 1,
-          }}
-        >
-          {getTrophyIconByType(trophy.trophyType, 18, 24)}
-        </Box>
         <IconButton
           size="medium"
           css={css`
@@ -133,7 +122,7 @@ export const TrophyListItem = ({
       >
         <Stack direction="row" spacing={0.1}>
           <Typography variant="body2" sx={{ fontSize: 12 }}>
-            Type: {trophy.trophyType}
+            Points: {trophy.points}
           </Typography>
           &nbsp;
           <Typography variant="body2" sx={{ fontSize: 12 }}>
@@ -143,7 +132,21 @@ export const TrophyListItem = ({
           <Typography variant="body2" sx={{ fontSize: 12 }}>
             Earned Rate: {trophy.trophyEarnedRate}
           </Typography>
-          <Checkbox checked={checkBox} onChange={handleCheckbox} />
+          {trophy.isEarned ? (
+            <Box
+              key={`${trophy.trophyName}-00`}
+              sx={{
+                height: 14,
+                alignItems: "baseline",
+                mr: 1,
+                mt: 1,
+              }}
+            >
+              {getTrophyIconByType(trophy.trophyType, 18, 24)}
+            </Box>
+          ) : (
+            <Checkbox checked={checkBox} onChange={handleCheckbox} />
+          )}
         </Stack>
       </Box>
       {hasChildren && (trophyRoute.expanded ? <ExpandLess /> : <ExpandMore />)}
