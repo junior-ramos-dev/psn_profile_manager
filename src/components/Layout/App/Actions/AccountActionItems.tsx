@@ -1,4 +1,5 @@
 /** @jsxImportSource @emotion/react */
+import { UserProfileDetailHeader } from "@/components/User/UserProfileDetailHeader";
 import { useAppSelector } from "@/hooks/redux";
 import { selectIsLoggedIn } from "@/services/rtkQueryApi/auth/authSelectors";
 import { selectUserProfile } from "@/services/rtkQueryApi/user/userProfileSelectors";
@@ -34,13 +35,16 @@ export const ActionAccountUser = ({
     imageUrl = userProfile.avatarUrls[0]?.avatarUrl ?? "";
 
   return isLoggedIn ? (
-    <ActionItemImg
-      title="Account"
-      imageUrl={imageUrl}
-      onClick={onClick}
-      disableTooltip={disableTooltip}
-      disableTitle={disableTitle}
-    />
+    <>
+      <UserProfileDetailHeader userProfile={userProfile} />
+      <ActionItemImg
+        title="Account"
+        imageUrl={imageUrl}
+        onClick={onClick}
+        disableTooltip={disableTooltip}
+        disableTitle={disableTitle}
+      />
+    </>
   ) : (
     <ActionItemIcon
       title="Account"

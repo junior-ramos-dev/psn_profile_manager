@@ -4,11 +4,13 @@ import { Stack, Typography } from "@mui/material";
 import {
   PsTrophyBronze,
   PsTrophyGold,
+  PsTrophyLevel,
   PsTrophyPlatinum,
   PsTrophySilver,
 } from "../Playstation/PsTrophyIcon";
 
 interface UserProfileTrophiesProps {
+  level: number;
   platinum: number;
   gold: number;
   silver: number;
@@ -16,6 +18,7 @@ interface UserProfileTrophiesProps {
 }
 
 export const UserProfileTrophies = ({
+  level,
   platinum,
   gold,
   silver,
@@ -25,26 +28,31 @@ export const UserProfileTrophies = ({
     <Stack
       direction="row"
       spacing={0.5}
-      sx={{ mr: 1.8, justifyContent: "right" }}
+      sx={{ mr: 1.8, mt: 0.5, justifyContent: "right", alignItems: "baseline" }}
     >
-      <Typography variant="body2" sx={{ fontSize: 12 }}>
+      <Typography variant="subtitle2" sx={{ fontSize: 14 }}>
+        <PsTrophyLevel />
+        &nbsp;&nbsp;{level}
+      </Typography>
+      &nbsp;{"]["}&nbsp;
+      <Typography variant="subtitle2" sx={{ fontSize: 12 }}>
         <PsTrophyPlatinum />
-        &nbsp;{platinum}
+        &nbsp;&nbsp;{platinum}
       </Typography>
       &nbsp;
-      <Typography variant="body2" sx={{ fontSize: 12 }}>
+      <Typography variant="subtitle2" sx={{ fontSize: 12 }}>
         <PsTrophyGold />
-        &nbsp;{gold}
+        &nbsp;&nbsp;{gold}
       </Typography>
       &nbsp;
-      <Typography variant="body2" sx={{ fontSize: 12 }}>
+      <Typography variant="subtitle2" sx={{ fontSize: 12 }}>
         <PsTrophySilver />
-        &nbsp;{silver}
+        &nbsp;&nbsp;{silver}
       </Typography>
       &nbsp;
-      <Typography variant="body2" sx={{ fontSize: 12 }}>
+      <Typography variant="subtitle2" sx={{ fontSize: 12 }}>
         <PsTrophyBronze />
-        &nbsp;{bronze}
+        &nbsp;&nbsp;{bronze}
       </Typography>
     </Stack>
   );

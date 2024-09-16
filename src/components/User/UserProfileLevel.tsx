@@ -3,13 +3,10 @@ import { Stack, Typography } from "@mui/material";
 
 interface UserProfileLevelProps {
   level: number;
-  nextLevel: number;
+  nextLevel?: number;
 }
 
-export const UserProfileLevel = ({
-  level,
-  nextLevel,
-}: UserProfileLevelProps) => {
+export const UserProfileLevel = ({ level }: UserProfileLevelProps) => {
   return (
     <Stack
       direction="row"
@@ -23,14 +20,14 @@ export const UserProfileLevel = ({
       <Typography variant="body2" sx={{ fontSize: 12 }}>
         {level}
       </Typography>
-      &nbsp; &nbsp;
+      {/* &nbsp; &nbsp;
       <Typography variant="subtitle2" sx={{ fontSize: 12 }}>
         Next Level:
       </Typography>
       &nbsp;
       <Typography variant="body2" sx={{ fontSize: 12 }}>
         {nextLevel}%
-      </Typography>
+      </Typography> */}
     </Stack>
   );
 };

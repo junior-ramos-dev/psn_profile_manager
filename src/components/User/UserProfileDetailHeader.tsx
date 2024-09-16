@@ -6,11 +6,13 @@ import { Stack } from "@mui/material";
 import { UserProfileIdAndName } from "./UserProfileIdAndName";
 import { UserProfileTrophies } from "./UserProfileTrophies";
 
-interface IUserProfileDetailProps {
+interface IUserProfileDetailHeaderProps {
   userProfile: IUserProfile;
 }
 
-export const UserProfileDetail = ({ userProfile }: IUserProfileDetailProps) => {
+export const UserProfileDetailHeader = ({
+  userProfile,
+}: IUserProfileDetailHeaderProps) => {
   const trophySummary = userProfile.trophySummary;
   const level = trophySummary.level;
   const earnedTrophies = trophySummary.earnedTrophies;
@@ -20,14 +22,12 @@ export const UserProfileDetail = ({ userProfile }: IUserProfileDetailProps) => {
       direction="row"
       spacing={0.5}
       sx={{
-        mr: 1.8,
+        mt: 0.5,
         ml: 1,
-        mb: 2,
-        justifyContent: "left",
+        justifyContent: "right",
         alignItems: "baseline",
       }}
     >
-      &nbsp;{"["}&nbsp;
       <UserProfileTrophies
         level={level}
         platinum={earnedTrophies.platinum}

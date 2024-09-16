@@ -1,5 +1,6 @@
 import psTrophyBronze from "@/assets/psn/icons/psTrohpyBronze.png";
 import psTrophyGold from "@/assets/psn/icons/psTrophyGold.png";
+import psTrophyLevel from "@/assets/psn/icons/psTrophyLevel.png";
 import psTrophyPlat from "@/assets/psn/icons/psTrophyPlat.png";
 import psTrophySilver from "@/assets/psn/icons/psTrophySilver.png";
 import { TROPHY_TYPE_NAME } from "@/models/interfaces/trophy/ITrophy";
@@ -8,6 +9,14 @@ interface IPstrophyIconProps {
   width?: number;
   height?: number;
 }
+
+// Level
+export const PsTrophyLevel = ({
+  width = 24,
+  height = 24,
+}: IPstrophyIconProps) => (
+  <img alt="Level" src={psTrophyLevel} width={width} height={height} />
+);
 
 // Platinum
 export const PsTrophyPlatinum = ({
