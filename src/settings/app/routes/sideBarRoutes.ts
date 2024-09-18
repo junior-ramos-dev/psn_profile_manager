@@ -1,6 +1,7 @@
 import { RouteObject } from "react-router-dom";
 
 import { IAppRoute } from "@/models/interfaces";
+import Dashboard from "@/pages/Dashboard";
 import Games from "@/pages/Games";
 import Home from "@/pages/Home";
 import Index from "@/pages/Index";
@@ -8,7 +9,6 @@ import { GamesLoader } from "@/services/routesLoaders/games/gamesLoaders";
 import { store } from "@/store";
 import DashboardIcon from "@material-ui/icons/BarChartOutlined";
 import HomeIcon from "@material-ui/icons/Home";
-import SettingsIcon from "@material-ui/icons/SettingsOutlined";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 
 const gamesLoader = new GamesLoader(store);
@@ -83,7 +83,7 @@ const sideBarRoutes: Array<IAppRoute> = [
     tooltip: "Dashboard",
     path: "/dashboard",
     enabled: true,
-    // component: Dashboard,
+    component: Dashboard,
     asset: DashboardIcon,
     appendDivider: true,
   },
@@ -124,16 +124,16 @@ const sideBarRoutes: Array<IAppRoute> = [
   //   asset: CodeIcon,
   //   appendDivider: true,
   // },
-  {
-    key: "router-settings",
-    title: "Settings",
-    tooltip: "Settings",
-    path: "/settings",
-    enabled: true,
-    // component: Settings,
-    asset: SettingsIcon,
-    appendDivider: true,
-  },
+  // {
+  //   key: "router-settings",
+  //   title: "Settings",
+  //   tooltip: "Settings",
+  //   path: "/settings",
+  //   enabled: true,
+  //   // component: Settings,
+  //   asset: SettingsIcon,
+  //   appendDivider: true,
+  // },
 ];
 
 export { sideBarRoutes, useSidebarRoutes };

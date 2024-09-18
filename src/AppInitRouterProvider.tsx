@@ -8,6 +8,8 @@ import Index from "@/pages/Index";
 import Login from "@/pages/SignUp/Login";
 import Register from "@/pages/SignUp/Register";
 
+import Settings from "./pages/Settings";
+
 export const enum ROUTE_ID {
   ROOT = "root",
   INDEX = "index",
@@ -19,6 +21,7 @@ export const enum ROUTE_PATH {
   ROOT = "/",
   LOGIN = "/auth/login",
   REGISTER = "/auth/register",
+  SETTINGS = "/settings",
   AXIOS_ERROR = "/axioserror",
 }
 
@@ -35,6 +38,10 @@ export const appDefaultRoutes = [
           {
             path: ROUTE_PATH.AXIOS_ERROR,
             element: <AxiosError />,
+          },
+          {
+            path: ROUTE_PATH.SETTINGS,
+            element: <Settings />,
           },
           {
             id: ROUTE_ID.PUBLIC_ROUTE,
