@@ -3,17 +3,10 @@ import { Image } from "mui-image";
 
 import { IGame } from "@/models/interfaces";
 import { IMG_PLACEHOLDER } from "@/settings/app/constants";
-import { css } from "@emotion/react";
-import {
-  Box,
-  IconButton,
-  lighten,
-  ListItem,
-  ListItemIcon,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Box, Grid2, ListItem, Stack, Typography } from "@mui/material";
 
+import { CustomProgressBar } from "../CustomProgressBar";
+import { getTrophyIconByPlatfrom } from "../Playstation/PsPlatformIcon";
 import {
   PsTrophyBronze,
   PsTrophyGold,
@@ -23,66 +16,29 @@ import {
 
 interface IGameListItemDetailProps {
   game: IGame;
-  gameIcon: string;
-  isSelected?: boolean;
+  gameIcon?: string;
 }
 
-export const GameListItemDetail = ({
-  game,
-  gameIcon,
-  isSelected,
-}: IGameListItemDetailProps) => {
-  const theme = useTheme();
-
+const GameListItemDetailStats = ({ game }: IGameListItemDetailProps) => {
   return (
-    <Box key={`box-${game.npCommunicationId}`} sx={{ alignItems: "baseline" }}>
-      <ListItem
-        key={`${game.npCommunicationId}-01`}
-        sx={{ height: 40, alignItems: "center" }}
+    <Stack
+      key={`box-${game.npCommunicationId}`}
+      direction="row"
+      sx={{ alignItems: "center" }}
+      spacing={1.8}
+    >
+      <Typography variant="subtitle2" sx={{ fontSize: 12 }}>
+        Points: {game.earnedTrophiesPoints}/{game.definedTrophiesPoints}
+      </Typography>
+      &nbsp;&nbsp;
+      <CustomProgressBar progress={game.progress} />
+      &nbsp;&nbsp;
+      <Grid2
+        container
+        spacing={1.2}
+        justifyContent={"space-between"}
+        sx={{ justifyItems: "right" }}
       >
-        <ListItemIcon>
-          <IconButton
-            size="medium"
-            css={css`
-              box-shadow: ${isSelected
-                ? `0 0 0 2px ${lighten(theme.palette.primary.main, 0.6)}`
-                : "default"};
-              transition: "box-shadow 0.1s";
-            `}
-          >
-            {/* <img src={`data:image/png;base64,${icon}`} /> */}
-            <Image
-              src={
-                gameIcon ? `data:image/png;base64,${gameIcon}` : IMG_PLACEHOLDER
-              }
-              width={60}
-              height={40}
-              showLoading
-            />
-          </IconButton>
-        </ListItemIcon>
-        <Typography variant="subtitle2">
-          [{game.trophyTitlePlatform}]
-        </Typography>
-        &nbsp;
-        <Typography variant="subtitle2">{game.trophyTitleName}</Typography>
-      </ListItem>
-      <ListItem
-        key={`${game.npCommunicationId}-02`}
-        sx={{ height: 20, alignItems: "baseline", ml: 1, mb: 2 }}
-      >
-        <Typography variant="subtitle2" sx={{ fontSize: 12 }}>
-          Progress:
-        </Typography>
-        &nbsp;
-        <Typography variant="body2" sx={{ fontSize: 12 }}>
-          {game.progress}%
-        </Typography>
-        &nbsp; &nbsp;
-        <Typography variant="subtitle2" sx={{ fontSize: 12 }}>
-          Points: {game.earnedTrophiesPoints}/{game.definedTrophiesPoints}
-        </Typography>
-        &nbsp;
         <Typography variant="body2" sx={{ fontSize: 12 }}>
           <PsTrophyPlatinum />
           &nbsp;{game.earnedTrophies.platinum}
@@ -102,7 +58,45 @@ export const GameListItemDetail = ({
           <PsTrophyBronze />
           &nbsp;{game.earnedTrophies.bronze}
         </Typography>
-      </ListItem>
-    </Box>
+      </Grid2>
+    </Stack>
+  );
+};
+
+export const GameListItemDetail = ({
+  game,
+  gameIcon,
+}: IGameListItemDetailProps) => {
+  return (
+    <ListItem
+      key={`${game.npCommunicationId}-01`}
+      sx={{ height: 40, alignItems: "center" }}
+    >
+      <Stack
+        key={`box-${game.npCommunicationId}`}
+        direction="row"
+        sx={{ alignItems: "center" }}
+        spacing={1}
+      >
+        <Image
+          src={gameIcon ? `data:image/png;base64,${gameIcon}` : IMG_PLACEHOLDER}
+          width={60}
+          height={40}
+          showLoading
+        />
+        <Typography variant="subtitle2">
+          {getTrophyIconByPlatfrom(game.trophyTitlePlatform)}
+        </Typography>
+        &nbsp;
+        <Typography variant="subtitle2">{game.trophyTitleName}</Typography>
+      </Stack>
+      <Box sx={{ flexGrow: 2 }} />
+      <Box
+        key={`${game.npCommunicationId}-02`}
+        sx={{ height: 20, alignItems: "baseline", ml: 1, mb: 2 }}
+      >
+        <GameListItemDetailStats game={game} />
+      </Box>
+    </ListItem>
   );
 };

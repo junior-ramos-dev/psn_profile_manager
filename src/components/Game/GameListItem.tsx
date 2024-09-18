@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import { useSelector } from "react-redux";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { IGame, IGameRoute } from "@/models/interfaces";
 import { selectGameById } from "@/services/rtkQueryApi/game/gameSelectors";
@@ -26,7 +26,6 @@ export const GameListItem = ({
   hasChildren = false,
   handleMenuClick = () => {},
 }: IGameRouteItemProps) => {
-  const location = useLocation();
   const theme = useTheme();
 
   const handleNavigate = (
@@ -34,11 +33,6 @@ export const GameListItem = ({
   ) => {
     if (!gameRoute.enabled || hasChildren) e.preventDefault();
   };
-
-  const isSelected =
-    location.pathname === gameRoute.path ||
-    (hasChildren &&
-      gameRoute.subRoutes?.some((e) => location.pathname === e.path));
 
   const game: IGame = useSelector((gamesList) =>
     selectGameById(gamesList, gameRoute.key)
@@ -53,11 +47,7 @@ export const GameListItem = ({
       `}
       onClick={() => handleMenuClick(gameRoute)}
     >
-      <GameListItemDetail
-        game={game}
-        gameIcon={gameIcon}
-        isSelected={isSelected}
-      />
+      <GameListItemDetail game={game} gameIcon={gameIcon} />
       {hasChildren && (gameRoute.expanded ? <ExpandLess /> : <ExpandMore />)}
     </ListItemButton>
   );

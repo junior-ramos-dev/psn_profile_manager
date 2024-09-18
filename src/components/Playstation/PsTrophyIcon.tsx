@@ -5,7 +5,7 @@ import psTrophyPlat from "@/assets/psn/icons/psTrophyPlat.png";
 import psTrophySilver from "@/assets/psn/icons/psTrophySilver.png";
 import { TROPHY_TYPE_NAME } from "@/models/interfaces/trophy/ITrophy";
 
-interface IPstrophyIconProps {
+interface IPsTrophyIconProps {
   width?: number;
   height?: number;
 }
@@ -14,7 +14,7 @@ interface IPstrophyIconProps {
 export const PsTrophyLevel = ({
   width = 24,
   height = 24,
-}: IPstrophyIconProps) => (
+}: IPsTrophyIconProps) => (
   <img alt="Level" src={psTrophyLevel} width={width} height={height} />
 );
 
@@ -22,7 +22,7 @@ export const PsTrophyLevel = ({
 export const PsTrophyPlatinum = ({
   width = 12,
   height = 18,
-}: IPstrophyIconProps) => (
+}: IPsTrophyIconProps) => (
   <img alt="Platinum" src={psTrophyPlat} width={width} height={height + 2} />
 );
 
@@ -30,7 +30,7 @@ export const PsTrophyPlatinum = ({
 export const PsTrophyGold = ({
   width = 12,
   height = 18,
-}: IPstrophyIconProps) => (
+}: IPsTrophyIconProps) => (
   <img alt="Gold" src={psTrophyGold} width={width} height={height} />
 );
 
@@ -38,7 +38,7 @@ export const PsTrophyGold = ({
 export const PsTrophySilver = ({
   width = 12,
   height = 18,
-}: IPstrophyIconProps) => (
+}: IPsTrophyIconProps) => (
   <img alt="Silver" src={psTrophySilver} width={width} height={height} />
 );
 
@@ -46,7 +46,7 @@ export const PsTrophySilver = ({
 export const PsTrophyBronze = ({
   width = 12,
   height = 18,
-}: IPstrophyIconProps) => (
+}: IPsTrophyIconProps) => (
   <img alt="Bronze" src={psTrophyBronze} width={width} height={height} />
 );
 
