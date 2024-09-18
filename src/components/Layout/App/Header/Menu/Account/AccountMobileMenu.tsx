@@ -7,10 +7,7 @@ import {
   ActionAppSettings,
   ActionAppToggleThemeMode,
 } from "@/components/Layout/App/Actions/AppActionItems";
-import {
-  ActionLogin,
-  ActionLogout,
-} from "@/components/Layout/App/Actions/AuthActionItems";
+import { ActionLogout } from "@/components/Layout/App/Actions/AuthActionItems";
 import { UserProfileIdAndName } from "@/components/User/UserProfileIdAndName";
 import { useAppSelector } from "@/hooks/redux";
 import { selectIsLoggedIn } from "@/services/rtkQueryApi/auth/authSelectors";
@@ -105,7 +102,17 @@ export const AccountMobileMenu = ({
             </MenuItem>
           </Box>
         ) : (
-          <>
+          <Box>
+            <MenuItem
+              onClick={handleMenuClose}
+              sx={{ mt: 2, mb: 3, height: 5 }}
+            >
+              <ActionAppSettings
+                disableTooltip
+                handleMenuClose={handleMenuClose}
+              />
+            </MenuItem>
+            <Divider />
             <MenuItem sx={{ mt: 2, mb: 3, height: 5 }}>
               <ActionAppToggleThemeMode disableTooltip />
             </MenuItem>
@@ -113,14 +120,7 @@ export const AccountMobileMenu = ({
               <ActionAppChangeThemeColor />
             </MenuItem>
             <Divider />
-            <MenuItem sx={{ mt: 2, mb: 2, height: 5 }}>
-              <ActionLogin
-                handleMenuClose={handleMenuClose}
-                disableTooltip
-                iconColor="success"
-              />
-            </MenuItem>
-          </>
+          </Box>
         )}
       </Box>
     </Menu>

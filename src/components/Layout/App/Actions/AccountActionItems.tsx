@@ -1,4 +1,5 @@
 /** @jsxImportSource @emotion/react */
+import { LoginOrRegister } from "@/components/LoginOrRegister";
 import { UserProfileDetailHeader } from "@/components/User/UserProfileDetailHeader";
 import { useAppSelector } from "@/hooks/redux";
 import { selectIsLoggedIn } from "@/services/rtkQueryApi/auth/authSelectors";
@@ -46,13 +47,16 @@ export const ActionAccountUser = ({
       />
     </>
   ) : (
-    <ActionItemIcon
-      title="Account"
-      icon={AccountIcon}
-      onClick={onClick}
-      disableTooltip={disableTooltip}
-      disableTitle={disableTitle}
-    />
+    <>
+      <LoginOrRegister />
+      <ActionItemIcon
+        title="Account"
+        icon={AccountIcon}
+        onClick={onClick}
+        disableTooltip={disableTooltip}
+        disableTitle={disableTitle}
+      />
+    </>
   );
 };
 
