@@ -92,7 +92,6 @@ export const GameList = () => {
               key={gameRoute.key}
               gameRoute={gameRoute}
               gameIcon={gameRoute.gameIcon.iconBinWebp}
-              nested={false}
             />
             {gameRoute.appendDivider && <Divider sx={{ color: "secondary" }} />}
           </div>

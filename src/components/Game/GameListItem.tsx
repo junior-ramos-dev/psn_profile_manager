@@ -6,7 +6,6 @@ import { NavLink } from "react-router-dom";
 import { IGame, IGameRoute } from "@/models/interfaces";
 import { selectGameById } from "@/services/rtkQueryApi/game/gameSelectors";
 import { css } from "@emotion/react";
-import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { ListItemButton, Tooltip, useTheme } from "@mui/material";
 
 import { GameListItemDetail } from "./GameListItemDetail";
@@ -14,7 +13,6 @@ import { GameListItemDetail } from "./GameListItemDetail";
 interface IGameRouteItemProps {
   gameRoute: IGameRoute;
   gameIcon: string;
-  nested?: boolean;
   hasChildren?: boolean;
   handleMenuClick?: (route: IGameRoute) => void;
 }
@@ -22,7 +20,6 @@ interface IGameRouteItemProps {
 export const GameListItem = ({
   gameRoute,
   gameIcon,
-  nested = false,
   hasChildren = false,
   handleMenuClick = () => {},
 }: IGameRouteItemProps) => {
@@ -41,14 +38,12 @@ export const GameListItem = ({
   const item = (
     <ListItemButton
       css={css`
-        padding-left: ${nested ? 3 : 1};
         cursor: ${!gameRoute.enabled ? "not-allowed" : "auto"};
         color: ${!gameRoute.enabled ? theme.palette.text.secondary : "auto"};
       `}
       onClick={() => handleMenuClick(gameRoute)}
     >
       <GameListItemDetail game={game} gameIcon={gameIcon} />
-      {hasChildren && (gameRoute.expanded ? <ExpandLess /> : <ExpandMore />)}
     </ListItemButton>
   );
 
