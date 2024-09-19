@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import { useContext } from "react";
 
 import { ActionAccountPreferences } from "@/components/Layout/App/Actions/AccountActionItems";
 import {
@@ -12,7 +11,6 @@ import { UserProfileIdAndName } from "@/components/User/UserProfileIdAndName";
 import { useAppSelector } from "@/hooks/redux";
 import { selectIsLoggedIn } from "@/services/rtkQueryApi/auth/authSelectors";
 import { selectUserProfile } from "@/services/rtkQueryApi/user/userProfileSelectors";
-import { ThemeContext } from "@/settings/app/theme/themeContext";
 import { Box, Divider, Menu, MenuItem } from "@mui/material";
 
 interface AccountDefaultMenuProps {
@@ -26,10 +24,7 @@ export const AccountDefaultMenu = ({
   handleMenuClose,
   anchorEl,
 }: AccountDefaultMenuProps) => {
-  const { toggleThemeMode, changeThemeColor } = useContext(ThemeContext);
-
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
-
   const userProfile = useAppSelector(selectUserProfile);
 
   return (
@@ -60,11 +55,11 @@ export const AccountDefaultMenu = ({
             <ActionAccountPreferences disableTooltip />
           </MenuItem>
           <Divider />
-          <MenuItem onClick={toggleThemeMode} sx={{ mt: 2, mb: 3, height: 5 }}>
+          <MenuItem sx={{ mt: 2, mb: 3, height: 5 }}>
             <ActionAppToggleThemeMode disableTooltip />
           </MenuItem>
-          <MenuItem onClick={changeThemeColor} sx={{ mt: 2, mb: 3, height: 5 }}>
-            <ActionAppChangeThemeColor />
+          <MenuItem sx={{ mt: 2, mb: 3, height: 5 }}>
+            <ActionAppChangeThemeColor disableTooltip />
           </MenuItem>
           <Divider />
           <MenuItem onClick={handleMenuClose} sx={{ mt: 2, mb: 2, height: 5 }}>

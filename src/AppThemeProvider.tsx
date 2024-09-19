@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 import {
   PRESET_THEME_MAP,
@@ -9,7 +9,6 @@ import { ThemeContext } from "@/settings/app/theme/themeContext";
 import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "@mui/material/GlobalStyles";
 import { createTheme, ThemeOptions, ThemeProvider } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
 
 type AppThemeProviderProps = {
   children?: React.ReactNode;
@@ -18,26 +17,18 @@ type AppThemeProviderProps = {
 export const AppThemeProvider = (props: AppThemeProviderProps) => {
   const TOTAL_PRESETS = Object.keys(THEME_PRESET).length / 2;
 
-  const prefersDarkMode = useMediaQuery(
-    `(prefers-color-scheme: ${THEME_MODE.DARK})`
-  );
-
-  const [mode, setMode] = useState<THEME_MODE>(
-    prefersDarkMode ? THEME_MODE.DARK : THEME_MODE.LIGHT
-  );
-
+  const [mode, setMode] = useState<THEME_MODE>(THEME_MODE.DARK);
   const [theme, setTheme] = useState<THEME_PRESET>(THEME_PRESET.PSN);
-
-  useEffect(() => {
-    setMode(prefersDarkMode ? THEME_MODE.DARK : THEME_MODE.LIGHT);
-  }, [prefersDarkMode]);
 
   const colorMode = useMemo(
     () => ({
       toggleThemeMode: () => {
         setMode((prevMode) =>
-          prevMode === THEME_MODE.LIGHT ? THEME_MODE.DARK : THEME_MODE.LIGHT
+          prevMode === THEME_MODE.LIGHT
+            ? THEME_MODE.DARK
+            : (THEME_MODE.LIGHT as THEME_MODE)
         );
+        console.log(mode);
       },
       changeThemeColor: () => {
         setTheme(
