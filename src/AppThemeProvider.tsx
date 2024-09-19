@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import {
   PRESET_THEME_MAP,
@@ -10,28 +10,45 @@ import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "@mui/material/GlobalStyles";
 import { createTheme, ThemeOptions, ThemeProvider } from "@mui/material/styles";
 
+import { useAppDispatch, useAppSelector } from "./hooks/redux";
+import {
+  selectUserThemeMode,
+  selectUserThemePreset,
+} from "./services/rtkQueryApi/user/userPreferencesSelectors";
+import {
+  actionSetUserThemeMode,
+  actionSetUserThemePreset,
+} from "./services/rtkQueryApi/user/userPreferencesSlice";
+
 type AppThemeProviderProps = {
   children?: React.ReactNode;
 };
 
 export const AppThemeProvider = (props: AppThemeProviderProps) => {
-  const TOTAL_PRESETS = Object.keys(THEME_PRESET).length / 2;
+  const dispatch = useAppDispatch();
+  const userThemeMode = useAppSelector(selectUserThemeMode);
+  const userThemePreset = useAppSelector(selectUserThemePreset);
 
-  const [mode, setMode] = useState<THEME_MODE>(THEME_MODE.DARK);
-  const [theme, setTheme] = useState<THEME_PRESET>(THEME_PRESET.PSN);
+  const [themeMode, setThemeMode] = useState<THEME_MODE>(
+    userThemeMode ?? THEME_MODE.DARK
+  );
+  const [themePreset, setThemePreset] = useState<THEME_PRESET>(
+    userThemePreset ?? THEME_PRESET.PSN
+  );
+
+  const TOTAL_PRESETS = Object.keys(THEME_PRESET).length / 2;
 
   const colorMode = useMemo(
     () => ({
       toggleThemeMode: () => {
-        setMode((prevMode) =>
+        setThemeMode((prevMode) =>
           prevMode === THEME_MODE.LIGHT
             ? THEME_MODE.DARK
             : (THEME_MODE.LIGHT as THEME_MODE)
         );
-        console.log(mode);
       },
       changeThemeColor: () => {
-        setTheme(
+        setThemePreset(
           (prevTheme) => ((prevTheme + 1) % TOTAL_PRESETS) as THEME_PRESET
         );
       },
@@ -39,9 +56,16 @@ export const AppThemeProvider = (props: AppThemeProviderProps) => {
     []
   );
 
+  useEffect(() => {
+    dispatch(actionSetUserThemeMode(themeMode));
+  }, [themeMode]);
+  useEffect(() => {
+    dispatch(actionSetUserThemePreset(themePreset));
+  }, [themePreset]);
+
   const _theme = useMemo(
-    () => createTheme(PRESET_THEME_MAP[theme][mode] as ThemeOptions),
-    [mode, theme]
+    () => createTheme(PRESET_THEME_MAP[themePreset][themeMode] as ThemeOptions),
+    [themeMode, themePreset]
   );
 
   // CssBaseline use: [https://stackoverflow.com/a/59145819/17449710](https://stackoverflow.com/a/59145819/17449710)

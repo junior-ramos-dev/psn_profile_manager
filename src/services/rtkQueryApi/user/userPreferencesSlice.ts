@@ -2,33 +2,35 @@ import { createSlice } from "@reduxjs/toolkit";
 
 interface UserPreferencesInitialState {
   themeMode: string;
-  themeColor: string;
+  themePreset: number;
 }
 
 const initialState: UserPreferencesInitialState = {
   themeMode: null,
-  themeColor: null,
+  themePreset: null,
 };
 
 const userPreferencesSlice = createSlice({
-  name: "user",
+  name: "userPreferences",
   initialState,
   reducers: {
-    actionSetUsePreferences: (
-      state,
-      { payload: { themeMode, themeColor } }
-    ) => {
-      state.themeMode = themeMode;
-      state.themeColor = themeColor;
+    actionSetUserThemeMode: (state, { payload }) => {
+      state.themeMode = payload;
+    },
+    actionSetUserThemePreset: (state, { payload }) => {
+      state.themePreset = payload;
     },
     actionUnsetUserPreferences: (state) => {
       state.themeMode = null;
-      state.themeColor = null;
+      state.themePreset = null;
     },
   },
 });
 
-export const { actionSetUsePreferences, actionUnsetUserPreferences } =
-  userPreferencesSlice.actions;
+export const {
+  actionSetUserThemeMode,
+  actionSetUserThemePreset,
+  actionUnsetUserPreferences,
+} = userPreferencesSlice.actions;
 
 export default userPreferencesSlice.reducer;
