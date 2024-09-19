@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 import { IGame, IGameRoute } from "@/models/interfaces";
 import { selectGameById } from "@/services/rtkQueryApi/game/gameSelectors";
 import { css } from "@emotion/react";
-import { ListItemButton, Tooltip, useTheme } from "@mui/material";
+import { ListItemButton, useTheme } from "@mui/material";
 
 import { GameListItemDetail } from "./GameListItemDetail";
 
@@ -35,7 +35,7 @@ export const GameListItem = ({
     selectGameById(gamesList, gameRoute.key)
   );
 
-  const item = (
+  const gameListitem = (
     <ListItemButton
       css={css`
         cursor: ${!gameRoute.enabled ? "not-allowed" : "auto"};
@@ -57,16 +57,7 @@ export const GameListItem = ({
         color: inherit;
       `}
     >
-      {gameRoute.tooltip ? (
-        <Tooltip
-          title={`${gameRoute.tooltip}${!gameRoute.enabled ? " (Not Allowed)" : ""}`}
-          placement="right"
-        >
-          {item}
-        </Tooltip>
-      ) : (
-        item
-      )}
+      {gameListitem}
     </NavLink>
   );
 };

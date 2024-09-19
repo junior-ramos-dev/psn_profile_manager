@@ -10,7 +10,6 @@ export const createIGameRoutesList = (gameList: IGame[]): IGameRoute[] => {
     const gameRoute: IGameRoute = {
       key: game.npCommunicationId,
       title: game.trophyTitleName,
-      tooltip: game.trophyTitleName,
       path: "/game/" + game.npCommunicationId,
       enabled: true,
       appendDivider: true,

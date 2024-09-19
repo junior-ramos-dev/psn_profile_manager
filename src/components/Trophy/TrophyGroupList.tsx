@@ -34,7 +34,6 @@ const createITrophyGroupRoutesList = (
       const trophyRoute: ITrophyRouteWithTrophy = {
         key: `${trophy.trophyId}`,
         title: trophy.trophyName,
-        tooltip: trophy.trophyName,
         path: "", //`/trophy/${trophyList.gamesTrophies.npCommunicationId}/${trophy.trophyId}`,
         enabled: true,
         appendDivider: true,

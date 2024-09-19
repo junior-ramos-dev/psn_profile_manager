@@ -105,7 +105,13 @@ export const TrophyGroupDetail = ({
   return (
     <ListItem
       key={`${definedGroupInfo.trophyGroupName}`}
-      sx={{ height: 40, alignItems: "center", justifyContent: "start" }}
+      sx={{
+        height: 50,
+        alignItems: "center",
+        justifyContent: "start",
+        mt: 1,
+        mb: 1,
+      }}
     >
       <Stack
         key={`box-${definedGroupInfo.trophyGroupName}`}

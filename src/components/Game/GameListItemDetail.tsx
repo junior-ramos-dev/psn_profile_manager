@@ -91,7 +91,13 @@ export const GameListItemDetail = ({
   return (
     <ListItem
       key={`${game.npCommunicationId}-01`}
-      sx={{ height: 40, alignItems: "center", justifyContent: "start" }}
+      sx={{
+        height: 50,
+        alignItems: "center",
+        justifyContent: "start",
+        mt: 1,
+        mb: 1,
+      }}
     >
       <Stack
         key={`box-${game.npCommunicationId}`}

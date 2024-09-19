@@ -14,7 +14,6 @@ import {
   ListItem,
   ListItemIcon,
   Stack,
-  Tooltip,
   Typography,
   useTheme,
 } from "@mui/material";
@@ -44,32 +43,13 @@ export const TrophyListItem = ({
 
   const trophy = trophyRoute.trophy;
 
-  //   {
-  //     "trophyId": 0,
-  //     "trophyHidden": false,
-  //     "isEarned": false,
-  //     "isEarnedDateTime": "1970-01-01T00:00:00.000Z",
-  //     "trophyType": "Platinum",
-  //     "trophyRare": "0",
-  //     "trophyEarnedRate": 0.8,
-  //     "trophyName": "Biomutant Platinum Trophy",
-  //     "trophyDetail": "Unlock every Trophy in Biomutant",
-  //     "trophyIconUrl": "https://psnobj.prod.dl.playstation.net/psnobj/NPWR28020_00/0031fe3e-3ee2-4ace-860e-f49b61f42673.png",
-  //     "trophyGroupId": "default",
-  //     "rarity": "Ultra Rare",
-  //     "groupId": "default",
-  //     "points": 180,
-  //     "_id": "66da23f407ca893694641954"
-  // },
-  // const [checkBox, setCheckBox] = useState(false);
-
   const [checkBox, setCheckBox] = useState(false);
 
   const handleCheckbox = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCheckBox(event.currentTarget.checked);
   };
 
-  const item = (
+  const thophyListItem = (
     <ListItem
       css={css`
         padding-left: ${nested ? 3 : 1};
@@ -148,14 +128,5 @@ export const TrophyListItem = ({
     </ListItem>
   );
 
-  return trophyRoute.tooltip ? (
-    <Tooltip
-      title={`${trophyRoute.tooltip}${!trophyRoute.enabled ? " (Not Allowed)" : ""}`}
-      placement="right"
-    >
-      {item}
-    </Tooltip>
-  ) : (
-    item
-  );
+  return thophyListItem;
 };
