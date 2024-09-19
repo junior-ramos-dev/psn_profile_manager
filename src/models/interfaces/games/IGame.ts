@@ -1,6 +1,6 @@
 import { StringUtils } from "@/utils/strings";
 
-import ITrophy, { ITrophyCount } from "../trophy/ITrophy";
+import { ITrophyCount, ITrophyGroupsInfo } from "../trophy/ITrophy";
 
 // IGame is an interface for defining the game object returned from the API with additional properties to generate the routes for games.
 interface IGame {
@@ -89,8 +89,7 @@ export class ConvertIGame {
 export interface IUserGameDetails {
   userId: string;
   usergame: IGame;
-  trophies: ITrophy[];
-  totalPoints: number;
+  trophyGroupsInfo: ITrophyGroupsInfo[];
   gameIcon: string;
 }
 

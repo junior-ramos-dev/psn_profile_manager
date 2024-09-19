@@ -42,6 +42,25 @@ export interface ITrophySummary {
   earnedTrophies: ITrophyCount;
 }
 
+export interface ITrophyGroupsInfo {
+  definedGroupInfo: IDefinedGroupInfo;
+  earnedGroupInfo: IEarnedGroupInfo;
+  groupTrophies: ITrophy[];
+}
+
+export interface IDefinedGroupInfo {
+  trophyGroupId: string;
+  trophyGroupName: string;
+  trophyGroupIconUrl: string;
+  definedTrophies: ITrophyCount;
+}
+
+export interface IEarnedGroupInfo {
+  trophyGroupId: string;
+  progress: number;
+  earnedTrophies: ITrophyCount;
+}
+
 export enum TROPHY_TYPE_NAME {
   BRONZE = "bronze",
   SILVER = "silver",

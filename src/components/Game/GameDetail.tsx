@@ -52,7 +52,7 @@ export const GameDetail = ({ gameId }: RoutesChildrenProps) => {
 
   const game = gameDetails.usergame;
   const gameIcon = gameDetails.gameIcon;
-  const trophies = gameDetails.trophies;
+  const trophyGroupsInfo = gameDetails.trophyGroupsInfo;
 
   return (
     <>
@@ -70,7 +70,7 @@ export const GameDetail = ({ gameId }: RoutesChildrenProps) => {
       <Box sx={{ mt: 12 }}>
         <GameListItemDetail game={game} gameIcon={gameIcon} />
         <Divider />
-        <TrophyList trophies={trophies} />
+        <TrophyList trophyGroupsInfo={trophyGroupsInfo} />
       </Box>
     </>
   );

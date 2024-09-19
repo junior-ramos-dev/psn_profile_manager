@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { ITrophyRoute, ITrophyRouteWithTrophy } from "@/models/interfaces";
-import ITrophy from "@/models/interfaces/trophy/ITrophy";
+import { ITrophyGroupsInfo } from "@/models/interfaces/trophy/ITrophy";
 import { Divider, List } from "@mui/material";
 
 import { TrophyListItem } from "./TrophyListItem";
@@ -11,33 +11,37 @@ import { TrophyListItem } from "./TrophyListItem";
  * @param trophies
  * @returns
  */
-const createITrophyRoutesList = (trophies: ITrophy[]): ITrophyRoute[] => {
+const createITrophyRoutesList = (
+  trophyGroupsInfo: ITrophyGroupsInfo[]
+): ITrophyRoute[] => {
   const iTrophyRoutesList = new Array<ITrophyRoute>();
 
-  trophies.forEach((trophy) => {
-    const trophyRoute: ITrophyRouteWithTrophy = {
-      key: `${trophy.trophyId}`,
-      title: trophy.trophyName,
-      tooltip: trophy.trophyName,
-      path: "", //`/trophy/${trophyList.gamesTrophies.npCommunicationId}/${trophy.trophyId}`,
-      enabled: true,
-      appendDivider: true,
-      expanded: false,
-      trophy: trophy,
-    };
+  trophyGroupsInfo.forEach((group) => {
+    group.groupTrophies.forEach((trophy) => {
+      const trophyRoute: ITrophyRouteWithTrophy = {
+        key: `${trophy.trophyId}`,
+        title: trophy.trophyName,
+        tooltip: trophy.trophyName,
+        path: "", //`/trophy/${trophyList.gamesTrophies.npCommunicationId}/${trophy.trophyId}`,
+        enabled: true,
+        appendDivider: true,
+        expanded: false,
+        trophy: trophy,
+      };
 
-    iTrophyRoutesList.push(trophyRoute);
+      iTrophyRoutesList.push(trophyRoute);
+    });
   });
 
   return iTrophyRoutesList;
 };
 
 interface ITrophyListProps {
-  trophies: ITrophy[];
+  trophyGroupsInfo: ITrophyGroupsInfo[];
 }
 
-export const TrophyList = ({ trophies }: ITrophyListProps) => {
-  const iTrophyRoutesList = createITrophyRoutesList(trophies);
+export const TrophyList = ({ trophyGroupsInfo }: ITrophyListProps) => {
+  const iTrophyRoutesList = createITrophyRoutesList(trophyGroupsInfo);
 
   return (
     <List component="nav" sx={{ height: "100%" }}>
