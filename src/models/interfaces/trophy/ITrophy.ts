@@ -75,4 +75,15 @@ export const TROPHY_POINTS_MAP: Record<TROPHY_TYPE_NAME, number> = {
   [TROPHY_TYPE_NAME.PLATINUM]: 300,
 };
 
+export const getTrophiesTotalPoints = (trophyCount: ITrophyCount) => {
+  let count: number = 0;
+
+  count += trophyCount.bronze * TROPHY_POINTS_MAP[TROPHY_TYPE_NAME.BRONZE];
+  count += trophyCount.silver * TROPHY_POINTS_MAP[TROPHY_TYPE_NAME.SILVER];
+  count += trophyCount.gold * TROPHY_POINTS_MAP[TROPHY_TYPE_NAME.GOLD];
+  count += trophyCount.platinum * TROPHY_POINTS_MAP[TROPHY_TYPE_NAME.PLATINUM];
+
+  return count;
+};
+
 export default ITrophy;

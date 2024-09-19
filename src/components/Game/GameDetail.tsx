@@ -14,7 +14,7 @@ import {
 import { Box, Divider } from "@mui/material";
 
 import { Loading } from "../Loading";
-import { TrophyList } from "../Trophy/TrophyList";
+import { TrophyGroupList } from "../Trophy/TrophyGroupList";
 
 import { GameListItemDetail } from "./GameListItemDetail";
 
@@ -48,8 +48,6 @@ export const GameDetail = ({ gameId }: RoutesChildrenProps) => {
 
   if (isLoading) return <Loading />;
 
-  console.log(gameDetails);
-
   const game = gameDetails.usergame;
   const gameIcon = gameDetails.gameIcon;
   const trophyGroupsInfo = gameDetails.trophyGroupsInfo;
@@ -70,7 +68,7 @@ export const GameDetail = ({ gameId }: RoutesChildrenProps) => {
       <Box sx={{ mt: 12 }}>
         <GameListItemDetail game={game} gameIcon={gameIcon} />
         <Divider />
-        <TrophyList trophyGroupsInfo={trophyGroupsInfo} />
+        <TrophyGroupList trophyGroupsInfo={trophyGroupsInfo} />
       </Box>
     </>
   );

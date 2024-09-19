@@ -80,7 +80,7 @@ export const PsVitaPlatformIcon = ({
  * @param height
  * @returns
  */
-export const getTrophyIconByPlatfrom = (
+export const getPsIconByPlatfrom = (
   platfrom: string,
   width?: number,
   height?: number

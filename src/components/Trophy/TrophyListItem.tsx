@@ -61,7 +61,6 @@ export const TrophyListItem = ({
   //     "points": 180,
   //     "_id": "66da23f407ca893694641954"
   // },
-
   // const [checkBox, setCheckBox] = useState(false);
 
   const [checkBox, setCheckBox] = useState(false);
@@ -122,10 +121,6 @@ export const TrophyListItem = ({
       >
         <Stack direction="row" spacing={0.1}>
           <Typography variant="body2" sx={{ fontSize: 12 }}>
-            Points: {trophy.points}
-          </Typography>
-          &nbsp;
-          <Typography variant="body2" sx={{ fontSize: 12 }}>
             Rarity: {trophy.rarity}
           </Typography>
           &nbsp;
@@ -154,14 +149,12 @@ export const TrophyListItem = ({
   );
 
   return trophyRoute.tooltip ? (
-    <>
-      <Tooltip
-        title={`${trophyRoute.tooltip}${!trophyRoute.enabled ? " (Not Allowed)" : ""}`}
-        placement="right"
-      >
-        {item}
-      </Tooltip>
-    </>
+    <Tooltip
+      title={`${trophyRoute.tooltip}${!trophyRoute.enabled ? " (Not Allowed)" : ""}`}
+      placement="right"
+    >
+      {item}
+    </Tooltip>
   ) : (
     item
   );

@@ -1,13 +1,17 @@
 /** @jsxImportSource @emotion/react */
+
 import { Image } from "mui-image";
 
-import { IGame } from "@/models/interfaces";
+import {
+  getTrophiesTotalPoints,
+  IDefinedGroupInfo,
+  IEarnedGroupInfo,
+} from "@/models/interfaces/trophy/ITrophy";
 import { IMG_PLACEHOLDER } from "@/settings/app/constants";
 import { Box, ListItem, Stack, Typography } from "@mui/material";
 
 import { PointsItem, ProgressItem, TrophyItem } from "../Common/BoxGridItems";
 import { CustomProgressBar } from "../CustomProgressBar";
-import { getPsIconByPlatfrom } from "../Playstation/PsPlatformIcon";
 import {
   PsTrophyBronze,
   PsTrophyGold,
@@ -15,12 +19,22 @@ import {
   PsTrophySilver,
 } from "../Playstation/PsTrophyIcon";
 
-interface IGameListItemDetailProps {
-  game: IGame;
-  gameIcon?: string;
+interface ITrophyGroupDetailProps {
+  definedGroupInfo: IDefinedGroupInfo;
+  earnedGroupInfo: IEarnedGroupInfo;
 }
 
-const GameListItemDetailStats = ({ game }: IGameListItemDetailProps) => {
+const TrophyGroupDetailStats = ({
+  definedGroupInfo,
+  earnedGroupInfo,
+}: ITrophyGroupDetailProps) => {
+  const totalDefinedPoints = getTrophiesTotalPoints(
+    definedGroupInfo.definedTrophies
+  );
+  const totalEarnedPoints = getTrophiesTotalPoints(
+    earnedGroupInfo.earnedTrophies
+  );
+
   return (
     <>
       <div style={{ width: "400px" }}>
@@ -35,11 +49,11 @@ const GameListItemDetailStats = ({ game }: IGameListItemDetailProps) => {
         >
           <PointsItem>
             <Typography variant="subtitle2" sx={{ fontSize: 12 }}>
-              Points: {game.earnedTrophiesPoints}/{game.definedTrophiesPoints}
+              Points: {totalEarnedPoints}/{totalDefinedPoints}
             </Typography>
           </PointsItem>
           <ProgressItem>
-            <CustomProgressBar progress={game.progress} />
+            <CustomProgressBar progress={earnedGroupInfo.progress} />
           </ProgressItem>
         </Box>
       </div>
@@ -55,27 +69,27 @@ const GameListItemDetailStats = ({ game }: IGameListItemDetailProps) => {
           <TrophyItem>
             <Typography variant="body2" sx={{ fontSize: 12 }}>
               <PsTrophyPlatinum />
-              &nbsp;{game.earnedTrophies.platinum}
+              &nbsp;{earnedGroupInfo.earnedTrophies.platinum}
             </Typography>
           </TrophyItem>
 
           <TrophyItem>
             <Typography variant="body2" sx={{ fontSize: 12 }}>
               <PsTrophyGold />
-              &nbsp;{game.earnedTrophies.gold}
+              &nbsp;{earnedGroupInfo.earnedTrophies.gold}
             </Typography>
           </TrophyItem>
 
           <TrophyItem>
             <Typography variant="body2" sx={{ fontSize: 12 }}>
               <PsTrophySilver />
-              &nbsp;{game.earnedTrophies.silver}
+              &nbsp;{earnedGroupInfo.earnedTrophies.silver}
             </Typography>
           </TrophyItem>
           <TrophyItem>
             <Typography variant="body2" sx={{ fontSize: 12 }}>
               <PsTrophyBronze />
-              &nbsp;{game.earnedTrophies.bronze}
+              &nbsp;{earnedGroupInfo.earnedTrophies.bronze}
             </Typography>
           </TrophyItem>
         </Box>
@@ -84,34 +98,37 @@ const GameListItemDetailStats = ({ game }: IGameListItemDetailProps) => {
   );
 };
 
-export const GameListItemDetail = ({
-  game,
-  gameIcon,
-}: IGameListItemDetailProps) => {
+export const TrophyGroupDetail = ({
+  definedGroupInfo,
+  earnedGroupInfo,
+}: ITrophyGroupDetailProps) => {
   return (
     <ListItem
-      key={`${game.npCommunicationId}-01`}
+      key={`${definedGroupInfo.trophyGroupName}`}
       sx={{ height: 40, alignItems: "center", justifyContent: "start" }}
     >
       <Stack
-        key={`box-${game.npCommunicationId}`}
+        key={`box-${definedGroupInfo.trophyGroupName}`}
         direction="row"
         sx={{ alignItems: "center", justifyContent: "start" }}
         spacing={1}
       >
         <Image
-          src={gameIcon ? `data:image/png;base64,${gameIcon}` : IMG_PLACEHOLDER}
+          src={definedGroupInfo.trophyGroupIconUrl ?? IMG_PLACEHOLDER}
           width={60}
           height={40}
           showLoading
           style={{ borderRadius: "5px" }}
         />
-        {getPsIconByPlatfrom(game.trophyTitlePlatform)}
-        &nbsp;
-        <Typography variant="subtitle2">{game.trophyTitleName}</Typography>
+        <Typography variant="subtitle2">
+          {definedGroupInfo.trophyGroupName}
+        </Typography>
       </Stack>
       <Box sx={{ flexGrow: 1 }} />
-      <GameListItemDetailStats game={game} />
+      <TrophyGroupDetailStats
+        definedGroupInfo={definedGroupInfo}
+        earnedGroupInfo={earnedGroupInfo}
+      />
     </ListItem>
   );
 };
