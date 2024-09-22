@@ -19,6 +19,13 @@ export interface ReqValidationError {
   location: string;
 }
 
+export interface IErrorResponse {
+  status: number;
+  name: string;
+  message: string;
+  errors?: ReqValidationError[];
+}
+
 export class AxiosApiError implements IAxiosApiError {
   status: number;
   message: string;
