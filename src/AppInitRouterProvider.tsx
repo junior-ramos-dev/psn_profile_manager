@@ -6,9 +6,9 @@ import AxiosError from "@/pages/Error/AxiosError";
 import RouteError from "@/pages/Error/RouteError";
 import Index from "@/pages/Index";
 import Login from "@/pages/SignUp/Login";
-import Register from "@/pages/SignUp/Register";
 
 import Settings from "./pages/Settings";
+import RegisterLoader from "./pages/SignUp/RegisterLoader";
 
 export const enum ROUTE_ID {
   ROOT = "root",
@@ -19,6 +19,7 @@ export const enum ROUTE_ID {
 
 export const enum ROUTE_PATH {
   ROOT = "/",
+  INDEX = "/index",
   LOGIN = "/auth/login",
   REGISTER = "/auth/register",
   SETTINGS = "/settings",
@@ -48,14 +49,19 @@ export const appDefaultRoutes = [
             element: <PublicRoute />,
             errorElement: <RouteError />,
             children: [
-              { id: ROUTE_ID.INDEX, index: true, element: <Index /> },
+              {
+                id: ROUTE_ID.INDEX,
+                index: true,
+                path: ROUTE_PATH.INDEX,
+                element: <Index />,
+              },
               {
                 path: ROUTE_PATH.LOGIN,
                 element: <Login />,
               },
               {
                 path: ROUTE_PATH.REGISTER,
-                element: <Register />,
+                element: <RegisterLoader />,
               },
             ],
           },
