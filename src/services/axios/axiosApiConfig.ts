@@ -64,7 +64,8 @@ export const interceptAxiosAuthRequests = (
     // Set headers for auth endpoint
     if (
       endpointName === AUTH_ENDPOINT_NAME.LOGIN ||
-      endpointName === AUTH_ENDPOINT_NAME.REGISTER
+      endpointName === AUTH_ENDPOINT_NAME.REGISTER ||
+      endpointName === AUTH_ENDPOINT_NAME.REGISTER_LOADER
     ) {
       req.headers["authorization"] = `Bearer ${process.env.PSN_NPSSO}`;
       console.log(req.url);
