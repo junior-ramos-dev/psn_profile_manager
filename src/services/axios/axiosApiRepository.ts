@@ -58,7 +58,7 @@ export const getList = async (
   if (urlParams) endpointUrl = buildUrlWithParams(endpointUrl, urlParams);
 
   return await axiosInstance
-    .get(`${AXIOS_BASE_URL}/${endpointUrl}/`)
+    .get(`${AXIOS_BASE_URL}/${endpointUrl}`)
     .then((res) => handleAxiosResponseData(res, endpointHeaders));
 };
 
@@ -66,15 +66,18 @@ export const post = async (
   endpointUrl: string,
   endpointName: string,
   bodyData: object,
-  endpointHeaders: IEndpointHeaders
+  endpointHeaders: IEndpointHeaders,
+  urlParams?: object
 ) => {
-  console.log(endpointUrl, endpointHeaders);
+  console.log(endpointUrl, endpointHeaders, urlParams);
   if (endpointHeaders) setAxiosInterceptorRequest(endpointHeaders);
+
+  if (urlParams) endpointUrl = buildUrlWithParams(endpointUrl, urlParams);
 
   interceptAxiosAuthRequests(endpointName, endpointHeaders);
 
   return await axiosInstance
-    .post(`${AXIOS_BASE_URL}/${endpointUrl}/`, qs.stringify(bodyData))
+    .post(`${AXIOS_BASE_URL}/${endpointUrl}`, qs.stringify(bodyData))
     .then((res) => handleAxiosResponseData(res, endpointHeaders));
 };
 
