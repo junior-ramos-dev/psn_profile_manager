@@ -1,4 +1,4 @@
-import { ITaskProps } from "@/models/axios/taskLoader";
+import { ITaskProps } from "@/models/interfaces/ITaskHandler";
 import { AuthRegisterRequest } from "@/models/types/rtkQuery/auth";
 import { authApi } from "@/services/rtkQueryApi/auth/authApi";
 import { VERBS } from "@/settings/app/constants";

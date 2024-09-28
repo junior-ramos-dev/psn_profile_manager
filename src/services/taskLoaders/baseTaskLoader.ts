@@ -17,7 +17,6 @@ export abstract class BaseTaskLoader {
 
   baseLoader = async (endpoint, loaderQuery: IAxiosBaseQueryArgs) => {
     const promise = this.dispatch(endpoint.initiate(loaderQuery));
-
     // if (request) request.signal.onabort = promise.abort;
 
     const res = await promise;
