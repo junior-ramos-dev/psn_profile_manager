@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { RingLoader } from "react-spinners";
 
-import { ITaskHandler } from "@/models/axios/taskLoader";
+import { ITaskHandler } from "@/models/interfaces/ITaskHandler";
 import { IUserAndProfile } from "@/models/interfaces/user/IUserAndProfile";
 import {
   STEP_ID,

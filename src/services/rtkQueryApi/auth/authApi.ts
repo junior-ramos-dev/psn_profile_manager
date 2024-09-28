@@ -1,4 +1,4 @@
-import { ITaskHandler } from "@/models/axios/taskLoader";
+import { ITaskHandler } from "@/models/interfaces/ITaskHandler";
 import {
   AuthLoginRequest,
   AuthLoginResponse,

@@ -1,4 +1,4 @@
-import { ITaskHandler, ITaskProps } from "@/models/axios/taskLoader";
+import { ITaskHandler, ITaskProps } from "@/models/interfaces/ITaskHandler";
 import { IAxiosBaseQueryArgs } from "@/services/axios/axiosBaseQueryApi";
 import { AUTH_ENDPOINT_NAME } from "@/settings/app/constants/api/auth";
 import { AppDispatch, AppStore } from "@/store";
