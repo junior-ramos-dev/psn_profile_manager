@@ -65,7 +65,7 @@ export const ActionLogout = ({
           dispatch(actionUnsetCredentials());
           dispatch(actionUnsetUserProfile());
         });
-      navigate("/");
+      navigate("/auth/login");
       if (handleMenuClose) handleMenuClose();
     } catch (e) {
       console.error(e);
