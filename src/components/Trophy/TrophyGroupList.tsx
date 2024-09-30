@@ -4,7 +4,7 @@ import {
   ITrophyRoute,
   ITrophyRouteWithTrophy,
 } from "@/models/interfaces";
-import { ITrophyGroupInfo } from "@/models/interfaces/trophy/ITrophy";
+import { ITrophyGroupsInfo } from "@/models/interfaces/trophy/ITrophy";
 import { Divider, List } from "@mui/material";
 
 import { TrophyGroupDetail } from "./TrophyGroupDetail";
@@ -17,11 +17,11 @@ import { TrophyListItem } from "./TrophyListItem";
  * @returns
  */
 const createITrophyGroupRoutesList = (
-  trophyGroupInfo: ITrophyGroupInfo[]
+  trophyGroupsInfo: ITrophyGroupsInfo[]
 ): ITrophyGroupRoute[] => {
   const iTrophyGroupRouteList = new Array<ITrophyGroupRoute>();
 
-  for (const group of trophyGroupInfo) {
+  for (const group of trophyGroupsInfo) {
     const iTrophyRoutesList = new Array<ITrophyRoute>();
 
     const iTrophyGroupRoute: ITrophyGroupRoute = {
@@ -67,11 +67,11 @@ const getGroupTrophyListItem = (trophyRoute: ITrophyRouteWithTrophy) => {
 };
 
 interface ITrophyListProps {
-  trophyGroupInfo: ITrophyGroupInfo[];
+  trophyGroupsInfo: ITrophyGroupsInfo[];
 }
 
-export const TrophyGroupList = ({ trophyGroupInfo }: ITrophyListProps) => {
-  const iTrophyGroupRouteList = createITrophyGroupRoutesList(trophyGroupInfo);
+export const TrophyGroupList = ({ trophyGroupsInfo }: ITrophyListProps) => {
+  const iTrophyGroupRouteList = createITrophyGroupRoutesList(trophyGroupsInfo);
 
   return (
     <List component="nav" sx={{ height: "100%" }}>

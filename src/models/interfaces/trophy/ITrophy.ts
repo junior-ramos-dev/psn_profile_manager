@@ -42,7 +42,7 @@ export interface ITrophySummary {
   earnedTrophies: ITrophyCount;
 }
 
-export interface ITrophyGroupInfo {
+export interface ITrophyGroupsInfo {
   definedGroupInfo: IDefinedGroupInfo;
   earnedGroupInfo: IEarnedGroupInfo;
   groupTrophies: ITrophy[];
