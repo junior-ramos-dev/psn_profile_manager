@@ -2,7 +2,7 @@
 import {
   ITrophyGroupRoute,
   ITrophyRoute,
-  ITrophyRouteWithTrophy,
+  ITrophyRouteExtended,
 } from "@/models/interfaces";
 import { ITrophyGroupsInfo } from "@/models/interfaces/trophy/ITrophy";
 import { Divider, List } from "@mui/material";
@@ -17,6 +17,8 @@ import { TrophyListItem } from "./TrophyListItem";
  * @returns
  */
 const createITrophyGroupRoutesList = (
+  npCommunicationId: string,
+  trophyTitlePlatform: string,
   trophyGroupsInfo: ITrophyGroupsInfo[]
 ): ITrophyGroupRoute[] => {
   const iTrophyGroupRouteList = new Array<ITrophyGroupRoute>();
@@ -31,20 +33,20 @@ const createITrophyGroupRoutesList = (
     };
 
     for (const trophy of group.groupTrophies) {
-      const trophyRoute: ITrophyRouteWithTrophy = {
+      const trophyRoute: ITrophyRouteExtended = {
         key: `${trophy.trophyId}`,
         title: trophy.trophyName,
+        npCommunicationId: npCommunicationId,
+        trophyTitlePlatform: trophyTitlePlatform,
+        trophy: trophy,
         path: "", //`/trophy/${trophyList.gamesTrophies.npCommunicationId}/${trophy.trophyId}`,
         enabled: true,
         appendDivider: true,
         expanded: false,
-        trophy: trophy,
       };
 
       iTrophyRoutesList.push(trophyRoute);
     }
-
-    console.log(iTrophyRoutesList.length);
 
     iTrophyGroupRoute.trophyRoutesList = iTrophyRoutesList;
     iTrophyGroupRouteList.push(iTrophyGroupRoute);
@@ -53,7 +55,8 @@ const createITrophyGroupRoutesList = (
   return iTrophyGroupRouteList;
 };
 
-const getGroupTrophyListItem = (trophyRoute: ITrophyRouteWithTrophy) => {
+// Create the list item for each trophy
+const getGroupTrophyListItem = (trophyRoute: ITrophyRouteExtended) => {
   return (
     <div key={trophyRoute.key}>
       <TrophyListItem
@@ -67,11 +70,21 @@ const getGroupTrophyListItem = (trophyRoute: ITrophyRouteWithTrophy) => {
 };
 
 interface ITrophyListProps {
+  npCommunicationId: string;
+  trophyTitlePlatform: string;
   trophyGroupsInfo: ITrophyGroupsInfo[];
 }
 
-export const TrophyGroupList = ({ trophyGroupsInfo }: ITrophyListProps) => {
-  const iTrophyGroupRouteList = createITrophyGroupRoutesList(trophyGroupsInfo);
+export const TrophyGroupList = ({
+  npCommunicationId,
+  trophyTitlePlatform,
+  trophyGroupsInfo,
+}: ITrophyListProps) => {
+  const iTrophyGroupRouteList = createITrophyGroupRoutesList(
+    npCommunicationId,
+    trophyTitlePlatform,
+    trophyGroupsInfo
+  );
 
   return (
     <List component="nav" sx={{ height: "100%" }}>
@@ -83,7 +96,7 @@ export const TrophyGroupList = ({ trophyGroupsInfo }: ITrophyListProps) => {
               earnedGroupInfo={trophyGroupRoute.earnedGroupInfo}
             />
             {trophyGroupRoute.trophyRoutesList.map(
-              (trophyRoute: ITrophyRouteWithTrophy) =>
+              (trophyRoute: ITrophyRouteExtended) =>
                 getGroupTrophyListItem(trophyRoute)
             )}
           </>

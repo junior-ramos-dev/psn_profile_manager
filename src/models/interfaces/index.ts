@@ -11,7 +11,9 @@ type IAppRoute = IRouteItem;
 type IGameRoute = IRouteItem;
 type ITrophyRoute = IRouteItem;
 
-interface ITrophyRouteWithTrophy extends ITrophyRoute {
+interface ITrophyRouteExtended extends ITrophyRoute {
+  npCommunicationId: string;
+  trophyTitlePlatform: string;
   trophy: ITrophy;
 }
 
@@ -27,7 +29,7 @@ export type {
   IRouteItem,
   ITrophyGroupRoute,
   ITrophyRoute,
-  ITrophyRouteWithTrophy,
+  ITrophyRouteExtended,
 };
 
 export type { IGame, ITrophy, ITrophyList, IUser };

@@ -1,5 +1,11 @@
 export type SetTrophyCheckedRequest = {
-  trophyGroupId: string;
-  trophyId: number;
-  isChecked: boolean;
+  urlParams: {
+    npCommunicationId: string;
+    trophyTitlePlatform: string;
+  };
+  body: {
+    trophyGroupId: string;
+    trophyId: number;
+    isChecked: boolean;
+  };
 };

@@ -3,7 +3,8 @@ import { useState } from "react";
 import { Image } from "mui-image";
 import { useLocation } from "react-router-dom";
 
-import { ITrophyRouteWithTrophy } from "@/models/interfaces";
+import { ITrophyRouteExtended } from "@/models/interfaces";
+import { useSetTrophyIsCheckedMutation } from "@/services/rtkQueryApi/trophy/trophyApi";
 import { css } from "@emotion/react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import {
@@ -21,10 +22,10 @@ import {
 import { getTrophyIconByType } from "../Playstation/PsTrophyIcon";
 
 interface ITrophyRouteItemProps {
-  trophyRoute: ITrophyRouteWithTrophy;
+  trophyRoute: ITrophyRouteExtended;
   nested?: boolean;
   hasChildren?: boolean;
-  handleMenuClick?: (route: ITrophyRouteWithTrophy) => void;
+  handleMenuClick?: (route: ITrophyRouteExtended) => void;
 }
 
 export const TrophyListItem = ({
@@ -43,10 +44,41 @@ export const TrophyListItem = ({
 
   const trophy = trophyRoute.trophy;
 
-  const [checkBox, setCheckBox] = useState(false);
+  const [checkBox, setCheckBox] = useState(trophy.isChecked);
 
-  const handleCheckbox = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const [setTrophyIsChecked] = useSetTrophyIsCheckedMutation();
+
+  const handleSetTrophyIsChecked = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const npCommunicationId = trophyRoute.npCommunicationId;
+    const trophyTitlePlatform = trophyRoute.trophyTitlePlatform;
+    const trophyGroupId = trophy.groupId;
+    const trophyId = trophy.trophyId;
+    const isChecked = event.currentTarget.checked;
+
+    console.log(trophy.isChecked);
+    console.log(trophyGroupId, trophyId, isChecked);
+    console.log(event.currentTarget.checked);
     setCheckBox(event.currentTarget.checked);
+
+    try {
+      const urlParams = { npCommunicationId, trophyTitlePlatform };
+      const body = { trophyGroupId, trophyId, isChecked };
+
+      await setTrophyIsChecked({
+        urlParams,
+        body,
+      })
+        .unwrap()
+        .then((data) => {
+          console.log(data);
+
+          console.log(trophy.isChecked);
+        });
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   const thophyListItem = (
@@ -120,7 +152,15 @@ export const TrophyListItem = ({
               {getTrophyIconByType(trophy.trophyType, 18, 24)}
             </Box>
           ) : (
-            <Checkbox checked={checkBox} onChange={handleCheckbox} />
+            <>
+              <Typography sx={{ fontSize: 8 }}>
+                {`checked: ${trophy.isChecked}`}
+              </Typography>
+              <Checkbox
+                checked={checkBox}
+                onChange={handleSetTrophyIsChecked}
+              />
+            </>
           )}
         </Stack>
       </Box>

@@ -68,7 +68,11 @@ export const GameDetail = ({ gameId }: RoutesChildrenProps) => {
       <Box sx={{ mt: 12 }}>
         <GameListItemDetail game={game} gameIcon={gameIcon} />
         <Divider />
-        <TrophyGroupList trophyGroupsInfo={trophyGroupsInfo} />
+        <TrophyGroupList
+          npCommunicationId={game.npCommunicationId}
+          trophyTitlePlatform={game.trophyTitlePlatform}
+          trophyGroupsInfo={trophyGroupsInfo}
+        />
       </Box>
     </>
   );

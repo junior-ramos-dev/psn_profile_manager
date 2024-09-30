@@ -13,6 +13,7 @@ interface ITrophy {
   rarity: string;
   groupId: string | undefined;
   points: number;
+  isChecked: boolean | undefined;
 }
 
 export interface ITrophyList {

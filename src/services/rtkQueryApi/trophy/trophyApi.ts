@@ -40,7 +40,8 @@ export const trophyApi = rtkQueryBaseApi.injectEndpoints({
       query: (data) => ({
         endpointUrl: TROPHY_URL_MAP[TROPHY_ENDPOINT_NAME.SET_TROPHY_IS_CHECKED],
         method: VERBS.PATCH,
-        bodyData: data,
+        urlParams: data.urlParams,
+        bodyData: data.body,
         collection: "UserGameTrophies",
         endpointName: TROPHY_ENDPOINT_NAME.SET_TROPHY_IS_CHECKED,
       }),
