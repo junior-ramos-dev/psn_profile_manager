@@ -68,9 +68,9 @@ export const interceptAxiosAuthRequests = (
       endpointName === AUTH_ENDPOINT_NAME.REGISTER_LOADER
     ) {
       req.headers["authorization"] = `Bearer ${process.env.PSN_NPSSO}`;
-      console.log(req.url);
+      // console.log(req.url);
     } else if (endpointName === AUTH_ENDPOINT_NAME.LOGOUT) {
-      console.log(req.url);
+      // console.log(req.url);
       if (endpointHeaders) clearEndpointResHeaders(endpointHeaders);
     }
     return req;

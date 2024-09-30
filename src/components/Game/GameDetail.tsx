@@ -37,13 +37,13 @@ export const GameDetail = ({ gameId }: RoutesChildrenProps) => {
         npCommunicationId,
         imgType: IMG_TYPE.WEBP,
         getTrophies: 1, //true
+      },
+      {
+        // pollingInterval: 60 * 60 * 1000 * 2, //(60 * 60 * 1000 * 2) = 2h
+        refetchOnFocus: true,
+        refetchOnMountOrArgChange: true,
+        // skip: false,
       }
-      // {
-      //   pollingInterval: 60 * 60 * 1000 * 2, //(60 * 60 * 1000 * 2) = 2h
-      //   refetchOnFocus: true,
-      //   refetchOnMountOrArgChange: true,
-      //   skip: false,
-      // }
     );
 
   if (isLoading) return <Loading />;

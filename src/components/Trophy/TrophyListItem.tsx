@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Image } from "mui-image";
 import { useLocation } from "react-router-dom";
 
@@ -48,6 +48,10 @@ export const TrophyListItem = ({
 
   const [setTrophyIsChecked] = useSetTrophyIsCheckedMutation();
 
+  useEffect(() => {
+    setCheckBox(trophy.isChecked);
+  }, [trophy.isChecked]);
+
   const handleSetTrophyIsChecked = async (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -57,9 +61,6 @@ export const TrophyListItem = ({
     const trophyId = trophy.trophyId;
     const isChecked = event.currentTarget.checked;
 
-    console.log(trophy.isChecked);
-    console.log(trophyGroupId, trophyId, isChecked);
-    console.log(event.currentTarget.checked);
     setCheckBox(event.currentTarget.checked);
 
     try {
@@ -73,8 +74,6 @@ export const TrophyListItem = ({
         .unwrap()
         .then((data) => {
           console.log(data);
-
-          console.log(trophy.isChecked);
         });
     } catch (e) {
       console.error(e);
@@ -152,15 +151,7 @@ export const TrophyListItem = ({
               {getTrophyIconByType(trophy.trophyType, 18, 24)}
             </Box>
           ) : (
-            <>
-              <Typography sx={{ fontSize: 8 }}>
-                {`checked: ${trophy.isChecked}`}
-              </Typography>
-              <Checkbox
-                checked={checkBox}
-                onChange={handleSetTrophyIsChecked}
-              />
-            </>
+            <Checkbox checked={checkBox} onChange={handleSetTrophyIsChecked} />
           )}
         </Stack>
       </Box>
