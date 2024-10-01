@@ -1,11 +1,12 @@
 /** @jsxImportSource @emotion/react */
-import { LinearProgress, Stack, Typography } from "@mui/material";
+import { LinearProgress, Stack, Typography, useTheme } from "@mui/material";
 
 interface ICustomProgressBarProps {
   progress: number;
 }
 
 export const CustomProgressBar = ({ progress }: ICustomProgressBarProps) => {
+  const theme = useTheme();
   return (
     <Stack spacing={-1}>
       <Typography
@@ -15,6 +16,7 @@ export const CustomProgressBar = ({ progress }: ICustomProgressBarProps) => {
           width: "100px",
           height: "10px",
           textAlign: "center",
+          color: theme.palette.primary.contrastText,
         }}
       >
         {progress}%
@@ -35,7 +37,7 @@ export const CustomProgressBar = ({ progress }: ICustomProgressBarProps) => {
             backgroundColor: "#888",
           },
           "& .MuiLinearProgress-barColorPrimary": {
-            backgroundColor: "#1971e3",
+            backgroundColor: theme.palette.primary,
           },
         }}
         value={progress}

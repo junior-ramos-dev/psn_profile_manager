@@ -6,7 +6,7 @@ import { theme as green } from "./presets/green";
 import { theme as psnTheme } from "./presets/psnTheme";
 import { theme as red } from "./presets/red";
 
-// DeepPartial<Object> means that any key of that object, is not reauired.
+// DeepPartial<Object> means that any key of that object, is not required.
 // This works even when we have nested objects and we want all the keys to be optional.
 type DeepPartial<T> = {
   [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P];

@@ -16,6 +16,12 @@ export const theme: AppTheme = {
       success: {
         main: "#41bd46",
       },
+      info: palette.augmentColor({
+        color: {
+          main: "#99cbff",
+          contrastText: "#003257",
+        },
+      }),
       error: palette.augmentColor({
         color: {
           main: "#F2B8B5",
@@ -30,6 +36,12 @@ export const theme: AppTheme = {
         default: "#181818",
         paper: "#363636",
       },
+      containerPrimary: palette.augmentColor({
+        color: {
+          main: "#013868",
+          contrastText: "#ffffff",
+        },
+      }),
     },
   },
   light: {
@@ -44,6 +56,12 @@ export const theme: AppTheme = {
       success: {
         main: "#41bd46",
       },
+      info: palette.augmentColor({
+        color: {
+          main: "#0062a2",
+          contrastText: "#ffffff",
+        },
+      }),
       error: palette.augmentColor({
         color: {
           main: "#B3261E",

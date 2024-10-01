@@ -86,9 +86,16 @@ export const TrophyListItem = ({
         padding-left: ${nested ? 3 : 1};
         cursor: ${!trophyRoute.enabled ? "not-allowed" : "auto"};
         color: ${!trophyRoute.enabled ? theme.palette.text.secondary : "auto"};
-        background-color: ${checkBox ? "#282d23" : "#3a3a3a"};
+        background-color: ${checkBox
+          ? theme.palette.containerPrimary.main
+          : "auto"};
       `}
       onClick={() => handleMenuClick(trophyRoute)}
+      sx={{
+        "& .Mui-selected": {
+          backgroundColor: theme.palette.primary,
+        },
+      }}
     >
       <ListItemIcon>
         <IconButton
