@@ -62,6 +62,13 @@ export interface IEarnedGroupInfo {
   earnedTrophies: ITrophyCount;
 }
 
+export interface ITrophyTypeStats {
+  earnedTotal: number;
+  notEarnedTotal: number;
+  total: number;
+  trophyType: string;
+}
+
 export enum TROPHY_TYPE_NAME {
   BRONZE = "bronze",
   SILVER = "silver",

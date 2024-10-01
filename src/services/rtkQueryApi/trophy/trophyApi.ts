@@ -1,5 +1,9 @@
 import { ITrophyList } from "@/models/interfaces/trophy/ITrophy";
-import { SetTrophyCheckedRequest } from "@/models/types/rtkQuery/trophy";
+import {
+  GetEarnedTrophiesStatsRequest,
+  GetEarnedTrophiesStatsResponse,
+  SetTrophyCheckedRequest,
+} from "@/models/types/rtkQuery/trophy";
 import { VERBS } from "@/settings/app/constants";
 import {
   TROPHY_ENDPOINT_NAME,
@@ -47,9 +51,26 @@ export const trophyApi = rtkQueryBaseApi.injectEndpoints({
       }),
       invalidatesTags: ["Trophy"],
     }),
+    getEarnedTrophiesStats: build.mutation<
+      GetEarnedTrophiesStatsResponse,
+      GetEarnedTrophiesStatsRequest
+    >({
+      query: (data) => ({
+        endpointUrl:
+          TROPHY_URL_MAP[TROPHY_ENDPOINT_NAME.GET_EARNED_TROPHIES_STATS],
+        method: VERBS.POST,
+        bodyData: data,
+        collection: "UserGameTrophies",
+        endpointName: TROPHY_ENDPOINT_NAME.GET_EARNED_TROPHIES_STATS,
+      }),
+      invalidatesTags: ["Trophy"],
+    }),
   }),
   overrideExisting: false,
 });
 
-export const { useGetTrophyListQuery, useSetTrophyIsCheckedMutation } =
-  trophyApi;
+export const {
+  useGetTrophyListQuery,
+  useSetTrophyIsCheckedMutation,
+  useGetEarnedTrophiesStatsMutation,
+} = trophyApi;
