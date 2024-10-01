@@ -76,6 +76,12 @@ export const theme: AppTheme = {
         paper: "#d2d2d2",
         default: "#c3c3c3",
       },
+      containerPrimary: palette.augmentColor({
+        color: {
+          main: "#9EC8ED",
+          contrastText: "#240b8a",
+        },
+      }),
     },
   },
 };
