@@ -89,13 +89,10 @@ export const TrophyListItem = ({
         background-color: ${checkBox
           ? theme.palette.containerPrimary.main
           : "auto"};
+        transition-duration: 0.8s;
+        transition-property: background-color;
       `}
       onClick={() => handleMenuClick(trophyRoute)}
-      sx={{
-        "& .Mui-selected": {
-          backgroundColor: theme.palette.primary,
-        },
-      }}
     >
       <ListItemIcon>
         <IconButton
