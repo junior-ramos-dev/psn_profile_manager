@@ -12,8 +12,8 @@ interface IPsTrophyIconProps {
 
 // Level
 export const PsTrophyLevel = ({
-  width = 24,
-  height = 24,
+  width = 20,
+  height = 20,
 }: IPsTrophyIconProps) => (
   <img alt="Level" src={psTrophyLevel} width={width} height={height} />
 );

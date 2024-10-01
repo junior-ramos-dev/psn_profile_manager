@@ -27,29 +27,26 @@ export const UserProfileTrophies = ({
   return (
     <Stack
       direction="row"
-      spacing={0.5}
+      spacing={1}
       sx={{ mr: 1.8, mt: 0.5, justifyContent: "right", alignItems: "baseline" }}
     >
-      <Typography variant="subtitle2" sx={{ fontSize: 14 }}>
+      <Typography variant="subtitle2" sx={{ fontSize: 12 }}>
         <PsTrophyLevel />
         &nbsp;&nbsp;{level}
       </Typography>
-      &nbsp;{"]["}&nbsp;
+      &nbsp;&nbsp;&nbsp;
       <Typography variant="subtitle2" sx={{ fontSize: 12 }}>
         <PsTrophyPlatinum />
         &nbsp;&nbsp;{platinum}
       </Typography>
-      &nbsp;
       <Typography variant="subtitle2" sx={{ fontSize: 12 }}>
         <PsTrophyGold />
         &nbsp;&nbsp;{gold}
       </Typography>
-      &nbsp;
       <Typography variant="subtitle2" sx={{ fontSize: 12 }}>
         <PsTrophySilver />
         &nbsp;&nbsp;{silver}
       </Typography>
-      &nbsp;
       <Typography variant="subtitle2" sx={{ fontSize: 12 }}>
         <PsTrophyBronze />
         &nbsp;&nbsp;{bronze}

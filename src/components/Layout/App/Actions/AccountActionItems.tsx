@@ -10,6 +10,7 @@ import {
   Mail as MailIcon,
   Notifications as NotificationsIcon,
 } from "@mui/icons-material";
+import { Box, Divider, Stack } from "@mui/material";
 
 import { ActionItemIcon } from "./ItemType/ActionItemIcon";
 import { ActionItemImg } from "./ItemType/ActionItemImg";
@@ -36,16 +37,32 @@ export const ActionAccountUser = ({
     imageUrl = userProfile.avatarUrls[0]?.avatarUrl ?? "";
 
   return isLoggedIn ? (
-    <>
-      <UserProfileDetailHeader userProfile={userProfile} />
-      <ActionItemImg
-        title="Account"
-        imageUrl={imageUrl}
-        onClick={onClick}
-        disableTooltip={disableTooltip}
-        disableTitle={disableTitle}
-      />
-    </>
+    <Box
+      sx={{
+        height: "40px",
+        width: "500px",
+        border: "1px solid",
+        borderColor: "grey.500",
+        borderRadius: 5,
+      }}
+    >
+      <Stack
+        spacing={1}
+        direction="row"
+        justifyContent="end"
+        sx={{ alignItems: "flex-end" }}
+        divider={<Divider orientation="vertical" flexItem />}
+      >
+        <UserProfileDetailHeader userProfile={userProfile} />
+        <ActionItemImg
+          title="Account"
+          imageUrl={imageUrl}
+          onClick={onClick}
+          disableTooltip={disableTooltip}
+          disableTitle={disableTitle}
+        />
+      </Stack>
+    </Box>
   ) : (
     <>
       <LoginOrRegister />

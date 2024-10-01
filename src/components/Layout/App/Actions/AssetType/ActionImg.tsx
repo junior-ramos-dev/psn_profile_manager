@@ -16,9 +16,9 @@ export const ActionImg = ({ badgeContent, imageUrl }: ActionImgProps) => {
       badgeContent={badgeContent}
       color={theme.palette.mode === THEME_MODE.LIGHT ? "error" : "secondary"}
     >
-      <Image src={imageUrl} width={30} height={30} showLoading />
+      <Image src={imageUrl} width={26} height={26} showLoading />
     </Badge>
   ) : (
-    <Image src={imageUrl} width={30} height={30} showLoading />
+    <Image src={imageUrl} width={26} height={26} showLoading />
   );
 };

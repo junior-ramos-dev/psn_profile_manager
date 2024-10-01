@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import IUserProfile from "@/models/interfaces/user/IUserProfile";
-import { Stack } from "@mui/material";
+import { Divider, Stack } from "@mui/material";
 
 import { UserProfileIdAndName } from "./UserProfileIdAndName";
 import { UserProfileTrophies } from "./UserProfileTrophies";
@@ -20,13 +20,14 @@ export const UserProfileDetailHeader = ({
   return (
     <Stack
       direction="row"
-      spacing={0.5}
+      spacing={1}
       sx={{
         mt: 0.5,
         ml: 1,
         justifyContent: "right",
         alignItems: "baseline",
       }}
+      divider={<Divider orientation="vertical" flexItem />}
     >
       <UserProfileTrophies
         level={level}
@@ -35,13 +36,11 @@ export const UserProfileDetailHeader = ({
         silver={earnedTrophies.silver}
         bronze={earnedTrophies.bronze}
       />
-      &nbsp;{"]["}&nbsp;
       <UserProfileIdAndName
         onlineId={userProfile.onlineId}
         // firstName={userProfile.personalDetail.firstName}
         // lastName={userProfile.personalDetail.lastName}
       />
-      &nbsp;{"]["}&nbsp;
     </Stack>
   );
 };
