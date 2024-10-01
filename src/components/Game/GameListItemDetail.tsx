@@ -55,27 +55,27 @@ const GameListItemDetailStats = ({ game }: IGameListItemDetailProps) => {
           <TrophyItem>
             <Typography variant="body2" sx={{ fontSize: 12 }}>
               <PsTrophyPlatinum />
-              &nbsp;{game.earnedTrophies.platinum}
+              &nbsp;{game.definedTrophies.platinum}
             </Typography>
           </TrophyItem>
 
           <TrophyItem>
             <Typography variant="body2" sx={{ fontSize: 12 }}>
               <PsTrophyGold />
-              &nbsp;{game.earnedTrophies.gold}
+              &nbsp;{game.definedTrophies.gold}
             </Typography>
           </TrophyItem>
 
           <TrophyItem>
             <Typography variant="body2" sx={{ fontSize: 12 }}>
               <PsTrophySilver />
-              &nbsp;{game.earnedTrophies.silver}
+              &nbsp;{game.definedTrophies.silver}
             </Typography>
           </TrophyItem>
           <TrophyItem>
             <Typography variant="body2" sx={{ fontSize: 12 }}>
               <PsTrophyBronze />
-              &nbsp;{game.earnedTrophies.bronze}
+              &nbsp;{game.definedTrophies.bronze}
             </Typography>
           </TrophyItem>
         </Box>
@@ -92,7 +92,7 @@ export const GameListItemDetail = ({
     <ListItem
       key={`${game.npCommunicationId}-01`}
       sx={{
-        height: 50,
+        height: 45,
         alignItems: "center",
         justifyContent: "start",
         mt: 1,

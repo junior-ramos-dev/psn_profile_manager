@@ -6,15 +6,15 @@ export const PointsItem = (props: BoxProps) => {
     <Box
       sx={[
         (/*theme*/) => ({
-          border: "1px solid",
-          borderColor: "grey.500",
           p: 1,
           m: 1,
-          borderRadius: 2,
           alignItems: "center",
           justifyContent: "center",
           height: "40px",
           width: "135px",
+          border: "1px solid",
+          borderColor: "grey.500",
+          borderRadius: 2,
           // bgcolor: "#fff",
           // color: "grey.800",
           // fontSize: "0.875rem",
@@ -38,15 +38,15 @@ export const ProgressItem = (props: BoxProps) => {
     <Box
       sx={[
         (/*theme*/) => ({
-          border: "1px solid",
-          borderColor: "grey.500",
           p: 1,
           m: 1,
-          borderRadius: 2,
           alignItems: "center",
           justifyContent: "center",
           height: "40px",
           width: "120px",
+          border: "1px solid",
+          borderColor: "grey.500",
+          borderRadius: 2,
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
@@ -61,15 +61,15 @@ export const TrophyItem = (props: BoxProps) => {
     <Box
       sx={[
         (/*theme*/) => ({
-          border: "1px solid",
-          borderColor: "grey.500",
           p: 1,
           m: 1,
-          borderRadius: 2,
           alignItems: "center",
           justifyContent: "center",
           height: "40px",
           width: "50px",
+          border: "1px solid",
+          borderColor: "grey.500",
+          borderRadius: 2,
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}

@@ -20,32 +20,32 @@ export const PsTrophyLevel = ({
 
 // Platinum
 export const PsTrophyPlatinum = ({
-  width = 12,
-  height = 18,
+  width = 10,
+  height = 16,
 }: IPsTrophyIconProps) => (
   <img alt="Platinum" src={psTrophyPlat} width={width} height={height + 2} />
 );
 
 // Gold
 export const PsTrophyGold = ({
-  width = 12,
-  height = 18,
+  width = 10,
+  height = 16,
 }: IPsTrophyIconProps) => (
   <img alt="Gold" src={psTrophyGold} width={width} height={height} />
 );
 
 // Silver
 export const PsTrophySilver = ({
-  width = 12,
-  height = 18,
+  width = 10,
+  height = 16,
 }: IPsTrophyIconProps) => (
   <img alt="Silver" src={psTrophySilver} width={width} height={height} />
 );
 
 // Bronze
 export const PsTrophyBronze = ({
-  width = 12,
-  height = 18,
+  width = 10,
+  height = 16,
 }: IPsTrophyIconProps) => (
   <img alt="Bronze" src={psTrophyBronze} width={width} height={height} />
 );

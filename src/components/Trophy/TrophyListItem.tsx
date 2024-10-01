@@ -10,6 +10,7 @@ import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import {
   Box,
   Checkbox,
+  Divider,
   IconButton,
   lighten,
   ListItem,
@@ -134,14 +135,19 @@ export const TrophyListItem = ({
         key={`${trophy.trophyName}-02`}
         sx={{ height: 10, alignItems: "baseline", ml: 1, mb: 2 }}
       >
-        <Stack direction="row" spacing={0.1}>
-          <Typography variant="body2" sx={{ fontSize: 12 }}>
-            Rarity: {trophy.rarity}
-          </Typography>
-          &nbsp;
-          <Typography variant="body2" sx={{ fontSize: 12 }}>
-            Earned Rate: {trophy.trophyEarnedRate}
-          </Typography>
+        <Stack
+          direction="row"
+          spacing={1}
+          divider={<Divider orientation="vertical" flexItem />}
+        >
+          <Stack sx={{ alignItems: "flex-end" }}>
+            <Typography variant="subtitle2" sx={{ fontSize: 12 }}>
+              {trophy.rarity}
+            </Typography>
+            <Typography variant="subtitle2" sx={{ fontSize: 12 }}>
+              {trophy.trophyEarnedRate}%
+            </Typography>
+          </Stack>
           {trophy.isEarned ? (
             <Box
               key={`${trophy.trophyName}-00`}
