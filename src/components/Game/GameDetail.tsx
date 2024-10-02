@@ -13,7 +13,7 @@ import {
 } from "@/settings/app/constants";
 import { Box, Divider } from "@mui/material";
 
-import { Loading } from "../Loading";
+import { Loading } from "../Common/Loading";
 import { TrophyGroupList } from "../Trophy/TrophyGroupList";
 
 import { GameListItemDetail } from "./GameListItemDetail";

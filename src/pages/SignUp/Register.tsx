@@ -3,7 +3,7 @@ import { useState } from "react";
 import { AxiosError } from "axios";
 import { Link } from "react-router-dom";
 
-import { Loading } from "@/components/Loading";
+import { Loading } from "@/components/Common/Loading";
 import { useAppDispatch } from "@/hooks/redux";
 import { useRegisterMutation } from "@/services/rtkQueryApi/auth/authApi";
 import { actionSetCredentials } from "@/services/rtkQueryApi/auth/authSlice";
