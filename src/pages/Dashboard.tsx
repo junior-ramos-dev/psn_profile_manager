@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet-async";
 import { TrophyStackBar } from "@/components/Chart/Trophy/TrophyStackBar";
 import { PageContentWrapper } from "@/components/Common/PageContentWrapper";
 import { RingMessageLoading } from "@/components/Common/RingMessageLoading";
-import { DashboardPageHeader } from "@/components/Dashboard/DashBoardPageHeader";
+import { DashboardPageHeader } from "@/components/Dashboard/DashboardPageHeader";
 import { useGetEarnedTrophiesStatsMutation } from "@/services/rtkQueryApi/trophy/trophyApi";
 import { APP_TITLE, PAGE_TITLE_DASHBOARD } from "@/settings/app/constants";
 import { Box, Button } from "@mui/material";
