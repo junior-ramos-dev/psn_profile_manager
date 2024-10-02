@@ -1,5 +1,3 @@
-import { ITrophyTypeStats } from "@/models/interfaces/trophy/ITrophy";
-
 export type SetTrophyCheckedRequest = {
   urlParams: {
     npCommunicationId: string;
@@ -15,8 +13,4 @@ export type SetTrophyCheckedRequest = {
 export type GetEarnedTrophiesStatsRequest = {
   startDate: string;
   endDate: string;
-};
-
-export type GetEarnedTrophiesStatsResponse = {
-  trophyTypeStats: ITrophyTypeStats[];
 };

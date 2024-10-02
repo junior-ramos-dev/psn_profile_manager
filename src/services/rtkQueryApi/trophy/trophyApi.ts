@@ -1,7 +1,9 @@
-import { ITrophyList } from "@/models/interfaces/trophy/ITrophy";
+import {
+  ITrophyList,
+  ITrophyTypeStats,
+} from "@/models/interfaces/trophy/ITrophy";
 import {
   GetEarnedTrophiesStatsRequest,
-  GetEarnedTrophiesStatsResponse,
   SetTrophyCheckedRequest,
 } from "@/models/types/rtkQuery/trophy";
 import { VERBS } from "@/settings/app/constants";
@@ -52,7 +54,7 @@ export const trophyApi = rtkQueryBaseApi.injectEndpoints({
       invalidatesTags: ["Trophy"],
     }),
     getEarnedTrophiesStats: build.mutation<
-      GetEarnedTrophiesStatsResponse,
+      ITrophyTypeStats[],
       GetEarnedTrophiesStatsRequest
     >({
       query: (data) => ({
