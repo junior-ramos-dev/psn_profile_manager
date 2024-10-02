@@ -14,6 +14,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Divider,
   Typography,
 } from "@mui/material";
 
@@ -107,20 +108,21 @@ const Settings = () => {
         <SettingsPageHeader pageTitle={PAGE_TITLE_SETTINGS} />
       </Box>
       <PageContentWrapper>
-        <Box sx={{ p: 3 }}>
+        <Box sx={{ p: 2 }}>
           <Typography>
             Insert or Update the list of trophies for all games
           </Typography>
 
           <Button
             variant="contained"
-            sx={{ mt: 1, mb: 2 }}
+            sx={{ mt: 1, mb: 1 }}
             onClick={handleClickOpen}
             disabled={isLoading}
           >
             Start
           </Button>
         </Box>
+        <Divider />
         <ScrollDialog
           open={open}
           handleClose={handleClose}

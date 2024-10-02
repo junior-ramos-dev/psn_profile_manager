@@ -2,8 +2,15 @@ import { RingLoader } from "react-spinners";
 
 import { Box, Stack, Typography, useTheme } from "@mui/material";
 
-export const RingMessageLoading = () => {
+interface IRingMessageLoadingProps {
+  message?: string;
+}
+
+export const RingMessageLoading = ({ message }: IRingMessageLoadingProps) => {
   const theme = useTheme();
+
+  const displayMessage: string = message ?? "Data will be available soon...";
+
   return (
     <Box
       sx={{
@@ -16,8 +23,12 @@ export const RingMessageLoading = () => {
     >
       <Stack spacing={2} alignItems="center" justifyContent="center">
         <RingLoader color={theme.palette.primary.main} />
-        <Typography variant="subtitle2">
-          Data will be available soon...
+        <Typography
+          variant="subtitle2"
+          style={{ wordWrap: "break-word" }}
+          display="block"
+        >
+          {displayMessage}
         </Typography>
       </Stack>
     </Box>
