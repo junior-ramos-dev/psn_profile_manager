@@ -69,6 +69,19 @@ export interface ITrophyTypeStats {
   trophyType: string;
 }
 
+export interface ITrophyListBulk {
+  name: string;
+  message: string;
+  data: BulkData;
+  isError: boolean;
+}
+
+interface BulkData {
+  totalGames: number;
+  totalInsertDb: number;
+  gamesTrohiesList: string[];
+}
+
 export enum TROPHY_TYPE_NAME {
   BRONZE = "bronze",
   SILVER = "silver",

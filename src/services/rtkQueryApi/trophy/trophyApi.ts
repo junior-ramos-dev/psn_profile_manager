@@ -1,5 +1,6 @@
 import {
   ITrophyList,
+  ITrophyListBulk,
   ITrophyTypeStats,
 } from "@/models/interfaces/trophy/ITrophy";
 import {
@@ -42,6 +43,15 @@ export const trophyApi = rtkQueryBaseApi.injectEndpoints({
       },
       providesTags: ["Trophy"],
     }),
+    getTrophyListBulk: build.query<ITrophyListBulk, GetTrophyListRequest>({
+      query: () => ({
+        endpointUrl: TROPHY_URL_MAP[TROPHY_ENDPOINT_NAME.GET_TROPHY_LIST_BULK],
+        method: VERBS.LIST,
+        collection: "UserGameTrophies",
+        endpointName: TROPHY_ENDPOINT_NAME.GET_TROPHY_LIST_BULK,
+      }),
+      providesTags: ["Trophy"],
+    }),
     setTrophyIsChecked: build.mutation<void, SetTrophyCheckedRequest>({
       query: (data) => ({
         endpointUrl: TROPHY_URL_MAP[TROPHY_ENDPOINT_NAME.SET_TROPHY_IS_CHECKED],
@@ -75,4 +85,5 @@ export const {
   useGetTrophyListQuery,
   useSetTrophyIsCheckedMutation,
   useGetEarnedTrophiesStatsMutation,
+  useGetTrophyListBulkQuery,
 } = trophyApi;
