@@ -43,7 +43,7 @@ export const trophyApi = rtkQueryBaseApi.injectEndpoints({
       },
       providesTags: ["Trophy"],
     }),
-    getTrophyListBulk: build.query<ITrophyListBulk, GetTrophyListRequest>({
+    getTrophyListBulk: build.query<ITrophyListBulk, void>({
       query: () => ({
         endpointUrl: TROPHY_URL_MAP[TROPHY_ENDPOINT_NAME.GET_TROPHY_LIST_BULK],
         method: VERBS.LIST,
