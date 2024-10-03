@@ -7,10 +7,7 @@ import { RingMessageLoading } from "@/components/Common/RingMessageLoading";
 import { SettingsPageHeader } from "@/components/Settings/SettingsPageHeader";
 import { useAppDispatch } from "@/hooks/redux";
 import { ITrophyListBulk } from "@/models/interfaces/trophy/ITrophy";
-import {
-  trophyApi,
-  useGetTrophyListBulkQuery,
-} from "@/services/rtkQueryApi/trophy/trophyApi";
+import { trophyApi } from "@/services/rtkQueryApi/trophy/trophyApi";
 import { APP_TITLE, PAGE_TITLE_SETTINGS } from "@/settings/app/constants";
 import {
   Box,
