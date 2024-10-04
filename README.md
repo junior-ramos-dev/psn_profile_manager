@@ -2,7 +2,7 @@
 
 **Name**: PSN Profile Manager
 
-This is a frontend app that uses React and the specified technologies to consume [PSN API Server](https://github.com/junior-ramos-dev/psn_api_server) endpoints. This app will allow users to view their PlayStation profiles, track gaming statistics, and manage friend connections, all within a modern and responsive interface.
+This is a frontend app that uses React and the specified technologies to consume [**PSN API Server**](https://github.com/junior-ramos-dev/psn_api_server) endpoints. This app will allow users to view their PlayStation profiles, track gaming statistics, and manage friend connections, all within a modern and responsive interface.
 
 By utilizing technologies such as React, Redux Toolkit, Material-UI, and Axios, this app provides a smooth user experience, allowing users to view their gaming profiles, friends, and statistics effectively. The architecture allows for easy scalability and maintenance, making it an excellent choice for gamers looking to enhance their social experience in the PlayStation ecosystem.
 
@@ -48,9 +48,21 @@ By utilizing technologies such as React, Redux Toolkit, Material-UI, and Axios, 
    - **MongoDB**: Stores user profiles, linked PSN accounts, and other necessary data.
    - **PSN API Integration**: Connects to the PSN API to fetch user gaming data.
 
+### Retrieve your NPSSO token​
+
+1. In your web browser, visit the PlayStation homepage, click the "Sign In" button, and log in with a PSN account.
+
+2. In the same browser that you used to log in (due to a persisted cookie), visit this page. You will see a JSON response that looks something like:
+
+    ```{ "npsso": "<64 character token>" }```
+
+If you see an error response, try using a different browser.
+
 ### Install and run the app with the following commands
 
 - Make sure you have set up the **.env** file. See the **.env_example** file to check the required variables.
+
+
 
 ```bash
 npm install
