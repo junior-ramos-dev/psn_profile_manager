@@ -1,16 +1,16 @@
 /** @jsxImportSource @emotion/react */
 
-import { ActionAccountPreferences } from "@/components/Layout/App/Actions/AccountActionItems";
+import { useAppSelector } from "@/hooks/redux";
+import { selectIsLoggedIn } from "@/services/rtkQueryApi/auth/authSelectors";
+import { selectUserProfile } from "@/services/rtkQueryApi/user/userProfileSelectors";
+import { ActionAccountPreferences } from "@/ui/components/Layout/App/Actions/AccountActionItems";
 import {
   ActionAppChangeThemeColor,
   ActionAppSettings,
   ActionAppToggleThemeMode,
-} from "@/components/Layout/App/Actions/AppActionItems";
-import { ActionLogout } from "@/components/Layout/App/Actions/AuthActionItems";
-import { UserProfileIdAndName } from "@/components/User/UserProfileIdAndName";
-import { useAppSelector } from "@/hooks/redux";
-import { selectIsLoggedIn } from "@/services/rtkQueryApi/auth/authSelectors";
-import { selectUserProfile } from "@/services/rtkQueryApi/user/userProfileSelectors";
+} from "@/ui/components/Layout/App/Actions/AppActionItems";
+import { ActionLogout } from "@/ui/components/Layout/App/Actions/AuthActionItems";
+import { UserProfileIdAndName } from "@/ui/components/User/UserProfileIdAndName";
 import { Box, Divider, Menu, MenuItem } from "@mui/material";
 
 interface AccountDefaultMenuProps {

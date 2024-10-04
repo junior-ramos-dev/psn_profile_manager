@@ -2,9 +2,9 @@
 import { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
-import { Footer } from "@/components/Layout/App/Footer";
 import { setAxiosInterceptorResponse } from "@/services/axios/axiosApiConfig";
 import { FOOTER_HEIGHT } from "@/settings/app/constants";
+import { Footer } from "@/ui/components/Layout/App/Footer";
 import { Box, styled } from "@mui/material";
 
 import { HeaderIndex } from "./Header/HeaderIndex";

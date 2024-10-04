@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { ApiResponseError } from "@/components/Error/ApiResponseError";
-import { NetworkError } from "@/components/Error/NetworkError";
+import { ApiResponseError } from "@/ui/components/Error/ApiResponseError";
+import { NetworkError } from "@/ui/components/Error/NetworkError";
 import { Box, Button, Typography } from "@mui/material";
 
 const AxiosError = () => {

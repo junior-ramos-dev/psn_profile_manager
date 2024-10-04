@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
-import { LoginOrRegister } from "@/components/LoginOrRegister";
-import { UserProfileDetailHeader } from "@/components/User/UserProfileDetailHeader";
 import { useAppSelector } from "@/hooks/redux";
 import { selectIsLoggedIn } from "@/services/rtkQueryApi/auth/authSelectors";
 import { selectUserProfile } from "@/services/rtkQueryApi/user/userProfileSelectors";
+import { LoginOrRegister } from "@/ui/components/LoginOrRegister";
+import { UserProfileDetailHeader } from "@/ui/components/User/UserProfileDetailHeader";
 import {
   AccountCircle as AccountIcon,
   List as PreferencesIcon,

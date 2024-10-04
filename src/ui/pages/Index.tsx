@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { useLocation } from "react-router-dom";
 
-import { PageTitle } from "@/components/DefaultPage";
+import { PageTitle } from "@/ui/components/DefaultPage";
 import { Box, Typography } from "@mui/material";
 
 const Index = () => {

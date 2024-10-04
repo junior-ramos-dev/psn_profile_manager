@@ -3,12 +3,12 @@ import { Suspense, useEffect, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import { Helmet } from "react-helmet-async";
 
-import { TrophyStackBar } from "@/components/Chart/Trophy/TrophyStackBar";
-import { PageContentWrapper } from "@/components/Common/PageContentWrapper";
-import { RingMessageLoading } from "@/components/Common/RingMessageLoading";
-import { DashboardPageHeader } from "@/components/Dashboard/DashboardPageHeader";
 import { useGetEarnedTrophiesStatsMutation } from "@/services/rtkQueryApi/trophy/trophyApi";
 import { APP_TITLE, PAGE_TITLE_DASHBOARD } from "@/settings/app/constants";
+import { TrophyStackBar } from "@/ui/components/Chart/Trophy/TrophyStackBar";
+import { PageContentWrapper } from "@/ui/components/Common/PageContentWrapper";
+import { RingMessageLoading } from "@/ui/components/Common/RingMessageLoading";
+import { DashboardPageHeader } from "@/ui/components/Dashboard/DashboardPageHeader";
 import { Box, Button } from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";

@@ -2,10 +2,10 @@
 import { Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 
-import { PageContentWrapper } from "@/components/Common/PageContentWrapper";
-import { GameList } from "@/components/Game";
-import { GamePageHeader } from "@/components/Game/GamePageHeader";
 import { APP_TITLE, PAGE_TITLE_GAMES } from "@/settings/app/constants";
+import { PageContentWrapper } from "@/ui/components/Common/PageContentWrapper";
+import { GameList } from "@/ui/components/Game";
+import { GamePageHeader } from "@/ui/components/Game/GamePageHeader";
 import { Box } from "@mui/material";
 
 const Games = () => {

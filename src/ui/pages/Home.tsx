@@ -2,8 +2,6 @@
 import { Helmet } from "react-helmet-async";
 import { Outlet } from "react-router-dom";
 
-import { PageHeader } from "@/components/DefaultPage/PageHeader";
-import { UserProfile } from "@/components/User/UserProfile";
 import { useAppSelector } from "@/hooks/redux";
 import { selectUserProfile } from "@/services/rtkQueryApi/user/userProfileSelectors";
 import {
@@ -11,6 +9,8 @@ import {
   FOOTER_HEIGHT,
   PAGE_TITLE_HOME,
 } from "@/settings/app/constants";
+import { PageHeader } from "@/ui/components/DefaultPage/PageHeader";
+import { UserProfile } from "@/ui/components/User/UserProfile";
 import { Box } from "@mui/material";
 
 const Home = () => {

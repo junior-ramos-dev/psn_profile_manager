@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 import _ from "lodash";
 import { useSelector } from "react-redux";
 
-import { Loading } from "@/components/Common/Loading";
 import { IGameRoute } from "@/models/interfaces";
 import { IGameIcon } from "@/models/interfaces/games/IGameIcon";
 import { useGetGamesIconBinListMutation } from "@/services/rtkQueryApi/game/gameApi";
 import { selectGamesRoutes } from "@/services/rtkQueryApi/game/gameSelectors";
 import { IMG_TYPE } from "@/settings/app/constants";
+import { Loading } from "@/ui/components/Common/Loading";
 import { Divider, List } from "@mui/material";
 
 import { GameListItem } from "./GameListItem";

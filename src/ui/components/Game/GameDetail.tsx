@@ -2,7 +2,6 @@
 import { Helmet } from "react-helmet-async";
 import { useSelector } from "react-redux";
 
-import { PageHeader } from "@/components/DefaultPage/PageHeader";
 import { IGame } from "@/models/interfaces";
 import { useGetGameDetailsQuery } from "@/services/rtkQueryApi/game/gameApi";
 import { selectGameById } from "@/services/rtkQueryApi/game/gameSelectors";
@@ -11,6 +10,7 @@ import {
   IMG_TYPE,
   PAGE_TITLE_GAMES,
 } from "@/settings/app/constants";
+import { PageHeader } from "@/ui/components/DefaultPage/PageHeader";
 import { Box, Divider } from "@mui/material";
 
 import { Loading } from "../Common/Loading";

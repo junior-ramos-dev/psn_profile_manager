@@ -4,8 +4,8 @@ import { useState } from "react";
 import {
   AccountDefaultMenu,
   AccountMobileMenu,
-} from "@/components/Layout/App/Header/Menu/Account";
-import { PsMenuIconButton } from "@/components/Playstation/PSIconButtons";
+} from "@/ui/components/Layout/App/Header/Menu/Account";
+import { PsMenuIconButton } from "@/ui/components/Playstation/PSIconButtons";
 import { AppBar, Box, Toolbar } from "@mui/material";
 
 import { Title } from "./Title";

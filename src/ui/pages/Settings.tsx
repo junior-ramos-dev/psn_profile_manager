@@ -2,13 +2,13 @@
 import { MutableRefObject, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 
-import { PageContentWrapper } from "@/components/Common/PageContentWrapper";
-import { RingMessageLoading } from "@/components/Common/RingMessageLoading";
-import { SettingsPageHeader } from "@/components/Settings/SettingsPageHeader";
 import { useAppDispatch } from "@/hooks/redux";
 import { ITrophyListBulk } from "@/models/interfaces/trophy/ITrophy";
 import { trophyApi } from "@/services/rtkQueryApi/trophy/trophyApi";
 import { APP_TITLE, PAGE_TITLE_SETTINGS } from "@/settings/app/constants";
+import { PageContentWrapper } from "@/ui/components/Common/PageContentWrapper";
+import { RingMessageLoading } from "@/ui/components/Common/RingMessageLoading";
+import { SettingsPageHeader } from "@/ui/components/Settings/SettingsPageHeader";
 import {
   Box,
   Button,
