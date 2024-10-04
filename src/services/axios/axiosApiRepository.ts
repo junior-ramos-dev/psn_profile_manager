@@ -20,9 +20,9 @@ const AXIOS_BASE_URL = axiosInstance.defaults.baseURL;
  *
  * @param endpointUrl
  * @param urlParams
- * @returns
+ * @returns string
  */
-const buildUrlWithParams = (endpointUrl: string, urlParams: object) => {
+const buildUrlWithParams = (endpointUrl: string, urlParams: object): string => {
   const keys = Object.keys(urlParams);
 
   keys.forEach((key) => {

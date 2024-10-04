@@ -22,7 +22,7 @@ const useSidebarRoutes = () => {
  * Create game RouteObject from IAppRoute
  *
  * @param route
- * @returns
+ * @returns RouteObject
  */
 const createSideBarRouteObject = (route: IAppRoute): RouteObject => {
   const sidebarRouteObject: RouteObject = {

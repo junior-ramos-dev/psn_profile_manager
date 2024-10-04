@@ -14,7 +14,7 @@ import { TrophyListItem } from "./TrophyListItem";
  * Generate ITrophyRoute list objects from ITrophy list
  *
  * @param trophies
- * @returns
+ * @returns ITrophyGroupRoute[]
  */
 const createITrophyGroupRoutesList = (
   npCommunicationId: string,

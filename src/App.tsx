@@ -18,7 +18,7 @@ import { GameDetail } from "@/ui/components/Game";
  * Create game RouteObject from IGameRoute
  *
  * @param gameRoute
- * @returns
+ * @returns RouteObject
  */
 const createGameRouteObject = (gameRoute: IGameRoute): RouteObject => {
   const gameRouteObject: RouteObject = {
@@ -34,7 +34,7 @@ const createGameRouteObject = (gameRoute: IGameRoute): RouteObject => {
  * Generate RouteObject list from IGameRoute list
  *
  * @param gamesRoutesList
- * @returns
+ * @returns RouteObject[]
  */
 const generateGamesRouteObjectList = (
   gamesRoutesList: IGameRoute[]

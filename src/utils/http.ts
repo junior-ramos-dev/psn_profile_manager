@@ -16,7 +16,7 @@ export const getEnpointHeaderKey = (
  * @param endpointName
  * @param headerKey
  * @param value
- * @returns
+ * @returns void
  */
 export const setEnpointHeader = (
   endpointName: string,
@@ -30,7 +30,7 @@ export const setEnpointHeader = (
  *
  * @param endpointName
  * @param headerKey
- * @returns
+ * @returns string | null
  */
 export const getEnpointHeader = (
   endpointName: string,
@@ -42,7 +42,7 @@ export const getEnpointHeader = (
  *
  * @param endpointName
  * @param headerKey
- * @returns
+ * @returns void
  */
 export const clearEnpointHeader = (
   endpointName: string,
@@ -55,7 +55,7 @@ export const clearEnpointHeader = (
  *
  * @param endpointName
  * @param headerKey
- * @returns
+ * @returns void
  */
 export const removeEnpointHeaderKey = (
   endpointName: string,

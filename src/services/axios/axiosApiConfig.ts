@@ -82,7 +82,7 @@ export const interceptAxiosAuthRequests = (
  *
  * @param req
  * @param endpointHeaders
- * @returns
+ * @returns InternalAxiosRequestConfig<object>
  */
 export const handleAxiosRequestHeaders = (
   req: InternalAxiosRequestConfig<object>,
@@ -117,7 +117,7 @@ export const setAxiosInterceptorResponse = (navigate) => {
  *
  * @param response
  * @param endpointHeaders
- * @returns
+ * @returns any
  */
 export const handleAxiosResponseData = (
   response: AxiosResponse,
@@ -136,7 +136,7 @@ export const handleAxiosResponseData = (
  *
  * @param axiosError
  * @param navigate
- * @returns
+ * @returns void
  */
 export const handleAxiosResponseError = (axiosError, navigate) => {
   let status;

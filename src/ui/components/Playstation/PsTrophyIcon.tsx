@@ -56,7 +56,7 @@ export const PsTrophyBronze = ({
  * @param trophyType
  * @param width
  * @param height
- * @returns
+ * @returns JSX.Element
  */
 export const getTrophyIconByType = (
   trophyType: string,

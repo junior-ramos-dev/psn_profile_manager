@@ -78,7 +78,7 @@ export const PsVitaPlatformIcon = ({
  * @param trophyType
  * @param width
  * @param height
- * @returns
+ * @returns JSX.Element
  */
 export const getPsIconByPlatfrom = (
   platfrom: string,
