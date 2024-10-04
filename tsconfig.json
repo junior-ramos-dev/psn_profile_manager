@@ -10,14 +10,14 @@
         //App Modules Aliases
         "@/*": ["./src/*"],
         "@assets/*": ["./assets/*"],
-        "@components/*": ["./components/*"],
         "@hooks/*": ["./hooks/*"],
         "@models/*": ["./models/*"],
-        "@pages/*": ["./pages/*"],
         "@services/*": ["./services/*"],
         "@settings/*": ["./settings/*"],
         "@styles/*": ["./styles/*"],
+        "@ui/*": ["./ui/*"],
         "@utils/*": ["./utils/*"],
+
       },
       "allowJs": true,
       "skipLibCheck": true,
