@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const useOverFlowHidden = () => {
+export const useOverFlowHidden = () => {
   useEffect(() => {
     document.body.style.overflow = "hidden";
 
@@ -9,5 +9,3 @@ const useOverFlowHidden = () => {
     };
   }, []);
 };
-
-export default useOverFlowHidden;

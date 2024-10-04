@@ -1,12 +1,12 @@
 import { RouteObject } from "react-router-dom";
 
 import { IAppRoute } from "@/models/interfaces";
-import Dashboard from "@/pages/Dashboard";
-import Games from "@/pages/Games";
-import Home from "@/pages/Home";
-import Index from "@/pages/Index";
 import { GamesLoader } from "@/services/routesLoaders/games/gamesLoaders";
 import { store } from "@/store";
+import Dashboard from "@/ui/pages/Dashboard";
+import Games from "@/ui/pages/Games";
+import Home from "@/ui/pages/Home";
+import Index from "@/ui/pages/Index";
 import DashboardIcon from "@material-ui/icons/BarChartOutlined";
 import HomeIcon from "@material-ui/icons/Home";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";

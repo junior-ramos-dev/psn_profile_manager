@@ -1,14 +1,13 @@
 import { createBrowserRouter, RouteObject } from "react-router-dom";
 
-import { LayoutIndex } from "@/components/Layout/App/LayoutIndex";
-import { PrivateRoute, PublicRoute } from "@/components/Layout/App/Routes";
-import AxiosError from "@/pages/Error/AxiosError";
-import RouteError from "@/pages/Error/RouteError";
-import Index from "@/pages/Index";
-import Login from "@/pages/SignUp/Login";
-
-import Settings from "./pages/Settings";
-import RegisterLoader from "./pages/SignUp/RegisterLoader";
+import { LayoutIndex } from "@/ui/components/Layout/App/LayoutIndex";
+import { PrivateRoute, PublicRoute } from "@/ui/components/Layout/App/Routes";
+import AxiosError from "@/ui/pages/Error/AxiosError";
+import RouteError from "@/ui/pages/Error/RouteError";
+import Index from "@/ui/pages/Index";
+import Settings from "@/ui/pages/Settings";
+import Login from "@/ui/pages/SignUp/Login";
+import RegisterLoader from "@/ui/pages/SignUp/RegisterLoader";
 
 export const enum ROUTE_ID {
   ROOT = "root",

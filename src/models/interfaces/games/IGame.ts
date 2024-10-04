@@ -2,23 +2,73 @@ import { StringUtils } from "@/utils/strings";
 
 import { ITrophyCount, ITrophyGroupsInfo } from "../trophy/ITrophy";
 
-// IGame is an interface for defining the game object returned from the API with additional properties to generate the routes for games.
+/**
+ * IGame is an interface for defining the game object returned from the API with additional properties to generate the routes for games.
+ */
 interface IGame {
+  /**
+   *
+   */
   npServiceName: string;
+  /**
+   *
+   */
   npCommunicationId: string;
+  /**
+   *
+   */
   trophySetVersion: string;
+  /**
+   *
+   */
   trophyTitleName: string;
+  /**
+   *
+   */
   trophyTitleDetail: string;
+  /**
+   *
+   */
   trophyTitleIconUrl: string;
+  /**
+   *
+   */
   trophyTitlePlatform: string;
+  /**
+   *
+   */
   hasTrophyGroups: boolean;
+  /**
+   *
+   */
   trophyGroupCount: number;
+  /**
+   *
+   */
   definedTrophies: ITrophyCount;
+  /**
+   *
+   */
   progress: number;
+  /**
+   *
+   */
   earnedTrophies: ITrophyCount;
+  /**
+   *
+   */
   hiddenFlag: boolean;
+  /**
+   *
+   */
   lastUpdatedDateTime: Date | string | number;
+  /**
+   *
+   */
   definedTrophiesPoints: number;
+  /**
+   *
+   */
   earnedTrophiesPoints: number;
 }
 
