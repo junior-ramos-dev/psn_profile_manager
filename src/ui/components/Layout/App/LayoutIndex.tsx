@@ -1,10 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { useEffect, useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { useNavigate, useOutlet } from "react-router-dom";
 
 import { setAxiosInterceptorResponse } from "@/services/axios/axiosApiConfig";
 import { FOOTER_HEIGHT } from "@/settings/app/constants";
 import { Footer } from "@/ui/components/Layout/App/Footer";
+import Index from "@/ui/pages/Index";
 import { Box, styled } from "@mui/material";
 
 import { HeaderIndex } from "./Header/HeaderIndex";
@@ -20,6 +21,7 @@ const LayoutChildrenWrapper = styled("div")(() => ({
 }));
 
 export const LayoutIndex = () => {
+  const outlet = useOutlet();
   const [open, setOpen] = useState(false);
   const toggleNavigation = () => setOpen((status) => !status);
 
@@ -45,7 +47,7 @@ export const LayoutIndex = () => {
               zIndex: (theme) => theme.zIndex.drawer - 2,
             }}
           >
-            <Outlet />
+            {outlet || <Index />}
           </Box>
         </LayoutChildrenWrapper>
       </LayoutWrapper>
