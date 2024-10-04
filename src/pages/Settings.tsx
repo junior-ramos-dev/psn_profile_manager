@@ -118,7 +118,7 @@ const Settings = () => {
     // if (request) request.signal.onabort = promise.abort;
 
     const res = await promise;
-    const { data, isError, error } = res;
+    const { data /* isError, error */ } = res;
 
     if (data) {
       setIsLoading(false);
