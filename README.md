@@ -50,6 +50,8 @@ By utilizing technologies such as React, Redux Toolkit, Material-UI, and Axios, 
 
 ### Install and run the app with the following commands
 
+- Make sure you have set up the **.env** file. See the **.env_example** file to check the required variables.
+
 ```bash
 npm install
 
