@@ -2,7 +2,7 @@
 
 **Name**: PSN Profile Manager
 
-This is a frontend app that uses React and the specified technologies to consume [PSN API Server]() endpoints. This app will allow users to view their PlayStation profiles, track gaming statistics, and manage friend connections, all within a modern and responsive interface.
+This is a frontend app that uses React and the specified technologies to consume [PSN API Server](https://github.com/junior-ramos-dev/psn_api_server) endpoints. This app will allow users to view their PlayStation profiles, track gaming statistics, and manage friend connections, all within a modern and responsive interface.
 
 By utilizing technologies such as React, Redux Toolkit, Material-UI, and Axios, this app provides a smooth user experience, allowing users to view their gaming profiles, friends, and statistics effectively. The architecture allows for easy scalability and maintenance, making it an excellent choice for gamers looking to enhance their social experience in the PlayStation ecosystem.
 
@@ -48,10 +48,12 @@ By utilizing technologies such as React, Redux Toolkit, Material-UI, and Axios, 
    - **MongoDB**: Stores user profiles, linked PSN accounts, and other necessary data.
    - **PSN API Integration**: Connects to the PSN API to fetch user gaming data.
 
-### Install the app and its dependencies
+### Install and run the app with the following commands
 
 ```bash
 npm install
+
+npm start
 ```
 
 ### Frontend Setup Description (Examples)
