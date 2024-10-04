@@ -67,5 +67,5 @@ export default [
       "simple-import-sort/exports": "error",
     },
   },
-  { ignores: ["node_modules/", "dist/", "**/temp/*"] },
+  { ignores: ["node_modules/", "dist/", "**/temp/*", "docs/"] },
 ];
