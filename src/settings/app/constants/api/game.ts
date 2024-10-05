@@ -18,9 +18,9 @@ export const GAME_URL_MAP: Record<GAME_ENDPOINT_NAME, string> = {
   [GAME_ENDPOINT_NAME.GAME_GAME_DETAILS]:
     "game/:npCommunicationId/:trophyTitlePlatform/details?imgType=:imgType&getTrophies=:getTrophies",
 
-  [GAME_ENDPOINT_NAME.GET_GAME_ICON_BIN]: "game/:npCommunicationId/icon",
+  [GAME_ENDPOINT_NAME.GET_GAME_ICON_BIN]: "game/icon/:npCommunicationId",
   [GAME_ENDPOINT_NAME.GET_GAME_ICON_BIN_BY_IMG_TYPE]:
-    "game/:npCommunicationId/icon/:imgType",
+    "game/icon/:npCommunicationId/:imgType",
   [GAME_ENDPOINT_NAME.GET_GAMES_ICON_BIN_LIST]: "game/icon/list",
 };
 
