@@ -21,6 +21,8 @@ import {
   Typography,
 } from "@mui/material";
 
+import { InfoBox } from "../components/Common/InfoBox";
+
 interface IDisplayBulkDataProps {
   bulkData: ITrophyListBulk;
 }
@@ -152,8 +154,23 @@ const Settings = () => {
         <SettingsPageHeader pageTitle={PAGE_TITLE_SETTINGS} />
       </Box>
       <PageContentWrapper>
-        <Box sx={{ p: 2 }}>
-          <Typography>
+        <InfoBox
+          message="If you encounter issues loading the data during registration or need
+            to refresh the data, you can reload the trophies here."
+        />
+        <Box
+          sx={(theme) => ({
+            display: "block",
+            p: 2,
+            m: 1,
+            border: "1px solid",
+            borderColor: theme.palette.primary.main,
+            borderRadius: 2,
+            fontSize: "0.875rem",
+            fontWeight: "700",
+          })}
+        >
+          <Typography variant="subtitle1">
             Insert or Update the list of trophies for all games
           </Typography>
 
