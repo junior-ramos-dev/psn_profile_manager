@@ -9,9 +9,11 @@ import { TrophyStackBar } from "@/ui/components/Chart/Trophy/TrophyStackBar";
 import { PageContentWrapper } from "@/ui/components/Common/PageContentWrapper";
 import { RingMessageLoading } from "@/ui/components/Common/RingMessageLoading";
 import { DashboardPageHeader } from "@/ui/components/Dashboard/DashboardPageHeader";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Stack } from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+
+import { TrophyPointsStackBar } from "../components/Chart/Trophy/TrophyPointsStackBar";
 
 const sortedTrophiesField = ["Platinum", "Gold", "Silver", "Bronze"];
 
@@ -131,7 +133,10 @@ const Dashboard = () => {
                 alignItems: "center",
               }}
             >
-              <TrophyStackBar dataset={dataStats} />
+              <Stack direction="row" spacing={5} sx={{ mt: 3 }}>
+                <TrophyStackBar dataset={dataStats} />
+                <TrophyPointsStackBar dataset={dataStats} />
+              </Stack>
             </Box>
           )}
         </Suspense>
