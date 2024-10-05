@@ -1,7 +1,11 @@
 import { ConvertIGame, IGame } from "@/models/interfaces";
-import { IUserGameDetails } from "@/models/interfaces/games/IGame";
+import {
+  IGameDetailsList,
+  IUserGameDetails,
+} from "@/models/interfaces/games/IGame";
 import { IGameIcon } from "@/models/interfaces/games/IGameIcon";
 import {
+  GameDetailsListRequest,
   GameDetailsRequest,
   IconBinByImgTypeRequest,
   IconBinListRequest,
@@ -75,7 +79,7 @@ export const gameApi = rtkQueryBaseApi.injectEndpoints({
         imgType,
         getTrophies,
       }) => ({
-        endpointUrl: GAME_URL_MAP[GAME_ENDPOINT_NAME.GAME_GAME_DETAILS],
+        endpointUrl: GAME_URL_MAP[GAME_ENDPOINT_NAME.GET_GAME_DETAILS],
         method: VERBS.GET,
         urlParams: {
           trophyTitlePlatform,
@@ -84,7 +88,23 @@ export const gameApi = rtkQueryBaseApi.injectEndpoints({
           getTrophies,
         },
         collection: "Games",
-        endpointName: GAME_ENDPOINT_NAME.GAME_GAME_DETAILS,
+        endpointName: GAME_ENDPOINT_NAME.GET_GAME_DETAILS,
+      }),
+      providesTags: ["Game"],
+    }),
+    // Get a game list with its respective icon, trophies and total points
+    getGameDetailsList: build.query<IGameDetailsList, GameDetailsListRequest>({
+      query: ({ limit, offset, imgType, getTrophies }) => ({
+        endpointUrl: GAME_URL_MAP[GAME_ENDPOINT_NAME.GET_GAME_DETAILS_LIST],
+        method: VERBS.LIST,
+        urlParams: {
+          limit,
+          offset,
+          imgType,
+          getTrophies,
+        },
+        collection: "Games",
+        endpointName: GAME_ENDPOINT_NAME.GET_GAME_DETAILS_LIST,
       }),
       providesTags: ["Game"],
     }),

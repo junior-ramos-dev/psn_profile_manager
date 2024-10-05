@@ -18,16 +18,15 @@ interface ITrophy {
 
 export interface ITrophyList {
   userId: string;
-  gamesTrophies: GamesTrophies;
+  gamesTrophies: IGamesTrophyList;
 }
 
-export interface GamesTrophies {
+export interface IGamesTrophyList {
   npCommunicationId: string;
   trophyTitlePlatform: string;
   trophies: ITrophy[];
   createdAt: Date;
   updatedAt: Date;
-  _id: string;
 }
 
 export interface ITrophyCount {
@@ -43,7 +42,13 @@ export interface ITrophySummary {
   earnedTrophies: ITrophyCount;
 }
 
+export interface ITrophyGroups {
+  allTrophiesCount: ITrophyCount;
+  trophyGroupsInfo: ITrophyGroupsInfo[];
+}
+
 export interface ITrophyGroupsInfo {
+  trophyGroupId: string;
   definedGroupInfo: IDefinedGroupInfo;
   earnedGroupInfo: IEarnedGroupInfo;
   groupTrophies: ITrophy[];

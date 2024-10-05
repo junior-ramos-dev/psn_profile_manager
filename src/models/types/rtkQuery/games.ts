@@ -5,6 +5,13 @@ export type GameDetailsRequest = {
   getTrophies?: number;
 };
 
+export type GameDetailsListRequest = {
+  limit: number;
+  offset: string;
+  imgType?: string;
+  getTrophies?: number;
+};
+
 export type IconBinListRequest = {
   npCommIdList: string[];
   imgType: string;
