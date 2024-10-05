@@ -93,21 +93,23 @@ export const gameApi = rtkQueryBaseApi.injectEndpoints({
       providesTags: ["Game"],
     }),
     // Get a game list with its respective icon, trophies and total points
-    getGameDetailsList: build.query<IGameDetailsList, GameDetailsListRequest>({
-      query: ({ limit, offset, imgType, getTrophies }) => ({
-        endpointUrl: GAME_URL_MAP[GAME_ENDPOINT_NAME.GET_GAME_DETAILS_LIST],
-        method: VERBS.LIST,
-        urlParams: {
-          limit,
-          offset,
-          imgType,
-          getTrophies,
-        },
-        collection: "Games",
-        endpointName: GAME_ENDPOINT_NAME.GET_GAME_DETAILS_LIST,
-      }),
-      providesTags: ["Game"],
-    }),
+    getGameDetailsList: build.query<IGameDetailsList[], GameDetailsListRequest>(
+      {
+        query: ({ limit, offset, imgType, getTrophies }) => ({
+          endpointUrl: GAME_URL_MAP[GAME_ENDPOINT_NAME.GET_GAME_DETAILS_LIST],
+          method: VERBS.LIST,
+          urlParams: {
+            limit,
+            offset,
+            imgType,
+            getTrophies,
+          },
+          collection: "Games",
+          endpointName: GAME_ENDPOINT_NAME.GET_GAME_DETAILS_LIST,
+        }),
+        providesTags: ["Game"],
+      }
+    ),
     // Get the game icon object from a game
     getGameIconBin: build.query<IGameIcon, string>({
       query: (npCommunicationId) => ({
@@ -149,6 +151,7 @@ export const {
   useGetGameListQuery,
   useGameListLoaderQuery,
   useGetGameDetailsQuery,
+  useGetGameDetailsListQuery,
   useGetGameIconBinQuery,
   useGetGameIconBinByImgTypeQuery,
   useGetGamesIconBinListMutation,

@@ -7,7 +7,7 @@ export type GameDetailsRequest = {
 
 export type GameDetailsListRequest = {
   limit: number;
-  offset: string;
+  offset: number;
   imgType?: string;
   getTrophies?: number;
 };
