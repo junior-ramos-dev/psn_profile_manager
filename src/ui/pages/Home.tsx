@@ -1,23 +1,36 @@
 /** @jsxImportSource @emotion/react */
 import { Helmet } from "react-helmet-async";
-import { Outlet } from "react-router-dom";
 
-import { useAppSelector } from "@/hooks/redux";
-import { selectUserProfile } from "@/services/rtkQueryApi/user/userProfileSelectors";
-import {
-  APP_TITLE,
-  FOOTER_HEIGHT,
-  PAGE_TITLE_HOME,
-} from "@/settings/app/constants";
+import { useGetGameDetailsListQuery } from "@/services/rtkQueryApi/game/gameApi";
+import { APP_TITLE, IMG_TYPE, PAGE_TITLE_HOME } from "@/settings/app/constants";
 import { PageHeader } from "@/ui/components/DefaultPage/PageHeader";
-import { UserProfile } from "@/ui/components/User/UserProfile";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+
+import { PageContentWrapper } from "../components/Common/PageContentWrapper";
+import { GameCardsList } from "../components/Game/GameCardsList";
 
 const Home = () => {
   //Disable page scroll
   // useOverFlowHidden();
 
-  const userProfile = useAppSelector(selectUserProfile);
+  const limit = 18;
+  const offset = 0;
+
+  const { data, isLoading /* isError, isSuccess   */ } =
+    useGetGameDetailsListQuery(
+      {
+        limit: limit,
+        offset: offset,
+        imgType: IMG_TYPE.PNG,
+        getTrophies: 1, //true
+      },
+      {
+        // pollingInterval: 60 * 60 * 1000 * 2, //(60 * 60 * 1000 * 2) = 2h
+        // refetchOnFocus: true,
+        // refetchOnMountOrArgChange: true,
+        // skip: false,
+      }
+    );
 
   return (
     <>
@@ -30,25 +43,21 @@ const Home = () => {
         <PageHeader pageTitle={PAGE_TITLE_HOME} />
       </Box>
 
-      <div
-        id="container"
-        style={{
-          width: "100%",
-          height: `calc(100% - ${FOOTER_HEIGHT + 30}px)`,
-          position: "relative",
-          display: "block",
-          // border: "1px solid blue",
-          marginTop: "85px",
-          // flexShrink: 0,
-          whiteSpace: "nowrap",
-          // boxSizing: "border-box",
-        }}
-      >
-        <UserProfile userProfile={userProfile} />
-        <Box component="main" sx={{ flexGrow: 1, p: 1, pt: 10 }}>
-          <Outlet />
+      <PageContentWrapper>
+        <Box sx={{ width: "80%" }}>
+          <Typography variant="h6" sx={{ ml: 2 }}>
+            Recent Activity
+          </Typography>
         </Box>
-      </div>
+
+        <Box sx={{ overflow: "hidden" }}>
+          <GameCardsList data={data} totalItems={limit} isLoading={isLoading} />
+        </Box>
+
+        {/* <Box component="main" sx={{ flexGrow: 1, p: 1, pt: 10 }}>
+          <Outlet />
+        </Box> */}
+      </PageContentWrapper>
     </>
   );
 };
