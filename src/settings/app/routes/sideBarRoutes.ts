@@ -7,8 +7,8 @@ import Dashboard from "@/ui/pages/Dashboard";
 import Games from "@/ui/pages/Games";
 import Home from "@/ui/pages/Home";
 import Index from "@/ui/pages/Index";
-import DashboardIcon from "@material-ui/icons/BarChartOutlined";
-import HomeIcon from "@material-ui/icons/Home";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import HomeIcon from "@mui/icons-material/Home";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 
 const gamesLoader = new GamesLoader(store);
