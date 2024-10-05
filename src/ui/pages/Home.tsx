@@ -21,8 +21,8 @@ const Home = () => {
       {
         limit: limit,
         offset: offset,
-        imgType: IMG_TYPE.PNG,
-        getTrophies: 1, //true
+        imgType: IMG_TYPE.WEBP,
+        getTrophies: 0, //false
       },
       {
         // pollingInterval: 60 * 60 * 1000 * 2, //(60 * 60 * 1000 * 2) = 2h

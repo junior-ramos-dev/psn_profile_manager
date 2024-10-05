@@ -24,16 +24,18 @@ export const GameCardsList = ({
   isLoading,
   totalItems,
 }: GameCardListProps) => {
+  const skeletonArray = Array.from(new Array(totalItems).keys());
+
   return (
     <Grid2
       container
       // wrap="nowrap"
       spacing={{ xs: 2, md: 3 }}
       columns={{ xs: 4, sm: 8, md: 12 }}
+      sx={{ mt: 2 }}
     >
-      {(isLoading ? Array.from(new Array(totalItems)) : data).map(
-        (item, index) =>
-          item ? (
+      {!isLoading
+        ? data.map((item, index) => (
             <NavLink
               to={`/game/${item.usergame.npCommunicationId}`}
               key={item.usergame.npCommunicationId}
@@ -44,7 +46,7 @@ export const GameCardsList = ({
               `}
             >
               <Box
-                key={index + 1}
+                key={item.usergame.npCommunicationId + index}
                 display="flex"
                 flexDirection="column"
                 alignItems="left"
@@ -54,7 +56,7 @@ export const GameCardsList = ({
                   width: 250,
                   height: 230,
                   ml: 2,
-                  my: 1,
+                  my: 0.5,
                   border: "1px solid",
                   borderRadius: "5px",
                   borderColor: "#acacac",
@@ -101,32 +103,14 @@ export const GameCardsList = ({
                 </Box>
               </Box>
             </NavLink>
-          ) : (
-            <Box
-              key="box-skeleton"
-              display="flex"
-              flexDirection="column"
-              alignItems="left"
-              justifyContent="left"
-              margin="auto"
-              sx={{
-                width: 250,
-                height: 230,
-                ml: 2,
-                my: 1,
-                border: "1px solid",
-                borderRadius: "5px",
-                borderColor: "#acacac",
-              }}
-            >
+          ))
+        : skeletonArray.map((index) => (
+            <Box key={"skeleton" + index} sx={{ ml: 2 }}>
               <Skeleton variant="rectangular" width={250} height={150} />
-              <Box sx={{ pt: 0.5 }}>
-                <Skeleton />
-                <Skeleton width="60%" />
-              </Box>
+              <Skeleton />
+              <Skeleton width="60%" />
             </Box>
-          )
-      )}
+          ))}
     </Grid2>
   );
 };
