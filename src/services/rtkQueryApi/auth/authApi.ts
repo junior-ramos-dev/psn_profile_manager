@@ -1,4 +1,4 @@
-import { ITaskHandler } from "@/models/interfaces/ITaskHandler";
+import { ITaskLoaderData } from "@/models/interfaces/ITaskLoaderData";
 import {
   AuthLoginRequest,
   AuthLoginResponse,
@@ -39,7 +39,7 @@ export const authApi = rtkQueryBaseApi.injectEndpoints({
       }),
       invalidatesTags: ["Auth"],
     }),
-    registerLoader: build.mutation<ITaskHandler, IAxiosBaseQueryArgs>({
+    registerLoader: build.mutation<ITaskLoaderData, IAxiosBaseQueryArgs>({
       query: ({
         endpointUrl,
         method,
