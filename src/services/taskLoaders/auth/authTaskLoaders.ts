@@ -1,4 +1,3 @@
-import { ITaskProps } from "@/models/interfaces/ITaskHandler";
 import { AuthRegisterRequest } from "@/models/types/rtkQuery/auth";
 import { authApi } from "@/services/rtkQueryApi/auth/authApi";
 import { VERBS } from "@/settings/app/constants";
@@ -9,30 +8,18 @@ import {
 
 import { BaseTaskLoader } from "../baseTaskLoader";
 
-// The number of steps for the task
-export enum STEP_ID {
-  ONE = 1,
-  TWO = 2,
-  THREE = 3,
-  FOUR = 4,
-  FIVE = 5,
-  SIX = 6,
-  SEVEN = 7,
-  EIGHT = 8,
-  NINE = 9,
-}
-
 // Return the message for each step
-export const STEP_MSG_MAP: Record<STEP_ID, string> = {
-  [STEP_ID.ONE]: "Checking PSN On-Line ID...",
-  [STEP_ID.TWO]: "Checking E-Mail...",
-  [STEP_ID.THREE]: "Checking NPSSO code...",
-  [STEP_ID.FOUR]: "Getting PSN credentials...",
-  [STEP_ID.FIVE]: "Creating Account...",
-  [STEP_ID.SIX]: "Getting User games list...",
-  [STEP_ID.SEVEN]: "Loading games icons...",
-  [STEP_ID.EIGHT]: "Getting games trophy lists...",
-  [STEP_ID.NINE]: "Finishing...",
+export const TASK_MSG_MAP: Record<number, string> = {
+  0: "Starting...",
+  1: "Checking PSN On-Line ID...",
+  2: "Checking E-Mail...",
+  3: "Checking NPSSO code...",
+  4: "Getting PSN credentials...",
+  5: "Creating Account...",
+  6: "Getting User games list...",
+  7: "Loading games icons...",
+  8: "Getting games trophy lists...",
+  9: "Finishing...",
 };
 
 export class AuthTaskLoader extends BaseTaskLoader {
@@ -47,7 +34,7 @@ export class AuthTaskLoader extends BaseTaskLoader {
     return registerData;
   };
 
-  initAuthregisterLoaderQuery = (authRegisterRequest: AuthRegisterRequest) => {
+  initAuthRegisterLoaderQuery = (authRegisterRequest: AuthRegisterRequest) => {
     this.loaderQuery = {
       endpointUrl: AUTH_URL_MAP[AUTH_ENDPOINT_NAME.REGISTER_LOADER],
       method: VERBS.POST,
@@ -55,43 +42,5 @@ export class AuthTaskLoader extends BaseTaskLoader {
       collection: "Auth",
       endpointName: AUTH_ENDPOINT_NAME.REGISTER_LOADER,
     };
-  };
-
-  handleStepsParams = (taskProps: ITaskProps) => {
-    if (taskProps.stepId === STEP_ID.ONE && taskProps.runSubTask === 0) {
-      // this.stepId = STEP_ID.TWO;
-      this.runSubTask = 1;
-    }
-
-    if (taskProps.stepId === STEP_ID.TWO && taskProps.runSubTask === 0) {
-      this.runSubTask = 1;
-    }
-
-    if (taskProps.stepId === STEP_ID.THREE && taskProps.runSubTask === 0) {
-      this.runSubTask = 1;
-    }
-    if (taskProps.stepId === STEP_ID.FOUR && taskProps.runSubTask === 0) {
-      this.runSubTask = 1;
-    }
-
-    if (taskProps.stepId === STEP_ID.FIVE && taskProps.runSubTask === 0) {
-      this.runSubTask = 1;
-    }
-
-    if (taskProps.stepId === STEP_ID.SIX && taskProps.runSubTask === 0) {
-      this.runSubTask = 1;
-    }
-
-    if (taskProps.stepId === STEP_ID.SEVEN && taskProps.runSubTask === 0) {
-      this.runSubTask = 1;
-    }
-
-    if (taskProps.stepId === STEP_ID.EIGHT && taskProps.runSubTask === 0) {
-      this.runSubTask = 1;
-    }
-
-    if (taskProps.stepId === STEP_ID.NINE && taskProps.runSubTask === 0) {
-      this.runSubTask = 1;
-    }
   };
 }

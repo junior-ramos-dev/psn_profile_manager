@@ -1,4 +1,4 @@
-import { ITaskHandler, ITaskProps } from "@/models/interfaces/ITaskHandler";
+import { ITaskLoaderData } from "@/models/interfaces/ITaskLoaderData";
 import { IAxiosBaseQueryArgs } from "@/services/axios/axiosBaseQueryApi";
 import { AUTH_ENDPOINT_NAME } from "@/settings/app/constants/api/auth";
 import { AppDispatch, AppStore } from "@/store";
@@ -42,7 +42,5 @@ export abstract class BaseTaskLoader {
     return data;
   };
 
-  abstract loadData(): Promise<ITaskHandler>;
-
-  abstract handleStepsParams(taskProps: ITaskProps): void;
+  abstract loadData(): Promise<ITaskLoaderData>;
 }
