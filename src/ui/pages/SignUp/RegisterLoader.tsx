@@ -1,10 +1,15 @@
 /** @jsxImportSource @emotion/react */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+import { useAppDispatch } from "@/hooks/redux";
+import { ITaskLoaderData } from "@/models/interfaces/ITaskLoaderData";
 import { AuthRegisterRequest } from "@/models/types/rtkQuery/auth";
+import { actionSetCredentials } from "@/services/rtkQueryApi/auth/authSlice";
+import { actionSetUseProfile } from "@/services/rtkQueryApi/user/userProfileSlice";
 import { AuthTaskLoader } from "@/services/taskLoaders/auth/authTaskLoaders";
 import { store } from "@/store";
+import { RingProgressBar } from "@/ui/example/RingProgressBar";
 import { css } from "@emotion/react";
 import { LockOutlined } from "@mui/icons-material";
 import {
@@ -18,15 +23,41 @@ import {
   Typography,
 } from "@mui/material";
 
-import { RegisterProgressLoader } from "./RegisterProgressLoader";
+import { TaskLoaderProgress } from "../../../../node_modules/jrd_task_loader_progress/dist";
+
+const authTaskLoader = new AuthTaskLoader(store);
 
 const RegisterLoader = () => {
-  const [authTaskLoaderTask, setAuthTaskLoaderTask] = useState(null);
+  const dispatch = useAppDispatch();
+  const [returnData, setReturnData] = useState<ITaskLoaderData>();
+  const [request, setRequest] = useState<AuthRegisterRequest>();
   const [isLoading, setIsLoading] = useState(false);
+
+  // const [authTaskLoaderTask, setAuthTaskLoaderTask] = useState(null);
 
   const [psnOnlineId, setPsnOnlineId] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    if (returnData) {
+      const responseData = returnData.data;
+
+      if (responseData && "user" in responseData && "profile" in responseData) {
+        const { user, profile } = responseData;
+
+        dispatch(actionSetCredentials(user));
+        dispatch(actionSetUseProfile(profile));
+        setIsLoading(false);
+      }
+    }
+  }, [returnData]);
+
+  const getDataFromLoader = (user: ITaskLoaderData) => {
+    setEmail("");
+    setPassword("");
+    setReturnData(user);
+  };
 
   const handleRegister = async () => {
     // This is only a basic validation of inputs. Improve this as needed.
@@ -38,10 +69,10 @@ const RegisterLoader = () => {
           password: password,
         };
 
-        const authTaskLoader = new AuthTaskLoader(store);
-        authTaskLoader.initAuthregisterLoaderQuery(authRegisterRequest);
+        setRequest(authRegisterRequest);
 
-        setAuthTaskLoaderTask(authTaskLoader);
+        // authTaskLoader.initAuthRegisterLoaderQuery(authRegisterRequest);
+        // setAuthTaskLoaderTask(authTaskLoader);
 
         setIsLoading(true);
       } catch (e) {
@@ -53,7 +84,16 @@ const RegisterLoader = () => {
   };
 
   if (isLoading)
-    return <RegisterProgressLoader taskLoader={authTaskLoaderTask} />;
+    return (
+      <TaskLoaderProgress<ITaskLoaderData, AuthRegisterRequest>
+        taskLoader={authTaskLoader.loadData}
+        returnData={getDataFromLoader}
+        request={request}
+        totalTasks={10}
+      >
+        <RingProgressBar />
+      </TaskLoaderProgress>
+    );
 
   return (
     <Container maxWidth="xs">
