@@ -42,5 +42,6 @@ export abstract class BaseTaskLoader {
     return data;
   };
 
-  abstract loadData(): Promise<ITaskLoaderData>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  abstract loadData(request: any): Promise<ITaskLoaderData>;
 }

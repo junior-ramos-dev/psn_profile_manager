@@ -25,17 +25,17 @@ export const TASK_MSG_MAP: Record<number, string> = {
 export class AuthTaskLoader extends BaseTaskLoader {
   // queryString = `?runTask=${this.runTask}&runSubTask=${this.runSubTask}&stepId=${this.stepId}`;
 
-  loadData = async () => {
+  loadData = async (authRegisterRequest: AuthRegisterRequest) => {
     const registerData = await this.baseLoader(
       authApi.endpoints.registerLoader,
-      this.loaderQuery
+      this.initAuthRegisterLoaderQuery(authRegisterRequest)
     );
 
     return registerData;
   };
 
   initAuthRegisterLoaderQuery = (authRegisterRequest: AuthRegisterRequest) => {
-    this.loaderQuery = {
+    return {
       endpointUrl: AUTH_URL_MAP[AUTH_ENDPOINT_NAME.REGISTER_LOADER],
       method: VERBS.POST,
       bodyData: authRegisterRequest,
