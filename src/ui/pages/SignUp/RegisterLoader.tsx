@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import { useAppDispatch } from "@/hooks/redux";
 import { ITaskLoaderData } from "@/models/interfaces/ITaskLoaderData";
+import { IUserAndProfile } from "@/models/interfaces/user/IUserAndProfile";
 import { AuthRegisterRequest } from "@/models/types/rtkQuery/auth";
 import { actionSetCredentials } from "@/services/rtkQueryApi/auth/authSlice";
 import { actionSetUseProfile } from "@/services/rtkQueryApi/user/userProfileSlice";
@@ -29,7 +30,7 @@ const authTaskLoader = new AuthTaskLoader(store);
 
 const RegisterLoader = () => {
   const dispatch = useAppDispatch();
-  const [returnData, setReturnData] = useState<ITaskLoaderData>();
+  const [returnData, setReturnData] = useState<IUserAndProfile>();
   const [request, setRequest] = useState<AuthRegisterRequest>();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -41,22 +42,26 @@ const RegisterLoader = () => {
 
   useEffect(() => {
     if (returnData) {
-      const responseData = returnData.data;
+      // const responseData = returnData.data;
 
-      if (responseData && "user" in responseData && "profile" in responseData) {
-        const { user, profile } = responseData;
+      if (
+        returnData &&
+        "userDb" in returnData &&
+        "userProfileDb" in returnData
+      ) {
+        const { userDb, userProfileDb } = returnData;
 
-        dispatch(actionSetCredentials(user));
-        dispatch(actionSetUseProfile(profile));
+        dispatch(actionSetCredentials(userDb));
+        dispatch(actionSetUseProfile(userProfileDb));
         setIsLoading(false);
       }
     }
   }, [returnData]);
 
-  const getDataFromLoader = (user: ITaskLoaderData) => {
+  const getDataFromLoader = (userAndProfile: IUserAndProfile) => {
     setEmail("");
     setPassword("");
-    setReturnData(user);
+    setReturnData(userAndProfile);
   };
 
   const handleRegister = async () => {
