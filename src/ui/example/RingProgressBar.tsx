@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { TaskLoaderProgressContext } from "jrd_task_loader_progress";
 import { RingLoader } from "react-spinners";
 
 import { TASK_MSG_MAP } from "@/services/taskLoaders/auth/authTaskLoaders";
@@ -9,8 +10,6 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-
-import { TaskLoaderProgressContext } from "../../../node_modules/jrd_task_loader_progress/dist";
 
 export const RingProgressBar = () => {
   const theme = useTheme();

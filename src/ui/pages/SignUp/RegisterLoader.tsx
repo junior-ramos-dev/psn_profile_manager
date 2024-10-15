@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { useEffect, useState } from "react";
+import { TaskLoaderProgress } from "jrd_task_loader_progress";
 import { Link } from "react-router-dom";
 
 import { useAppDispatch } from "@/hooks/redux";
@@ -23,8 +24,6 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-
-import { TaskLoaderProgress } from "../../../../node_modules/jrd_task_loader_progress/dist";
 
 const authTaskLoader = new AuthTaskLoader(store);
 
