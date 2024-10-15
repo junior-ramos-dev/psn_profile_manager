@@ -11,7 +11,7 @@ import { actionSetCredentials } from "@/services/rtkQueryApi/auth/authSlice";
 import { actionSetUseProfile } from "@/services/rtkQueryApi/user/userProfileSlice";
 import { AuthTaskLoader } from "@/services/taskLoaders/auth/authTaskLoaders";
 import { store } from "@/store";
-import { RingProgressBar } from "@/ui/example/RingProgressBar";
+import { RingProgressBar } from "@/ui/components/Common/RingProgressBar";
 import { css } from "@emotion/react";
 import { LockOutlined } from "@mui/icons-material";
 import {
